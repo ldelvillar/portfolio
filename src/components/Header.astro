@@ -1,0 +1,45 @@
+---
+import Menu from "./icons/Menu.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+---
+
+<header class="w-full sticky top-0 z-40 backdrop-blur-xl text-gray-700 dark:text-white">
+  <div class="container mx-auto flex items-center justify-evenly p-4">
+    <a href="/" class="text-black dark:text-white text-lg font-bold">
+      ldelvillar
+    </a>
+    
+    <nav class="hidden lg:flex space-x-8">
+      <a href="#experience" class="hover:text-yellow-600 dark:hover:text-yellow-400">Experience</a>
+      <a href="#projects" class="hover:text-yellow-600 dark:hover:text-yellow-400">Projects</a>
+      <a href="#about" class="hover:text-yellow-600 dark:hover:text-yellow-400">About</a>
+      <a href="#contact" class="hover:text-yellow-600 dark:hover:text-yellow-400">Contact</a>
+    </nav>
+    
+    <div class="flex items-center space-x-4">
+      <button id="menu-toggle" class="lg:hidden focus:outline-none">
+        <Menu />
+      </button>
+      <ThemeToggle />
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <nav id="mobile-menu" class="lg:hidden h-screen hidden backdrop-blur-lg">
+    <ul class="space-y-4 p-4">
+      <li><a href="#about" class="block hover:text-gray-900">About</a></li>
+      <li><a href="#projects" class="block hover:text-gray-900">Projects</a></li>
+      <li><a href="#techstack" class="block hover:text-gray-900">Skills</a></li>
+      <li><a href="#contact" class="block hover:text-gray-900">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  // Toggle mobile menu
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('block');
+  });
+</script>

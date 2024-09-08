@@ -1,0 +1,184 @@
+---
+import Github from './logos/Github.astro'
+import Link from './icons/Link.astro'
+
+
+interface Props {
+    image: string,
+    title: string,
+    description: string,
+    github: string,
+    preview: string,
+    orientation: string
+}
+
+const { image, title, description, github, preview, orientation } = Astro.props
+---
+{
+    orientation === "col" && 
+    <article class='flex flex-col bg-slate-200 dark:bg-slate-700 border border-slate-500 rounded-3xl'>
+        <img
+            src={image}
+            alt="project card"
+            class="rounded-3xl"
+        />
+        <div class="mx-2 md:mx-4 my-5 md:mt-0 flex flex-col gap-1 lg:gap-4">
+            <h3 class="text-gray-900 dark:text-gray-50 text-2xl font-bold mt-3">{title}</h3>
+            <p class="text-gray-900 dark:text-gray-400 mt-2 text-md">{description}</p>
+            <footer class="flex flex-row gap-5 my-2">
+                <div class="card">
+                    <span>View</span>
+                    <div class="flex flex-row gap-3">
+                        <a
+                            href={github}
+                            class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
+                        >
+                            Code
+                            <Github size={30} />
+                        </a>
+                        {
+                        preview && 
+                            <a
+                                href={preview}
+                                class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
+                            >
+                                Preview
+                                <Link />
+                            </a>
+                        }
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </article>
+}
+
+{
+    orientation === "row" &&
+    <article class='flex flex-col md:flex-row bg-slate-200 dark:bg-slate-700 border border-slate-500 rounded-3xl'>
+        <img
+            src={image}
+            alt="project card"
+            class="rounded-3xl md:w-[48%]"
+        />
+        <div class="mx-2 md:mx-8 my-5 md:mt-4 flex flex-col gap-1 lg:gap-4">
+            <h3 class="text-gray-900 dark:text-gray-50 text-2xl font-bold mt-3">{title}</h3>
+            <p class="text-gray-900 dark:text-gray-400 mt-2 text-md">{description}</p>
+            <footer class="flex flex-row gap-5 my-2">
+                <div class="card">
+                    <span>View</span>
+                    <div class="flex flex-row gap-3">
+                        <a
+                            href={github}
+                            class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
+                        >
+                            Code
+                            <Github size={30} />
+                        </a>
+                        {
+                        preview && 
+                            <a
+                                href={preview}
+                                class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
+                            >
+                                Preview
+                                <Link />
+                            </a>
+                        }
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </article>
+}
+
+<style>
+    .card {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        overflow: hidden;
+        height: 50px;
+        width: 100%;
+    }
+
+    .card::before, .card::after {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        transition: 0.25s linear;
+        z-index: 1;
+    }
+
+    .card::before {
+        content: "";
+        left: 0;
+        justify-content: flex-end;
+        background-color: #4d60b6;
+        border-radius: 10px;
+    }
+
+    .card::after {
+        content: "";
+        right: 0;
+        justify-content: flex-start;
+        background-color: #facc15;
+        border-radius: 10px;
+    }
+
+    .card:hover span {
+        opacity: 0;
+        z-index: -3;
+    }
+
+    .card:hover::before {
+        opacity: 0.5;
+        transform: translateY(-100%);
+    }
+
+    .card:hover::after {
+        opacity: 0.5;
+        transform: translateY(100%);
+    }
+
+    .card span {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        color: whitesmoke;
+        font-size: 24px;
+        font-weight: 700;
+        opacity: 1;
+        transition: opacity 0.25s;
+        z-index: 2;
+    }
+
+    .card .social-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 100%;
+        color: whitesmoke;
+        font-size: 24px;
+        text-decoration: none;
+        transition: 0.25s;
+    }
+
+    .card .social-link svg {
+        text-shadow: 1px 1px rgba(31, 74, 121, 0.7);
+        transform: scale(1);
+    }
+
+    .card .social-link:hover {
+        background-color: rgba(249, 244, 255, 0.774);
+    }
+</style>
