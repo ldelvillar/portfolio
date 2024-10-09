@@ -1,0 +1,106 @@
+{
+    "site": {
+        "title": "Lucas del Villar - Programmer and Web Developer",
+        "description": "Hire Lucas del Villar to create you web or mobile application. Web Developer specialized in creating unique applications."
+    },
+    "header": {
+        "name": "ldelvillar",
+        "nav": {
+            "experience": "Experience",
+            "projects": "Projects",
+            "about": "About",
+            "contact": "Contact",
+            "skills": "Skills"
+        }
+    },
+    "hero": {
+        "title": "I'm Lucas",
+        "subtitle": "CS Student",
+        "description1": "+3 years of experience.",
+        "description2": "Computer Scientist and Web Developer",
+        "description3": "from Madrid, Spain 🇪🇸. Specialised in creating unique and robust solutions."
+    },
+    "experience": {
+        "title": "Experience"
+    },
+    "timeline": {
+        "currently": {
+            "date": "Currently",
+            "title": "Making projects",
+            "description": "I am continuously learning and increasing my experience by making both frontend and backend projects."
+        },
+        "september_2022": {
+            "date": "September 2022",
+            "title": "Started my degree",
+            "description": "I started to study a Bachelor Degree in Computer Science and Engineering at University Carlos III de Madrid."
+        },
+        "2019": {
+            "date": "2019",
+            "title": "Started coding",
+            "description": "I started coding at the age of 15. I took several courses about different topics, and I decided to put my focus on web development."
+        }
+    },
+    "projects": {
+        "title": "Projects",
+        "notes_app": {
+            "title": "Notes App",
+            "description": "A web-based app to create, edit, and delete notes efficiently."
+        },
+        "linux_shell": {
+            "title": "Linux Shell",
+            "description": "Simplified version of the Linux shell, with functionalities like command sequences, background processes, and command history."
+        },
+        "1942_game": {
+            "title": "1942 Game",
+            "description": "A recreation of the classic 1942 airplane shooter game, built using Python's Pyxel library."
+        }
+    },
+    "about": {
+        "title": "About me",
+        "introduction": {
+            "part1": "I started coding at 15, and since then, I've been learning several programming languages by myself. Nowadays, I am studying a ",
+            "highlight": "Bachelor Degree in Computer Science and Engineering.",
+            "part2": ""
+        },
+        "skills": "I am fluent in classics like Java and C, although I am more specialized in Python and JavaScript, since I focus my work in web development and machine learning. I also create native apps for Android and iOS.",
+        "goal": "My goal is to become a full-stack developer after graduating and to be able to make a living with coding."
+    },
+    "form": {
+        "name": {
+            "question": "What's your name?",
+            "placeholder": "John Doe *"
+        },
+        "email": {
+            "question": "What's your email?",
+            "placeholder": "john@doe.com *"
+        },
+        "organization": {
+            "question": "What's the name of your organization?",
+            "placeholder": "John & Doe Ltd."
+        },
+        "services": {
+            "question": "What services are you looking for?",
+            "placeholder": "Web development, web design... *"
+        },
+        "message": {
+            "question": "Your message",
+            "placeholder": "Your message here... *"
+        },
+        "send": "Send Message"
+    },
+    "contact": {
+        "title": "Get in touch!",
+        "details": {
+            "title": "Contact details",
+            "email": "ldelvillarvazquez@gmail.com",
+            "phone": "+34 604 11 26 28",
+            "location": "Madrid, Spain"
+        },
+        "socials": {
+            "title": "Socials",
+            "instagram": "lucasdvv_",
+            "linkedin": "Lucas del Villar",
+            "stackoverflow": "ldelvillar"
+        }
+    }
+}

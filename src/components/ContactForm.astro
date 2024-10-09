@@ -1,52 +1,55 @@
 ---
+import { t } from 'i18next';
+
 const inputs = [
     {
         number: "01",
-        question: "What's your name?",
+        question: t("form.name.question"),
         type: "text",
         id: "name",
-        placeholder: "John Doe *",
+        placeholder: t("form.name.placeholder"),
         required: true,
     },
     {
         number: "02",
-        question: "What's your email?",
+        question: t("form.email.question"),
         type: "email",
         id: "email",
-        placeholder: "john@doe.com *",
+        placeholder: t("form.email.placeholder"),
         required: true,
     },
     {
         number: "03",
-        question: "What's the name of your organization?",
+        question: t("form.organization.question"),
         type: "text",
         id: "organization",
-        placeholder: "John & Doe Ltd.",
+        placeholder: t("form.organization.placeholder"),
         required: false,
     },
     {
         number: "04",
-        question: "What services are you looking for?",
+        question: t("form.services.question"),
         type: "text",
         id: "services",
-        placeholder: "Web development, web design... *",
+        placeholder: t("form.services.placeholder"),
         required: true,
     },
     {
         number: "05",
-        question: "Your message",
+        question: t("form.message.question"),
         type: "textarea",
         id: "message",
-        placeholder: "Your message here... *",
+        placeholder: t("form.message.placeholder"),
         required: true,
     }
 ];
 ---
+
 <form class="space-y-6">
     {
         inputs.map(input => (
             <div class="text-gray-900 dark:text-gray-100">
-                <label for="name" class="block mb-2 text-xl text-gray-800 dark:text-gray-200">
+                <label for={input.id} class="block mb-2 text-xl text-gray-800 dark:text-gray-200">
                     <span class="text-xl text-gray-400 mr-6">{input.number}</span>
                     {input.question}
                 </label>
@@ -61,19 +64,19 @@ const inputs = [
                         ></textarea>
                     ) : (
                         <input
-                            type={input.type === "text" ? "text" : "email"}
+                            type={input.type}
                             id={input.id}
                             name={input.id}
                             placeholder={input.placeholder}
                             required={input.required}
                             class="bg-transparent w-full px-3 pt-4 pb-8 border-b border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 placeholder:font-bold"
-                        >
+                        />
                     )
                 }
             </div>
         ))
     }
     <button type="submit" class="bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition duration-300 w-full">
-        Send Message
+        {t("form.send")}
     </button>
 </form>

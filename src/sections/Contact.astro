@@ -1,11 +1,12 @@
 ---
-import ContactForm from '@/components/ContactForm.astro'
+import ContactForm from '@/components/ContactForm.astro';
 import Envelope from "@/components/icons/Envelope.astro";
 import Phone from "@/components/icons/Phone.astro";
 import Location from "@/components/icons/Location.astro";
 import Instagram from "@/components/logos/Instagram.astro";
 import Linkedin from "@/components/logos/Linkedin.astro";
 import StackOverflow from "@/components/logos/StackOverflow.astro";
+import { t } from 'i18next';
 ---
 
 <section id="contact" class="container mx-auto py-8 max-w-6xl flex flex-col md:flex-row gap-8 scroll-m-20 pb-10 w-full lg:mx-auto lg:max-w-4xl">
@@ -14,51 +15,51 @@ import StackOverflow from "@/components/logos/StackOverflow.astro";
             <span class="mr-5">
                 <Envelope size={30} />
             </span>
-            Get in touch!
+            {t("contact.title")}
         </h2>
         <ContactForm />
     </div>
 
     <div class="w-full md:w-1/3 p-6 rounded-lg">
         <img src="/images/profile.webp" alt="Profile" class="w-24 h-24 rounded-full object-cover mb-4">
-        <h5 class="font-semibold text-lg text-gray-700 dark:text-gray-100 mb-2">Contact details</h5>
+        <h5 class="font-semibold text-lg text-gray-700 dark:text-gray-100 mb-2">{t("contact.details.title")}</h5>
         <a href="mailto:ldelvillarvazquez@gmail.com" target="_blank" class="text-gray-900 dark:text-white flex items-center hover:underline mb-1">
             <span class="mr-2">
                 <Envelope size={20} />
             </span>
-            ldelvillarvazquez@gmail.com
+            {t("contact.details.email")}
         </a>
         <p class="text-gray-900 dark:text-white flex items-center mb-1">
             <span class="mr-2">
                 <Phone />
             </span>
-            +34 604 11 26 28
+            {t("contact.details.phone")}
         </p>
         <p class="text-gray-900 dark:text-white flex items-center">
             <span class="mr-2">
                 <Location />
             </span>
-            Madrid, Spain
+            {t("contact.details.location")}
         </p>
         
-        <h5 class="font-semibold text-lg text-gray-700 dark:text-gray-100 mb-2 mt-6">Socials</h5>
+        <h5 class="font-semibold text-lg text-gray-700 dark:text-gray-100 mb-2 mt-6">{t("contact.socials.title")}</h5>
         <a href="https://instagram.com/lucasdvv_" target="_blank" class="text-gray-900 dark:text-white flex items-center hover:underline mb-1">
             <span class="mr-2">
                 <Instagram />
             </span>
-            lucasdvv_
+            {t("contact.socials.instagram")}
         </a>
         <a href="https://www.linkedin.com/in/lucas-del-villar-v%C3%A1zquez-b7986a29a/" target="_blank" class="text-gray-900 dark:text-white flex items-center hover:underline mb-1">
             <span class="mr-2">
                 <Linkedin />
             </span>
-            Lucas del Villar
+            {t("contact.socials.linkedin")}
         </a>
         <a href="https://stackoverflow.com/users/23496866/ldelvillar" target="_blank" class="text-gray-900 dark:text-white flex items-center hover:underline">
             <span class="mr-2">
                 <StackOverflow />
             </span>
-            ldelvillar
+            {t("contact.socials.stackoverflow")}
         </a>
     </div>
 </section>

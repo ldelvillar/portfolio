@@ -1,31 +1,32 @@
 ---
 import Calendar from "@/components/icons/Calendar.astro";
 import TimelineItem from "@/components/TimelineItem.astro";
+import { t } from 'i18next';
 
 const timelineItems = [
     {
-        "date": "Currently",
-        "title": "Making projects",
-        "description": "I am continuosly learning and increasing my experience by making both frontend and backend projects.",
+        "date": t("timeline.currently.date"),
+        "title": t("timeline.currently.title"),
+        "description": t("timeline.currently.description"),
         "link": "https://github.com/ldelvillar",
     },
     {
-        "date": "September 2022",
-        "title": "Started my degree",
-        "description": "I started to study a Bachelor Degree in Computer Science and Engineering at University Carlos III de Madrid.",
+        "date": t("timeline.september_2022.date"),
+        "title": t("timeline.september_2022.title"),
+        "description": t("timeline.september_2022.description"),
     },
     {
-        "date": "2019",
-        "title": "Started coding",
-        "description": "I started coding at the age of 15. I took several courses about different topics, and I decided to put my focus in web development.",
+        "date": t("timeline.2019.date"),
+        "title": t("timeline.2019.title"),
+        "description": t("timeline.2019.description"),
     }
-]
+];
 ---
 
 <section id='experience' class="scroll-m-20 w-full pb-24 lg:mx-auto container lg:max-w-4xl md:max-w-2xl">
     <div class='text-gray-900 dark:text-white flex flex-row items-center gap-5'>
         <Calendar />
-        <h2 class='text-3xl font-bold'>Experience</h2>
+        <h2 class='text-3xl font-bold'>{t("experience.title")}</h2>
     </div>
     <ol class="relative border-s border-gray-200 dark:border-gray-700 mt-10 ml-3">
         {

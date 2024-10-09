@@ -1,0 +1,106 @@
+{
+    "site": {
+        "title": "Lucas del Villar - Programador y Desarrollador Web",
+        "description": "Contrata a Lucas del Villar para crear tu aplicación web o móvil. Desarrollador Web especializado en crear aplicaciones únicas."
+    },
+    "header": {
+        "name": "ldelvillar",
+        "nav": {
+            "experience": "Experiencia",
+            "projects": "Proyectos",
+            "about": "Acerca de",
+            "contact": "Contacto",
+            "skills": "Habilidades"
+        }
+    },
+    "hero": {
+        "title": "Soy Lucas",
+        "subtitle": "Estudiante de Ingeniería Informática",
+        "description1": "+3 años de experiencia.",
+        "description2": "Ingeniero Informático y Desarrollador Web",
+        "description3": "de Madrid, España 🇪🇸. Especializado en crear soluciones únicas y robustas."
+    },
+    "experience": {
+        "title": "Experiencia"
+    },
+    "timeline": {
+        "currently": {
+            "date": "Actualmente",
+            "title": "Haciendo proyectos",
+            "description": "Estoy aprendiendo continuamente y aumentando mi experiencia haciendo proyectos tanto de frontend como de backend."
+        },
+        "september_2022": {
+            "date": "Septiembre 2022",
+            "title": "Comencé mi carrera",
+            "description": "Empecé a estudiar una Licenciatura en Ingeniería Informática en la Universidad Carlos III de Madrid."
+        },
+        "2019": {
+            "date": "2019",
+            "title": "Empecé a programar",
+            "description": "Empecé a programar a los 15 años. Tomé varios cursos sobre diferentes temas y decidí centrarme en el desarrollo web."
+        }
+    },
+    "projects": {
+        "title": "Proyectos",
+        "notes_app": {
+            "title": "Aplicación de Notas",
+            "description": "Una aplicación web para crear, editar y eliminar notas de manera eficiente."
+        },
+        "linux_shell": {
+            "title": "Shell de Linux",
+            "description": "Versión simplificada de la shell de Linux, con funcionalidades como secuencias de comandos, procesos en segundo plano y recuperación de comandos anteriores."
+        },
+        "1942_game": {
+            "title": "Juego 1942",
+            "description": "Una recreación del clásico juego de disparos de aviones 1942, desarrollado con la biblioteca Pyxel de Python."
+        }
+    },
+    "about": {
+        "title": "Sobre mí",
+        "introduction": {
+            "part1": "Empecé a programar a los 15 años y, desde entonces, he estado aprendiendo varios lenguajes de programación por mi cuenta. Hoy en día, estoy estudiando un ",
+            "highlight": "Grado en Ingeniería Informática.",
+            "part2": ""
+        },
+        "skills": "Soy fluido en clásicos como Java y C, aunque estoy más especializado en Python y JavaScript, ya que enfoco mi trabajo en el desarrollo web y el aprendizaje automático. También creo aplicaciones nativas para Android y iOS.",
+        "goal": "Mi objetivo es convertirme en un desarrollador full-stack después de graduarme y poder ganarme la vida programando."
+    },
+    "form": {
+        "name": {
+            "question": "¿Cuál es tu nombre?",
+            "placeholder": "Juan Doe *"
+        },
+        "email": {
+            "question": "¿Cuál es tu correo electrónico?",
+            "placeholder": "juan@doe.com *"
+        },
+        "organization": {
+            "question": "¿Cuál es el nombre de tu organización?",
+            "placeholder": "Juan & Doe Ltd."
+        },
+        "services": {
+            "question": "¿Qué servicios estás buscando?",
+            "placeholder": "Desarrollo web, diseño web... *"
+        },
+        "message": {
+            "question": "Tu mensaje",
+            "placeholder": "Escribe tu mensaje aquí... *"
+        },
+        "send": "Enviar Mensaje"
+    },
+    "contact": {
+        "title": "¡Ponte en contacto!",
+        "details": {
+            "title": "Detalles de contacto",
+            "email": "ldelvillarvazquez@gmail.com",
+            "phone": "+34 604 11 26 28",
+            "location": "Madrid, España"
+        },
+        "socials": {
+            "title": "Redes Sociales",
+            "instagram": "lucasdvv_",
+            "linkedin": "Lucas del Villar",
+            "stackoverflow": "ldelvillar"
+        }
+    }
+}

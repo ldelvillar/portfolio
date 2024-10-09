@@ -2,7 +2,6 @@
 import Github from './logos/Github.astro'
 import Link from './icons/Link.astro'
 
-
 interface Props {
     image: string,
     title: string,
@@ -13,6 +12,8 @@ interface Props {
 }
 
 const { image, title, description, github, preview, orientation } = Astro.props
+
+import i18next from 'i18next'
 ---
 {
     orientation === "col" && 
@@ -27,13 +28,13 @@ const { image, title, description, github, preview, orientation } = Astro.props
             <p class="text-gray-900 dark:text-gray-400 mt-2 text-md">{description}</p>
             <footer class="flex flex-row gap-5 my-2">
                 <div class="card">
-                    <span>View</span>
+                    <span>{i18next.language === "en" ? "View" : "Ver"}</span>
                     <div class="flex flex-row gap-3">
                         <a
                             href={github}
                             class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
                         >
-                            Code
+                            {i18next.language === "en" ? "Code" : "Código"}
                             <Github size={30} />
                         </a>
                         {

@@ -1,6 +1,4 @@
 import TechStackItem from '@/components/TechStackItem'
-
-import Css from '@/components/logos/Css.jsx';
 import Sass from '@/components/logos/Sass.jsx';
 import Js from '@/components/logos/Js.jsx';
 import ReactIcon from '@/components/logos/ReactIcon.jsx';
@@ -24,6 +22,7 @@ import Bash from '@/components/logos/Bash.jsx';
 import { nanoid } from "nanoid";
 import List from '@/components/icons/List';
 import AstroIcon from '@/components/logos/AstroIcon';
+import i18next from "i18next";
 
 export default function TechStack() {
 
@@ -203,11 +202,11 @@ export default function TechStack() {
                         array={backend}
                     />
                     <TechStackItem
-                        title="AI"
+                        title={i18next.language === "en" ? "AI" : "IA"}
                         array={ai}
                     />
                     <TechStackItem
-                        title="Others"
+                        title={i18next.language === "en" ? "Others" : "Otros"}
                         array={others}
                     />
                 </div>
