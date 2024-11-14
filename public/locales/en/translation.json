@@ -43,7 +43,6 @@
     "projects": {
         "title": "Projects",
         "notes_app": {
-            "title": "Notes App",
             "description": "A web-based app to create, edit, and delete notes efficiently."
         },
         "linux_shell": {

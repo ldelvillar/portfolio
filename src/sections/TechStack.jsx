@@ -1,12 +1,17 @@
-import TechStackItem from '@/components/TechStackItem'
-import Sass from '@/components/logos/Sass.jsx';
-import Js from '@/components/logos/Js.jsx';
+import TechStackItem from '@/components/TechStackItem';
+import { nanoid } from "nanoid";
+import List from '@/components/icons/List';
+
+import AstroIcon from '@/components/logos/AstroIcon';
 import ReactIcon from '@/components/logos/ReactIcon.jsx';
+import ReactRouter from '@/components/logos/ReactRouter.jsx';
+import Ts from '@/components/logos/Ts.jsx';
 import Tailwind from '@/components/logos/Tailwind.jsx';
 import Figma from '@/components/logos/Figma.jsx';
 import Node from '@/components/logos/Node.jsx';
 import NextJs from '@/components/logos/NextJs.jsx';
 import PostgreSql from '@/components/logos/PostgreSql.jsx';
+import DeviconPhp from '@/components/logos/PHP';
 import Firebase from '@/components/logos/Firebase.jsx';
 import Python from '@/components/logos/Python.jsx';
 import Tensorflow from '@/components/logos/Tensorflow.jsx';
@@ -19,9 +24,6 @@ import Git from '@/components/logos/Git.jsx';
 import C from '@/components/logos/C.jsx';
 import Linux from '@/components/logos/Linux.jsx';
 import Bash from '@/components/logos/Bash.jsx';
-import { nanoid } from "nanoid";
-import List from '@/components/icons/List';
-import AstroIcon from '@/components/logos/AstroIcon';
 
 export default function TechStack() {
     const FIELDS = [
@@ -37,16 +39,16 @@ export default function TechStack() {
                     name: 'React',
                 },
                 {
+                    icon: <ReactRouter />,
+                    name: 'React Router',
+                },
+                {
+                    icon: <Ts />,
+                    name: 'TypeScript',
+                },
+                {
                     icon: <Tailwind />,
                     name: 'Tailwind CSS',
-                },
-                {
-                    icon: <Sass />,
-                    name: 'SASS',
-                },
-                {
-                    icon: <Js />,
-                    name: 'JavaScript',
                 },
                 {
                     icon: <Figma />,
@@ -68,6 +70,10 @@ export default function TechStack() {
                 {
                     icon: <PostgreSql />,
                     name: 'Postgre SQL',
+                },
+                {
+                    icon: <DeviconPhp />,
+                    name: 'PHP',
                 },
                 {
                     icon: <Firebase />,

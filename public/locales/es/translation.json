@@ -43,7 +43,6 @@
     "projects": {
         "title": "Proyectos",
         "notes_app": {
-            "title": "Aplicación de Notas",
             "description": "Una aplicación web para crear, editar y eliminar notas de manera eficiente."
         },
         "linux_shell": {
