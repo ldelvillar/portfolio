@@ -1,0 +1,48 @@
+---
+import Language from "./icons/Language.astro";
+
+const LANGAUGES = [
+    {name: "English", route: "/"},
+    {name: "Español", route: "/es"},
+]
+---
+<div class="relative ml-1 mr-1 text-gray-700 dark:text-white">
+    <button
+        transition:persist
+        id="language-toggle-btn"
+        class="appearance-none border-none flex hover:scale-125 transition"
+    >
+        <span class="sr-only">Select language</span>
+        <Language id="english" class="language-toggle-icon size-5 transition-all" />
+    </button>
+    <div
+        transition:persist
+        id="languages-menu"
+        class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
+    >
+        <ul>
+            {
+                LANGAUGES.map((language) => (
+                    <li class="langauges-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
+                        <a href={language.route}>
+                            {language.name}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</div>
+
+<script>
+    const langaugeToggleButton = document.getElementById('language-toggle-btn');
+    const langaugesMenu = document.getElementById('languages-menu');
+
+    langaugeToggleButton.addEventListener('click', () => {
+        if (langaugesMenu.classList.contains('hidden')) {
+            langaugesMenu.classList.remove('hidden');
+        } else {
+            langaugesMenu.classList.add('hidden');
+        }
+    })
+</script>
