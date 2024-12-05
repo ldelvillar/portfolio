@@ -5,21 +5,20 @@ import { t } from 'i18next';
 
 const projectCards = [
     {
-        image: "/images/notesapp.webp",
+        image: "/images/snap-notes.webp",
         title: "SnapNotes",
         description: t("projects.notes_app.description"),
-        github: 'https://github.com/ldelvillar/Notes-App',
-        preview: 'https://notesapp-ldelvillar.netlify.app/',
+        github: 'https://github.com/ldelvillar/snap-notes',
+        preview: 'https://snap-notes.vercel.app/',
         orientation: 'col',
-        class: ""
     },
     {
-        image: "/images/shell.webp",
-        title: t("projects.linux_shell.title"),
-        description: t("projects.linux_shell.description"),
-        github: 'https://github.com/ldelvillar/vanlife',
+        image: "/images/neoposters.webp",
+        title: "Neoposters",
+        description: t("projects.neoposters.description"),
+        github: 'https://github.com/ldelvillar/neoposters',
+        preview: 'https://neoposters.vercel.app/',
         orientation: 'col',
-        class: ""
     },
     {
         image: "/images/pyxel.webp",
@@ -27,7 +26,6 @@ const projectCards = [
         description: t("projects.1942_game.description"),
         github: 'https://github.com/ldelvillar/1942',
         orientation: 'row',
-        class: "col-span-2"
     }
 ];
 ---
@@ -39,33 +37,21 @@ const projectCards = [
         </span>
         {t("projects.title")}
     </h2>
-    <div class="cards mt-5 flex flex-col sm:grid sm:grid-cols-2 gap-8">
+    <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-8 group">
         {
             projectCards.map(project => (
-                <div class={`card ${project.class}`}>
-                    <ProjectCard
-                        image={project.image}
-                        title={project.title}
-                        description={project.description}
-                        github={project.github}
-                        preview={project.preview}
-                        orientation={project.orientation}
-                    />
+                <div class={`
+                    transition-all
+                    duration-400
+                    group-hover:blur-[10px]
+                    group-hover:scale-90
+                    hover:!scale-110
+                    hover:!blur-none
+                    ${project.orientation === 'row' ? 'col-span-2' : ''}
+                `}>
+                    <ProjectCard {...project} />
                 </div>
             ))
         }
     </div>
 </section>
-
-<style>
-    .cards .card {
-        transition: 400ms;
-    }
-    .cards .card:hover {
-        transform: scale(1.1, 1.1);
-    }
-    .cards:hover > .card:not(:hover) {
-        filter: blur(10px);
-        transform: scale(0.9, 0.9);
-    }
-</style>

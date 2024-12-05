@@ -45,9 +45,8 @@
         "notes_app": {
             "description": "Una aplicación web para crear, editar y eliminar notas de manera eficiente."
         },
-        "linux_shell": {
-            "title": "Shell de Linux",
-            "description": "Versión simplificada de la shell de Linux, con funcionalidades como secuencias de comandos, procesos en segundo plano y recuperación de comandos anteriores."
+        "neoposters": {
+            "description": "Tienda online de posters."
         },
         "1942_game": {
             "title": "Juego 1942",

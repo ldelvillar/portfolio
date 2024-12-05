@@ -45,9 +45,8 @@
         "notes_app": {
             "description": "A web-based app to create, edit, and delete notes efficiently."
         },
-        "linux_shell": {
-            "title": "Linux Shell",
-            "description": "Simplified version of the Linux shell, with functionalities like command sequences, background processes, and command history."
+        "neoposters": {
+            "description": "An online posters marketplace"
         },
         "1942_game": {
             "title": "1942 Game",
