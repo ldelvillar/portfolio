@@ -1,7 +1,13 @@
 import Atropos from "atropos/react";
 import 'atropos/css';
+import type { ReactNode } from 'react';
 
-export default function TechStackItem({ title, displayedTechnologies }) {
+interface TechStackItemProps {
+    title: string;
+    displayedTechnologies: ReactNode[];
+}
+
+export default function TechStackItem({ title, displayedTechnologies }: TechStackItemProps) {
     return (
         <Atropos
             activeOffset={40}
@@ -14,5 +20,5 @@ export default function TechStackItem({ title, displayedTechnologies }) {
                 </div>
             </div>
         </Atropos>
-    )
+    );
 }

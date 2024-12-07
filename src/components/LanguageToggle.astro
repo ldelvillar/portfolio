@@ -1,11 +1,17 @@
 ---
 import Language from "./icons/Language.astro";
 
-const LANGAUGES = [
+interface LanguagesData {
+    name: string;
+    route: string;
+}
+
+const LANGAUGES: LanguagesData[] = [
     {name: "English", route: "/"},
     {name: "Español", route: "/es"},
-]
+];
 ---
+
 <div class="relative ml-1 mr-1 text-gray-700 dark:text-white">
     <button
         transition:persist
@@ -38,11 +44,11 @@ const LANGAUGES = [
     const langaugeToggleButton = document.getElementById('language-toggle-btn');
     const langaugesMenu = document.getElementById('languages-menu');
 
-    langaugeToggleButton.addEventListener('click', () => {
-        if (langaugesMenu.classList.contains('hidden')) {
-            langaugesMenu.classList.remove('hidden');
+    langaugeToggleButton?.addEventListener('click', () => {
+        if (langaugesMenu?.classList.contains('hidden')) {
+            langaugesMenu?.classList.remove('hidden');
         } else {
-            langaugesMenu.classList.add('hidden');
+            langaugesMenu?.classList.add('hidden');
         }
-    })
+    });
 </script>

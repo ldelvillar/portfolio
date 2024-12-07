@@ -3,7 +3,16 @@ import Code from "@/components/icons/Code.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
 import { t } from 'i18next';
 
-const projectCards = [
+interface ProjectCardsData {
+    image: string;
+    title: string;
+    description: string;
+    github: string;
+    preview?: string;
+    orientation: string;
+}
+
+const projectCards: ProjectCardsData[] = [
     {
         image: "/images/snap-notes.webp",
         title: "SnapNotes",

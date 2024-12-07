@@ -3,22 +3,29 @@ import Calendar from "@/components/icons/Calendar.astro";
 import TimelineItem from "@/components/TimelineItem.astro";
 import { t } from 'i18next';
 
-const timelineItems = [
+interface TimelineItemsData {
+    date: string;
+    title: string;
+    description: string;
+    link?: string;
+}
+
+const timelineItems: TimelineItemsData[] = [
     {
-        "date": t("timeline.currently.date"),
-        "title": t("timeline.currently.title"),
-        "description": t("timeline.currently.description"),
-        "link": "https://github.com/ldelvillar",
+        date: t("timeline.currently.date"),
+        title: t("timeline.currently.title"),
+        description: t("timeline.currently.description"),
+        link: "https://github.com/ldelvillar",
     },
     {
-        "date": t("timeline.september_2022.date"),
-        "title": t("timeline.september_2022.title"),
-        "description": t("timeline.september_2022.description"),
+        date: t("timeline.september_2022.date"),
+        title: t("timeline.september_2022.title"),
+        description: t("timeline.september_2022.description"),
     },
     {
-        "date": t("timeline.2019.date"),
-        "title": t("timeline.2019.title"),
-        "description": t("timeline.2019.description"),
+        date: t("timeline.2019.date"),
+        title: t("timeline.2019.title"),
+        description: t("timeline.2019.description"),
     }
 ];
 ---
@@ -29,15 +36,15 @@ const timelineItems = [
         <h2 class='text-3xl font-bold'>{t("experience.title")}</h2>
     </div>
     <ol class="relative border-s border-gray-200 dark:border-gray-700 mt-10 ml-3">
-        {
-            timelineItems.map(item => (
+        {timelineItems.map(item => (
+            <li>
                 <TimelineItem
                     date={item.date}
                     title={item.title}
                     description={item.description}
                     link={item.link}
                 />
-            ))
-        }
+            </li>
+        ))}
     </ol>
 </section>

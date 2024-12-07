@@ -1,6 +1,7 @@
 ---
-import Github from './logos/Github.astro'
-import Link from './icons/Link.astro'
+import Github from './logos/Github.astro';
+import Link from './icons/Link.astro';
+import i18next from 'i18next';
 
 interface Props {
     image: string,
@@ -11,10 +12,9 @@ interface Props {
     orientation: string
 }
 
-const { image, title, description, github, preview, orientation } = Astro.props
-
-import i18next from 'i18next'
+const { image, title, description, github, preview, orientation } = Astro.props;
 ---
+
 {
     orientation === "col" && 
     <article class='flex flex-col h-full bg-slate-200 dark:bg-slate-700 border border-slate-500 rounded-3xl'>

@@ -40,9 +40,9 @@ import LanguageToggle from "./LanguageToggle.astro";
 
 <script>
     // Toggle mobile menu
-    document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('menu-toggle')?.addEventListener('click', () => {
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.classList.toggle('hidden');
-        mobileMenu.classList.toggle('block');
+        mobileMenu?.classList.toggle('hidden');
+        mobileMenu?.classList.toggle('block');
     });
 </script>

@@ -1,7 +1,16 @@
 ---
 import { t } from 'i18next';
 
-const inputs = [
+interface InputsData {
+    number: string;
+    question: string;
+    type: 'text' | 'email' | 'textarea';
+    id: string;
+    placeholder: string;
+    required: boolean;
+}
+
+const inputs: InputsData[] = [
     {
         number: "01",
         question: t("form.name.question"),
