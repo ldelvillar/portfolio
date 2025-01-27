@@ -16,8 +16,8 @@
     "hero": {
         "title": "I'm Lucas",
         "subtitle": "CS Student",
-        "description1": "+3 years of experience.",
-        "description2": "Computer Scientist and Web Developer",
+        "description1": "+2 years of experience.",
+        "description2": "Computer Science Student and Web Developer",
         "description3": "from Madrid, Spain 🇪🇸. Specialised in creating unique and robust solutions."
     },
     "experience": {
@@ -27,8 +27,8 @@
         "learn_more": "Learn more",
         "currently": {
             "date": "Currently",
-            "title": "Making projects",
-            "description": "I am continuously learning and increasing my experience by making both frontend and backend projects."
+            "title": "Learning by myself",
+            "description": "I am continuously learning and increasing my experience by working on both frontend and backend projects. Aditionally, I am constantly studing various courses and obtaining certifications on different topics such as AI and Cloud Computing."
         },
         "september_2022": {
             "date": "September 2022",
@@ -38,7 +38,7 @@
         "2019": {
             "date": "2019",
             "title": "Started coding",
-            "description": "I started coding at the age of 15. I took several courses about different topics, and I decided to put my focus on web development."
+            "description": "I started programming at the age of 15, when I began learning the fundamentals of cybersecurity and ethical hacking. A few months later, I started exploring other fields, and in 2022, I decided to focus on web development."
         }
     },
     "projects": {
@@ -46,8 +46,9 @@
         "notes_app": {
             "description": "A web-based app to create, edit, and delete notes efficiently."
         },
-        "neoposters": {
-            "description": "An online posters marketplace"
+        "movies-api": {
+            "title": "Movies API",
+            "description": "A REST API of movies that uses the MVC architecture, connected to a MySQL database."
         },
         "1942_game": {
             "title": "1942 Game",
@@ -57,12 +58,12 @@
     "about": {
         "title": "About me",
         "introduction": {
-            "part1": "I started coding at 15, and since then, I've been learning several programming languages by myself. Nowadays, I am studying a ",
+            "part1": "I started coding at 15, and since then, I've been learning several programming languages and technologies both by myself and at the university. Nowadays, I am studying a ",
             "highlight": "Bachelor Degree in Computer Science and Engineering.",
             "part2": ""
         },
-        "skills": "I am fluent in classics like Java and C, although I am more specialized in Python and JavaScript, since I focus my work in web development and machine learning. I also create native apps for Android and iOS.",
-        "goal": "My goal is to become a full-stack developer after graduating and to be able to make a living with coding."
+        "skills": "My current focus is on web development, so the language I am most proficient in is JavaScript. I also have extensive knowledge in managing relational databases with SQL. Additionally, I have worked on numerous projects with Python in both Automation and Machine Learning, so I am also proficient in this language.",
+        "goal": "My goal is to continue constantly learning, acquiring new technologies, and strengthening the ones I already know, in order to become a web developer after graduating and make a living from it."
     },
     "form": {
         "name": {

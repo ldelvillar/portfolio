@@ -16,8 +16,8 @@
     "hero": {
         "title": "Soy Lucas",
         "subtitle": "Estudiante de Ingeniería Informática",
-        "description1": "+3 años de experiencia.",
-        "description2": "Ingeniero Informático y Desarrollador Web",
+        "description1": "+2 años de experiencia.",
+        "description2": "Estudiante de Ingeniería Informática y Desarrollador Web",
         "description3": "de Madrid, España 🇪🇸. Especializado en crear soluciones únicas y robustas."
     },
     "experience": {
@@ -27,8 +27,8 @@
         "learn_more": "Saber más",
         "currently": {
             "date": "Actualmente",
-            "title": "Haciendo proyectos",
-            "description": "Estoy aprendiendo continuamente y aumentando mi experiencia haciendo proyectos tanto de frontend como de backend."
+            "title": "Formándome por mi cuenta",
+            "description": "Estoy continuamente aprendiendo y aumentando mi experiencia haciendo proyectos tanto de frontend como de backend. Además, estoy constantemente estudiando diferentes cursos y obteniendo certificaciones de diversos temas como IA y Computación en la Nube."
         },
         "september_2022": {
             "date": "Septiembre 2022",
@@ -38,7 +38,7 @@
         "2019": {
             "date": "2019",
             "title": "Empecé a programar",
-            "description": "Empecé a programar a los 15 años. Tomé varios cursos sobre diferentes temas y decidí centrarme en el desarrollo web."
+            "description": "Empecé a programar a los 15 años, cuando comencé a aprender los fundamentos de la ciberseguridad y del hacking ético. Unos meses más tarde comencé a indagar sobre otros campos, y en 2022 fue cuando decidí centrarme en el desarrollo web."
         }
     },
     "projects": {
@@ -46,8 +46,9 @@
         "notes_app": {
             "description": "Una aplicación web para crear, editar y eliminar notas de manera eficiente."
         },
-        "neoposters": {
-            "description": "Tienda online de posters."
+        "movies-api": {
+            "title": "API de películas",
+            "description": "API REST de películas que utiliza la arquitectura MVC, conectada a una base de datos MySQL."
         },
         "1942_game": {
             "title": "Juego 1942",
@@ -57,12 +58,12 @@
     "about": {
         "title": "Sobre mí",
         "introduction": {
-            "part1": "Empecé a programar a los 15 años y, desde entonces, he estado aprendiendo varios lenguajes de programación por mi cuenta. Hoy en día, estoy estudiando un ",
+            "part1": "Empecé a programar a los 15 años, y desde entonces he estado aprendiendo varios lenguajes de programación y tecnologías tanto por mi cuenta como en la universidad. Hoy en día, estoy estudiando un ",
             "highlight": "Grado en Ingeniería Informática.",
             "part2": ""
         },
-        "skills": "Soy fluido en clásicos como Java y C, aunque estoy más especializado en Python y JavaScript, ya que enfoco mi trabajo en el desarrollo web y el aprendizaje automático. También creo aplicaciones nativas para Android y iOS.",
-        "goal": "Mi objetivo es convertirme en un desarrollador full-stack después de graduarme y poder ganarme la vida programando."
+        "skills": "Actualmente mi foco está en el desarrollo web, por lo que el lenguaje que más domino es JavaScript, y también tengo amplios conocimientos en gestión de bases de datos relacionales con SQL. Además, he trabajado en bastantes proyectos con Python tanto de Automatización como de Aprendizaje Automático, por lo que también domino este lenguaje.",
+        "goal": "Mi objetivo es seguir formándome constantemente, aprendiendo nuevas tecnologías y reforzando las que ya conozco, y así convertirme en un desarrollador web después de graduarme y poder ganarme la vida de ello."
     },
     "form": {
         "name": {
