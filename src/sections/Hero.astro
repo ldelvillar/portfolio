@@ -3,6 +3,7 @@ import Github from "../components/logos/Github.astro";
 import Linkedin from "../components/logos/Linkedin.astro";
 import Envelope from "@/components/icons/Envelope.astro";
 import 'animate.css/animate.min.css';
+import { Image } from "astro:assets";
 import { t } from "i18next";
 ---
 
@@ -32,12 +33,15 @@ import { t } from "i18next";
             </nav>
         </div>
         <div class='flex items-center md:ml-12 mt-8 animate__animated animate__backInDown animate__slow'>
-            <div class='md:mt-10'>    
-                <img
+            <div class='md:mt-10'>
+                <Image
                     src="/images/profile.webp"
                     alt="Lucas del Villar"
-                    class='w-60 rounded-xl rotate-3 bg-black outline outline-1 outline-offset-2 outline-gray-500
-                    mx-2 my-2'
+                    width={240}
+                    height={240}
+                    loading={"eager"}
+                    class=`w-60 rounded-xl rotate-3 bg-black outline outline-1 outline-offset-2 outline-gray-500
+                    mx-2 my-2`
                 />
             </div>
         </div>
