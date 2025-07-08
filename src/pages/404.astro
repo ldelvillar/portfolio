@@ -1,0 +1,9 @@
+---
+import { getTranslations } from "@/utils/getTranslations";
+import type { Lang } from "@/i18n/config";
+
+const lang = (Astro.params?.lang ?? "es") as Lang;
+const t = await getTranslations(lang);
+---
+
+<h1>{t.not_found}</h1>
