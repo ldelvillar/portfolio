@@ -1,7 +1,7 @@
 ---
 import Header from "@/components/Header.astro";
 import Hero from "@/sections/Hero.astro";
-import Layout from "../layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
 import About from "@/sections/About.astro";
 import Experience from "@/sections/Experience.astro";
 import Projects from "@/sections/Projects.astro";
@@ -18,8 +18,8 @@ export async function getStaticPaths() {
   ];
 }
 
-const lang = (Astro.params?.lang ?? "es") as Lang;
-const t = await getTranslations(lang);
+const { lang } = Astro.params as { lang:Lang } || "es";
+const t = await getTranslations(lang)
 ---
 
 <Layout title={t.site.title}>

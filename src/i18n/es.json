@@ -1,0 +1,110 @@
+{
+  "site": {
+    "title": "Lucas del Villar - Programador y Desarrollador Web",
+    "description": "Contrata a Lucas del Villar para crear tu aplicación web o móvil. Desarrollador Web especializado en crear aplicaciones únicas."
+  },
+  "header": {
+    "name": "ldelvillar",
+    "nav": {
+      "experience": "Experiencia",
+      "projects": "Proyectos",
+      "about": "Sobre mí",
+      "contact": "Contacto",
+      "skills": "Habilidades"
+    }
+  },
+  "hero": {
+    "title": "Soy Lucas",
+    "subtitle": "Estudiante de Ingeniería Informática",
+    "description1": "+2 años de experiencia.",
+    "description2": "Estudiante de Ingeniería Informática y Desarrollador Web",
+    "description3": "de Madrid, España 🇪🇸. Especializado en crear soluciones únicas y robustas."
+  },
+  "experience": {
+    "title": "Experiencia"
+  },
+  "timeline": {
+    "learn_more": "Saber más",
+    "currently": {
+      "date": "Actualmente",
+      "title": "Formándome por mi cuenta",
+      "description": "Estoy continuamente aprendiendo y aumentando mi experiencia haciendo proyectos tanto de frontend como de backend. Además, estoy constantemente estudiando diferentes cursos y obteniendo certificaciones de diversos temas como IA y Computación en la Nube."
+    },
+    "september_2022": {
+      "date": "Septiembre 2022",
+      "title": "Comencé mi carrera",
+      "description": "Empecé a estudiar una Licenciatura en Ingeniería Informática en la Universidad Carlos III de Madrid."
+    },
+    "2019": {
+      "date": "2019",
+      "title": "Empecé a programar",
+      "description": "Empecé a programar a los 15 años, cuando comencé a aprender los fundamentos de la ciberseguridad y del hacking ético. Unos meses más tarde comencé a indagar sobre otros campos, y en 2022 fue cuando decidí centrarme en el desarrollo web."
+    }
+  },
+  "projects": {
+    "title": "Proyectos",
+    "notes_app": {
+      "description": "Una aplicación web para crear, editar y eliminar notas de manera eficiente."
+    },
+    "movies-api": {
+      "title": "API de películas",
+      "description": "API REST de películas que utiliza la arquitectura MVC, conectada a una base de datos MySQL."
+    },
+    "1942_game": {
+      "title": "Juego 1942",
+      "description": "Una recreación del clásico juego de disparos de aviones 1942, desarrollado con la biblioteca Pyxel de Python."
+    }
+  },
+  "about": {
+    "title": "Sobre mí",
+    "introduction": {
+      "part1": "Empecé a programar a los 15 años, y desde entonces he estado aprendiendo varios lenguajes de programación y tecnologías tanto por mi cuenta como en la universidad. Hoy en día, estoy estudiando un ",
+      "highlight": "Grado en Ingeniería Informática.",
+      "part2": ""
+    },
+    "skills": "Actualmente mi foco está en el desarrollo web, por lo que el lenguaje que más domino es JavaScript, y también tengo amplios conocimientos en gestión de bases de datos relacionales con SQL. Además, he trabajado en bastantes proyectos con Python tanto de Automatización como de Aprendizaje Automático, por lo que también domino este lenguaje.",
+    "goal": "Mi objetivo es seguir formándome constantemente, aprendiendo nuevas tecnologías y reforzando las que ya conozco, y así convertirme en un desarrollador web después de graduarme y poder ganarme la vida de ello."
+  },
+  "form": {
+    "name": {
+      "question": "¿Cuál es tu nombre?",
+      "placeholder": "Juan Doe *"
+    },
+    "email": {
+      "question": "¿Cuál es tu correo electrónico?",
+      "placeholder": "juan@doe.com *"
+    },
+    "organization": {
+      "question": "¿Cuál es el nombre de tu organización?",
+      "placeholder": "Juan & Doe Ltd."
+    },
+    "services": {
+      "question": "¿Qué servicios estás buscando?",
+      "placeholder": "Desarrollo web, diseño web... *"
+    },
+    "message": {
+      "question": "Tu mensaje",
+      "placeholder": "Escribe tu mensaje aquí... *"
+    },
+    "send": "Enviar Mensaje"
+  },
+  "contact": {
+    "title": "¡Ponte en contacto!",
+    "details": {
+      "title": "Detalles de contacto",
+      "email": "ldelvillarvazquez@gmail.com",
+      "phone": "+34 604 11 26 28",
+      "location": "Madrid, España"
+    },
+    "socials": {
+      "title": "Redes Sociales",
+      "instagram": "lucasdvv_",
+      "linkedin": "Lucas del Villar",
+      "stackoverflow": "ldelvillar"
+    }
+  },
+  "footer": {
+    "inspired": "Inspirado en",
+    "of": "de"
+  }
+}

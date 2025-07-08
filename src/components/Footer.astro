@@ -1,13 +1,13 @@
 ---
-import i18next from 'i18next';
+const { t } = Astro.props;
 ---
 
 <footer class="mt-0 md:mt-5 pb-3">
     <p class="text-gray-800 dark:text-gray-300 text-md text-center">
-        {i18next.language === "en" ? "Inspired in" : "Inspirado en"}
+        {t.footer.inspired}
         <a href="https://porfolio.dev" target="_blank" class="text-yellow-400">
             {" "}porfolio.dev
         </a>
-        {i18next.language === "en" ? "of" : "de"} Midudev
+        {t.footer.of} Midudev
     </p>
 </footer>

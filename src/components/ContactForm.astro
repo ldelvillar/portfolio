@@ -1,5 +1,5 @@
 ---
-import { t } from 'i18next';
+const { t } = Astro.props
 
 interface InputsData {
     number: string;
@@ -13,42 +13,42 @@ interface InputsData {
 const inputs: InputsData[] = [
     {
         number: "01",
-        question: t("form.name.question"),
+        question: t.form.name.question,
         type: "text",
         id: "name",
-        placeholder: t("form.name.placeholder"),
+        placeholder: t.form.name.placeholder,
         required: true,
     },
     {
         number: "02",
-        question: t("form.email.question"),
+        question: t.form.email.question,
         type: "email",
         id: "email",
-        placeholder: t("form.email.placeholder"),
+        placeholder: t.form.email.placeholder,
         required: true,
     },
     {
         number: "03",
-        question: t("form.organization.question"),
+        question: t.form.organization.question,
         type: "text",
         id: "organization",
-        placeholder: t("form.organization.placeholder"),
+        placeholder: t.form.organization.placeholder,
         required: false,
     },
     {
         number: "04",
-        question: t("form.services.question"),
+        question: t.form.services.question,
         type: "text",
         id: "services",
-        placeholder: t("form.services.placeholder"),
+        placeholder: t.form.services.placeholder,
         required: true,
     },
     {
         number: "05",
-        question: t("form.message.question"),
+        question: t.form.message.question,
         type: "textarea",
         id: "message",
-        placeholder: t("form.message.placeholder"),
+        placeholder: t.form.message.placeholder,
         required: true,
     }
 ];
@@ -86,6 +86,6 @@ const inputs: InputsData[] = [
         ))
     }
     <button type="submit" class="bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition duration-300 w-full">
-        {t("form.send")}
+        {t.form.send}
     </button>
 </form>

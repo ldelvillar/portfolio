@@ -1,7 +1,6 @@
 ---
 import Github from './logos/Github.astro';
 import Link from './icons/Link.astro';
-import i18next from 'i18next';
 import { Image } from 'astro:assets';
 
 interface Props {
@@ -36,7 +35,7 @@ const { image, title, description, github, preview, orientation } = Astro.props;
                             href={github}
                             class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
                         >
-                            {i18next.language === "en" ? "Code" : "Código"}
+                            Github
                             <Github size={30} />
                         </a>
                         {

@@ -7,8 +7,8 @@ interface LanguagesData {
 }
 
 const LANGAUGES: LanguagesData[] = [
-    {name: "English", route: "/"},
-    {name: "Español", route: "/es"},
+    {name: "English", route: "/en"},
+    {name: "Español", route: "/"},
 ];
 ---
 
@@ -30,7 +30,7 @@ const LANGAUGES: LanguagesData[] = [
             {
                 LANGAUGES.map((language) => (
                     <li class="langauges-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
-                        <a href={language.route}>
+                        <a href={language.route} class="flex w-full">
                             {language.name}
                         </a>
                     </li>

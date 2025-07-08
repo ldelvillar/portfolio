@@ -1,7 +1,8 @@
 ---
 import Code from "@/components/icons/Code.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
-import { t } from 'i18next';
+const { t } = Astro.props;
+console.log(t)
 
 interface ProjectCardsData {
     image: string;
@@ -16,23 +17,23 @@ const projectCards: ProjectCardsData[] = [
     {
         image: "/images/snap-notes.webp",
         title: "SnapNotes",
-        description: t("projects.notes_app.description"),
+        description: t.projects["notes_app"].description,
         github: 'https://github.com/ldelvillar/snap-notes',
         preview: 'https://snap-notes.vercel.app/',
         orientation: 'col',
     },
     {
         image: "/images/movies-api.webp",
-        title: t("projects.movies-api.title"),
-        description: t("projects.movies-api.description"),
+        title: t.projects["movies-api"].title,
+        description: t.projects["movies-api"].description,
         github: 'https://github.com/ldelvillar/movies-api',
         preview: 'https://movies-api-production-ead1.up.railway.app/movies',
         orientation: 'col',
     },
     {
         image: "/images/pyxel.webp",
-        title: t("projects.1942_game.title"),
-        description: t("projects.1942_game.description"),
+        title: t.projects["1942_game"].title,
+        description: t.projects["1942_game"].description,
         github: 'https://github.com/ldelvillar/1942',
         orientation: 'row',
     }
@@ -44,7 +45,7 @@ const projectCards: ProjectCardsData[] = [
         <span class="mr-5">
             <Code />
         </span>
-        {t("projects.title")}
+        {t.projects.title}
     </h2>
     <div class="mt-5 flex flex-col lg:grid grid-cols-2 gap-8 group">
         {

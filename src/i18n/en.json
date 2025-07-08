@@ -1,0 +1,110 @@
+{
+  "site": {
+    "title": "Lucas del Villar - Programmer and Web Developer",
+    "description": "Hire Lucas del Villar to create you web or mobile application. Web Developer specialized in creating unique applications."
+  },
+  "header": {
+    "name": "ldelvillar",
+    "nav": {
+      "experience": "Experience",
+      "projects": "Projects",
+      "about": "About",
+      "contact": "Contact",
+      "skills": "Skills"
+    }
+  },
+  "hero": {
+    "title": "I'm Lucas",
+    "subtitle": "CS Student",
+    "description1": "+2 years of experience.",
+    "description2": "Computer Science Student and Web Developer",
+    "description3": "from Madrid, Spain 🇪🇸. Specialised in creating unique and robust solutions."
+  },
+  "experience": {
+    "title": "Experience"
+  },
+  "timeline": {
+    "learn_more": "Learn more",
+    "currently": {
+      "date": "Currently",
+      "title": "Learning by myself",
+      "description": "I am continuously learning and increasing my experience by working on both frontend and backend projects. Aditionally, I am constantly studing various courses and obtaining certifications on different topics such as AI and Cloud Computing."
+    },
+    "september_2022": {
+      "date": "September 2022",
+      "title": "Started my degree",
+      "description": "I started to study a Bachelor Degree in Computer Science and Engineering at University Carlos III de Madrid."
+    },
+    "2019": {
+      "date": "2019",
+      "title": "Started coding",
+      "description": "I started programming at the age of 15, when I began learning the fundamentals of cybersecurity and ethical hacking. A few months later, I started exploring other fields, and in 2022, I decided to focus on web development."
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "notes_app": {
+      "description": "A web-based app to create, edit, and delete notes efficiently."
+    },
+    "movies-api": {
+      "title": "Movies API",
+      "description": "A REST API of movies that uses the MVC architecture, connected to a MySQL database."
+    },
+    "1942_game": {
+      "title": "1942 Game",
+      "description": "A recreation of the classic 1942 airplane shooter game, built using Python's Pyxel library."
+    }
+  },
+  "about": {
+    "title": "About me",
+    "introduction": {
+      "part1": "I started coding at 15, and since then, I've been learning several programming languages and technologies both by myself and at the university. Nowadays, I am studying a ",
+      "highlight": "Bachelor Degree in Computer Science and Engineering.",
+      "part2": ""
+    },
+    "skills": "My current focus is on web development, so the language I am most proficient in is JavaScript. I also have extensive knowledge in managing relational databases with SQL. Additionally, I have worked on numerous projects with Python in both Automation and Machine Learning, so I am also proficient in this language.",
+    "goal": "My goal is to continue constantly learning, acquiring new technologies, and strengthening the ones I already know, in order to become a web developer after graduating and make a living from it."
+  },
+  "form": {
+    "name": {
+      "question": "What's your name?",
+      "placeholder": "John Doe *"
+    },
+    "email": {
+      "question": "What's your email?",
+      "placeholder": "john@doe.com *"
+    },
+    "organization": {
+      "question": "What's the name of your organization?",
+      "placeholder": "John & Doe Ltd."
+    },
+    "services": {
+      "question": "What services are you looking for?",
+      "placeholder": "Web development, web design... *"
+    },
+    "message": {
+      "question": "Your message",
+      "placeholder": "Your message here... *"
+    },
+    "send": "Send Message"
+  },
+  "contact": {
+    "title": "Get in touch!",
+    "details": {
+      "title": "Contact details",
+      "email": "ldelvillarvazquez@gmail.com",
+      "phone": "+34 604 11 26 28",
+      "location": "Madrid, Spain"
+    },
+    "socials": {
+      "title": "Socials",
+      "instagram": "lucasdvv_",
+      "linkedin": "Lucas del Villar",
+      "stackoverflow": "ldelvillar"
+    }
+  },
+  "footer": {
+    "inspired": "Inpired in",
+    "of": "of"
+  }
+}
