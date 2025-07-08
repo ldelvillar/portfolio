@@ -1,69 +1,77 @@
 ---
-import { getTranslations } from "@/utils/getTranslations";
+import { getTranslations } from '@/utils/getTranslations';
 
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
-const t = await getTranslations("es")
+const t = await getTranslations('es');
 ---
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-	<meta name="description" content={t.site.description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
-	</head>
-	<body class="bg-gray-50 dark:bg-gray-950
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={t.site.description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-gray-50 dark:bg-gray-950
 	bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
-	dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
-		<slot />
-	</body>
+	dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+  >
+    <slot />
+  </body>
 </html>
 <style is:global>
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
-	html {
-		scroll-behavior: smooth;
-		font-family: "Onest", system-ui, -apple-system
-	}
-	/* Scrollbar */
-	::-webkit-scrollbar {
-		width: 10px;
-		height: 10px;
-	}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+    font-family:
+      'Onest',
+      system-ui,
+      -apple-system;
+  }
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
 
-	::-webkit-scrollbar-track {
-		background: #ffffff;
-	}
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
 
-	html.dark ::-webkit-scrollbar-track {
-		background: #232121;
-	}
+  html.dark ::-webkit-scrollbar-track {
+    background: #232121;
+  }
 
-	::-webkit-scrollbar-thumb {
-		background: #facc15;
-		border-radius: 10px;
-	}
+  ::-webkit-scrollbar-thumb {
+    background: #facc15;
+    border-radius: 10px;
+  }
 
-	::-webkit-scrollbar-thumb:hover {
-		background: #ffe479;
-	}
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffe479;
+  }
 
-	/* Selected text */
-	::selection {
-		background-color: #b100d4;
-		color: #fff;
-	}
+  /* Selected text */
+  ::selection {
+    background-color: #b100d4;
+    color: #fff;
+  }
 </style>

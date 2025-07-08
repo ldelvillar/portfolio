@@ -1,0 +1,23 @@
+# Ignorar la carpeta de producción
+dist/
+
+# Ignorar dependencias
+node_modules/
+
+# Ignorar archivos de configuración o builds
+.build/
+.next/
+out/
+
+# Ignorar control de versiones y configuraciones de entorno
+.git/
+.env
+.env.*.local
+
+# Ignorar caché de VS Code
+.vscode/
+
+# Ignorar otros archivos opcionales
+package-lock.json
+pnpm-lock.yaml
+yarn.lock

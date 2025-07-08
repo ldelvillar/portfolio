@@ -1,8 +1,8 @@
 ---
-import { getTranslations } from "@/utils/getTranslations";
-import type { Lang } from "@/i18n/config";
+import { getTranslations } from '@/utils/getTranslations';
+import type { Lang } from '@/i18n/config';
 
-const lang = (Astro.params?.lang ?? "es") as Lang;
+const lang = (Astro.params?.lang ?? 'es') as Lang;
 const t = await getTranslations(lang);
 ---
 

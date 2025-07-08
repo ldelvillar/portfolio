@@ -4,94 +4,102 @@ import Link from './icons/Link.astro';
 import { Image } from 'astro:assets';
 
 interface Props {
-    image: string,
-    title: string,
-    description: string,
-    github: string,
-    preview?: string,
-    orientation: string
+  image: string;
+  title: string;
+  description: string;
+  github: string;
+  preview?: string;
+  orientation: string;
 }
 
 const { image, title, description, github, preview, orientation } = Astro.props;
 ---
 
 {
-    orientation === "col" && 
-    <article class='flex flex-col h-full bg-slate-200 dark:bg-slate-700 border border-slate-500 rounded-3xl'>
-        <Image
-            src={image}
-            alt="project card"
-            width={766}
-            height={430.88}
-            class="rounded-3xl aspect-video"
-        />
-        <div class="flex flex-col flex-grow mx-2 md:mx-4 my-5 md:mt-0">
-            <h3 class="text-gray-900 dark:text-gray-50 text-2xl font-bold mt-3">{title}</h3>
-            <p class="text-gray-900 dark:text-gray-400 mt-1 text-lg flex-grow">{description}</p>
-            <footer class="flex flex-row gap-5 mb-2 mt-3">
-                <div class="card relative flex items-center transition-all duration-300 ease-in-out h-[50px] w-full overflow-hidden">
-                    <div class="flex flex-row gap-3">
-                        <a
-                            href={github}
-                            class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
-                        >
-                            Github
-                            <Github size={30} />
-                        </a>
-                        {
-                        preview && 
-                            <a
-                                href={preview}
-                                target="_blank"
-                                class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
-                            >
-                                Preview
-                                <Link />
-                            </a>
-                        }
-                    </div>
-                </div>
-            </footer>
-        </div>
+  orientation === 'col' && (
+    <article class="flex flex-col h-full bg-slate-200 dark:bg-slate-700 border border-slate-500 rounded-3xl">
+      <Image
+        src={image}
+        alt="project card"
+        width={766}
+        height={430.88}
+        class="rounded-3xl aspect-video"
+      />
+      <div class="flex flex-col flex-grow mx-2 md:mx-4 my-5 md:mt-0">
+        <h3 class="text-gray-900 dark:text-gray-50 text-2xl font-bold mt-3">
+          {title}
+        </h3>
+        <p class="text-gray-900 dark:text-gray-400 mt-1 text-lg flex-grow">
+          {description}
+        </p>
+        <footer class="flex flex-row gap-5 mb-2 mt-3">
+          <div class="card relative flex items-center transition-all duration-300 ease-in-out h-[50px] w-full overflow-hidden">
+            <div class="flex flex-row gap-3">
+              <a
+                href={github}
+                class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
+              >
+                Github
+                <Github size={30} />
+              </a>
+              {preview && (
+                <a
+                  href={preview}
+                  target="_blank"
+                  class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
+                >
+                  Preview
+                  <Link />
+                </a>
+              )}
+            </div>
+          </div>
+        </footer>
+      </div>
     </article>
+  )
 }
 
 {
-    orientation === "row" &&
-    <article class='flex flex-col md:flex-row bg-slate-200 dark:bg-slate-700 border border-slate-500 rounded-3xl'>
-        <Image
-            src={image}
-            alt="project card"
-            width={766}
-            height={430.88}
-            class="rounded-3xl md:w-[48%]"
-        />
-        <div class="mx-2 md:mx-8 my-5 md:mt-4 flex flex-col gap-1 lg:gap-4">
-            <h3 class="text-gray-900 dark:text-gray-50 text-2xl font-bold mt-3">{title}</h3>
-            <p class="text-gray-900 dark:text-gray-400 mt-2 text-md">{description}</p>
-            <footer class="flex flex-row gap-5 my-2">
-                <div class="card relative flex items-center transition-all duration-300 ease-in-out h-[50px] w-full overflow-hidden">
-                    <div class="flex flex-row gap-3">
-                        <a
-                            href={github}
-                            class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
-                        >
-                            Code
-                            <Github size={30} />
-                        </a>
-                        {
-                        preview && 
-                            <a
-                                href={preview}
-                                class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
-                            >
-                                Preview
-                                <Link />
-                            </a>
-                        }
-                    </div>
-                </div>
-            </footer>
-        </div>
+  orientation === 'row' && (
+    <article class="flex flex-col md:flex-row bg-slate-200 dark:bg-slate-700 border border-slate-500 rounded-3xl">
+      <Image
+        src={image}
+        alt="project card"
+        width={766}
+        height={430.88}
+        class="rounded-3xl md:w-[48%]"
+      />
+      <div class="mx-2 md:mx-8 my-5 md:mt-4 flex flex-col gap-1 lg:gap-4">
+        <h3 class="text-gray-900 dark:text-gray-50 text-2xl font-bold mt-3">
+          {title}
+        </h3>
+        <p class="text-gray-900 dark:text-gray-400 mt-2 text-md">
+          {description}
+        </p>
+        <footer class="flex flex-row gap-5 my-2">
+          <div class="card relative flex items-center transition-all duration-300 ease-in-out h-[50px] w-full overflow-hidden">
+            <div class="flex flex-row gap-3">
+              <a
+                href={github}
+                class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
+              >
+                Code
+                <Github size={30} />
+              </a>
+              {preview && (
+                <a
+                  href={preview}
+                  class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
+                >
+                  Preview
+                  <Link />
+                </a>
+              )}
+            </div>
+          </div>
+        </footer>
+      </div>
     </article>
+  )
 }

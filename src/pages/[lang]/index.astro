@@ -1,36 +1,33 @@
 ---
-import Header from "@/components/Header.astro";
-import Hero from "@/sections/Hero.astro";
-import Layout from "../../layouts/Layout.astro";
-import About from "@/sections/About.astro";
-import Experience from "@/sections/Experience.astro";
-import Projects from "@/sections/Projects.astro";
-import TechStack from "@/sections/TechStack";
-import Footer from "@/components/Footer.astro";
-import Contact from "@/sections/Contact.astro";
-import { getTranslations } from "@/utils/getTranslations";
-import type { Lang } from "@/i18n/config";
+import Header from '@/components/Header.astro';
+import Hero from '@/sections/Hero.astro';
+import Layout from '../../layouts/Layout.astro';
+import About from '@/sections/About.astro';
+import Experience from '@/sections/Experience.astro';
+import Projects from '@/sections/Projects.astro';
+import TechStack from '@/sections/TechStack';
+import Footer from '@/components/Footer.astro';
+import Contact from '@/sections/Contact.astro';
+import { getTranslations } from '@/utils/getTranslations';
+import type { Lang } from '@/i18n/config';
 
 export async function getStaticPaths() {
-  return [
-    { params: { lang: "en" } },
-    { params: { lang: "es" } },
-  ];
+  return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }];
 }
 
-const { lang } = Astro.params as { lang:Lang } || "es";
-const t = await getTranslations(lang)
+const { lang } = (Astro.params as { lang: Lang }) || 'es';
+const t = await getTranslations(lang);
 ---
 
 <Layout title={t.site.title}>
-	<Header t={t} />
-	<main class="mx-5 md:mx-10 lg:mx-48 2xl:mx-64">
-		<Hero t={t} />
-		<Experience t={t} />	
-		<Projects t={t} />
-		<TechStack t={t} client:load />
-		<About t={t} />
-		<Contact t={t} />
-	</main>
-	<Footer t={t} />
+  <Header t={t} />
+  <main class="mx-5 md:mx-10 lg:mx-48 2xl:mx-64">
+    <Hero t={t} />
+    <Experience t={t} />
+    <Projects t={t} />
+    <TechStack t={t} client:load />
+    <About t={t} />
+    <Contact t={t} />
+  </main>
+  <Footer t={t} />
 </Layout>

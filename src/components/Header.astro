@@ -1,49 +1,79 @@
 ---
-import MenuIcon from "./icons/Menu.astro";
-import ThemeToggle from "./ThemeToggle.astro";
-import LanguageToggle from "./LanguageToggle.astro";
+import MenuIcon from './icons/Menu.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import LanguageToggle from './LanguageToggle.astro';
 
-const { t } = Astro.props
+const { t } = Astro.props;
 ---
 
-<header class="w-full sticky top-0 z-40 backdrop-blur-xl text-gray-700 dark:text-white">
-    <div class="container mx-auto flex items-center justify-between lg:justify-evenly p-4">
-            <a href="/" class="text-black dark:text-white text-lg font-bold">
-            {t.header.name}
-        </a>
-        
-        <nav class="hidden lg:flex space-x-8">
-            <a href="#experience" class="hover:text-yellow-600 dark:hover:text-yellow-400">{t.header.nav.experience}</a>
-            <a href="#projects" class="hover:text-yellow-600 dark:hover:text-yellow-400">{t.header.nav.projects}</a>
-            <a href="#about" class="hover:text-yellow-600 dark:hover:text-yellow-400">{t.header.nav.about}</a>
-            <a href="#contact" class="hover:text-yellow-600 dark:hover:text-yellow-400">{t.header.nav.contact}</a>
-        </nav>
-        
-        <div class="flex items-center space-x-4">
-            <button id="menu-toggle" class="lg:hidden focus:outline-none">
-                <MenuIcon />
-            </button>
-            <ThemeToggle />
-            <LanguageToggle />
-        </div>
-    </div>
+<header
+  class="w-full sticky top-0 z-40 backdrop-blur-xl text-gray-700 dark:text-white"
+>
+  <div
+    class="container mx-auto flex items-center justify-between lg:justify-evenly p-4"
+  >
+    <a href="/" class="text-black dark:text-white text-lg font-bold">
+      {t.header.name}
+    </a>
 
-    <!-- Mobile menu -->
-    <nav id="mobile-menu" class="lg:hidden h-screen hidden backdrop-blur-lg">
-        <ul class="space-y-4 p-4">
-            <li><a href="#about" class="block hover:text-gray-900">{t.header.nav.about}</a></li>
-            <li><a href="#projects" class="block hover:text-gray-900">{t.header.nav.projects}</a></li>
-            <li><a href="#skills" class="block hover:text-gray-900">{t.header.nav.skills}</a></li>
-            <li><a href="#contact" class="block hover:text-gray-900">{t.header.nav.contact}</a></li>
-        </ul>
+    <nav class="hidden lg:flex space-x-8">
+      <a
+        href="#experience"
+        class="hover:text-yellow-600 dark:hover:text-yellow-400"
+        >{t.header.nav.experience}</a
+      >
+      <a
+        href="#projects"
+        class="hover:text-yellow-600 dark:hover:text-yellow-400"
+        >{t.header.nav.projects}</a
+      >
+      <a href="#about" class="hover:text-yellow-600 dark:hover:text-yellow-400"
+        >{t.header.nav.about}</a
+      >
+      <a
+        href="#contact"
+        class="hover:text-yellow-600 dark:hover:text-yellow-400"
+        >{t.header.nav.contact}</a
+      >
     </nav>
+
+    <div class="flex items-center space-x-4">
+      <button id="menu-toggle" class="lg:hidden focus:outline-none">
+        <MenuIcon />
+      </button>
+      <ThemeToggle />
+      <LanguageToggle />
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <nav id="mobile-menu" class="lg:hidden h-screen hidden backdrop-blur-lg">
+    <ul class="space-y-4 p-4">
+      <li>
+        <a href="#about" class="block hover:text-gray-900"
+          >{t.header.nav.about}</a>
+      </li>
+      <li>
+        <a href="#projects" class="block hover:text-gray-900"
+          >{t.header.nav.projects}</a>
+      </li>
+      <li>
+        <a href="#skills" class="block hover:text-gray-900"
+          >{t.header.nav.skills}</a>
+      </li>
+      <li>
+        <a href="#contact" class="block hover:text-gray-900"
+          >{t.header.nav.contact}</a>
+      </li>
+    </ul>
+  </nav>
 </header>
 
 <script>
-    // Toggle mobile menu
-    document.getElementById('menu-toggle')?.addEventListener('click', () => {
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu?.classList.toggle('hidden');
-        mobileMenu?.classList.toggle('block');
-    });
+  // Toggle mobile menu
+  document.getElementById('menu-toggle')?.addEventListener('click', () => {
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu?.classList.toggle('hidden');
+    mobileMenu?.classList.toggle('block');
+  });
 </script>
