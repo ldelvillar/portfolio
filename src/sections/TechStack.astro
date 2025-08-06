@@ -1,0 +1,212 @@
+---
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+import 'atropos/css';
+
+import List from '@/components/icons/List.astro';
+import AstroIcon from '@/components/logos/AstroIcon.astro';
+import ReactIcon from '@/components/logos/ReactIcon.astro';
+import ReactRouter from '@/components/logos/ReactRouter.astro';
+import TypeScript from '@/components/logos/Typescript.astro';
+import Tailwind from '@/components/logos/Tailwind.astro';
+import Figma from '@/components/logos/Figma.astro';
+import NextJS from '@/components/logos/NextJS.astro';
+import Node from '@/components/logos/Node.astro';
+import Express from '@/components/logos/Express.astro';
+import MySQL from '@/components/logos/MySQL.astro';
+import PHP from '@/components/logos/PHP.astro';
+import Firebase from '@/components/logos/Firebase.astro';
+import Python from '@/components/logos/Python.astro';
+import Tensorflow from '@/components/logos/Tensorflow.astro';
+import Keras from '@/components/logos/Keras.astro';
+import Pytorch from '@/components/logos/PyTorch.astro';
+import Numpy from '@/components/logos/NumPy.astro';
+import OpenCV from '@/components/logos/OpenCV.astro';
+import GCP from '@/components/logos/GCP.astro';
+import Azure from '@/components/logos/Azure.astro';
+import Git from '@/components/logos/Git.astro';
+import C from '@/components/logos/C.astro';
+import Java from '@/components/logos/Java.astro';
+import Linux from '@/components/logos/Linux.astro';
+
+interface TechField {
+  name: string;
+  technologies: {
+    icon: AstroComponentFactory;
+    name: string;
+  }[];
+}
+
+const FIELDS: TechField[] = [
+  {
+    name: 'Frontend',
+    technologies: [
+      {
+        icon: AstroIcon,
+        name: 'Astro',
+      },
+      {
+        icon: ReactIcon,
+        name: 'React',
+      },
+      {
+        icon: ReactRouter,
+        name: 'React Router',
+      },
+      {
+        icon: TypeScript,
+        name: 'TypeScript',
+      },
+      {
+        icon: Tailwind,
+        name: 'Tailwind CSS',
+      },
+      {
+        icon: Figma,
+        name: 'Figma',
+      },
+    ],
+  },
+  {
+    name: 'Backend',
+    technologies: [
+      {
+        icon: NextJS,
+        name: 'Next JS',
+      },
+      {
+        icon: Node,
+        name: 'Node JS',
+      },
+      {
+        icon: Express,
+        name: 'Express',
+      },
+      {
+        icon: MySQL,
+        name: 'MySQL',
+      },
+      {
+        icon: Firebase,
+        name: 'Firebase',
+      },
+      {
+        icon: PHP,
+        name: 'PHP',
+      },
+    ],
+  },
+  {
+    name: 'Machine Learning',
+    technologies: [
+      {
+        icon: Python,
+        name: 'Python',
+      },
+      {
+        icon: Tensorflow,
+        name: 'Tensorflow',
+      },
+      {
+        icon: Keras,
+        name: 'Keras',
+      },
+      {
+        icon: Pytorch,
+        name: 'PyTorch',
+      },
+      {
+        icon: Numpy,
+        name: 'NumPy',
+      },
+      {
+        icon: OpenCV,
+        name: 'OpenCV',
+      },
+    ],
+  },
+  {
+    name: 'Others',
+    technologies: [
+      {
+        icon: GCP,
+        name: 'GCP',
+      },
+      {
+        icon: Azure,
+        name: 'Azure',
+      },
+      {
+        icon: Git,
+        name: 'Git',
+      },
+      {
+        icon: C,
+        name: 'C',
+      },
+      {
+        icon: Java,
+        name: 'Java',
+      },
+      {
+        icon: Linux,
+        name: 'Linux',
+      },
+    ],
+  },
+];
+---
+
+<section
+  id="techstack"
+  class="scroll-m-20 mt-36 w-full mx-auto container lg:max-w-4xl md:max-w-2xl pb-10"
+>
+  <div class="mb-14">
+    <h2
+      class="text-gray-900 dark:text-white text-3xl font-bold mb-6 flex items-center"
+    >
+      <span class="mr-5">
+        <List />
+      </span>
+      Tech Stack
+    </h2>
+
+    <div class="flex flex-col md:grid md:grid-cols-2 gap-5">
+      {
+        FIELDS.map(field => (
+          <div class="atropos my-atropos">
+            <div class="atropos-scale">
+              <div class="atropos-rotate">
+                <div class="atropos-inner">
+                  <div class="h-[100%] flex flex-col items-center bg-white dark:bg-primary border dark:border-gray-800 rounded-2xl">
+                    <h2 class="text-3xl font-bold text-gray-100 bg-gradient-to-t from-[#fffc5f] to-[#c9b500] dark:from-[#fffec9] dark:to-[#efeb00] bg-clip-text text-transparent mt-3">
+                      {field.name}
+                    </h2>
+                    <div class="my-6 grid grid-cols-3 gap-6">
+                      {field.technologies.map(technology => (
+                        <div class="flex flex-col justify-center items-center text-gray-800 dark:text-gray-200">
+                          <div class="text-black dark:text-white">
+                            <technology.icon />
+                          </div>
+                          <h3>{technology.name}</h3>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import Atropos from 'atropos';
+
+  // Initialize
+  document.querySelectorAll('.my-atropos').forEach(el => {
+    Atropos({ el });
+  });
+</script>
