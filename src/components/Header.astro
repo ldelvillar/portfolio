@@ -1,7 +1,7 @@
 ---
-import MenuIcon from './icons/Menu.astro';
-import ThemeToggle from './ThemeToggle.astro';
-import LanguageToggle from './LanguageToggle.astro';
+import ThemeToggle from '@/components/ThemeToggle.astro';
+import LanguageToggle from '@/components/LanguageToggle.astro';
+import MenuIcon from '@/components/icons/Menu.astro';
 
 const { t } = Astro.props;
 ---
@@ -51,19 +51,23 @@ const { t } = Astro.props;
     <ul class="space-y-4 p-4">
       <li>
         <a href="#about" class="block hover:text-gray-900"
-          >{t.header.nav.about}</a>
+          >{t.header.nav.about}</a
+        >
       </li>
       <li>
         <a href="#projects" class="block hover:text-gray-900"
-          >{t.header.nav.projects}</a>
+          >{t.header.nav.projects}</a
+        >
       </li>
       <li>
         <a href="#skills" class="block hover:text-gray-900"
-          >{t.header.nav.skills}</a>
+          >{t.header.nav.skills}</a
+        >
       </li>
       <li>
         <a href="#contact" class="block hover:text-gray-900"
-          >{t.header.nav.contact}</a>
+          >{t.header.nav.contact}</a
+        >
       </li>
     </ul>
   </nav>

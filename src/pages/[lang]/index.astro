@@ -1,7 +1,5 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
 import Hero from '@/sections/Hero.astro';
 import Experience from '@/sections/Experience.astro';
 import Projects from '@/sections/Projects.astro';
@@ -20,8 +18,7 @@ const t = await getTranslations(lang);
 ---
 
 <Layout title={t.site.title}>
-  <Header t={t} />
-  <main class="mx-5 md:mx-10 lg:mx-48 2xl:mx-64">
+  <main class="px-4">
     <Hero t={t} />
     <Experience t={t} />
     <Projects t={t} />
@@ -29,5 +26,4 @@ const t = await getTranslations(lang);
     <About t={t} />
     <Contact t={t} />
   </main>
-  <Footer t={t} />
 </Layout>

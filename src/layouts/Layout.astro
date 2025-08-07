@@ -1,16 +1,20 @@
 ---
 import { getTranslations } from '@/utils/getTranslations';
+import type { Lang } from '@/i18n/config';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
 
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
-const t = await getTranslations('es');
+const lang = (Astro.params?.lang ?? 'es') as Lang;
+const t = await getTranslations(lang);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={t.site.description} />
@@ -28,9 +32,11 @@ const t = await getTranslations('es');
   <body
     class="bg-gray-50 dark:bg-gray-950
 	bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
-	dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+	dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] min-h-screen"
   >
+    <Header t={t} />
     <slot />
+    <Footer t={t} />
   </body>
 </html>
 <style is:global>

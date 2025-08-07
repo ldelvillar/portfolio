@@ -1,105 +1,88 @@
 ---
-import Github from './logos/Github.astro';
-import Link from './icons/Link.astro';
 import { Image } from 'astro:assets';
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+import Github from '@/components/logos/Github.astro';
+import Link from '@/components/icons/Link.astro';
 
 interface Props {
   image: string;
   title: string;
+  technologies: {
+    icon: AstroComponentFactory;
+    name: string;
+    bgcolor: string;
+  }[];
   description: string;
   github: string;
   preview?: string;
-  orientation: string;
 }
 
-const { image, title, description, github, preview, orientation } = Astro.props;
+const { image, title, technologies, description, github, preview } =
+  Astro.props;
 ---
 
-{
-  orientation === 'col' && (
-    <article class="flex flex-col h-full bg-slate-200 dark:bg-slate-700 border border-slate-500 rounded-3xl">
+<article
+  class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0"
+>
+  <div class="w-full md:w-1/2">
+    <div
+      class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50"
+    >
       <Image
         src={image}
         alt="project card"
-        width={766}
-        height={430.88}
-        class="rounded-3xl aspect-video"
+        width={800}
+        height={600}
+        class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+        loading="lazy"
       />
-      <div class="flex flex-col flex-grow mx-2 md:mx-4 my-5 md:mt-0">
-        <h3 class="text-gray-900 dark:text-gray-50 text-2xl font-bold mt-3">
-          {title}
-        </h3>
-        <p class="text-gray-900 dark:text-gray-400 mt-1 text-lg flex-grow">
-          {description}
-        </p>
-        <footer class="flex flex-row gap-5 mb-2 mt-3">
-          <div class="card relative flex items-center transition-all duration-300 ease-in-out h-[50px] w-full overflow-hidden">
-            <div class="flex flex-row gap-3">
-              <a
-                href={github}
-                class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
-              >
-                Github
-                <Github size={30} />
-              </a>
-              {preview && (
-                <a
-                  href={preview}
-                  target="_blank"
-                  class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
-                >
-                  Preview
-                  <Link />
-                </a>
-              )}
-            </div>
-          </div>
-        </footer>
-      </div>
-    </article>
-  )
-}
+    </div>
+  </div>
 
-{
-  orientation === 'row' && (
-    <article class="flex flex-col md:flex-row bg-slate-200 dark:bg-slate-700 border border-slate-500 rounded-3xl">
-      <Image
-        src={image}
-        alt="project card"
-        width={766}
-        height={430.88}
-        class="rounded-3xl md:w-[48%]"
-      />
-      <div class="mx-2 md:mx-8 my-5 md:mt-4 flex flex-col gap-1 lg:gap-4">
-        <h3 class="text-gray-900 dark:text-gray-50 text-2xl font-bold mt-3">
-          {title}
-        </h3>
-        <p class="text-gray-900 dark:text-gray-400 mt-2 text-md">
-          {description}
-        </p>
-        <footer class="flex flex-row gap-5 my-2">
-          <div class="card relative flex items-center transition-all duration-300 ease-in-out h-[50px] w-full overflow-hidden">
-            <div class="flex flex-row gap-3">
-              <a
-                href={github}
-                class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
+  <div class="w-full md:w-1/2 md:max-w-md">
+    <h3 class="font-bold text-2xl text-gray-900 dark:text-gray-50">
+      {title}
+    </h3>
+    <div class="flex flex-wrap mt-2">
+      <ul class="flex flex-row mb-2 gap-x-2">
+        {
+          technologies.map(technology => (
+            <li>
+              <span
+                class={`flex gap-x-2 items-center rounded-full ${technology.bgcolor} text-sm text-gray-800 dark:text-gray-200 px-2 py-1`}
               >
-                Code
-                <Github size={30} />
-              </a>
-              {preview && (
-                <a
-                  href={preview}
-                  class="flex flex-row-reverse justify-center items-center gap-2 text-white bg-gray-800 border hover:border-none border-gray-600 rounded-lg px-3 py-2"
-                >
-                  Preview
-                  <Link />
-                </a>
-              )}
-            </div>
-          </div>
-        </footer>
-      </div>
-    </article>
-  )
-}
+                <technology.icon class="size-4" />
+                {technology.name}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <p class="text-gray-900 dark:text-gray-400 mt-2">
+      {description}
+    </p>
+    <footer class="flex items-end justify-start gap-x-4 mt-4 font-bold">
+      <a
+        href={github}
+        target="_blank"
+        class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black"
+      >
+        <Github class="size-6" />
+        Code
+      </a>
+      {
+        preview && (
+          <a
+            href={preview}
+            target="_blank"
+            class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black"
+          >
+            <Link class="size-6" />
+            Preview
+          </a>
+        )
+      }
+    </footer>
+  </div>
+</article>

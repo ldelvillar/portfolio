@@ -156,49 +156,44 @@ const FIELDS: TechField[] = [
 ];
 ---
 
-<section
-  id="techstack"
-  class="scroll-m-20 mt-36 w-full mx-auto container lg:max-w-4xl md:max-w-2xl pb-10"
->
-  <div class="mb-14">
-    <h2
-      class="text-gray-900 dark:text-white text-3xl font-bold mb-6 flex items-center"
-    >
-      <span class="mr-5">
-        <List />
-      </span>
-      Tech Stack
-    </h2>
+<section id="techstack" class="max-w-5xl mx-auto sm:px-4 py-16 scroll-m-20">
+  <h2
+    class="text-gray-900 dark:text-white text-3xl font-bold mb-6 flex items-center"
+  >
+    <span class="mr-5">
+      <List />
+    </span>
+    Tech Stack
+  </h2>
 
-    <div class="flex flex-col md:grid md:grid-cols-2 gap-5">
-      {
-        FIELDS.map(field => (
-          <div class="atropos my-atropos">
-            <div class="atropos-scale">
-              <div class="atropos-rotate">
-                <div class="atropos-inner">
-                  <div class="h-[100%] flex flex-col items-center bg-white dark:bg-primary border dark:border-gray-800 rounded-2xl">
-                    <h2 class="text-3xl font-bold text-gray-100 bg-gradient-to-t from-[#fffc5f] to-[#c9b500] dark:from-[#fffec9] dark:to-[#efeb00] bg-clip-text text-transparent mt-3">
-                      {field.name}
-                    </h2>
-                    <div class="my-6 grid grid-cols-3 gap-6">
-                      {field.technologies.map(technology => (
-                        <div class="flex flex-col justify-center items-center text-gray-800 dark:text-gray-200">
-                          <div class="text-black dark:text-white">
-                            <technology.icon />
-                          </div>
-                          <h3>{technology.name}</h3>
+  <div class="flex flex-col md:grid md:grid-cols-2 gap-5">
+    {
+      FIELDS.map(field => (
+        <div class="atropos my-atropos">
+          <div class="atropos-scale">
+            <div class="atropos-rotate">
+              <div class="atropos-inner">
+                <div class="h-[100%] flex flex-col items-center bg-white dark:bg-primary border dark:border-gray-800 rounded-2xl">
+                  <h2 class="text-3xl font-bold text-gray-100 bg-gradient-to-t from-[#fffc5f] to-[#c9b500] dark:from-[#fffec9] dark:to-[#efeb00] bg-clip-text text-transparent mt-3">
+                    {field.name}
+                  </h2>
+                  <div class="my-6 grid grid-cols-3 gap-6">
+                    {field.technologies.map(technology => (
+                      <div class="flex flex-col justify-center items-center text-gray-800 dark:text-gray-200">
+                        <div class="text-black dark:text-white">
+                          <technology.icon />
                         </div>
-                      ))}
-                    </div>
+                        <h3>{technology.name}</h3>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        ))
-      }
-    </div>
+        </div>
+      ))
+    }
   </div>
 </section>
 

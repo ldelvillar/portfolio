@@ -1,48 +1,66 @@
 ---
-import Code from '@/components/icons/Code.astro';
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import ProjectCard from '@/components/ProjectCard.astro';
+import Code from '@/components/icons/Code.astro';
+import NextJS from '@/components/logos/NextJS.astro';
+import Firebase from '@/components/logos/Firebase.astro';
+import Tailwind from '@/components/logos/Tailwind.astro';
+import Node from '@/components/logos/Node.astro';
+import Express from '@/components/logos/Express.astro';
+import MySQL from '@/components/logos/MySQL.astro';
+import Python from '@/components/logos/Python.astro';
+
 const { t } = Astro.props;
 
 interface ProjectCardsData {
   image: string;
   title: string;
+  technologies: {
+    icon: AstroComponentFactory;
+    name: string;
+    bgcolor: string;
+  }[];
   description: string;
   github: string;
   preview?: string;
-  orientation: string;
 }
 
 const projectCards: ProjectCardsData[] = [
   {
     image: '/images/snap-notes.webp',
-    title: 'SnapNotes',
+    title: t.projects['notes_app'].title,
+    technologies: [
+      { icon: NextJS, name: 'Next.js', bgcolor: 'bg-black' },
+      { icon: Firebase, name: 'Firebase', bgcolor: 'bg-amber-700' },
+      { icon: Tailwind, name: 'Tailwind CSS', bgcolor: 'bg-[#003159]' },
+    ],
     description: t.projects['notes_app'].description,
     github: 'https://github.com/ldelvillar/snap-notes',
     preview: 'https://snap-notes.vercel.app/',
-    orientation: 'col',
   },
   {
     image: '/images/movies-api.webp',
     title: t.projects['movies-api'].title,
+    technologies: [
+      { icon: Node, name: 'Node.js', bgcolor: 'bg-green-900' },
+      { icon: Express, name: 'Express.js', bgcolor: 'bg-slate-800' },
+      { icon: MySQL, name: 'MySQL', bgcolor: 'bg-[#003159]' },
+    ],
     description: t.projects['movies-api'].description,
     github: 'https://github.com/ldelvillar/movies-api',
     preview: 'https://movies-api-production-ead1.up.railway.app/movies',
-    orientation: 'col',
   },
   {
     image: '/images/pyxel.webp',
     title: t.projects['1942_game'].title,
+    technologies: [{ icon: Python, name: 'Python', bgcolor: 'bg-[#003159]' }],
     description: t.projects['1942_game'].description,
     github: 'https://github.com/ldelvillar/1942',
-    orientation: 'row',
   },
 ];
 ---
 
-<section
-  id="projects"
-  class="scroll-m-20 pb-10 w-full lg:mx-auto container lg:max-w-4xl"
->
+<section id="projects" class="max-w-5xl mx-auto sm:px-4 py-16 scroll-m-20">
   <h2
     class="text-gray-900 dark:text-white text-3xl font-bold mb-6 flex items-center"
   >
@@ -51,23 +69,7 @@ const projectCards: ProjectCardsData[] = [
     </span>
     {t.projects.title}
   </h2>
-  <div class="mt-5 flex flex-col lg:grid grid-cols-2 gap-8 group">
-    {
-      projectCards.map(project => (
-        <div
-          class={`
-                    transition-all
-                    duration-400
-                    group-hover:blur-[10px]
-                    group-hover:scale-90
-                    hover:!scale-110
-                    hover:!blur-none
-                    ${project.orientation === 'row' ? 'col-span-2' : ''}
-                `}
-        >
-          <ProjectCard {...project} />
-        </div>
-      ))
-    }
+  <div class="mt-5 flex flex-col gap-16">
+    {projectCards.map(project => <ProjectCard {...project} />)}
   </div>
 </section>
