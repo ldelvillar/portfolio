@@ -25,15 +25,15 @@
   },
   "timeline": {
     "learn_more": "Learn more",
-    "currently": {
-      "date": "Currently",
-      "title": "Learning by myself",
-      "description": "I am continuously learning and increasing my experience by working on both frontend and backend projects. Aditionally, I am constantly studing various courses and obtaining certifications on different topics such as AI and Cloud Computing."
+    "june_2025": {
+      "date": "June 2025",
+      "title": "Got my first job",
+      "description": "I started working in a firm as a software developer, specialised in Robotic Process Automation (RPA). My main job consists of optimising business processes, both by programming with Python and Node.js and with no-code tools like n8n."
     },
     "september_2022": {
       "date": "September 2022",
       "title": "Started my degree",
-      "description": "I started to study a Bachelor Degree in Computer Science and Engineering at University Carlos III de Madrid."
+      "description": "I started to study a Bachelor Degree in Computer Science and Engineering at University Carlos III de Madrid. Additionally, I am constantly self-studying by working on fullstack projects and obtaining different certifications."
     },
     "2019": {
       "date": "2019",

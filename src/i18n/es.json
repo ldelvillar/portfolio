@@ -25,15 +25,15 @@
   },
   "timeline": {
     "learn_more": "Saber más",
-    "currently": {
-      "date": "Actualmente",
-      "title": "Formándome por mi cuenta",
-      "description": "Estoy continuamente aprendiendo y aumentando mi experiencia haciendo proyectos tanto de frontend como de backend. Además, estoy constantemente estudiando diferentes cursos y obteniendo certificaciones de diversos temas como IA y Computación en la Nube."
+    "june_2025": {
+      "date": "Junio 2025",
+      "title": "Conseguí mi primer trabajo",
+      "description": "Comencé a trabajar en una gestoría como desarrollador de software, especializado en la automatización robótica de procesos (RPA). El trabajo principal consiste en optimizar procesos empresariales, tanto programando con Python y Node.js como con herramientas no-code como n8n."
     },
     "september_2022": {
       "date": "Septiembre 2022",
       "title": "Comencé mi carrera",
-      "description": "Empecé a estudiar una Licenciatura en Ingeniería Informática en la Universidad Carlos III de Madrid."
+      "description": "Empecé a estudiar un Grado en Ingeniería Informática en la Universidad Carlos III de Madrid. Además, estoy constantemente formándome por mi cuenta realizando proyectos fullstack y obteniendo diferentes certificaciones."
     },
     "2019": {
       "date": "2019",
