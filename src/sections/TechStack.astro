@@ -5,28 +5,25 @@ import 'atropos/css';
 import List from '@/components/icons/List.astro';
 import AstroIcon from '@/components/logos/AstroIcon.astro';
 import ReactIcon from '@/components/logos/ReactIcon.astro';
-import ReactRouter from '@/components/logos/ReactRouter.astro';
+import Vue from '@/components/logos/Vue.astro';
 import TypeScript from '@/components/logos/Typescript.astro';
 import Tailwind from '@/components/logos/Tailwind.astro';
 import Figma from '@/components/logos/Figma.astro';
-import NextJS from '@/components/logos/NextJS.astro';
 import Node from '@/components/logos/Node.astro';
+import Python from '@/components/logos/Python.astro';
 import Express from '@/components/logos/Express.astro';
 import MySQL from '@/components/logos/MySQL.astro';
-import PHP from '@/components/logos/PHP.astro';
-import Firebase from '@/components/logos/Firebase.astro';
-import Python from '@/components/logos/Python.astro';
-import Tensorflow from '@/components/logos/Tensorflow.astro';
-import Keras from '@/components/logos/Keras.astro';
-import Pytorch from '@/components/logos/PyTorch.astro';
-import Numpy from '@/components/logos/NumPy.astro';
-import OpenCV from '@/components/logos/OpenCV.astro';
+import MongoDB from '@/components/logos/MongoDB.astro';
+import NextJS from '@/components/logos/NextJS.astro';
+import N8n from '@/components/logos/N8n.astro';
+import Make from '@/components/logos/Make.astro';
+import Zapier from '@/components/logos/Zapier.astro';
 import GCP from '@/components/logos/GCP.astro';
 import Azure from '@/components/logos/Azure.astro';
-import Git from '@/components/logos/Git.astro';
-import C from '@/components/logos/C.astro';
-import Java from '@/components/logos/Java.astro';
+import Docker from '@/components/logos/Docker.astro';
+import Kubernetes from '@/components/logos/Kubernetes.astro';
 import Linux from '@/components/logos/Linux.astro';
+import C from '@/components/logos/C.astro';
 
 interface TechField {
   name: string;
@@ -35,6 +32,8 @@ interface TechField {
     name: string;
   }[];
 }
+
+const { t } = Astro.props;
 
 const FIELDS: TechField[] = [
   {
@@ -49,8 +48,8 @@ const FIELDS: TechField[] = [
         name: 'React',
       },
       {
-        icon: ReactRouter,
-        name: 'React Router',
+        icon: Vue,
+        name: 'Vue.js',
       },
       {
         icon: TypeScript,
@@ -70,12 +69,12 @@ const FIELDS: TechField[] = [
     name: 'Backend',
     technologies: [
       {
-        icon: NextJS,
-        name: 'Next JS',
+        icon: Node,
+        name: 'Node.js',
       },
       {
-        icon: Node,
-        name: 'Node JS',
+        icon: Python,
+        name: 'Python',
       },
       {
         icon: Express,
@@ -86,46 +85,34 @@ const FIELDS: TechField[] = [
         name: 'MySQL',
       },
       {
-        icon: Firebase,
-        name: 'Firebase',
+        icon: MongoDB,
+        name: 'MongoDB',
       },
       {
-        icon: PHP,
-        name: 'PHP',
+        icon: NextJS,
+        name: 'Next.js',
       },
     ],
   },
   {
-    name: 'Machine Learning',
+    name: t.techstack.ai,
     technologies: [
       {
-        icon: Python,
-        name: 'Python',
+        icon: N8n,
+        name: 'n8n',
       },
       {
-        icon: Tensorflow,
-        name: 'Tensorflow',
+        icon: Make,
+        name: 'Make',
       },
       {
-        icon: Keras,
-        name: 'Keras',
-      },
-      {
-        icon: Pytorch,
-        name: 'PyTorch',
-      },
-      {
-        icon: Numpy,
-        name: 'NumPy',
-      },
-      {
-        icon: OpenCV,
-        name: 'OpenCV',
+        icon: Zapier,
+        name: 'Zapier',
       },
     ],
   },
   {
-    name: 'Others',
+    name: t.techstack.cloud,
     technologies: [
       {
         icon: GCP,
@@ -136,20 +123,20 @@ const FIELDS: TechField[] = [
         name: 'Azure',
       },
       {
-        icon: Git,
-        name: 'Git',
+        icon: Docker,
+        name: 'Docker',
       },
       {
-        icon: C,
-        name: 'C',
-      },
-      {
-        icon: Java,
-        name: 'Java',
+        icon: Kubernetes,
+        name: 'Kubernetes',
       },
       {
         icon: Linux,
         name: 'Linux',
+      },
+      {
+        icon: C,
+        name: 'C',
       },
     ],
   },
@@ -173,7 +160,7 @@ const FIELDS: TechField[] = [
           <div class="atropos-scale">
             <div class="atropos-rotate">
               <div class="atropos-inner">
-                <div class="h-[100%] flex flex-col items-center bg-white dark:bg-primary border dark:border-gray-800 rounded-2xl">
+                <div class="h-full flex flex-col items-center bg-white dark:bg-primary border dark:border-gray-800 rounded-2xl">
                   <h2 class="text-3xl font-bold text-gray-100 bg-gradient-to-t from-[#fffc5f] to-[#c9b500] dark:from-[#fffec9] dark:to-[#efeb00] bg-clip-text text-transparent mt-3">
                     {field.name}
                   </h2>
@@ -181,7 +168,7 @@ const FIELDS: TechField[] = [
                     {field.technologies.map(technology => (
                       <div class="flex flex-col justify-center items-center text-gray-800 dark:text-gray-200">
                         <div class="text-black dark:text-white">
-                          <technology.icon />
+                          <technology.icon class="size-13" />
                         </div>
                         <h3>{technology.name}</h3>
                       </div>

@@ -56,6 +56,10 @@
       "description": "Una recreación del clásico juego de disparos de aviones 1942, desarrollado con la biblioteca Pyxel de Python."
     }
   },
+  "techstack": {
+    "ai": "IA & Automatización",
+    "cloud": "Nube & Infraestructura"
+  },
   "about": {
     "title": "Sobre mí",
     "introduction": {

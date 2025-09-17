@@ -56,6 +56,10 @@
       "description": "A recreation of the classic 1942 airplane shooter game, built using Python's Pyxel library."
     }
   },
+  "techstack": {
+    "ai": "AI & Automation",
+    "cloud": "Cloud & Infrastructure"
+  },
   "about": {
     "title": "About me",
     "introduction": {

@@ -44,11 +44,26 @@ const LANGAUGES: LanguagesData[] = [
   const langaugeToggleButton = document.getElementById('language-toggle-btn');
   const langaugesMenu = document.getElementById('languages-menu');
 
-  langaugeToggleButton?.addEventListener('click', () => {
+  langaugeToggleButton?.addEventListener('click', e => {
+    e.stopPropagation();
     if (langaugesMenu?.classList.contains('hidden')) {
       langaugesMenu?.classList.remove('hidden');
     } else {
       langaugesMenu?.classList.add('hidden');
+    }
+  });
+
+  // Cerrar el menú al hacer clic fuera
+  document.addEventListener('click', e => {
+    if (!langaugesMenu || !langaugeToggleButton) return;
+    if (!langaugesMenu.classList.contains('hidden')) {
+      const target = e.target as Node;
+      if (
+        !langaugesMenu.contains(target) &&
+        !langaugeToggleButton.contains(target)
+      ) {
+        langaugesMenu.classList.add('hidden');
+      }
     }
   });
 </script>
