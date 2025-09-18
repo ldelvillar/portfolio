@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Lucas del Villar - Programador y Desarrollador Web",
-    "description": "Contrata a Lucas del Villar para crear tu aplicación web o móvil. Desarrollador Web especializado en crear aplicaciones únicas."
+    "title": "Lucas del Villar - Programador y Desarrollador Full Stack",
+    "description": "Esta es mi página web personal. Aquí podrás ver en detalle mi experiencia, proyectos y habilidades."
   },
   "header": {
     "name": "ldelvillar",
@@ -14,11 +14,11 @@
     }
   },
   "hero": {
-    "title": "Soy Lucas",
-    "subtitle": "Estudiante de Ingeniería Informática",
+    "title": "soy Lucas",
+    "subtitle": "Desarrollador Full Stack",
     "description1": "+2 años de experiencia.",
-    "description2": "Estudiante de Ingeniería Informática y Desarrollador Web",
-    "description3": "de Madrid, España 🇪🇸. Especializado en crear soluciones únicas y robustas."
+    "description2": "Estudiante de Ingeniería Informática y Desarrollador Full Stack",
+    "description3": "de Madrid, España 🇪🇸. Especializado en backend, automatización e integraciones."
   },
   "experience": {
     "title": "Experiencia"
@@ -28,12 +28,12 @@
     "june_2025": {
       "date": "Junio 2025",
       "title": "Conseguí mi primer trabajo",
-      "description": "Comencé a trabajar en una gestoría como desarrollador de software, especializado en la automatización robótica de procesos (RPA). El trabajo principal consiste en optimizar procesos empresariales, tanto programando con Python y Node.js como con herramientas no-code como n8n."
+      "description": "Comencé a trabajar en una gestoría como desarrollador de software, especializado en la automatización robótica de procesos (RPA). Mi trabajo consiste en optimizar procesos empresariales, tanto programando con Python y Node.js como con herramientas no-code como n8n."
     },
     "september_2022": {
       "date": "Septiembre 2022",
       "title": "Comencé mi carrera",
-      "description": "Empecé a estudiar un Grado en Ingeniería Informática en la Universidad Carlos III de Madrid. Además, estoy constantemente formándome por mi cuenta realizando proyectos fullstack y obteniendo diferentes certificaciones."
+      "description": "Empecé a estudiar un Grado en Ingeniería Informática en la Universidad Carlos III de Madrid. Además, estoy constantemente formándome por mi cuenta realizando proyectos fullstack y obteniendo certificaciones en diferentes áreas."
     },
     "2019": {
       "date": "2019",
@@ -63,12 +63,12 @@
   "about": {
     "title": "Sobre mí",
     "introduction": {
-      "part1": "Empecé a programar a los 15 años, y desde entonces he estado aprendiendo varios lenguajes de programación y tecnologías tanto por mi cuenta como en la universidad. Hoy en día, estoy estudiando un ",
-      "highlight": "Grado en Ingeniería Informática.",
-      "part2": ""
+      "part1": "Empecé en la programación a los 15 años, y desde entonces he estado aprendiendo numerosos lenguajes de programación y tecnologías de forma autodidacta a través de cursos y certificaciones, y posteriormente en la universidad. Actualmente estoy estudiando el último curso de mi",
+      "highlight": "grado en Ingeniería Informática",
+      "part2": "en la Universidad Carlos III de Madrid."
     },
-    "skills": "Actualmente mi foco está en el desarrollo web, por lo que el lenguaje que más domino es JavaScript, y también tengo amplios conocimientos en gestión de bases de datos relacionales con SQL. Además, he trabajado en bastantes proyectos con Python tanto de Automatización como de Aprendizaje Automático, por lo que también domino este lenguaje.",
-    "goal": "Mi objetivo es seguir formándome constantemente, aprendiendo nuevas tecnologías y reforzando las que ya conozco, y así convertirme en un desarrollador web después de graduarme y poder ganarme la vida de ello."
+    "skills": "Actualmente mi foco está en el desarrollo full stack, por lo que los lenguajes que más domino son JavaScript y Python. También he trabajado en varios proyectos con la nube, especialmente con GCP y Docker, utilizando bases de datos relacionales como MySQL o SQL Server y NoSQL como MongoDB.",
+    "goal": "Mi objetivo es seguir formándome constantemente, aprendiendo nuevas tecnologías y manteniéndome al día con las tecnologías emergentes, especialmente aquellas relacionadas con IA y automatización."
   },
   "form": {
     "name": {
@@ -100,12 +100,6 @@
       "email": "ldelvillarvazquez@gmail.com",
       "phone": "+34 604 11 26 28",
       "location": "Madrid, España"
-    },
-    "socials": {
-      "title": "Redes Sociales",
-      "instagram": "lucasdvv_",
-      "linkedin": "Lucas del Villar",
-      "stackoverflow": "ldelvillar"
     }
   },
   "footer": {

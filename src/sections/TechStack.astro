@@ -15,15 +15,16 @@ import Express from '@/components/logos/Express.astro';
 import MySQL from '@/components/logos/MySQL.astro';
 import MongoDB from '@/components/logos/MongoDB.astro';
 import NextJS from '@/components/logos/NextJS.astro';
-import N8n from '@/components/logos/N8n.astro';
-import Make from '@/components/logos/Make.astro';
-import Zapier from '@/components/logos/Zapier.astro';
 import GCP from '@/components/logos/GCP.astro';
 import Azure from '@/components/logos/Azure.astro';
 import Docker from '@/components/logos/Docker.astro';
 import Kubernetes from '@/components/logos/Kubernetes.astro';
 import Linux from '@/components/logos/Linux.astro';
 import C from '@/components/logos/C.astro';
+import N8n from '@/components/logos/N8n.astro';
+import Make from '@/components/logos/Make.astro';
+import Zapier from '@/components/logos/Zapier.astro';
+import MCP from '@/components/logos/MCP.astro';
 
 interface TechField {
   name: string;
@@ -95,23 +96,6 @@ const FIELDS: TechField[] = [
     ],
   },
   {
-    name: t.techstack.ai,
-    technologies: [
-      {
-        icon: N8n,
-        name: 'n8n',
-      },
-      {
-        icon: Make,
-        name: 'Make',
-      },
-      {
-        icon: Zapier,
-        name: 'Zapier',
-      },
-    ],
-  },
-  {
     name: t.techstack.cloud,
     technologies: [
       {
@@ -137,6 +121,27 @@ const FIELDS: TechField[] = [
       {
         icon: C,
         name: 'C',
+      },
+    ],
+  },
+  {
+    name: t.techstack.ai,
+    technologies: [
+      {
+        icon: N8n,
+        name: 'n8n',
+      },
+      {
+        icon: Make,
+        name: 'Make',
+      },
+      {
+        icon: Zapier,
+        name: 'Zapier',
+      },
+      {
+        icon: MCP,
+        name: 'MCP',
       },
     ],
   },

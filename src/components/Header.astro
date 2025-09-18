@@ -3,7 +3,12 @@ import ThemeToggle from '@/components/ThemeToggle.astro';
 import LanguageToggle from '@/components/LanguageToggle.astro';
 import MenuIcon from '@/components/icons/Menu.astro';
 
-const { t } = Astro.props;
+interface Props {
+  t: any;
+  lang: string;
+}
+
+const { t, lang } = Astro.props;
 ---
 
 <header
@@ -42,7 +47,7 @@ const { t } = Astro.props;
         <MenuIcon />
       </button>
       <ThemeToggle />
-      <LanguageToggle />
+      <LanguageToggle currentLang={lang} />
     </div>
   </div>
 

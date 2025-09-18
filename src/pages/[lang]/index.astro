@@ -13,7 +13,7 @@ export async function getStaticPaths() {
   return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }];
 }
 
-const { lang } = (Astro.params as { lang: Lang }) || 'es';
+const lang = (Astro.params?.lang ?? 'es') as Lang;
 const t = await getTranslations(lang);
 ---
 

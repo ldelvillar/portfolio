@@ -5,9 +5,7 @@ import ContactForm from '@/components/ContactForm.astro';
 import Envelope from '@/components/icons/Envelope.astro';
 import Phone from '@/components/icons/Phone.astro';
 import Location from '@/components/icons/Location.astro';
-import Instagram from '@/components/logos/Instagram.astro';
 import Linkedin from '@/components/logos/Linkedin.astro';
-import StackOverflow from '@/components/logos/StackOverflow.astro';
 
 const { t } = Astro.props;
 ---
@@ -40,68 +38,41 @@ const { t } = Astro.props;
         />
       </div>
       <div class="flex flex-col sm:flex-row md:flex-col sm:gap-16 md:gap-0">
-        <div class="mb-2">
-          <h5 class="font-semibold text-lg text-gray-700 dark:text-gray-100">
-            {t.contact.details.title}
-          </h5>
-          <a
-            href="mailto:ldelvillarvazquez@gmail.com"
-            target="_blank"
-            class="flex items-center text-gray-900 dark:text-white hover:underline mb-1"
-          >
-            <span class="mr-2">
-              <Envelope class="size-5" />
-            </span>
-            {t.contact.details.email}
-          </a>
-          <p class="flex items-center text-gray-900 dark:text-white mb-1">
-            <span class="mr-2">
-              <Phone class="size-5" />
-            </span>
-            {t.contact.details.phone}
-          </p>
-          <p class="flex items-center text-gray-900 dark:text-white">
-            <span class="mr-2">
-              <Location class="size-5" />
-            </span>
-            {t.contact.details.location}
-          </p>
-        </div>
-        <div class="mb-2 md:mt-6">
-          <h5 class="font-semibold text-lg text-gray-700 dark:text-gray-100">
-            {t.contact.socials.title}
-          </h5>
-          <a
-            href="https://instagram.com/lucasdvv_"
-            target="_blank"
-            class="flex items-center text-gray-900 dark:text-white hover:underline mb-1"
-          >
-            <span class="mr-2">
-              <Instagram class="size-5" />
-            </span>
-            {t.contact.socials.instagram}
-          </a>
-          <a
-            href="https://www.linkedin.com/in/ldelvillar/"
-            target="_blank"
-            class="flex items-center text-gray-900 dark:text-white hover:underline mb-1"
-          >
-            <span class="mr-2">
-              <Linkedin class="size-5" />
-            </span>
-            {t.contact.socials.linkedin}
-          </a>
-          <a
-            href="https://stackoverflow.com/users/23496866/ldelvillar"
-            target="_blank"
-            class="flex items-center text-gray-900 dark:text-white hover:underline"
-          >
-            <span class="mr-2">
-              <StackOverflow class="size-5" />
-            </span>
-            {t.contact.socials.stackoverflow}
-          </a>
-        </div>
+        <h5 class="font-semibold text-lg text-gray-700 dark:text-gray-100">
+          {t.contact.details.title}
+        </h5>
+        <a
+          href="mailto:ldelvillarvazquez@gmail.com"
+          target="_blank"
+          class="flex items-center text-gray-900 dark:text-white hover:underline mb-1"
+        >
+          <span class="mr-2">
+            <Envelope class="size-5" />
+          </span>
+          {t.contact.details.email}
+        </a>
+        <p class="flex items-center text-gray-900 dark:text-white mb-1">
+          <span class="mr-2">
+            <Phone class="size-5" />
+          </span>
+          {t.contact.details.phone}
+        </p>
+        <p class="flex items-center text-gray-900 dark:text-white mb-1">
+          <span class="mr-2">
+            <Location class="size-5" />
+          </span>
+          {t.contact.details.location}
+        </p>
+        <a
+          href="https://www.linkedin.com/in/ldelvillar/"
+          target="_blank"
+          class="flex items-center text-gray-900 dark:text-white hover:underline mb-1"
+        >
+          <span class="mr-2">
+            <Linkedin class="size-5" />
+          </span>
+          Lucas del Villar
+        </a>
       </div>
     </div>
   </div>

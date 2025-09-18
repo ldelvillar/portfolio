@@ -1,15 +1,22 @@
 ---
-import Language from './icons/Language.astro';
+import Language from '@/components/icons/Language.astro';
+
+interface Props {
+  currentLang: string;
+}
 
 interface LanguagesData {
   name: string;
+  code: string;
   route: string;
 }
 
-const LANGAUGES: LanguagesData[] = [
-  { name: 'English', route: '/en' },
-  { name: 'Español', route: '/' },
+const LANGUAGES: LanguagesData[] = [
+  { name: 'Español', code: 'es', route: '/es' },
+  { name: 'English', code: 'en', route: '/en' },
 ];
+
+const { currentLang } = Astro.props;
 ---
 
 <div class="relative ml-1 mr-1 text-gray-700 dark:text-white">
@@ -19,7 +26,7 @@ const LANGAUGES: LanguagesData[] = [
     class="appearance-none border-none flex hover:scale-125 transition"
   >
     <span class="sr-only">Select language</span>
-    <Language id="english" class="language-toggle-icon size-5 transition-all" />
+    <Language class="size-5 transition-all" />
   </button>
   <div
     transition:persist
@@ -28,9 +35,12 @@ const LANGAUGES: LanguagesData[] = [
   >
     <ul>
       {
-        LANGAUGES.map(language => (
-          <li class="langauges-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
-            <a href={language.route} class="flex w-full">
+        LANGUAGES.map(language => (
+          <li class="px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
+            <a
+              href={language.route}
+              class={`flex w-full ${currentLang === language.code ? 'text-yellow-500' : ''}`}
+            >
               {language.name}
             </a>
           </li>
@@ -53,7 +63,7 @@ const LANGAUGES: LanguagesData[] = [
     }
   });
 
-  // Cerrar el menú al hacer clic fuera
+  // Close the menu if clicked outside
   document.addEventListener('click', e => {
     if (!langaugesMenu || !langaugeToggleButton) return;
     if (!langaugesMenu.classList.contains('hidden')) {
