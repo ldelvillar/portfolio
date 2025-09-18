@@ -45,11 +45,11 @@
     "title": "Proyectos",
     "notes_app": {
       "title": "SnapNotes - Una aplicación web de notas",
-      "description": "Una aplicación web para crear, editar y eliminar notas de manera eficiente."
+      "description": "Una aplicación web de productividad con funcionalidades avanzadas como categorización, búsqueda en tiempo real y sincronización entre dispositivos."
     },
     "movies-api": {
       "title": "Movies API - Una API REST de películas",
-      "description": "API REST de películas que utiliza la arquitectura MVC, conectada a una base de datos MySQL."
+      "description": "API REST completa para la gestión de datos de películas con funcionalidad CRUD, que utiliza la arquitectura MVC conectada a una base de datos MySQL."
     },
     "1942_game": {
       "title": "Juego 1942 - Una recreación del juego 1942",
