@@ -33,22 +33,38 @@ const socials: SocialData[] = [
 ];
 ---
 
-<section id="hero" class="max-w-5xl mx-auto sm:px-4 py-16">
+<section id="hero" class="max-w-5xl mx-auto sm:px-4 py-4 md:py-16">
   <div class="flex flex-col-reverse md:flex-row gap-6 items-center">
     <div class="md:basis-2/3">
-      <h1
-        class="text-5xl text-gray-800 dark:text-white font-bold animate__animated animate__bounceInDown animate__slow"
+      <div
+        class="flex flex-row-reverse md:flex-col gap-6 animate__animated animate__bounceInDown animate__slow"
       >
-        Hey, <span class="text-yellow-500 dark:text-yellow-400"
-          >{t.hero.title}</span
+        <div>
+          <h1 class="text-5xl text-gray-800 dark:text-white font-bold">
+            Hey, <span class="text-yellow-500 dark:text-yellow-400"
+              >{t.hero.title}</span
+            >
+          </h1>
+          <span
+            class="inline-flex font-semibold text-xl animate-background-shine bg-[linear-gradient(110deg,#8a8833,45%,#0f172a,55%,#8a8833)] dark:bg-[linear-gradient(110deg,#f4ffb6,45%,#607406,55%,#f4ffb6)] bg-[length:250%_100%] bg-clip-text text-transparent mt-1"
+          >
+            {t.hero.subtitle}
+          </span>
+        </div>
+        <div
+          class="flex md:hidden md:basis-1/3 items-center md:mt-8 animate__animated animate__backInDown animate__slow"
         >
-      </h1>
+          <Image
+            src="/images/profile.webp"
+            alt="Lucas del Villar"
+            width={240}
+            height={240}
+            loading="eager"
+            class="w-40 rounded-full rotate-3 outline outline-1 outline-offset-2 outline-gray-500"
+          />
+        </div>
+      </div>
       <div class="animate__animated animate__backInLeft animate__slow">
-        <span
-          class="inline-flex font-semibold text-xl animate-background-shine bg-[linear-gradient(110deg,#8a8833,45%,#0f172a,55%,#8a8833)] dark:bg-[linear-gradient(110deg,#f4ffb6,45%,#607406,55%,#f4ffb6)] bg-[length:250%_100%] bg-clip-text text-transparent mt-1"
-        >
-          {t.hero.subtitle}
-        </span>
         <p class="font-semibold text-xl text-gray-600 dark:text-gray-300 mt-4">
           {t.hero.description1}
           <span class="text-yellow-500 dark:text-yellow-400"
@@ -75,7 +91,7 @@ const socials: SocialData[] = [
     </div>
 
     <div
-      class="md:basis-1/3 flex items-center mt-8 animate__animated animate__backInDown animate__slow"
+      class="hidden md:flex md:basis-1/3 items-center md:mt-8 animate__animated animate__backInDown animate__slow"
     >
       <Image
         src="/images/profile.webp"
@@ -83,7 +99,7 @@ const socials: SocialData[] = [
         width={240}
         height={240}
         loading="eager"
-        class=`w-60 rounded-full rotate-3 bg-black outline outline-1 outline-offset-2 outline-gray-500 m-2`
+        class="w-60 rounded-full rotate-3 outline outline-1 outline-offset-2 outline-gray-500"
       />
     </div>
   </div>

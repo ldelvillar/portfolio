@@ -20,7 +20,11 @@ const { t } = Astro.props;
         {t.about.introduction.part2}
       </p>
       <p class="mt-5 font-medium text-gray-800 dark:text-gray-300">
-        {t.about.skills}
+        {t.about.skills.part1}
+        <span class="text-yellow-500">{t.about.skills.highlight1}</span>
+        {t.about.skills.part2}
+        <span class="text-yellow-500">{t.about.skills.highlight2}</span>
+        {t.about.skills.part3}
       </p>
       <p class="mt-5 font-medium text-gray-800 dark:text-gray-300">
         {t.about.goal}

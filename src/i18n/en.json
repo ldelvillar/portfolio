@@ -67,7 +67,13 @@
       "highlight": "Bachelor Degree in Computer Science and Engineering",
       "part2": "at University Carlos III de Madrid."
     },
-    "skills": "My current focus is on full stack development, so the languages I am most proficient in are JavaScript and Python. I have also worked on several projects with cloud technologies, especially with GCP and Docker, using relational databases like MySQL or SQL Server and NoSQL like MongoDB.",
+    "skills": {
+      "part1": "Currently my focus is on full stack development, so the languages I master the most are",
+      "highlight1": "JavaScript and Python.",
+      "part2": "I have also worked on several projects with the cloud, especially with",
+      "highlight2": "GCP and Docker,",
+      "part3": "using relational databases like MySQL or SQL Server and NoSQL like MongoDB."
+    },
     "goal": "My goal is to continue constantly learning, acquiring new technologies, and staying up to date with emerging technologies, especially those related to AI and automation."
   },
   "form": {

@@ -67,7 +67,13 @@
       "highlight": "grado en Ingeniería Informática",
       "part2": "en la Universidad Carlos III de Madrid."
     },
-    "skills": "Actualmente mi foco está en el desarrollo full stack, por lo que los lenguajes que más domino son JavaScript y Python. También he trabajado en varios proyectos con la nube, especialmente con GCP y Docker, utilizando bases de datos relacionales como MySQL o SQL Server y NoSQL como MongoDB.",
+    "skills": {
+      "part1": "Actualmente mi foco está en el desarrollo full stack, por lo que los lenguajes que más domino son",
+      "highlight1": "JavaScript y Python.",
+      "part2": "También he trabajado en varios proyectos con la nube, especialmente con",
+      "highlight2": "GCP y Docker,",
+      "part3": "utilizando bases de datos relacionales como MySQL o SQL Server y NoSQL como MongoDB."
+    },
     "goal": "Mi objetivo es seguir formándome constantemente, aprendiendo nuevas tecnologías y manteniéndome al día con las tecnologías emergentes, especialmente aquellas relacionadas con IA y automatización."
   },
   "form": {

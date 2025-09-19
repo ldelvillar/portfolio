@@ -5,7 +5,6 @@ import Experience from '@/sections/Experience.astro';
 import Projects from '@/sections/Projects.astro';
 import TechStack from '@/sections/TechStack.astro';
 import About from '@/sections/About.astro';
-import Contact from '@/sections/Contact.astro';
 import { getTranslations } from '@/utils/getTranslations';
 import type { Lang } from '@/i18n/config';
 
@@ -24,6 +23,5 @@ const t = await getTranslations(lang);
     <Projects t={t} />
     <TechStack t={t} />
     <About t={t} />
-    <Contact t={t} />
   </main>
 </Layout>
