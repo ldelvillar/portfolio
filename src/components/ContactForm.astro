@@ -1,0 +1,95 @@
+---
+const { t } = Astro.props;
+
+interface InputsData {
+  number: string;
+  question: string;
+  type: 'text' | 'email' | 'textarea';
+  id: string;
+  placeholder: string;
+  required: boolean;
+}
+
+const inputs: InputsData[] = [
+  {
+    number: '01',
+    question: t.form.name.question,
+    type: 'text',
+    id: 'name',
+    placeholder: t.form.name.placeholder,
+    required: true,
+  },
+  {
+    number: '02',
+    question: t.form.email.question,
+    type: 'email',
+    id: 'email',
+    placeholder: t.form.email.placeholder,
+    required: true,
+  },
+  {
+    number: '03',
+    question: t.form.organization.question,
+    type: 'text',
+    id: 'organization',
+    placeholder: t.form.organization.placeholder,
+    required: false,
+  },
+  {
+    number: '04',
+    question: t.form.services.question,
+    type: 'text',
+    id: 'services',
+    placeholder: t.form.services.placeholder,
+    required: true,
+  },
+  {
+    number: '05',
+    question: t.form.message.question,
+    type: 'textarea',
+    id: 'message',
+    placeholder: t.form.message.placeholder,
+    required: true,
+  },
+];
+---
+
+<form class="space-y-6">
+  {
+    inputs.map(input => (
+      <div class="text-gray-900 dark:text-gray-100">
+        <label
+          for={input.id}
+          class="block mb-2 text-xl text-gray-800 dark:text-gray-200"
+        >
+          <span class="text-xl text-gray-400 mr-6">{input.number}</span>
+          {input.question}
+        </label>
+        {input.type === 'textarea' ? (
+          <textarea
+            id={input.id}
+            name={input.id}
+            placeholder={input.placeholder}
+            required={input.required}
+            class="bg-transparent w-full px-3 pt-4 pb-8 border-b border-gray-300 rounded-md focus:outline-none h-32 placeholder:font-bold"
+          />
+        ) : (
+          <input
+            type={input.type}
+            id={input.id}
+            name={input.id}
+            placeholder={input.placeholder}
+            required={input.required}
+            class="bg-transparent w-full px-3 pt-4 pb-8 border-b border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 placeholder:font-bold"
+          />
+        )}
+      </div>
+    ))
+  }
+  <button
+    type="submit"
+    class="bg-black dark:bg-white text-white dark:text-black px-6 py-3 w-full rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition duration-300"
+  >
+    {t.form.send}
+  </button>
+</form>

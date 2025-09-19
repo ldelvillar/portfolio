@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+@variant dark (.dark &);
+
+@font-face {
+  font-family: 'Onest';
+  src:
+    url('/fonts/Onest-VariableFont_wght.woff2') format('woff2-variations'),
+    url('/fonts/Onest-VariableFont_wght.woff2') format('woff2'),
+    url('/fonts/Onest-VariableFont_wght.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-primary: oklch(45.7% 0.24 277.023);
+  --font-display: 'Onest', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@keyframes background-shine {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.animate-background-shine {
+  animation: background-shine 2s linear infinite;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #232121;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #facc15;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffe479;
+}
+
+/* Selected text */
+::selection {
+  background-color: #b100d4;
+  color: #fff;
+}
