@@ -17,8 +17,8 @@
     "title": "I'm Lucas",
     "subtitle": "Full Stack Developer",
     "description1": "+2 years of experience.",
-    "description2": "Computer Science Student and Full Stack Developer",
-    "description3": "from Madrid, Spain 🇪🇸. Specialised in backend, automation and integrations."
+    "description2": "Computer Science Student and Software Developer",
+    "description3": "from Madrid, Spain 🇪🇸. Specialised in backend and process automation."
   },
   "experience": {
     "title": "Experience"
@@ -33,12 +33,12 @@
     "september_2022": {
       "date": "September 2022",
       "title": "Started my degree",
-      "description": "I started to study a Bachelor Degree in Computer Science and Engineering at University Carlos III de Madrid. Additionally, I am constantly self-studying by working on fullstack projects and obtaining certifications in different areas."
+      "description": "I started to study a Bachelor Degree in Computer Science and Engineering at University Carlos III de Madrid. Additionally, I am constantly self-studying by working on full stack projects and obtaining certifications in different areas."
     },
     "2019": {
       "date": "2019",
       "title": "Started coding",
-      "description": "I started programming at the age of 15, when I began learning the fundamentals of cybersecurity and ethical hacking. A few months later, I started exploring other fields, and in 2022, I decided to focus on web development."
+      "description": "I started programming at the age of 15, when I began learning the fundamentals of cybersecurity and ethical hacking. From there, I started exploring and learning about other fields, and in 2022 I decided to focus on full stack development."
     }
   },
   "projects": {

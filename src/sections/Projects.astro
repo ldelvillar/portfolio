@@ -2,12 +2,14 @@
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import ProjectCard from '@/components/ProjectCard.astro';
 import Code from '@/components/icons/Code.astro';
+import AstroIcon from '@/components/logos/AstroIcon.astro';
 import NextJS from '@/components/logos/NextJS.astro';
 import Firebase from '@/components/logos/Firebase.astro';
 import Tailwind from '@/components/logos/Tailwind.astro';
 import Node from '@/components/logos/Node.astro';
 import Express from '@/components/logos/Express.astro';
 import MySQL from '@/components/logos/MySQL.astro';
+import GCP from '@/components/logos/GCP.astro';
 import Python from '@/components/logos/Python.astro';
 
 const { t } = Astro.props;
@@ -30,6 +32,7 @@ const projectCards: ProjectCardsData[] = [
     image: '/images/snap-notes.webp',
     title: t.projects['notes_app'].title,
     technologies: [
+      { icon: AstroIcon, name: 'Astro', bgcolor: 'bg-[#43008f]' },
       { icon: NextJS, name: 'Next.js', bgcolor: 'bg-black' },
       { icon: Firebase, name: 'Firebase', bgcolor: 'bg-amber-700' },
       { icon: Tailwind, name: 'Tailwind CSS', bgcolor: 'bg-[#003159]' },
@@ -45,6 +48,7 @@ const projectCards: ProjectCardsData[] = [
       { icon: Node, name: 'Node.js', bgcolor: 'bg-green-900' },
       { icon: Express, name: 'Express.js', bgcolor: 'bg-slate-800' },
       { icon: MySQL, name: 'MySQL', bgcolor: 'bg-[#003159]' },
+      { icon: GCP, name: 'GCP', bgcolor: 'bg-[#003159]' },
     ],
     description: t.projects['movies-api'].description,
     github: 'https://github.com/ldelvillar/movies-api',

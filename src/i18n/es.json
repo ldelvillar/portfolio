@@ -17,8 +17,8 @@
     "title": "soy Lucas",
     "subtitle": "Desarrollador Full Stack",
     "description1": "+2 años de experiencia.",
-    "description2": "Estudiante de Ingeniería Informática y Desarrollador Full Stack",
-    "description3": "de Madrid, España 🇪🇸. Especializado en backend, automatización e integraciones."
+    "description2": "Estudiante de Ingeniería Informática y Desarrollador de Software",
+    "description3": "de Madrid, España 🇪🇸. Especializado en backend y automatización de procesos."
   },
   "experience": {
     "title": "Experiencia"
@@ -33,12 +33,12 @@
     "september_2022": {
       "date": "Septiembre 2022",
       "title": "Comencé mi carrera",
-      "description": "Empecé a estudiar un Grado en Ingeniería Informática en la Universidad Carlos III de Madrid. Además, estoy constantemente formándome por mi cuenta realizando proyectos fullstack y obteniendo certificaciones en diferentes áreas."
+      "description": "Empecé a estudiar un Grado en Ingeniería Informática en la Universidad Carlos III de Madrid. Además, estoy constantemente formándome por mi cuenta realizando proyectos full stack y obteniendo certificaciones en diferentes áreas."
     },
     "2019": {
       "date": "2019",
       "title": "Empecé a programar",
-      "description": "Empecé a programar a los 15 años, cuando comencé a aprender los fundamentos de la ciberseguridad y del hacking ético. Unos meses más tarde comencé a indagar sobre otros campos, y en 2022 fue cuando decidí centrarme en el desarrollo web."
+      "description": "Empecé a programar a los 15 años, cuando comencé a aprender los fundamentos de la ciberseguridad y del hacking ético. A partir de ahí, comencé a investigar y aprender sobre otros campos, y en 2022 decidí centrarme en el desarrollo full stack."
     }
   },
   "projects": {
