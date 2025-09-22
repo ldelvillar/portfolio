@@ -7,14 +7,15 @@ import Footer from '@/components/Footer.astro';
 
 interface Props {
   title: string;
+  lang?: Lang;
 }
 
 const baseUrl = 'https://ldelvillar.vercel.app';
 const pathname = Astro.url.pathname;
 const fullUrl = `${baseUrl}${pathname}`;
 
-const { title } = Astro.props;
-const lang = (Astro.params?.lang ?? 'es') as Lang;
+const { title, lang: propLang } = Astro.props;
+const lang = propLang ?? (Astro.params?.lang as Lang) ?? 'es';
 const t = await getTranslations(lang);
 ---
 
