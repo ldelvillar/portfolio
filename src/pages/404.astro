@@ -9,15 +9,15 @@ const t = await getTranslations(lang);
 
 <Layout title="404">
   <section>
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <div class="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
       <div class="mx-auto max-w-screen-sm text-center">
         <h1
-          class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-yellow-500 dark:text-yellow-400"
+          class="mb-4 text-7xl font-extrabold tracking-tight text-yellow-500 lg:text-9xl dark:text-yellow-400"
         >
           404
         </h1>
         <p
-          class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white"
+          class="mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl dark:text-white"
         >
           {t.not_found.title}
         </p>
@@ -26,7 +26,7 @@ const t = await getTranslations(lang);
         </p>
         <a
           href="/"
-          class="inline-flex text-white bg-yellow-600 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-yellow-900 my-4"
+          class="my-4 inline-flex rounded-lg bg-yellow-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 focus:outline-none dark:focus:ring-yellow-900"
           >{t.not_found.back_to_home}</a
         >
       </div>

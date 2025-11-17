@@ -3,16 +3,16 @@ import UserIcon from '@/components/icons/User.astro';
 const { t } = Astro.props;
 ---
 
-<section id="about" class="max-w-5xl mx-auto sm:px-4 py-16 scroll-m-20">
+<section id="about" class="mx-auto max-w-5xl scroll-m-20 py-16 sm:px-4">
   <h2
-    class="text-gray-900 dark:text-white text-3xl font-bold mb-6 flex items-center"
+    class="mb-6 flex items-center text-3xl font-bold text-gray-900 dark:text-white"
   >
     <span class="mr-5">
       <UserIcon />
     </span>
     {t.about.title}
   </h2>
-  <div class="mt-2 gap-5 flex flex-col md:flex-row items-center">
+  <div class="mt-2 flex flex-col items-center gap-5 md:flex-row">
     <div>
       <p class="font-medium text-gray-800 dark:text-gray-300">
         {t.about.introduction.part1}

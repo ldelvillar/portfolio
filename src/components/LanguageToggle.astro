@@ -19,11 +19,11 @@ const LANGUAGES: LanguagesData[] = [
 const { currentLang } = Astro.props;
 ---
 
-<div class="relative ml-1 mr-1 text-gray-700 dark:text-white">
+<div class="relative mr-1 ml-1 text-gray-700 dark:text-white">
   <button
     transition:persist
     id="language-toggle-btn"
-    class="appearance-none border-none flex hover:scale-125 transition"
+    class="flex appearance-none border-none transition hover:scale-125"
   >
     <span class="sr-only">Select language</span>
     <Language class="size-5 transition-all" />
@@ -31,12 +31,12 @@ const { currentLang } = Astro.props;
   <div
     transition:persist
     id="languages-menu"
-    class="absolute hidden scale-80 top-6 right-0 text-lg p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
+    class="absolute top-6 right-0 hidden min-w-[8rem] scale-80 rounded-md border border-gray-100 bg-white/90 p-1 text-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md dark:border-gray-500/20 dark:bg-gray-900/90"
   >
     <ul>
       {
         LANGUAGES.map(language => (
-          <li class="px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
+          <li class="cursor-default rounded-sm px-2 py-1.5 hover:bg-neutral-400/40 dark:hover:bg-gray-500/50">
             <a
               href={language.route}
               class={`flex w-full ${currentLang === language.code ? 'text-yellow-500' : ''}`}

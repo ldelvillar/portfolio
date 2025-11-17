@@ -148,9 +148,9 @@ const FIELDS: TechField[] = [
 ];
 ---
 
-<section id="techstack" class="max-w-5xl mx-auto sm:px-4 py-16 scroll-m-20">
+<section id="techstack" class="mx-auto max-w-5xl scroll-m-20 py-16 sm:px-4">
   <h2
-    class="text-gray-900 dark:text-white text-3xl font-bold mb-6 flex items-center"
+    class="mb-6 flex items-center text-3xl font-bold text-gray-900 dark:text-white"
   >
     <span class="mr-5">
       <List />
@@ -158,20 +158,20 @@ const FIELDS: TechField[] = [
     Tech Stack
   </h2>
 
-  <div class="flex flex-col md:grid md:grid-cols-2 gap-5">
+  <div class="flex flex-col gap-5 md:grid md:grid-cols-2">
     {
       FIELDS.map(field => (
         <div class="atropos my-atropos">
           <div class="atropos-scale">
             <div class="atropos-rotate">
               <div class="atropos-inner">
-                <div class="h-full flex flex-col items-center bg-white dark:bg-transparent border border-gray-200 dark:border-gray-800 rounded-2xl">
-                  <h2 class="text-3xl font-bold bg-gradient-to-t from-[#fffc5f] to-[#c9b500] dark:from-[#fffec9] dark:to-[#efeb00] bg-clip-text text-transparent mt-3">
+                <div class="flex h-full flex-col items-center rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-transparent">
+                  <h2 class="mt-3 bg-gradient-to-t from-[#fffc5f] to-[#c9b500] bg-clip-text text-3xl font-bold text-transparent dark:from-[#fffec9] dark:to-[#efeb00]">
                     {field.name}
                   </h2>
                   <div class="my-6 grid grid-cols-3 gap-6">
                     {field.technologies.map(technology => (
-                      <div class="flex flex-col justify-center items-center text-gray-800 dark:text-gray-200">
+                      <div class="flex flex-col items-center justify-center text-gray-800 dark:text-gray-200">
                         <div class="text-black dark:text-white">
                           <technology.icon class="size-13" />
                         </div>

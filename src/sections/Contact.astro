@@ -10,9 +10,9 @@ import Linkedin from '@/components/logos/Linkedin.astro';
 const { t } = Astro.props;
 ---
 
-<section id="contact" class="max-w-5xl mx-auto sm:px-4 py-16 scroll-m-20">
+<section id="contact" class="mx-auto max-w-5xl scroll-m-20 py-16 sm:px-4">
   <h2
-    class="flex items-center font-bold text-3xl text-gray-900 dark:text-white mb-6"
+    class="mb-6 flex items-center text-3xl font-bold text-gray-900 dark:text-white"
   >
     <span class="mr-5">
       <Envelope class="size-7" />
@@ -20,13 +20,13 @@ const { t } = Astro.props;
     {t.contact.title}
   </h2>
 
-  <div class="flex flex-col-reverse md:flex-row gap-14">
+  <div class="flex flex-col-reverse gap-14 md:flex-row">
     <div class="w-full md:w-2/3">
       <ContactForm t={t} />
     </div>
 
     <div
-      class="flex flex-row md:flex-col gap-16 md:gap-0 mt-6 md:mt-0 md:w-1/3"
+      class="mt-6 flex flex-row gap-16 md:mt-0 md:w-1/3 md:flex-col md:gap-0"
     >
       <div class="mb-4">
         <Image
@@ -37,27 +37,27 @@ const { t } = Astro.props;
           class="rounded-full object-cover"
         />
       </div>
-      <div class="flex flex-col sm:flex-row md:flex-col sm:gap-16 md:gap-0">
-        <h5 class="font-semibold text-lg text-gray-700 dark:text-gray-100">
+      <div class="flex flex-col sm:flex-row sm:gap-16 md:flex-col md:gap-0">
+        <h5 class="text-lg font-semibold text-gray-700 dark:text-gray-100">
           {t.contact.details.title}
         </h5>
         <a
           href="mailto:ldelvillarvazquez@gmail.com"
           target="_blank"
-          class="flex items-center text-gray-900 dark:text-white hover:underline mb-1"
+          class="mb-1 flex items-center text-gray-900 hover:underline dark:text-white"
         >
           <span class="mr-2">
             <Envelope class="size-5" />
           </span>
           {t.contact.details.email}
         </a>
-        <p class="flex items-center text-gray-900 dark:text-white mb-1">
+        <p class="mb-1 flex items-center text-gray-900 dark:text-white">
           <span class="mr-2">
             <Phone class="size-5" />
           </span>
           {t.contact.details.phone}
         </p>
-        <p class="flex items-center text-gray-900 dark:text-white mb-1">
+        <p class="mb-1 flex items-center text-gray-900 dark:text-white">
           <span class="mr-2">
             <Location class="size-5" />
           </span>
@@ -66,7 +66,7 @@ const { t } = Astro.props;
         <a
           href="https://www.linkedin.com/in/ldelvillar/"
           target="_blank"
-          class="flex items-center text-gray-900 dark:text-white hover:underline mb-1"
+          class="mb-1 flex items-center text-gray-900 hover:underline dark:text-white"
         >
           <span class="mr-2">
             <Linkedin class="size-5" />

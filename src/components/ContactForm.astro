@@ -60,9 +60,9 @@ const inputs: InputsData[] = [
       <div class="text-gray-900 dark:text-gray-100">
         <label
           for={input.id}
-          class="block mb-2 text-xl text-gray-800 dark:text-gray-200"
+          class="mb-2 block text-xl text-gray-800 dark:text-gray-200"
         >
-          <span class="text-xl text-gray-400 mr-6">{input.number}</span>
+          <span class="mr-6 text-xl text-gray-400">{input.number}</span>
           {input.question}
         </label>
         {input.type === 'textarea' ? (
@@ -71,7 +71,7 @@ const inputs: InputsData[] = [
             name={input.id}
             placeholder={input.placeholder}
             required={input.required}
-            class="bg-transparent w-full px-3 pt-4 pb-8 border-b border-gray-300 rounded-md focus:outline-none h-32 placeholder:font-bold"
+            class="h-32 w-full rounded-md border-b border-gray-300 bg-transparent px-3 pt-4 pb-8 placeholder:font-bold focus:outline-none"
           />
         ) : (
           <input
@@ -80,7 +80,7 @@ const inputs: InputsData[] = [
             name={input.id}
             placeholder={input.placeholder}
             required={input.required}
-            class="bg-transparent w-full px-3 pt-4 pb-8 border-b border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 placeholder:font-bold"
+            class="w-full rounded-md border-b border-gray-300 bg-transparent px-3 pt-4 pb-8 placeholder:font-bold focus:ring-blue-500 focus:outline-none"
           />
         )}
       </div>
@@ -88,7 +88,7 @@ const inputs: InputsData[] = [
   }
   <button
     type="submit"
-    class="bg-black dark:bg-white text-white dark:text-black px-6 py-3 w-full rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition duration-300"
+    class="w-full rounded-md bg-black px-6 py-3 text-white transition duration-300 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
   >
     {t.form.send}
   </button>

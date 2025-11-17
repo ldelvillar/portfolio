@@ -12,19 +12,19 @@ const { t, lang } = Astro.props;
 ---
 
 <header
-  class="w-full sticky top-0 z-40 backdrop-blur-xl text-gray-700 dark:text-white"
+  class="sticky top-0 z-40 w-full text-gray-700 backdrop-blur-xl dark:text-white"
 >
   <div
-    class="container mx-auto flex items-center justify-between lg:justify-evenly p-4"
+    class="container mx-auto flex items-center justify-between p-4 lg:justify-evenly"
   >
     <a
       href={lang === 'es' ? '/es' : '/en'}
-      class="text-black dark:text-white text-lg font-bold"
+      class="text-lg font-bold text-black dark:text-white"
     >
       {t.header.name}
     </a>
 
-    <nav class="hidden lg:flex space-x-8">
+    <nav class="hidden space-x-8 lg:flex">
       <a
         href="#experience"
         class="hover:text-yellow-600 dark:hover:text-yellow-400"
@@ -46,7 +46,7 @@ const { t, lang } = Astro.props;
     </nav>
 
     <div class="flex items-center gap-2">
-      <button id="menu-toggle" class="lg:hidden focus:outline-none">
+      <button id="menu-toggle" class="focus:outline-none lg:hidden">
         <MenuIcon />
       </button>
       <ThemeToggle />
@@ -55,7 +55,7 @@ const { t, lang } = Astro.props;
   </div>
 
   <!-- Mobile menu -->
-  <nav id="mobile-menu" class="lg:hidden h-screen hidden backdrop-blur-lg">
+  <nav id="mobile-menu" class="hidden h-screen backdrop-blur-lg lg:hidden">
     <ul class="space-y-4 p-4">
       <li>
         <a href="#about" class="block hover:text-gray-900"

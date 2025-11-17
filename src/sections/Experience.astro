@@ -30,34 +30,34 @@ const timelineItems: TimelineItemsData[] = [
 ];
 ---
 
-<section id="experience" class="max-w-5xl mx-auto sm:px-4 py-16 scroll-m-20">
+<section id="experience" class="mx-auto max-w-5xl scroll-m-20 py-16 sm:px-4">
   <div class="flex flex-row items-center gap-5 text-gray-900 dark:text-white">
     <Calendar />
     <h2 class="text-3xl font-bold">{t.experience.title}</h2>
   </div>
-  <ol class="relative border-s border-gray-200 dark:border-gray-700 mt-10 ml-3">
+  <ol class="relative mt-10 ml-3 border-s border-gray-200 dark:border-gray-700">
     {
       timelineItems.map((item, index) => (
         <li
           class={`${index === timelineItems.length - 1 ? '' : 'mb-20 md:mb-24'} ms-6`}
         >
-          <div class="absolute w-3 h-3 bg-yellow-400 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900" />
+          <div class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-yellow-400 dark:border-gray-900" />
           <div class="flex flex-col md:flex-row">
             <div class="md:w-[40%]">
               <h3 class="text-xl font-bold text-yellow-400">{item.title}</h3>
-              <time class="text-sm font-normal leading-none text-gray-700 dark:text-gray-300">
+              <time class="text-sm leading-none font-normal text-gray-700 dark:text-gray-300">
                 {item.date}
               </time>
             </div>
-            <div class="md:w-[60%] md:ml-8">
-              <p class="text-gray-700 dark:text-gray-300 mt-8 md:mt-0">
+            <div class="md:ml-8 md:w-[60%]">
+              <p class="mt-8 text-gray-700 md:mt-0 dark:text-gray-300">
                 {item.description}
               </p>
               {item.link && (
                 <a
                   href={item.link}
                   target="_blank"
-                  class="inline-flex items-center mt-6 px-4 py-2 text-sm font-medium text-yellow-500 bg-white border border-gray-200 rounded-lg hover:text-yellow-400 focus:z-10 hover:bg-slate-100 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-yellow-400 dark:bg-gray-800 dark:text-yellow-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-100"
+                  class="mt-6 inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-yellow-500 hover:bg-slate-100 hover:text-yellow-400 focus:z-10 focus:text-yellow-400 focus:ring-4 focus:ring-gray-100 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-yellow-400 dark:hover:bg-gray-700 dark:focus:ring-gray-100"
                 >
                   {t.timeline.learn_more}
                   <RightArrow />

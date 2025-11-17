@@ -22,34 +22,34 @@ const { image, title, technologies, description, github, preview } =
 ---
 
 <article
-  class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0"
+  class="group flex flex-col space-y-8 space-x-0 md:flex-row md:space-y-0 md:space-x-8"
 >
   <div class="w-full md:w-1/2">
     <div
-      class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl"
+      class="relative col-span-6 row-span-5 flex transform flex-col items-center gap-8 overflow-clip rounded-xl shadow-xl transition duration-500 ease-in-out sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl"
     >
       <Image
         src={image}
         alt="project card"
         width={600}
         height={400}
-        class="object-cover object-top w-full h-56 md:h-64 transition duration-500 md:scale-110 md:group-hover:scale-105"
+        class="h-56 w-full object-cover object-top transition duration-500 md:h-64 md:scale-110 md:group-hover:scale-105"
         loading="lazy"
       />
     </div>
   </div>
 
   <div class="w-full md:w-1/2 md:max-w-md">
-    <h3 class="font-bold text-2xl text-gray-900 dark:text-gray-50">
+    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-50">
       {title}
     </h3>
-    <div class="flex flex-wrap mt-2">
-      <ul class="flex flex-row mb-2 gap-x-2">
+    <div class="mt-2 flex flex-wrap">
+      <ul class="mb-2 flex flex-row gap-x-2">
         {
           technologies.map(technology => (
             <li>
               <span
-                class={`flex gap-x-2 items-center rounded-full ${technology.bgcolor} text-sm text-gray-200 px-2 py-1`}
+                class={`flex items-center gap-x-2 rounded-full ${technology.bgcolor} px-2 py-1 text-sm text-gray-200`}
               >
                 <technology.icon class="size-4" />
                 {technology.name}
@@ -59,14 +59,14 @@ const { image, title, technologies, description, github, preview } =
         }
       </ul>
     </div>
-    <p class="text-gray-900 dark:text-gray-400 mt-2">
+    <p class="mt-2 text-gray-900 dark:text-gray-400">
       {description}
     </p>
-    <footer class="flex items-end justify-start gap-x-4 mt-4 font-bold">
+    <footer class="mt-4 flex items-end justify-start gap-x-4 font-bold">
       <a
         href={github}
         target="_blank"
-        class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-offset-2 active:bg-black"
+        class="text-md group inline-flex max-w-fit items-center justify-center gap-2 space-x-2 rounded-xl border border-gray-300 bg-gray-100 px-3 py-2 text-base text-gray-800 transition hover:border-gray-900 hover:bg-gray-800 hover:text-white focus:outline-none focus-visible:ring focus-visible:ring-yellow-500/80 focus-visible:ring-offset-2 focus-visible:outline-none active:bg-black dark:border-gray-600 dark:bg-gray-800 dark:text-white"
       >
         <Github class="size-6" />
         Code
@@ -76,7 +76,7 @@ const { image, title, technologies, description, github, preview } =
           <a
             href={preview}
             target="_blank"
-            class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-offset-2 active:bg-black"
+            class="text-md group inline-flex max-w-fit items-center justify-center gap-2 space-x-2 rounded-xl border border-gray-300 bg-gray-100 px-3 py-2 text-base text-gray-800 transition hover:border-gray-900 hover:bg-gray-800 hover:text-white focus:outline-none focus-visible:ring focus-visible:ring-yellow-500/80 focus-visible:ring-offset-2 focus-visible:outline-none active:bg-black dark:border-gray-600 dark:bg-gray-800 dark:text-white"
           >
             <Link class="size-6" />
             Preview
