@@ -3,6 +3,7 @@ import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import ProjectCard from '@/components/ProjectCard.astro';
 import Code from '@/components/icons/Code.astro';
 import AstroIcon from '@/components/logos/AstroIcon.astro';
+import Preact from '@/components/logos/Preact.astro';
 import NextJS from '@/components/logos/NextJS.astro';
 import Firebase from '@/components/logos/Firebase.astro';
 import Tailwind from '@/components/logos/Tailwind.astro';
@@ -10,7 +11,6 @@ import Node from '@/components/logos/Node.astro';
 import Express from '@/components/logos/Express.astro';
 import MySQL from '@/components/logos/MySQL.astro';
 import GCP from '@/components/logos/GCP.astro';
-import Python from '@/components/logos/Python.astro';
 
 const { t } = Astro.props;
 
@@ -32,7 +32,6 @@ const projectCards: ProjectCardsData[] = [
     image: '/images/snap-notes.webp',
     title: t.projects['notes_app'].title,
     technologies: [
-      { icon: AstroIcon, name: 'Astro', bgcolor: 'bg-[#43008f]' },
       { icon: NextJS, name: 'Next.js', bgcolor: 'bg-black' },
       { icon: Firebase, name: 'Firebase', bgcolor: 'bg-amber-700' },
       { icon: Tailwind, name: 'Tailwind CSS', bgcolor: 'bg-[#003159]' },
@@ -40,6 +39,19 @@ const projectCards: ProjectCardsData[] = [
     description: t.projects['notes_app'].description,
     github: 'https://github.com/ldelvillar/snap-notes',
     preview: 'https://snap-notes.vercel.app/',
+  },
+  {
+    image: '/images/kmpe.webp',
+    title: t.projects['kmpe'].title,
+    technologies: [
+      { icon: AstroIcon, name: 'Astro', bgcolor: 'bg-[#43008f]' },
+      { icon: Preact, name: 'Preact', bgcolor: 'bg-[#673ab8]' },
+      { icon: Node, name: 'Node.js', bgcolor: 'bg-green-900' },
+      { icon: Express, name: 'Express.js', bgcolor: 'bg-slate-800' },
+    ],
+    description: t.projects['kmpe'].description,
+    github: 'https://github.com/ldelvillar/kilometros-por-explorar',
+    preview: 'https://www.kilometrosporexplorar.es',
   },
   {
     image: '/images/movies-api.webp',
@@ -53,13 +65,6 @@ const projectCards: ProjectCardsData[] = [
     description: t.projects['movies-api'].description,
     github: 'https://github.com/ldelvillar/movies-api',
     preview: 'https://movies-api-production-ead1.up.railway.app/movies',
-  },
-  {
-    image: '/images/pyxel.webp',
-    title: t.projects['1942_game'].title,
-    technologies: [{ icon: Python, name: 'Python', bgcolor: 'bg-[#003159]' }],
-    description: t.projects['1942_game'].description,
-    github: 'https://github.com/ldelvillar/1942',
   },
 ];
 ---

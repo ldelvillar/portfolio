@@ -43,6 +43,10 @@
   },
   "projects": {
     "title": "Proyectos",
+    "kmpe": {
+      "title": "Kilómetros por Explorar- Una landing page de viajes",
+      "description": "Landing page de mi proyecto con mi pareja, un negocio de planificación de viajes. Desarrollada Astro, Preact y Tailwind CSS, integrando islas en el cliente."
+    },
     "notes_app": {
       "title": "SnapNotes - Una aplicación web de notas",
       "description": "Una aplicación web de productividad con funcionalidades avanzadas como categorización, búsqueda en tiempo real y sincronización entre dispositivos."
@@ -50,10 +54,6 @@
     "movies-api": {
       "title": "Movies API - Una API REST de películas",
       "description": "API REST completa para la gestión de datos de películas con funcionalidad CRUD, que utiliza la arquitectura MVC conectada a una base de datos MySQL."
-    },
-    "1942_game": {
-      "title": "Juego 1942 - Una recreación del juego 1942",
-      "description": "Una recreación del clásico juego de disparos de aviones 1942, desarrollado con la biblioteca Pyxel de Python."
     }
   },
   "techstack": {
