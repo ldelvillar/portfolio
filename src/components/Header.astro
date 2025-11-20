@@ -89,4 +89,39 @@ const { t, lang } = Astro.props;
     mobileMenu?.classList.toggle('hidden');
     mobileMenu?.classList.toggle('block');
   });
+
+  // Highlight current section
+  function highlightCurrentSection() {
+    const sections = ['experience', 'projects', 'about'];
+
+    // Remove highlight from all nav links
+    document.querySelectorAll('nav a').forEach(link => {
+      link.classList.remove('text-primary', 'dark:text-primary');
+    });
+
+    // Find which section is currently in view
+    let currentSection = null;
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 250) {
+          currentSection = section;
+        }
+      }
+    }
+
+    // Highlight the corresponding nav link
+    if (currentSection) {
+      document
+        .querySelectorAll(`a[href="#${currentSection}"]`)
+        .forEach(link => {
+          link.classList.add('text-primary', 'dark:text-primary');
+        });
+    }
+  }
+
+  // Call on load and scroll
+  window.addEventListener('load', highlightCurrentSection);
+  window.addEventListener('scroll', highlightCurrentSection);
 </script>

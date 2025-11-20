@@ -14,8 +14,12 @@
 }
 
 @theme {
-  --color-primary: oklch(45.7% 0.24 277.023);
+  --color-primary: oklch(68.1% 0.162 75.834);
   --font-display: 'Onest', sans-serif;
+}
+
+.dark {
+  --color-primary: oklch(85.2% 0.199 91.936);
 }
 
 html {
