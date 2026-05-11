@@ -43,13 +43,15 @@ const { image, title, technologies, description, github, preview } =
     <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-50">
       {title}
     </h3>
-    <div class="mt-2 flex flex-wrap">
-      <ul class="mb-2 flex flex-row gap-x-2">
+    <div class="mt-2">
+      <ul
+        class="scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-gray-100 mb-2 flex max-w-full flex-row flex-wrap gap-2 overflow-x-auto"
+      >
         {
           technologies.map(technology => (
-            <li>
+            <li class="shrink-0">
               <span
-                class={`flex items-center gap-x-2 rounded-full ${technology.bgcolor} px-2 py-1 text-sm text-gray-200`}
+                class={`flex items-center gap-x-2 rounded-full ${technology.bgcolor} px-2 py-1 text-sm whitespace-nowrap text-gray-200`}
               >
                 <technology.icon class="size-4" />
                 {technology.name}
