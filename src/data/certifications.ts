@@ -69,8 +69,14 @@ export const CERTS: Cert[] = [
     hours: 1.5,
     status: 'active',
     mono: 'CLAUDE',
-    tint: '#34d399',
-    skills: ['Prompt Engineering', 'Agent Design', 'Productivity'],
+    tint: '#d97757',
+    skills: [
+      'Prompt Engineering',
+      'Agent Design',
+      'MCP',
+      'Task Automation',
+      'Productivity',
+    ],
     credentialUrl: 'https://verify.skilljar.com/c/2ko5u7gh7n4t',
   },
   {
