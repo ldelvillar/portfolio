@@ -37,8 +37,8 @@ export const CERTS: Cert[] = [
     mono: 'AI-900',
     tint: '#22d3ee',
     skills: [
-      'ML',
-      'Deep Leraning',
+      'Machine Learning',
+      'Deep Learning',
       'NLP',
       'Computer Vision',
       'Azure AI Services',
