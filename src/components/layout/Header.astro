@@ -93,11 +93,14 @@ const navLinks: NavLink[] = [
     });
 
     // Highlight certifications link when on the certifications page
-    const onCertifications = window.location.pathname.endsWith('/certifications');
+    const onCertifications =
+      window.location.pathname.endsWith('/certifications');
     if (onCertifications) {
-      document.querySelectorAll('nav a[href$="/certifications"]').forEach(link => {
-        link.classList.add('text-primary', 'dark:text-primary', 'font-bold');
-      });
+      document
+        .querySelectorAll('nav a[href$="/certifications"]')
+        .forEach(link => {
+          link.classList.add('text-primary', 'dark:text-primary', 'font-bold');
+        });
       return;
     }
 
