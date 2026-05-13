@@ -23,6 +23,7 @@ import Make from '@/assets/logos/Make.astro';
 import Langgraph from '@/assets/logos/Langgraph.astro';
 import MCP from '@/assets/logos/MCP.astro';
 
+// @ts-ignore
 import 'atropos/css';
 
 interface TechField {
@@ -193,6 +194,6 @@ const FIELDS: TechField[] = [
 
   // Initialize
   document.querySelectorAll('.my-atropos').forEach(el => {
-    Atropos({ el });
+    Atropos({ el: el as HTMLElement });
   });
 </script>
