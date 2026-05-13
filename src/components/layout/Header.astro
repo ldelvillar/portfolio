@@ -95,7 +95,7 @@ const navLinks: NavLink[] = [
     // Highlight certifications link when on the certifications page
     const onCertifications = window.location.pathname.endsWith('/certifications');
     if (onCertifications) {
-      document.querySelectorAll('a[href$="/certifications"]').forEach(link => {
+      document.querySelectorAll('nav a[href$="/certifications"]').forEach(link => {
         link.classList.add('text-primary', 'dark:text-primary', 'font-bold');
       });
       return;
@@ -117,7 +117,7 @@ const navLinks: NavLink[] = [
     if (currentSection) {
       const selector =
         currentSection === 'certifications'
-          ? 'a[href$="/certifications"]'
+          ? 'nav a[href$="/certifications"]'
           : `a[href="/#${currentSection}"]`;
       document.querySelectorAll(selector).forEach(link => {
         link.classList.add('text-primary', 'dark:text-primary', 'font-bold');
