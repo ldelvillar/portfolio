@@ -8,7 +8,19 @@ interface Props {
   lang: string;
 }
 
+interface NavLink {
+  label: string;
+  href: string;
+}
+
 const { t, lang } = Astro.props;
+
+const navLinks: NavLink[] = [
+  { label: t.header.nav.experience, href: '#experience' },
+  { label: t.header.nav.projects, href: '#projects' },
+  { label: t.header.nav.about, href: '#about' },
+  { label: t.header.nav.contact, href: 'mailto:ldelvillarvazquez@gmail.com' },
+];
 ---
 
 <header
@@ -25,24 +37,16 @@ const { t, lang } = Astro.props;
     </a>
 
     <nav class="hidden space-x-8 lg:flex">
-      <a
-        href="#experience"
-        class="hover:text-yellow-600 dark:hover:text-yellow-400"
-        >{t.header.nav.experience}</a
-      >
-      <a
-        href="#projects"
-        class="hover:text-yellow-600 dark:hover:text-yellow-400"
-        >{t.header.nav.projects}</a
-      >
-      <a href="#about" class="hover:text-yellow-600 dark:hover:text-yellow-400"
-        >{t.header.nav.about}</a
-      >
-      <a
-        href="mailto:ldelvillarvazquez@gmail.com"
-        class="hover:text-yellow-600 dark:hover:text-yellow-400"
-        >{t.header.nav.contact}</a
-      >
+      {
+        navLinks.map(link => (
+          <a
+            href={link.href}
+            class="hover:text-yellow-600 dark:hover:text-yellow-400"
+          >
+            {link.label}
+          </a>
+        ))
+      }
     </nav>
 
     <div class="flex items-center gap-2">
@@ -57,27 +61,15 @@ const { t, lang } = Astro.props;
   <!-- Mobile menu -->
   <nav id="mobile-menu" class="hidden h-screen backdrop-blur-lg lg:hidden">
     <ul class="space-y-4 p-4">
-      <li>
-        <a href="#about" class="block hover:text-gray-900"
-          >{t.header.nav.about}</a
-        >
-      </li>
-      <li>
-        <a href="#projects" class="block hover:text-gray-900"
-          >{t.header.nav.projects}</a
-        >
-      </li>
-      <li>
-        <a href="#skills" class="block hover:text-gray-900"
-          >{t.header.nav.skills}</a
-        >
-      </li>
-      <li>
-        <a
-          href="mailto:ldelvillarvazquez@gmail.com"
-          class="block hover:text-gray-900">{t.header.nav.contact}</a
-        >
-      </li>
+      {
+        navLinks.map(link => (
+          <li>
+            <a href={link.href} class="block hover:text-gray-900">
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </nav>
 </header>
