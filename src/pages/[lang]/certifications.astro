@@ -83,7 +83,8 @@ for (const id of CATEGORY_IDS.slice(1)) {
           class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
           >{t.certifications.summary.total}</span
         >
-        <span class="text-2xl font-semibold text-gray-900 dark:text-white"
+        <span
+          class="font-blimone text-2xl font-semibold text-gray-900 dark:text-white"
           >{String(CERTS.length).padStart(2, '0')}</span
         >
       </div>
@@ -93,7 +94,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
           >{t.certifications.summary.active}</span
         >
         <span
-          class="flex items-center gap-2 text-2xl font-semibold text-gray-900 dark:text-white"
+          class="font-blimone flex items-center gap-2 text-2xl font-semibold text-gray-900 dark:text-white"
         >
           <span class="inline-block h-2 w-2 rounded-full bg-yellow-400"></span>
           {activeCount}<span
@@ -107,7 +108,9 @@ for (const id of CATEGORY_IDS.slice(1)) {
           class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
           >{t.certifications.summary.hours}</span
         >
-        <span class="text-2xl font-semibold text-gray-900 dark:text-white">
+        <span
+          class="font-blimone text-2xl font-semibold text-gray-900 dark:text-white"
+        >
           {totalHours}<span
             class="ml-1 text-sm font-normal text-gray-500 dark:text-gray-400"
             >h</span
