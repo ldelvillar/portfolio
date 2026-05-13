@@ -8,6 +8,7 @@
     "nav": {
       "experience": "Experiencia",
       "projects": "Proyectos",
+      "certifications": "Certificaciones",
       "about": "Sobre mí",
       "contact": "Contacto",
       "skills": "Habilidades"
@@ -116,5 +117,62 @@
     "title": "Página no encontrada",
     "description": "La página que estás buscando no existe.",
     "back_to_home": "Volver a inicio"
+  },
+  "certifications": {
+    "title": "Certificaciones",
+    "subtitle": "Credenciales emitidas por entidades reconocidas",
+    "summary": {
+      "total": "Total",
+      "active": "Activas",
+      "hours": "Horas de formación",
+      "latest": "Última obtenida"
+    },
+    "search_placeholder": "Buscar por nombre, emisor o skill…",
+    "status_active": "Vigente",
+    "status_expired": "Expirada",
+    "status_in_progress": "En progreso",
+    "view_credential": "Ver credencial",
+    "download_pdf": "Descargar PDF",
+    "issued_by": "Emitido por",
+    "awarded_to": "Otorgado a",
+    "date": "Fecha",
+    "hours_label": "Horas",
+    "verify": "Verificar",
+    "no_results": "No hay resultados",
+    "no_results_hint": "Prueba con otra categoría o limpiá el buscador",
+    "view_all": "Ver todas las certificaciones",
+    "categories": {
+      "all": "Todas",
+      "dev": "Desarrollo",
+      "cloud": "Cloud",
+      "devops": "DevOps",
+      "ai": "IA"
+    },
+    "items": {
+      "aws-saa-c03": {
+        "title": "AWS Certified Solutions Architect - Associate",
+        "desc": "Diseño de soluciones distribuidas, seguras y escalables sobre AWS. Cubre cómputo, almacenamiento, redes y bases de datos con foco en costes y alta disponibilidad."
+      },
+      "ai-900": {
+        "title": "AI-900: Designing and Implementing an Azure AI Solution",
+        "desc": "Diseño e implementación de soluciones de IA de Azure utilizando diversos servicios y herramientas de IA."
+      },
+      "meta-fe-2024": {
+        "title": "Meta Front-End Developer Professional",
+        "desc": "Programa de nueve cursos en desarrollo front-end con React, principios de UX y un proyecto final de aplicación completa con backend simulado."
+      },
+      "claude-code-2026": {
+        "title": "Claude Code in Action",
+        "desc": "Aprende a utilizar Claude para escribir y mejorar código, así como para resolver problemas complejos de programación."
+      },
+      "dca-2025": {
+        "title": "Docker Certified Associate",
+        "desc": "Construcción, despliegue y orquestación de contenedores en producción. Optimización de imágenes, redes overlay y pipelines de entrega continua."
+      },
+      "gcp-gce-2025": {
+        "title": "Google Cloud Professional Cloud Architect",
+        "desc": "Diseño e implementación de soluciones en Google Cloud Platform con foco en arquitectura, seguridad y gestión de costos."
+      }
+    }
   }
 }

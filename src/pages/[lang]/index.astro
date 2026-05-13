@@ -5,6 +5,7 @@ import Experience from '@/components/home/Experience.astro';
 import Projects from '@/components/home/Projects.astro';
 import TechStack from '@/components/home/TechStack.astro';
 import About from '@/components/home/About.astro';
+import Certifications from '@/components/home/Certifications.astro';
 import { getTranslations } from '@/utils/getTranslations';
 import type { Lang } from '@/i18n/config';
 
@@ -21,6 +22,7 @@ const t = await getTranslations(lang);
     <Hero t={t} />
     <Experience t={t} />
     <Projects t={t} />
+    <Certifications t={t} />
     <TechStack t={t} />
     <About t={t} />
   </main>

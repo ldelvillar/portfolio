@@ -8,6 +8,7 @@
     "nav": {
       "experience": "Experience",
       "projects": "Projects",
+      "certifications": "Certifications",
       "about": "About",
       "contact": "Contact",
       "skills": "Skills"
@@ -116,5 +117,62 @@
     "title": "Page not found",
     "description": "The page you are looking for does not exist.",
     "back_to_home": "Back to home"
+  },
+  "certifications": {
+    "title": "Certifications",
+    "subtitle": "Credentials issued by recognized organizations",
+    "summary": {
+      "total": "Total",
+      "active": "Active",
+      "hours": "Training hours",
+      "latest": "Latest earned"
+    },
+    "search_placeholder": "Search by name, issuer or skill…",
+    "status_active": "Active",
+    "status_expired": "Expired",
+    "status_in_progress": "In Progress",
+    "view_credential": "View credential",
+    "download_pdf": "Download PDF",
+    "issued_by": "Issued by",
+    "awarded_to": "Awarded to",
+    "date": "Date",
+    "hours_label": "Hours",
+    "verify": "Verify",
+    "no_results": "No results",
+    "no_results_hint": "Try another category or clear the search",
+    "view_all": "View all certifications",
+    "categories": {
+      "all": "All",
+      "dev": "Development",
+      "cloud": "Cloud",
+      "devops": "DevOps",
+      "ai": "AI"
+    },
+    "items": {
+      "aws-saa-c03": {
+        "title": "AWS Certified Solutions Architect – Associate",
+        "desc": "Designing distributed, secure and scalable solutions on AWS — compute, storage, networking and databases, with a cost and high-availability focus."
+      },
+      "ai-900": {
+        "title": "AI-900: Designing and Implementing an Azure AI Solution",
+        "desc": "Designing and implementing Azure AI solutions using various AI services and tools."
+      },
+      "meta-fe-2024": {
+        "title": "Meta Front-End Developer Professional",
+        "desc": "Nine-course front-end track with React, UX principles, and a capstone full app project against a mocked backend."
+      },
+      "claude-code-2026": {
+        "title": "Claude Code in Action",
+        "desc": "Learn to use Claude for writing and improving code, as well as solving complex programming problems."
+      },
+      "dca-2025": {
+        "title": "Docker Certified Associate",
+        "desc": "Building, deploying and orchestrating containers in production — image optimization, overlay networks and CI/CD pipelines."
+      },
+      "gcp-gce-2025": {
+        "title": "Google Cloud Professional Cloud Architect",
+        "desc": "Designing and implementing solutions on Google Cloud Platform with a focus on architecture, security, and cost management."
+      }
+    }
   }
 }

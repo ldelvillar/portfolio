@@ -1,0 +1,126 @@
+---
+import CertificationCard from '@/assets/CertificationCard.astro';
+import RightArrow from '@/assets/RightArrow.astro';
+import { CERTS } from '@/data/certifications';
+import type { Lang } from '@/i18n/config';
+
+const { t } = Astro.props;
+const lang = (Astro.params?.lang ?? 'es') as Lang;
+
+const MONTHS = {
+  es: [
+    'Ene',
+    'Feb',
+    'Mar',
+    'Abr',
+    'May',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dic',
+  ],
+  en: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ],
+};
+
+function fmtDate(yymm: string): string {
+  const [y, m] = yymm.split('-').map(Number);
+  return `${MONTHS[lang][m - 1]} ${y}`;
+}
+
+const PREVIEW_IDS = ['gcp-gce-2025', 'ai-900', 'claude-code-2026'];
+const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
+---
+
+<section
+  id="certifications"
+  class="mx-auto max-w-5xl scroll-m-20 py-16 sm:px-4"
+>
+  <div
+    class="mb-8 flex flex-wrap items-center gap-4 text-gray-900 dark:text-white"
+  >
+    <CertificationCard />
+    <h2 class="text-3xl font-bold">{t.certifications.title}</h2>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+    {
+      PREVIEW_CERTS.map(cert => (
+        <div class="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+          {/* Mini badge */}
+          <div
+            class="relative flex items-center justify-between overflow-hidden rounded-lg border border-gray-200 px-3 py-2.5 dark:border-gray-800"
+            style={`background: radial-gradient(120% 80% at 50% -10%, ${cert.tint}18 0%, transparent 60%), linear-gradient(180deg, #0c0c10 0%, #08080b 100%);`}
+          >
+            <div class="flex items-center gap-1.5">
+              <span
+                class="h-2 w-2 rounded-sm"
+                style={`background: ${cert.tint}`}
+              />
+              <span class="font-mono text-xs font-semibold text-gray-300">
+                {cert.issuerShort}
+              </span>
+            </div>
+            <span
+              class="font-mono font-medium"
+              style={`color: ${cert.tint}; text-shadow: 0 0 16px ${cert.tint}4d; font-size: 1.5rem; line-height: 1;`}
+            >
+              {cert.mono}
+            </span>
+            <span class="font-mono text-[9px] text-gray-500">
+              {fmtDate(cert.date)}
+            </span>
+          </div>
+
+          {/* Title & issuer */}
+          <div class="flex flex-col gap-1">
+            <h3 class="text-sm leading-snug font-semibold text-gray-900 dark:text-white">
+              {t.certifications.items[cert.id].title}
+            </h3>
+            <span class="font-mono text-xs text-gray-500 dark:text-gray-400">
+              {cert.issuer}
+            </span>
+          </div>
+
+          {/* Skills */}
+          <div class="flex flex-wrap gap-1.5">
+            {cert.skills.map(skill => (
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-xs text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                <span
+                  class="h-1.5 w-1.5 rounded-full"
+                  style={`background: ${cert.tint}`}
+                />
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="mt-8 flex justify-center">
+    <a
+      href={`/${lang}/certifications`}
+      class="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-yellow-500 hover:bg-gray-50 hover:text-yellow-400 dark:border-gray-700 dark:bg-gray-800 dark:text-yellow-400 dark:hover:bg-gray-700"
+    >
+      {t.certifications.view_all}
+      <RightArrow />
+    </a>
+  </div>
+</section>

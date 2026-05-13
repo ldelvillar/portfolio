@@ -1,0 +1,652 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getTranslations } from '@/utils/getTranslations';
+import { CERTS } from '@/data/certifications';
+import type { Lang } from '@/i18n/config';
+
+export async function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }];
+}
+
+const lang = (Astro.params?.lang ?? 'es') as Lang;
+const t = await getTranslations(lang);
+
+const MONTHS = {
+  es: [
+    'Ene',
+    'Feb',
+    'Mar',
+    'Abr',
+    'May',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dic',
+  ],
+  en: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ],
+};
+
+function fmtDate(yymm: string, l: Lang): string {
+  const [y, m] = yymm.split('-').map(Number);
+  return `${MONTHS[l][m - 1]} ${y}`;
+}
+
+const activeCount = CERTS.filter(c => c.status === 'active').length;
+const totalHours = CERTS.reduce((s, c) => s + c.hours, 0);
+const latest = [...CERTS].sort((a, b) => b.date.localeCompare(a.date))[0];
+
+const CATEGORY_IDS = ['all', 'dev', 'cloud', 'ai'];
+
+const catCounts: Record<string, number> = { all: CERTS.length };
+for (const id of CATEGORY_IDS.slice(1)) {
+  catCounts[id] = CERTS.filter(c => c.category === id).length;
+}
+---
+
+<Layout title={`${t.certifications.title} - ldelvillar`}>
+  <main class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+    <!-- Section header -->
+    <header class="mb-8 flex flex-wrap items-center gap-4">
+      <h1
+        class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white"
+      >
+        {t.certifications.title}
+      </h1>
+      <span
+        class="ml-auto hidden font-mono text-sm text-gray-500 sm:block dark:text-gray-400"
+        >{t.certifications.subtitle}</span
+      >
+    </header>
+
+    <!-- Stats strip -->
+    <div
+      class="mb-8 grid grid-cols-2 divide-x divide-y overflow-hidden rounded-xl border border-gray-200 sm:grid-cols-4 sm:divide-y-0 dark:divide-gray-800 dark:border-gray-800"
+    >
+      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
+        <span
+          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
+          >{t.certifications.summary.total}</span
+        >
+        <span class="text-2xl font-semibold text-gray-900 dark:text-white"
+          >{String(CERTS.length).padStart(2, '0')}</span
+        >
+      </div>
+      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
+        <span
+          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
+          >{t.certifications.summary.active}</span
+        >
+        <span
+          class="flex items-center gap-2 text-2xl font-semibold text-gray-900 dark:text-white"
+        >
+          <span class="inline-block h-2 w-2 rounded-full bg-yellow-400"></span>
+          {activeCount}<span
+            class="text-sm font-normal text-gray-500 dark:text-gray-400"
+            >/ {CERTS.length}</span
+          >
+        </span>
+      </div>
+      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
+        <span
+          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
+          >{t.certifications.summary.hours}</span
+        >
+        <span class="text-2xl font-semibold text-gray-900 dark:text-white">
+          {totalHours}<span
+            class="ml-1 text-sm font-normal text-gray-500 dark:text-gray-400"
+            >h</span
+          >
+        </span>
+      </div>
+      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
+        <span
+          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
+          >{t.certifications.summary.latest}</span
+        >
+        <span class="text-lg font-semibold text-gray-900 dark:text-white">
+          {latest.issuerShort}<span
+            class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400"
+            >{fmtDate(latest.date, lang)}</span
+          >
+        </span>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="mb-8 flex flex-wrap items-center gap-2">
+      {
+        CATEGORY_IDS.map(id => (
+          <button
+            class="filter-pill inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-all hover:border-gray-400 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-500"
+            data-cat={id}
+            aria-pressed={id === 'all' ? 'true' : 'false'}
+          >
+            {t.certifications.categories[id]}
+            <span class="pill-count rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+              {catCounts[id]}
+            </span>
+          </button>
+        ))
+      }
+      <div
+        class="flex w-full items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-gray-400 transition-colors focus-within:border-gray-400 sm:ml-auto sm:w-auto sm:min-w-[200px] dark:border-gray-700 dark:focus-within:border-gray-500"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-3.5 w-3.5 shrink-0"
+        >
+          <circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"
+          ></path>
+        </svg>
+        <input
+          id="cert-search"
+          type="search"
+          placeholder={t.certifications.search_placeholder}
+          class="min-w-0 flex-1 border-0 bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-400 dark:text-white"
+        />
+      </div>
+    </div>
+
+    <!-- Cards grid -->
+    <div id="cards-grid" class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      {
+        CERTS.map(cert => (
+          <article
+            class="cert-card flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 transition-all hover:border-gray-300 sm:flex-row sm:gap-5 sm:p-5 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+            data-category={cert.category}
+            data-title={t.certifications.items[cert.id].title.toLowerCase()}
+            data-issuer={cert.issuer.toLowerCase()}
+            data-skills={cert.skills.join(',').toLowerCase()}
+            style={cert.status === 'expired' ? 'opacity: 0.72' : ''}
+          >
+            {/* Mobile badge — horizontal strip */}
+            <div
+              class="relative flex h-14 w-full flex-row items-center justify-between overflow-hidden rounded-lg border border-gray-200 px-4 sm:hidden dark:border-gray-800"
+              style={`background: radial-gradient(120% 80% at 50% -10%, ${cert.tint}18 0%, transparent 60%), linear-gradient(180deg, #0c0c10 0%, #08080b 100%);`}
+            >
+              <div class="flex items-center gap-1.5 text-xs">
+                <span
+                  class="h-2 w-2 rounded-sm"
+                  style={`background: ${cert.tint}`}
+                />
+                <span class="font-mono font-semibold text-gray-300">
+                  {cert.issuerShort}
+                </span>
+              </div>
+              <div
+                class={`font-mono leading-none font-medium ${cert.mono.length > 5 ? 'text-xl' : cert.mono.length > 3 ? 'text-2xl' : 'text-3xl'}`}
+                style={`color: ${cert.tint}; text-shadow: 0 0 24px ${cert.tint}4d;`}
+              >
+                {cert.mono}
+              </div>
+              <span
+                class={`rounded-full border px-1.5 py-0.5 font-mono text-[9px] tracking-widest uppercase ${cert.status === 'active' ? 'border-green-500/25 bg-green-500/10 text-green-300' : cert.status === 'in-progress' ? 'border-amber-500/25 bg-amber-500/10 text-amber-300' : 'border-pink-500/20 bg-pink-500/10 text-pink-300'}`}
+              >
+                {cert.status === 'active'
+                  ? t.certifications.status_active
+                  : cert.status === 'in-progress'
+                    ? t.certifications.status_in_progress
+                    : t.certifications.status_expired}
+              </span>
+            </div>
+
+            {/* Desktop badge — vertical card */}
+            <div
+              class="relative hidden w-36 shrink-0 flex-col justify-between overflow-hidden rounded-lg border border-gray-200 p-3 sm:flex dark:border-gray-800"
+              style={`background: radial-gradient(120% 80% at 50% -10%, ${cert.tint}18 0%, transparent 60%), linear-gradient(180deg, #0c0c10 0%, #08080b 100%);`}
+            >
+              <div class="flex items-center gap-1.5 text-xs">
+                <span
+                  class="h-2 w-2 rounded-sm"
+                  style={`background: ${cert.tint}`}
+                />
+                <span class="font-mono font-semibold text-gray-300">
+                  {cert.issuerShort}
+                </span>
+              </div>
+              <span
+                class={`absolute top-2 right-2 rounded-full border px-1.5 py-0.5 font-mono text-[9px] tracking-widest uppercase ${cert.status === 'active' ? 'border-green-500/25 bg-green-500/10 text-green-300' : cert.status === 'in-progress' ? 'border-amber-500/25 bg-amber-500/10 text-amber-300' : 'border-pink-500/20 bg-pink-500/10 text-pink-300'}`}
+              >
+                {cert.status === 'active'
+                  ? t.certifications.status_active
+                  : cert.status === 'in-progress'
+                    ? t.certifications.status_in_progress
+                    : t.certifications.status_expired}
+              </span>
+              <div class="text-center">
+                <div
+                  class={`font-mono leading-none font-medium ${cert.mono.length > 5 ? 'text-xl' : cert.mono.length > 3 ? 'text-2xl' : 'text-3xl'}`}
+                  style={`color: ${cert.tint}; text-shadow: 0 0 24px ${cert.tint}4d;`}
+                >
+                  {cert.mono}
+                </div>
+                <div class="mt-1 text-[9px] tracking-widest text-gray-500 uppercase">
+                  Certified · {fmtDate(cert.date, lang)}
+                </div>
+              </div>
+              <div class="flex justify-between font-mono text-[9px] text-gray-500">
+                <div>
+                  <div class="text-[8px] tracking-widest text-gray-600 uppercase">
+                    ID
+                  </div>
+                  <div>{cert.id.toUpperCase()}</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-[8px] tracking-widest text-gray-600 uppercase">
+                    Hrs
+                  </div>
+                  <div>{String(cert.hours).padStart(3, '0')}h</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Body */}
+            <div class="flex min-w-0 flex-1 flex-col gap-3">
+              <div class="flex items-center gap-2 font-mono text-xs text-gray-500 dark:text-gray-400">
+                <span>{cert.issuer}</span>
+                <span class="h-1 w-1 rounded-full bg-gray-400" />
+                <span>{fmtDate(cert.date, lang)}</span>
+              </div>
+              <h3 class="text-lg leading-snug font-semibold text-gray-900 dark:text-white">
+                {t.certifications.items[cert.id].title}
+              </h3>
+              <div class="flex flex-wrap gap-1.5">
+                {cert.skills.map(skill => (
+                  <span class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 text-xs font-medium text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                    <span
+                      class="h-1.5 w-1.5 rounded-full"
+                      style={`background: ${cert.tint}`}
+                    />
+                    {skill}
+                  </span>
+                ))}
+              </div>
+              <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                {t.certifications.items[cert.id].desc}
+              </p>
+              <div class="mt-auto flex flex-wrap gap-2 pt-1">
+                <button
+                  class="open-modal inline-flex items-center gap-2 rounded-full bg-yellow-400 px-3 py-1.5 text-xs font-medium text-gray-900 transition-colors hover:bg-yellow-300 disabled:cursor-not-allowed disabled:opacity-40"
+                  disabled={cert.status === 'in-progress'}
+                  data-cert={JSON.stringify({
+                    id: cert.id.toUpperCase(),
+                    title: t.certifications.items[cert.id].title,
+                    issuer: cert.issuer,
+                    mono: cert.mono,
+                    tint: cert.tint,
+                    date: fmtDate(cert.date, lang),
+                    hours: cert.hours,
+                    credentialUrl: cert.credentialUrl,
+                  })}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3 w-3"
+                  >
+                    <>
+                      <path d="M15 3h6v6" />
+                      <path d="M10 14 21 3" />
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    </>
+                  </svg>
+                  {t.certifications.view_credential}
+                </button>
+                <button
+                  class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+                  disabled={cert.status === 'in-progress'}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3 w-3"
+                  >
+                    <>
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" y1="15" x2="12" y2="3" />
+                    </>
+                  </svg>
+                  {t.certifications.download_pdf}
+                </button>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+
+      <!-- Empty state -->
+      <div
+        id="empty-state"
+        class="col-span-full hidden rounded-xl border border-dashed border-gray-200 py-16 text-center dark:border-gray-800"
+      >
+        <p class="text-base text-gray-500 dark:text-gray-400">
+          {t.certifications.no_results}
+        </p>
+        <p class="mt-2 font-mono text-xs text-gray-400 dark:text-gray-500">
+          {t.certifications.no_results_hint}
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div
+    id="modal-backdrop"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-6 backdrop-blur-sm"
+  >
+    <div
+      class="w-full max-w-lg overflow-hidden rounded-2xl border border-gray-700 bg-gray-900 shadow-2xl"
+    >
+      <!-- Browser chrome -->
+      <div
+        class="flex items-center justify-between border-b border-gray-800 px-4 py-3"
+      >
+        <div class="flex gap-1.5">
+          <span class="h-2.5 w-2.5 rounded-full bg-red-500/80"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-green-500/80"></span>
+        </div>
+        <div
+          id="modal-url"
+          class="rounded-full border border-gray-700 bg-gray-800 px-3 py-1 font-mono text-xs text-gray-400"
+        >
+        </div>
+        <button
+          id="modal-close"
+          class="grid h-7 w-7 place-items-center rounded-md text-gray-400 transition-colors hover:bg-gray-800 hover:text-white"
+          aria-label="Close"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-3.5 w-3.5"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line><line
+              x1="6"
+              y1="6"
+              x2="18"
+              y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <!-- Modal body -->
+      <div class="p-5 sm:p-8">
+        <div
+          id="modal-cert"
+          class="relative flex flex-col gap-4 overflow-hidden rounded-xl border border-gray-700 p-7 text-center"
+        >
+          <div
+            class="pointer-events-none absolute inset-0 opacity-30"
+            style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0); background-size: 14px 14px; mask-image: linear-gradient(180deg, #000, transparent 70%);"
+          >
+          </div>
+          <p
+            id="modal-eyebrow"
+            class="relative font-mono text-xs tracking-widest text-gray-400 uppercase"
+          >
+          </p>
+          <div
+            id="modal-mono"
+            class="relative font-mono text-5xl leading-none font-medium"
+          >
+          </div>
+          <h3
+            id="modal-title"
+            class="relative text-xl font-semibold text-white"
+          >
+          </h3>
+          <p id="modal-awarded" class="relative text-sm text-gray-400"></p>
+          <div class="relative mt-2 grid grid-cols-3 gap-2">
+            <div
+              class="flex flex-col gap-0.5 rounded-lg border border-gray-700 p-2.5 text-left"
+            >
+              <span class="text-[9px] tracking-widest text-gray-500 uppercase"
+                >{t.certifications.date}</span
+              >
+              <span id="modal-date" class="font-mono text-sm text-white"></span>
+            </div>
+            <div
+              class="flex flex-col gap-0.5 rounded-lg border border-gray-700 p-2.5 text-left"
+            >
+              <span class="text-[9px] tracking-widest text-gray-500 uppercase"
+                >ID</span
+              >
+              <span id="modal-id" class="truncate font-mono text-sm text-white"
+              ></span>
+            </div>
+            <div
+              class="flex flex-col gap-0.5 rounded-lg border border-gray-700 p-2.5 text-left"
+            >
+              <span class="text-[9px] tracking-widest text-gray-500 uppercase"
+                >{t.certifications.hours_label}</span
+              >
+              <span id="modal-hours" class="font-mono text-sm text-white"
+              ></span>
+            </div>
+          </div>
+          <div class="relative flex justify-center gap-2">
+            <a
+              id="modal-verify-link"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-yellow-300"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-3.5 w-3.5"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                ></path><path d="m9 12 2 2 4-4"></path>
+              </svg>
+              {t.certifications.verify}
+            </a>
+            <button
+              class="inline-flex items-center gap-2 rounded-full border border-gray-700 px-4 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-3.5 w-3.5"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                ></path><polyline points="7 10 12 15 17 10"></polyline><line
+                  x1="12"
+                  y1="15"
+                  x2="12"
+                  y2="3"></line>
+              </svg>
+              {t.certifications.download_pdf}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .filter-pill[aria-pressed='true'] {
+    background-color: #facc15;
+    color: #111827;
+    border-color: transparent;
+  }
+  .filter-pill[aria-pressed='true'] .pill-count {
+    background-color: rgba(0, 0, 0, 0.18);
+    color: #111827;
+  }
+</style>
+
+<script>
+  // --- Filter pills ---
+  const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
+  const cards = document.querySelectorAll<HTMLElement>('.cert-card');
+  const searchInput = document.getElementById(
+    'cert-search'
+  ) as HTMLInputElement | null;
+  const emptyState = document.getElementById('empty-state');
+
+  let activeCategory = 'all';
+  let searchQuery = '';
+
+  function filterCards() {
+    let visible = 0;
+    cards.forEach(card => {
+      const catMatch =
+        activeCategory === 'all' || card.dataset.category === activeCategory;
+      const q = searchQuery.trim().toLowerCase();
+      const searchMatch =
+        !q ||
+        (card.dataset.title ?? '').includes(q) ||
+        (card.dataset.issuer ?? '').includes(q) ||
+        (card.dataset.skills ?? '').includes(q);
+
+      if (catMatch && searchMatch) {
+        card.classList.remove('hidden');
+        visible++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+    emptyState?.classList.toggle('hidden', visible > 0);
+  }
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      activeCategory = pill.dataset.cat ?? 'all';
+      pills.forEach(p => p.setAttribute('aria-pressed', 'false'));
+      pill.setAttribute('aria-pressed', 'true');
+      filterCards();
+    });
+  });
+
+  searchInput?.addEventListener('input', () => {
+    searchQuery = searchInput.value;
+    filterCards();
+  });
+
+  // --- Modal ---
+  const backdrop = document.getElementById('modal-backdrop');
+  const modalClose = document.getElementById('modal-close');
+
+  interface CertData {
+    id: string;
+    title: string;
+    issuer: string;
+    mono: string;
+    tint: string;
+    date: string;
+    hours: number;
+    credentialUrl: string;
+  }
+
+  function openModal(cert: CertData) {
+    const certEl = document.getElementById('modal-cert');
+    const monoEl = document.getElementById('modal-mono');
+
+    if (certEl)
+      certEl.style.background = `radial-gradient(120% 80% at 50% 0%, ${cert.tint}22 0%, transparent 60%), #0f0f13`;
+    if (monoEl) {
+      monoEl.style.color = cert.tint;
+      monoEl.style.textShadow = `0 0 60px ${cert.tint}66`;
+      monoEl.textContent = cert.mono;
+    }
+
+    const lang = document.documentElement.lang;
+    const issuedBy = lang === 'es' ? 'Emitido por' : 'Issued by';
+    const awardedTo = lang === 'es' ? 'Otorgado a' : 'Awarded to';
+
+    const set = (id: string, text: string) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    };
+    const setHtml = (id: string, html: string) => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+    };
+
+    set('modal-url', `verify.ldelvillar.app/${cert.id.toLowerCase()}`);
+    set('modal-eyebrow', `${issuedBy} · ${cert.issuer}`);
+    set('modal-title', cert.title);
+    setHtml(
+      'modal-awarded',
+      `${awardedTo} <strong style="color:#fff">Lucas del Villar</strong>`
+    );
+    set('modal-date', cert.date);
+    set('modal-id', cert.id);
+    set('modal-hours', `${cert.hours}h`);
+
+    const verifyLink = document.getElementById(
+      'modal-verify-link'
+    ) as HTMLAnchorElement | null;
+    if (verifyLink) verifyLink.href = cert.credentialUrl;
+
+    backdrop?.classList.remove('hidden');
+    backdrop?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    backdrop?.classList.add('hidden');
+    backdrop?.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.open-modal').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cert = JSON.parse(btn.dataset.cert ?? '{}') as CertData;
+      openModal(cert);
+    });
+  });
+
+  modalClose?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', e => {
+    if (e.target === backdrop) closeModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>

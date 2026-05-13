@@ -16,9 +16,10 @@ interface NavLink {
 const { t, lang } = Astro.props;
 
 const navLinks: NavLink[] = [
-  { label: t.header.nav.experience, href: '#experience' },
-  { label: t.header.nav.projects, href: '#projects' },
-  { label: t.header.nav.about, href: '#about' },
+  { label: t.header.nav.experience, href: '/#experience' },
+  { label: t.header.nav.projects, href: '/#projects' },
+  { label: t.header.nav.certifications, href: `/${lang}/certifications` },
+  { label: t.header.nav.about, href: '/#about' },
   { label: t.header.nav.contact, href: 'mailto:ldelvillarvazquez@gmail.com' },
 ];
 ---
@@ -84,12 +85,21 @@ const navLinks: NavLink[] = [
 
   // Highlight current section
   function highlightCurrentSection() {
-    const sections = ['experience', 'projects', 'about'];
+    const sections = ['experience', 'projects', 'certifications', 'about'];
 
     // Remove highlight from all nav links
     document.querySelectorAll('nav a').forEach(link => {
       link.classList.remove('text-primary', 'dark:text-primary', 'font-bold');
     });
+
+    // Highlight certifications link when on the certifications page
+    const onCertifications = window.location.pathname.endsWith('/certifications');
+    if (onCertifications) {
+      document.querySelectorAll('a[href$="/certifications"]').forEach(link => {
+        link.classList.add('text-primary', 'dark:text-primary', 'font-bold');
+      });
+      return;
+    }
 
     // Find which section is currently in view
     let currentSection = null;
@@ -105,11 +115,13 @@ const navLinks: NavLink[] = [
 
     // Highlight the corresponding nav link
     if (currentSection) {
-      document
-        .querySelectorAll(`a[href="#${currentSection}"]`)
-        .forEach(link => {
-          link.classList.add('text-primary', 'dark:text-primary', 'font-bold');
-        });
+      const selector =
+        currentSection === 'certifications'
+          ? 'a[href$="/certifications"]'
+          : `a[href="/#${currentSection}"]`;
+      document.querySelectorAll(selector).forEach(link => {
+        link.classList.add('text-primary', 'dark:text-primary', 'font-bold');
+      });
     }
   }
 
