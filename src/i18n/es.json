@@ -109,6 +109,12 @@
       "location": "Madrid, España"
     }
   },
+  "theme": {
+    "label": "Elige el tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
+  },
   "footer": {
     "inspired": "Inspirado en",
     "of": "de"

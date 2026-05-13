@@ -3,9 +3,17 @@ import SunIcon from '@/assets/Sun.astro';
 import MoonIcon from '@/assets/Moon.astro';
 import SystemIcon from '@/assets/System.astro';
 
-type Themes = 'Light' | 'Dark' | 'System';
+interface Props {
+  t: any;
+}
 
-const THEMES: Themes[] = ['Light', 'Dark', 'System'];
+const { t } = Astro.props;
+
+const THEMES = [
+  { key: 'light', label: t.theme.light },
+  { key: 'dark', label: t.theme.dark },
+  { key: 'system', label: t.theme.system },
+];
 ---
 
 <div class="relative mr-1 ml-1 text-gray-700 dark:text-white">
@@ -14,7 +22,7 @@ const THEMES: Themes[] = ['Light', 'Dark', 'System'];
     id="theme-toggle-btn"
     class="flex appearance-none border-none transition hover:scale-125"
   >
-    <span class="sr-only">Elige el tema</span>
+    <span class="sr-only">{t.theme.label}</span>
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
     <MoonIcon
       id="dark"
@@ -28,16 +36,16 @@ const THEMES: Themes[] = ['Light', 'Dark', 'System'];
   <div
     transition:persist
     id="themes-menu"
-    class="absolute top-5 right-0 hidden min-w-[8rem] scale-80 rounded-md border border-gray-100 bg-white/90 p-1 text-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md dark:border-gray-500/20 dark:bg-gray-900/90"
+    class="absolute top-5 right-0 hidden min-w-32 scale-80 rounded-md border border-gray-100 bg-white/90 p-1 text-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md dark:border-gray-500/20 dark:bg-gray-900/90"
   >
     <ul>
       {
         THEMES.map(theme => (
           <li
             class="themes-menu-option cursor-default rounded-sm px-2 py-1.5 hover:bg-neutral-400/40 dark:hover:bg-gray-500/50"
-            data-theme={theme.toLowerCase()}
+            data-theme={theme.key}
           >
-            {theme}
+            {theme.label}
           </li>
         ))
       }
@@ -122,9 +130,8 @@ const THEMES: Themes[] = ['Light', 'Dark', 'System'];
   });
 
   document.querySelectorAll('.themes-menu-option').forEach(element => {
-    element.addEventListener('click', e => {
-      const newTheme = e.target.innerText.toLowerCase().trim();
-      localStorage.setItem('theme', newTheme);
+    element.addEventListener('click', () => {
+      localStorage.setItem('theme', element.dataset.theme);
       updateTheme();
     });
   });
