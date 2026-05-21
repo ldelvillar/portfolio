@@ -27,3 +27,9 @@ src/
 ```
 
 Path alias: `@/` → `src/`.
+
+## License
+
+Code is [MIT](./LICENSE) — feel free to learn from it or reuse pieces.
+Content (text in `src/i18n/`, images, personal branding) is © Lucas del Villar,
+all rights reserved.
