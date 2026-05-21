@@ -1,0 +1,924 @@
+---
+import { Image } from 'astro:assets';
+import { experimental_AstroContainer as AstroContainer } from 'astro/container';
+import Layout from '@/layouts/Layout.astro';
+import { getTranslations } from '@/utils/getTranslations';
+import { PROJECTS, TECH_META, FALLBACK_BG } from '@/data/projects';
+import type { Lang } from '@/i18n/config';
+
+const container = await AstroContainer.create();
+const iconHtmlCache = new Map<string, string>();
+async function renderIconHtml(name: string): Promise<string> {
+  if (iconHtmlCache.has(name)) return iconHtmlCache.get(name)!;
+  const Icon = TECH_META[name]?.icon;
+  if (!Icon) {
+    iconHtmlCache.set(name, '');
+    return '';
+  }
+  const html = await container.renderToString(Icon, {
+    props: { class: 'size-4' },
+  });
+  iconHtmlCache.set(name, html);
+  return html;
+}
+
+async function renderStackHtml(stack: string[]): Promise<string> {
+  const parts = await Promise.all(
+    stack.map(async name => {
+      const bgcolor = TECH_META[name]?.bgcolor ?? FALLBACK_BG;
+      const iconHtml = await renderIconHtml(name);
+      return `<span class="flex items-center gap-x-2 rounded-full ${bgcolor} px-2 py-1 text-sm whitespace-nowrap text-gray-200">${iconHtml}${name}</span>`;
+    })
+  );
+  return parts.join('');
+}
+
+const stackHtmlById: Record<string, string> = {};
+for (const p of PROJECTS) {
+  stackHtmlById[p.id] = await renderStackHtml(p.stack);
+}
+
+export async function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }];
+}
+
+const lang = (Astro.params?.lang ?? 'es') as Lang;
+const t = await getTranslations(lang);
+
+const tp = t.projects_page;
+
+const total = PROJECTS.length;
+const liveCount = PROJECTS.filter(p => p.status === 'live').length;
+const latest = [...PROJECTS].sort((a, b) => b.year.localeCompare(a.year))[0];
+const mainStack = 'TypeScript';
+
+const CATEGORY_IDS = ['all', 'saas', 'oss', 'personal'] as const;
+
+const catCounts: Record<string, number> = { all: PROJECTS.length };
+for (const id of CATEGORY_IDS.slice(1)) {
+  catCounts[id] = PROJECTS.filter(p =>
+    (p.category as readonly string[]).includes(id)
+  ).length;
+}
+
+const featured = PROJECTS.find(p => p.featured);
+const rest = PROJECTS.filter(p => !p.featured);
+
+function statusLabel(s: string): string {
+  if (s === 'live') return tp.status_live;
+  if (s === 'dev') return tp.status_dev;
+  return tp.status_archived;
+}
+
+function statusBadgeClasses(s: string): string {
+  if (s === 'live') return 'border-green-500/25 bg-green-500/10 text-green-300';
+  if (s === 'dev') return 'border-amber-500/25 bg-amber-500/10 text-amber-300';
+  return 'border-gray-500/25 bg-gray-500/10 text-gray-300';
+}
+---
+
+<Layout title={`${tp.title} - ldelvillar`}>
+  <main class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+    <!-- Section header -->
+    <header class="mb-8 flex flex-wrap items-center gap-4">
+      <h1
+        class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white"
+      >
+        {tp.title}
+      </h1>
+      <span
+        class="ml-auto hidden font-mono text-sm text-gray-500 sm:block dark:text-gray-400"
+        >{tp.subtitle}</span
+      >
+    </header>
+
+    <!-- Summary strip -->
+    <div
+      class="mb-8 grid grid-cols-2 divide-x divide-y overflow-hidden rounded-xl border border-gray-200 sm:grid-cols-4 sm:divide-y-0 dark:divide-gray-800 dark:border-gray-800"
+    >
+      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
+        <span
+          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
+          >{tp.summary.total}</span
+        >
+        <span
+          class="font-blimone text-2xl font-semibold text-gray-900 dark:text-white"
+          >{String(total).padStart(2, '0')}</span
+        >
+      </div>
+      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
+        <span
+          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
+          >{tp.summary.live}</span
+        >
+        <span
+          class="font-blimone flex items-center gap-2 text-2xl font-semibold text-gray-900 dark:text-white"
+        >
+          <span class="inline-block h-2 w-2 rounded-full bg-yellow-400"></span>
+          {liveCount}<span
+            class="text-sm font-normal text-gray-500 dark:text-gray-400"
+            >/ {total}</span
+          >
+        </span>
+      </div>
+      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
+        <span
+          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
+          >{tp.summary.stack}</span
+        >
+        <span
+          class="font-blimone text-2xl font-semibold text-gray-900 dark:text-white"
+          >{mainStack}</span
+        >
+      </div>
+      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
+        <span
+          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
+          >{tp.summary.latest}</span
+        >
+        <span class="text-lg font-semibold text-gray-900 dark:text-white">
+          {tp.items[latest.id].short}<span
+            class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400"
+            >{latest.year}</span
+          >
+        </span>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="mb-8 flex flex-wrap items-center gap-2">
+      {
+        CATEGORY_IDS.map(id => (
+          <button
+            class="filter-pill inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-all hover:border-gray-400 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-500"
+            data-cat={id}
+            aria-pressed={id === 'all' ? 'true' : 'false'}
+          >
+            {tp.categories[id]}
+            <span class="pill-count rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+              {catCounts[id]}
+            </span>
+          </button>
+        ))
+      }
+      <div
+        class="flex w-full items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-gray-400 transition-colors focus-within:border-gray-400 sm:ml-auto sm:w-auto sm:min-w-[320px] dark:border-gray-700 dark:focus-within:border-gray-500"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-3.5 w-3.5 shrink-0"
+        >
+          <circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"
+          ></path>
+        </svg>
+        <input
+          id="proj-search"
+          type="search"
+          placeholder={tp.search_placeholder}
+          class="min-w-0 flex-1 border-0 bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-400 dark:text-white"
+        />
+      </div>
+    </div>
+
+    {
+      featured && (
+        <section
+          class="proj-featured mb-12 grid grid-cols-1 overflow-hidden rounded-xl border border-gray-200 bg-white lg:grid-cols-[1.15fr_1fr] dark:border-gray-800 dark:bg-gray-900"
+          style={`--proj-tint: ${featured.tint}`}
+          data-category={featured.category.join(',')}
+          data-title={tp.items[featured.id].title.toLowerCase()}
+          data-stack={featured.stack.join(',').toLowerCase()}
+          data-desc={tp.items[featured.id].desc.toLowerCase()}
+        >
+          <div class="relative min-h-[260px] overflow-hidden border-b border-gray-200 lg:border-r lg:border-b-0 dark:border-gray-800">
+            {featured.image && (
+              <Image
+                src={featured.image}
+                alt={tp.items[featured.id].title}
+                width={900}
+                height={600}
+                class="absolute inset-0 h-full w-full object-cover object-top"
+                loading="eager"
+              />
+            )}
+          </div>
+
+          <div class="flex flex-col gap-4 p-6 sm:p-8">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-yellow-500 uppercase dark:text-yellow-400">
+                <span class="inline-block h-px w-4 bg-yellow-500 dark:bg-yellow-400" />
+                {tp.featured}
+              </span>
+              <span
+                class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[9px] tracking-widest uppercase ${statusBadgeClasses(featured.status)}`}
+              >
+                <span
+                  class={`h-1.5 w-1.5 rounded-full ${featured.status === 'live' ? 'animate-pulse bg-green-400' : featured.status === 'dev' ? 'bg-amber-400' : 'bg-gray-400'}`}
+                />
+                {statusLabel(featured.status)}
+              </span>
+            </div>
+
+            <h2 class="text-2xl leading-tight font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
+              {tp.items[featured.id].title}
+            </h2>
+
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-gray-500 uppercase dark:text-gray-400">
+              <span>{tp.items[featured.id].role}</span>
+              <span class="h-[3px] w-[3px] rounded-full bg-gray-400" />
+              <span>
+                {featured.team}{' '}
+                {featured.team === '1' ? tp.fields.person : tp.fields.people}
+              </span>
+              <span class="h-[3px] w-[3px] rounded-full bg-gray-400" />
+              <span>{tp.items[featured.id].duration}</span>
+            </div>
+
+            <p class="max-w-prose text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+              {tp.items[featured.id].desc}
+            </p>
+
+            <ul class="flex flex-wrap gap-2">
+              {featured.stack.map(s => {
+                const meta = TECH_META[s];
+                const Icon = meta?.icon;
+                return (
+                  <li class="shrink-0">
+                    <span
+                      class={`flex items-center gap-x-2 rounded-full ${meta?.bgcolor ?? FALLBACK_BG} px-2 py-1 text-sm whitespace-nowrap text-gray-200`}
+                    >
+                      {Icon && <Icon class="size-4" />}
+                      {s}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div class="grid grid-cols-3 divide-x divide-gray-200 overflow-hidden rounded-lg border border-gray-200 dark:divide-gray-800 dark:border-gray-800">
+              {featured.stats.map(s => (
+                <div class="flex flex-col gap-0.5 bg-white p-3 dark:bg-gray-900">
+                  <span class="text-[10px] tracking-widest text-gray-500 uppercase dark:text-gray-400">
+                    {s.k}
+                  </span>
+                  <span
+                    class={`font-mono text-sm ${s.accent ? 'text-yellow-500 dark:text-yellow-400' : 'text-gray-900 dark:text-white'}`}
+                  >
+                    {s.v}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div class="mt-1 flex flex-wrap gap-2">
+              <button
+                class="open-modal inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-yellow-300"
+                data-project={featured.id}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-3.5 w-3.5"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+                {tp.actions.case}
+              </button>
+              {featured.preview && (
+                <a
+                  href={featured.preview}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3.5 w-3.5"
+                  >
+                    <path d="M15 3h6v6" />
+                    <path d="M10 14 21 3" />
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  </svg>
+                  {tp.actions.live}
+                </a>
+              )}
+              {featured.github && (
+                <a
+                  href={featured.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3.5 w-3.5"
+                  >
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
+                  {tp.actions.repo}
+                </a>
+              )}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Cards grid -->
+    <div id="cards-grid" class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      {
+        rest.map(project => (
+          <article
+            class="proj-card relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-all hover:border-gray-300 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+            data-category={project.category.join(',')}
+            data-title={tp.items[project.id].title.toLowerCase()}
+            data-stack={project.stack.join(',').toLowerCase()}
+            data-desc={tp.items[project.id].desc.toLowerCase()}
+            style={project.status === 'archived' ? 'opacity: 0.78' : ''}
+          >
+            <div class="relative aspect-video overflow-hidden border-b border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-gray-950">
+              {project.image && (
+                <Image
+                  src={project.image}
+                  alt={tp.items[project.id].title}
+                  width={800}
+                  height={450}
+                  class="absolute inset-0 h-full w-full object-cover object-top"
+                  loading="lazy"
+                />
+              )}
+              <span
+                class={`absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[9px] tracking-widest uppercase backdrop-blur-sm ${statusBadgeClasses(project.status)}`}
+              >
+                <span
+                  class={`h-1.5 w-1.5 rounded-full ${project.status === 'live' ? 'animate-pulse bg-green-400' : project.status === 'dev' ? 'bg-amber-400' : 'bg-gray-400'}`}
+                />
+                {statusLabel(project.status)}
+              </span>
+            </div>
+
+            <div class="flex flex-1 flex-col gap-3 p-5">
+              <div class="flex flex-wrap items-center gap-2 font-mono text-[11px] tracking-wider text-gray-500 uppercase dark:text-gray-400">
+                <span>{tp.items[project.id].role}</span>
+                <span class="h-[3px] w-[3px] rounded-full bg-gray-400" />
+                <span>{project.year}</span>
+                <span class="h-[3px] w-[3px] rounded-full bg-gray-400" />
+                <span>{tp.items[project.id].duration}</span>
+              </div>
+              <h3 class="text-lg leading-snug font-semibold text-gray-900 dark:text-white">
+                {tp.items[project.id].title}
+              </h3>
+              <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                {tp.items[project.id].desc}
+              </p>
+              <ul class="flex flex-wrap gap-2">
+                {project.stack.slice(0, 4).map(s => {
+                  const meta = TECH_META[s];
+                  const Icon = meta?.icon;
+                  return (
+                    <li class="shrink-0">
+                      <span
+                        class={`flex items-center gap-x-2 rounded-full ${meta?.bgcolor ?? FALLBACK_BG} px-2 py-1 text-sm whitespace-nowrap text-gray-200`}
+                      >
+                        {Icon && <Icon class="size-4" />}
+                        {s}
+                      </span>
+                    </li>
+                  );
+                })}
+                {project.stack.length > 4 && (
+                  <li class="shrink-0">
+                    <span class="inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-2 py-1 text-sm font-medium text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400">
+                      +{project.stack.length - 4}
+                    </span>
+                  </li>
+                )}
+              </ul>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-dashed border-gray-200 px-5 py-3 font-mono text-[11px] text-gray-500 dark:border-gray-800 dark:text-gray-400">
+              <div class="flex items-center gap-3">
+                {project.stats[0] && (
+                  <span>
+                    {project.stats[0].k} ·{' '}
+                    <b class="font-medium text-gray-700 dark:text-gray-200">
+                      {project.stats[0].v}
+                    </b>
+                  </span>
+                )}
+              </div>
+              <div class="flex gap-1.5">
+                {project.preview && (
+                  <a
+                    href={project.preview}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Live"
+                    class="grid h-7 w-7 place-items-center rounded-md border border-gray-200 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="h-3 w-3"
+                    >
+                      <path d="M15 3h6v6" />
+                      <path d="M10 14 21 3" />
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    </svg>
+                  </a>
+                )}
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Repo"
+                    class="grid h-7 w-7 place-items-center rounded-md border border-gray-200 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="h-3 w-3"
+                    >
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                  </a>
+                )}
+                <button
+                  type="button"
+                  class="open-modal grid h-7 w-7 place-items-center rounded-md border border-gray-200 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                  aria-label="Case study"
+                  data-project={project.id}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3 w-3"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+
+      <div
+        id="empty-state"
+        class="col-span-full hidden rounded-xl border border-dashed border-gray-200 py-16 text-center dark:border-gray-800"
+      >
+        <p class="text-base text-gray-500 dark:text-gray-400">
+          {tp.no_results}
+        </p>
+        <p class="mt-2 font-mono text-xs text-gray-400 dark:text-gray-500">
+          {tp.no_results_hint}
+        </p>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      id="modal-backdrop"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-6 backdrop-blur-sm"
+    >
+      <div
+        class="flex max-h-[calc(100vh-3rem)] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-gray-700 bg-gray-900 shadow-2xl"
+      >
+        <div
+          class="flex items-center justify-between border-b border-gray-800 px-4 py-3"
+        >
+          <div class="flex gap-1.5">
+            <span class="h-2.5 w-2.5 rounded-full bg-red-500/80"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-green-500/80"></span>
+          </div>
+          <div
+            id="modal-url"
+            class="truncate rounded-full border border-gray-700 bg-gray-800 px-3 py-1 font-mono text-xs text-gray-400"
+          >
+          </div>
+          <button
+            id="modal-close"
+            class="grid h-7 w-7 place-items-center rounded-md text-gray-400 transition-colors hover:bg-gray-800 hover:text-white"
+            aria-label="Close"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-3.5 w-3.5"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="overflow-y-auto">
+          <div
+            id="modal-hero"
+            class="relative grid aspect-16/8 place-items-center overflow-hidden border-b border-gray-800"
+          >
+            <div
+              class="pointer-events-none absolute inset-0 opacity-40"
+              style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0); background-size: 14px 14px; mask-image: radial-gradient(80% 100% at 50% 0%, #000 30%, transparent 80%);"
+            >
+            </div>
+            <span
+              id="modal-mono"
+              class="relative font-mono text-5xl leading-none font-medium sm:text-6xl"
+            ></span>
+          </div>
+          <div class="flex flex-col gap-4 p-6 sm:p-8">
+            <div
+              class="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-gray-400 uppercase"
+            >
+              <span id="modal-role"></span>
+              <span class="h-[3px] w-[3px] rounded-full bg-gray-500"></span>
+              <span id="modal-year"></span>
+              <span class="h-[3px] w-[3px] rounded-full bg-gray-500"></span>
+              <span id="modal-duration"></span>
+              <span class="h-[3px] w-[3px] rounded-full bg-gray-500"></span>
+              <span
+                id="modal-status"
+                class="inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[9px] tracking-widest"
+              ></span>
+            </div>
+            <h3
+              id="modal-title"
+              class="text-xl leading-snug font-semibold text-white sm:text-2xl"
+            >
+            </h3>
+            <p id="modal-desc" class="text-sm leading-relaxed text-gray-300">
+            </p>
+
+            <div
+              id="modal-stats"
+              class="grid grid-cols-3 divide-x divide-gray-800 overflow-hidden rounded-lg border border-gray-800"
+            >
+            </div>
+
+            <div id="modal-stack" class="flex flex-wrap gap-1.5"></div>
+
+            <div
+              id="modal-highlights"
+              class="flex flex-col gap-2 rounded-lg border border-gray-800 bg-gray-950 p-4"
+            >
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              <a
+                id="modal-live"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-yellow-300"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-3.5 w-3.5"
+                >
+                  <path d="M15 3h6v6"></path>
+                  <path d="M10 14 21 3"></path>
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  ></path>
+                </svg>
+                <span>{tp.actions.live}</span>
+              </a>
+              <a
+                id="modal-repo"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full border border-gray-700 px-4 py-2 text-sm font-medium text-gray-200 transition-colors hover:bg-gray-800"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-3.5 w-3.5"
+                >
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                  ></path>
+                </svg>
+                <span>{tp.actions.repo}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      type="application/json"
+      id="projects-data"
+      set:html={JSON.stringify(
+        PROJECTS.map(p => ({
+          id: p.id,
+          title: tp.items[p.id].title,
+          role: tp.items[p.id].role,
+          duration: tp.items[p.id].duration,
+          desc: tp.items[p.id].desc,
+          highlights: tp.items[p.id].highlights,
+          year: p.year,
+          status: p.status,
+          statusLabel: statusLabel(p.status),
+          mono: p.mono,
+          tint: p.tint,
+          url: p.url,
+          stackHtml: stackHtmlById[p.id],
+          stats: p.stats,
+          github: p.github ?? '',
+          preview: p.preview ?? '',
+        }))
+      )}
+    />
+  </main>
+
+  <style>
+    .filter-pill[aria-pressed='true'] {
+      background-color: #facc15;
+      color: #111827;
+      border-color: transparent;
+    }
+    .filter-pill[aria-pressed='true'] .pill-count {
+      background-color: rgba(0, 0, 0, 0.18);
+      color: #111827;
+    }
+  </style>
+
+  <script>
+    interface ProjectStat {
+      k: string;
+      v: string;
+      accent?: boolean;
+    }
+    interface ProjectData {
+      id: string;
+      title: string;
+      role: string;
+      duration: string;
+      desc: string;
+      highlights: string[];
+      year: string;
+      status: string;
+      statusLabel: string;
+      mono: string;
+      tint: string;
+      url: string;
+      stackHtml: string;
+      stats: ProjectStat[];
+      github: string;
+      preview: string;
+    }
+
+    const dataEl = document.getElementById('projects-data');
+    const PROJECTS_CLIENT: ProjectData[] = JSON.parse(
+      dataEl?.textContent ?? '[]'
+    );
+    const PROJECTS_BY_ID = new Map(PROJECTS_CLIENT.map(p => [p.id, p]));
+
+    // --- Filter pills + search ---
+    const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
+    const cards = document.querySelectorAll<HTMLElement>('.proj-card');
+    const featuredEl = document.querySelector<HTMLElement>('.proj-featured');
+    const searchInput = document.getElementById(
+      'proj-search'
+    ) as HTMLInputElement | null;
+    const emptyState = document.getElementById('empty-state');
+    const visibleCount = document.getElementById('visible-count');
+
+    let activeCategory = 'all';
+    let searchQuery = '';
+
+    function matches(el: HTMLElement) {
+      const cats = (el.dataset.category ?? '').split(',');
+      const catMatch =
+        activeCategory === 'all' || cats.includes(activeCategory);
+      const q = searchQuery.trim().toLowerCase();
+      const searchMatch =
+        !q ||
+        (el.dataset.title ?? '').includes(q) ||
+        (el.dataset.stack ?? '').includes(q) ||
+        (el.dataset.desc ?? '').includes(q);
+      return catMatch && searchMatch;
+    }
+
+    function filterCards() {
+      let visible = 0;
+      cards.forEach(card => {
+        if (matches(card)) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (featuredEl) {
+        featuredEl.classList.toggle('hidden', !matches(featuredEl));
+      }
+
+      emptyState?.classList.toggle('hidden', visible > 0);
+      if (visibleCount) visibleCount.textContent = String(visible);
+    }
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        activeCategory = pill.dataset.cat ?? 'all';
+        pills.forEach(p => p.setAttribute('aria-pressed', 'false'));
+        pill.setAttribute('aria-pressed', 'true');
+        filterCards();
+      });
+    });
+
+    searchInput?.addEventListener('input', () => {
+      searchQuery = searchInput.value;
+      filterCards();
+    });
+
+    // --- Modal ---
+    const backdrop = document.getElementById('modal-backdrop');
+    const modalClose = document.getElementById('modal-close');
+
+    function setText(id: string, text: string) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    }
+
+    function statusClasses(status: string): string {
+      if (status === 'live')
+        return 'border-green-500/25 bg-green-500/10 text-green-300';
+      if (status === 'dev')
+        return 'border-amber-500/25 bg-amber-500/10 text-amber-300';
+      return 'border-gray-500/25 bg-gray-500/10 text-gray-300';
+    }
+
+    function openModal(project: ProjectData) {
+      const hero = document.getElementById('modal-hero');
+      const mono = document.getElementById('modal-mono');
+      const monoSizeCls =
+        project.mono.length > 6
+          ? 'text-3xl sm:text-4xl'
+          : project.mono.length > 4
+            ? 'text-4xl sm:text-5xl'
+            : 'text-5xl sm:text-6xl';
+
+      if (hero) {
+        hero.style.background = `radial-gradient(120% 80% at 50% 0%, ${project.tint}2e 0%, transparent 65%), linear-gradient(180deg, #0c0c10 0%, #08080b 100%)`;
+      }
+      if (mono) {
+        mono.className = `relative font-mono leading-none font-medium ${monoSizeCls}`;
+        mono.style.color = project.tint;
+        mono.style.textShadow = `0 0 60px ${project.tint}66`;
+        mono.textContent = project.mono;
+      }
+
+      const urlEl = document.getElementById('modal-url');
+      if (urlEl)
+        urlEl.innerHTML = `<span>https://</span><b class="font-medium text-gray-200">${project.url}</b>`;
+
+      setText('modal-role', project.role);
+      setText('modal-year', project.year);
+      setText('modal-duration', project.duration);
+
+      const statusEl = document.getElementById('modal-status');
+      if (statusEl) {
+        statusEl.className = `inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[9px] tracking-widest ${statusClasses(project.status)}`;
+        statusEl.textContent = project.statusLabel;
+      }
+
+      setText('modal-title', project.title);
+      setText('modal-desc', project.desc);
+
+      const statsEl = document.getElementById('modal-stats');
+      if (statsEl) {
+        statsEl.innerHTML = project.stats
+          .map(
+            s => `
+            <div class="flex flex-col gap-0.5 bg-gray-900 p-3">
+              <span class="text-[10px] tracking-widest text-gray-500 uppercase">${s.k}</span>
+              <span class="font-mono text-sm ${s.accent ? 'text-yellow-400' : 'text-white'}">${s.v}</span>
+            </div>
+          `
+          )
+          .join('');
+      }
+
+      const stackEl = document.getElementById('modal-stack');
+      if (stackEl) {
+        stackEl.innerHTML = project.stackHtml;
+      }
+
+      const highlightsEl = document.getElementById('modal-highlights');
+      if (highlightsEl) {
+        highlightsEl.innerHTML = project.highlights
+          .map(
+            h => `
+            <div class="flex gap-2 text-sm leading-relaxed text-gray-300">
+              <span class="font-mono font-semibold" style="color:${project.tint}">›</span>
+              <span>${h}</span>
+            </div>
+          `
+          )
+          .join('');
+      }
+
+      const liveLink = document.getElementById(
+        'modal-live'
+      ) as HTMLAnchorElement | null;
+      if (liveLink) {
+        if (project.preview) {
+          liveLink.href = project.preview;
+          liveLink.classList.remove('hidden');
+        } else {
+          liveLink.classList.add('hidden');
+        }
+      }
+
+      const repoLink = document.getElementById(
+        'modal-repo'
+      ) as HTMLAnchorElement | null;
+      if (repoLink) {
+        if (project.github) {
+          repoLink.href = project.github;
+          repoLink.classList.remove('hidden');
+        } else {
+          repoLink.classList.add('hidden');
+        }
+      }
+
+      backdrop?.classList.remove('hidden');
+      backdrop?.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      backdrop?.classList.add('hidden');
+      backdrop?.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll<HTMLElement>('.open-modal').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.project ?? '';
+        const project = PROJECTS_BY_ID.get(id);
+        if (project) openModal(project);
+      });
+    });
+
+    modalClose?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', e => {
+      if (e.target === backdrop) closeModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</Layout>

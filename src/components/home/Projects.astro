@@ -1,73 +1,12 @@
 ---
-import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import ProjectCard from '@/components/ProjectCard.astro';
 import Code from '@/assets/Code.astro';
-import AstroIcon from '@/assets/logos/AstroIcon.astro';
-import Preact from '@/assets/logos/Preact.astro';
-import NextJS from '@/assets/logos/NextJS.astro';
-import Prisma from '@/assets/logos/Prisma.astro';
-import Tailwind from '@/assets/logos/Tailwind.astro';
-import TypeScript from '@/assets/logos/Typescript.astro';
-import Express from '@/assets/logos/Express.astro';
-import MySQL from '@/assets/logos/MySQL.astro';
-import GCP from '@/assets/logos/GCP.astro';
+import RightArrow from '@/assets/RightArrow.astro';
+import { PROJECTS, TECH_META, FALLBACK_BG } from '@/data/projects';
+import type { Lang } from '@/i18n/config';
 
 const { t } = Astro.props;
-
-interface ProjectCardsData {
-  image: string;
-  title: string;
-  technologies: {
-    icon: AstroComponentFactory;
-    name: string;
-    bgcolor: string;
-  }[];
-  description: string;
-  github: string;
-  preview?: string;
-}
-
-const projectCards: ProjectCardsData[] = [
-  {
-    image: '/images/snap-notes.webp',
-    title: t.projects['notes_app'].title,
-    technologies: [
-      { icon: NextJS, name: 'Next.js', bgcolor: 'bg-black' },
-      { icon: Prisma, name: 'Prisma', bgcolor: 'bg-[#14b8a6]' },
-      { icon: Express, name: 'Express.js', bgcolor: 'bg-slate-800' },
-      { icon: Tailwind, name: 'Tailwind CSS', bgcolor: 'bg-[#003159]' },
-    ],
-    description: t.projects['notes_app'].description,
-    github: 'https://github.com/ldelvillar/snap-notes',
-    preview: 'https://snap-notes.vercel.app/',
-  },
-  {
-    image: '/images/kmpe.webp',
-    title: t.projects['kmpe'].title,
-    technologies: [
-      { icon: AstroIcon, name: 'Astro', bgcolor: 'bg-[#43008f]' },
-      { icon: Preact, name: 'Preact', bgcolor: 'bg-[#673ab8]' },
-      { icon: TypeScript, name: 'TypeScript', bgcolor: 'bg-[#3178c6]' },
-      { icon: Express, name: 'Express.js', bgcolor: 'bg-slate-800' },
-    ],
-    description: t.projects['kmpe'].description,
-    github: 'https://github.com/ldelvillar/kilometros-por-explorar',
-    preview: 'https://www.kilometrosporexplorar.es',
-  },
-  {
-    image: '/images/movies-api.webp',
-    title: t.projects['movies-api'].title,
-    technologies: [
-      { icon: TypeScript, name: 'TypeScript', bgcolor: 'bg-[#3178c6]' },
-      { icon: Express, name: 'Express.js', bgcolor: 'bg-slate-800' },
-      { icon: MySQL, name: 'MySQL', bgcolor: 'bg-[#003159]' },
-      { icon: GCP, name: 'GCP', bgcolor: 'bg-[#003159]' },
-    ],
-    description: t.projects['movies-api'].description,
-    github: 'https://github.com/ldelvillar/movies-api',
-    preview: 'https://movies-api-production-ead1.up.railway.app/movies',
-  },
-];
+const lang = (Astro.params?.lang ?? 'es') as Lang;
 ---
 
 <section id="projects" class="mx-auto max-w-5xl scroll-m-20 py-16 sm:px-4">
@@ -80,6 +19,30 @@ const projectCards: ProjectCardsData[] = [
     {t.projects.title}
   </h2>
   <div class="mt-5 flex flex-col gap-16">
-    {projectCards.map(project => <ProjectCard {...project} />)}
+    {
+      PROJECTS.map(project => (
+        <ProjectCard
+          image={project.image}
+          title={t.projects[project.id].title}
+          description={t.projects[project.id].description}
+          github={project.github ?? ''}
+          preview={project.preview}
+          technologies={project.stack.map(name => ({
+            icon: TECH_META[name]?.icon,
+            name,
+            bgcolor: TECH_META[name]?.bgcolor ?? FALLBACK_BG,
+          }))}
+        />
+      ))
+    }
+  </div>
+  <div class="mt-8 flex justify-center">
+    <a
+      href={`/${lang}/projects`}
+      class="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-yellow-500 hover:bg-gray-50 hover:text-yellow-400 dark:border-gray-700 dark:bg-gray-800 dark:text-yellow-400 dark:hover:bg-gray-700"
+    >
+      {t.projects.view_all}
+      <RightArrow />
+    </a>
   </div>
 </section>

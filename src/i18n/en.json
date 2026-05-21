@@ -55,6 +55,82 @@
     "movies-api": {
       "title": "Movies API - A REST API of movies",
       "description": "A complete REST API for movie data management with CRUD functionality that uses the MVC architecture, connected to a MySQL database."
+    },
+    "view_all": "View all projects"
+  },
+  "projects_page": {
+    "title": "Projects",
+    "subtitle": "// code that made it to production",
+    "summary": {
+      "total": "Total",
+      "live": "Live",
+      "stack": "Main stack",
+      "latest": "Latest launch"
+    },
+    "search_placeholder": "Search by name, stack or keyword…",
+    "featured": "Featured",
+    "status_live": "Live",
+    "status_dev": "In dev",
+    "status_archived": "Archived",
+    "fields": {
+      "role": "Role",
+      "year": "Year",
+      "team": "Team",
+      "duration": "Duration",
+      "people": "people",
+      "person": "person"
+    },
+    "actions": {
+      "live": "View live",
+      "repo": "Source",
+      "case": "Full case study",
+      "close": "Close"
+    },
+    "no_results": "No results",
+    "no_results_hint": "Try another category or clear the search",
+    "categories": {
+      "all": "All",
+      "saas": "Product",
+      "oss": "Open source",
+      "personal": "Personal"
+    },
+    "items": {
+      "kmpe": {
+        "title": "Kilómetros por Explorar — Travel landing page",
+        "short": "KMPE",
+        "role": "Full-stack",
+        "duration": "3 months",
+        "desc": "Landing page for a travel-planning business co-founded with my partner. Built with Astro, Preact and Tailwind CSS, with interactive client islands and an Express backend.",
+        "highlights": [
+          "Islands architecture with Preact to keep the bundle minimal",
+          "Express backend with endpoints for bookings and inquiries",
+          "Responsive, SEO-optimized design from day one"
+        ]
+      },
+      "notes_app": {
+        "title": "SnapNotes — Web-based notes app",
+        "short": "SnapNotes",
+        "role": "Author",
+        "duration": "2 years",
+        "desc": "Productivity web app with categorization, real-time search and cross-device sync. Modern stack with Next.js and Prisma on Postgres.",
+        "highlights": [
+          "Real-time search over note content",
+          "Cross-device sync with Prisma + Postgres",
+          "Authentication and persistent sessions"
+        ]
+      },
+      "movies-api": {
+        "title": "Movies API — REST API for movies",
+        "short": "Movies API",
+        "role": "Backend",
+        "duration": "1 month",
+        "desc": "Complete REST API for movie data management with full CRUD, MVC architecture on top of MySQL and deployed on GCP.",
+        "highlights": [
+          "Clean MVC architecture with TypeScript and Express",
+          "Persistence in MySQL with versioned migrations",
+          "Deployed on GCP with a reproducible pipeline"
+        ]
+      }
     }
   },
   "techstack": {
