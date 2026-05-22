@@ -10,6 +10,7 @@ export interface Cert {
   tint: string;
   skills: string[];
   credentialUrl: string;
+  pdfUrl?: string;
 }
 
 export const CERTS: Cert[] = [
@@ -46,6 +47,7 @@ export const CERTS: Cert[] = [
     ],
     credentialUrl:
       'https://www.credly.com/badges/6e265efb-5577-4d90-9d37-890bf065e632/public_url',
+    pdfUrl: '/certifications/ai-900.pdf',
   },
   {
     id: 'meta-fe-2024',
@@ -78,6 +80,7 @@ export const CERTS: Cert[] = [
       'Productivity',
     ],
     credentialUrl: 'https://verify.skilljar.com/c/2ko5u7gh7n4t',
+    pdfUrl: '/certifications/claude-code-2026.pdf',
   },
   {
     id: 'gcp-gce-2025',

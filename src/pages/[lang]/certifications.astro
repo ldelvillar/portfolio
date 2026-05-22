@@ -301,6 +301,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
                     date: fmtDate(cert.date, lang),
                     hours: cert.hours,
                     credentialUrl: cert.credentialUrl,
+                    pdfUrl: cert.pdfUrl ?? '',
                   })}
                 >
                   <svg
@@ -320,27 +321,28 @@ for (const id of CATEGORY_IDS.slice(1)) {
                   </svg>
                   {t.certifications.view_credential}
                 </button>
-                <button
-                  class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
-                  disabled={cert.status === 'in-progress'}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="h-3 w-3"
+                {cert.pdfUrl && (
+                  <a
+                    href={cert.pdfUrl}
+                    download={`${cert.id}.pdf`}
+                    class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
                   >
-                    <>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="size-3"
+                    >
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                       <polyline points="7 10 12 15 17 10" />
                       <line x1="12" y1="15" x2="12" y2="3" />
-                    </>
-                  </svg>
-                  {t.certifications.download_pdf}
-                </button>
+                    </svg>
+                    {t.certifications.download_pdf}
+                  </a>
+                )}
               </div>
             </div>
           </article>
@@ -483,8 +485,11 @@ for (const id of CATEGORY_IDS.slice(1)) {
               </svg>
               {t.certifications.verify}
             </a>
-            <button
-              class="inline-flex items-center gap-2 rounded-full border border-gray-700 px-4 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800"
+            <a
+              id="modal-download-link"
+              href="#"
+              download
+              class="hidden items-center gap-2 rounded-full border border-gray-700 px-4 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -503,7 +508,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
                   y2="3"></line>
               </svg>
               {t.certifications.download_pdf}
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -584,6 +589,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
     date: string;
     hours: number;
     credentialUrl: string;
+    pdfUrl: string;
   }
 
   function openModal(cert: CertData) {
@@ -626,6 +632,21 @@ for (const id of CATEGORY_IDS.slice(1)) {
       'modal-verify-link'
     ) as HTMLAnchorElement | null;
     if (verifyLink) verifyLink.href = cert.credentialUrl;
+
+    const downloadLink = document.getElementById(
+      'modal-download-link'
+    ) as HTMLAnchorElement | null;
+    if (downloadLink) {
+      if (cert.pdfUrl) {
+        downloadLink.href = cert.pdfUrl;
+        downloadLink.setAttribute('download', `${cert.id.toLowerCase()}.pdf`);
+        downloadLink.classList.remove('hidden');
+        downloadLink.classList.add('inline-flex');
+      } else {
+        downloadLink.classList.add('hidden');
+        downloadLink.classList.remove('inline-flex');
+      }
+    }
 
     backdrop?.classList.remove('hidden');
     backdrop?.classList.add('flex');
