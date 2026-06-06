@@ -8,6 +8,9 @@ import TypeScript from '@/assets/logos/Typescript.astro';
 import Express from '@/assets/logos/Express.astro';
 import MySQL from '@/assets/logos/MySQL.astro';
 import GCP from '@/assets/logos/GCP.astro';
+import Python from '@/assets/logos/Python.astro';
+import Fastapi from '@/assets/logos/Fastapi.astro';
+import Langgraph from '@/assets/logos/Langgraph.astro';
 
 export type ProjectStatus = 'live' | 'dev' | 'archived';
 export type ProjectCategory = 'saas' | 'oss' | 'personal';
@@ -25,6 +28,9 @@ export const TECH_META: Record<
   TypeScript: { icon: TypeScript, bgcolor: 'bg-[#3178c6]' },
   MySQL: { icon: MySQL, bgcolor: 'bg-[#003159]' },
   GCP: { icon: GCP, bgcolor: 'bg-[#003159]' },
+  Python: { icon: Python, bgcolor: 'bg-[#3776ab]' },
+  FastAPI: { icon: Fastapi, bgcolor: 'bg-slate-800' },
+  LangGraph: { icon: Langgraph, bgcolor: 'bg-[#1e293b]' },
 };
 
 export const FALLBACK_BG = 'bg-gray-700';
@@ -54,8 +60,28 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    id: 'notes_app',
+    id: 'veritrust',
     featured: true,
+    category: ['personal', 'oss'],
+    year: '2026',
+    team: '1',
+    status: 'live',
+    mono: 'VERI',
+    tint: '#60a5fa',
+    url: 'tfg-hazel.vercel.app',
+    image: '/images/veritrust.webp',
+    stack: ['Next.js', 'TypeScript', 'Python', 'FastAPI', 'LangGraph', 'Tailwind CSS'],
+    stats: [
+      { k: 'AI', v: 'LangGraph', accent: true },
+      { k: 'ML', v: 'BioBERT' },
+      { k: 'Stack', v: 'Next.js' },
+    ],
+    github: 'https://github.com/ldelvillar/veritrust',
+    preview: 'https://tfg-hazel.vercel.app',
+  },
+  {
+    id: 'notes_app',
+    featured: false,
     category: ['personal', 'oss'],
     year: '2024',
     team: '1',
@@ -95,6 +121,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'movies-api',
+    featured: false,
     category: ['personal'],
     year: '2025',
     team: '1',

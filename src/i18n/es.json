@@ -44,6 +44,10 @@
   },
   "projects": {
     "title": "Proyectos",
+    "veritrust": {
+      "title": "VeriTrust - Detector de desinformación médica con IA",
+      "description": "Herramienta basada en IA que analiza afirmaciones médicas mediante un pipeline multiagente y devuelve veredictos con puntuaciones de confianza y fuentes biomédicas. Desarrollada con Next.js, FastAPI y LangGraph."
+    },
     "kmpe": {
       "title": "Kilómetros por Explorar- Una landing page de viajes",
       "description": "Landing page de mi proyecto con mi pareja, un negocio de planificación de viajes. Desarrollada Astro, Preact y Tailwind CSS, integrando islas en el cliente."
@@ -95,6 +99,18 @@
       "personal": "Personal"
     },
     "items": {
+      "veritrust": {
+        "title": "VeriTrust — Detector de desinformación médica con IA",
+        "short": "VeriTrust",
+        "role": "Full-stack",
+        "duration": "Trabajo de Fin de Grado",
+        "desc": "Detector de desinformación médica basado en IA que analiza afirmaciones mediante un pipeline multiagente y devuelve veredictos con puntuaciones de confianza y fuentes biomédicas. Frontend en Next.js con un backend en FastAPI + LangGraph y un clasificador BioBERT afinado.",
+        "highlights": [
+          "Pipeline de verificación multiagente orquestado con LangGraph",
+          "Clasificador BioBERT afinado entrenado con el dataset PUBHEALTH",
+          "Recuperación de evidencia desde la API biomédica Europe PMC"
+        ]
+      },
       "kmpe": {
         "title": "Kilómetros por Explorar — Landing page de viajes",
         "short": "KMPE",

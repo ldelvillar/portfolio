@@ -44,6 +44,10 @@
   },
   "projects": {
     "title": "Projects",
+    "veritrust": {
+      "title": "VeriTrust - AI medical misinformation detector",
+      "description": "AI-powered tool that analyzes medical claims through a multi-agent pipeline and returns verdicts with confidence scores and supporting biomedical sources. Built with Next.js, FastAPI and LangGraph."
+    },
     "kmpe": {
       "title": "Kilómetros por Explorar - A travel landing page",
       "description": "Landing page of my project with my partner, a travel planning business. Developed with Astro, Preact and Tailwind CSS, integrating client-side islands."
@@ -95,6 +99,18 @@
       "personal": "Personal"
     },
     "items": {
+      "veritrust": {
+        "title": "VeriTrust — AI medical misinformation detector",
+        "short": "VeriTrust",
+        "role": "Full-stack",
+        "duration": "Final degree project",
+        "desc": "AI-powered medical misinformation detector that analyzes claims through a multi-agent pipeline and returns verdicts with confidence scores and biomedical sources. Next.js frontend with a FastAPI + LangGraph backend and a fine-tuned BioBERT classifier.",
+        "highlights": [
+          "Multi-agent verification pipeline orchestrated with LangGraph",
+          "Fine-tuned BioBERT classifier trained on the PUBHEALTH dataset",
+          "Evidence retrieval from the Europe PMC biomedical API"
+        ]
+      },
       "kmpe": {
         "title": "Kilómetros por Explorar — Travel landing page",
         "short": "KMPE",

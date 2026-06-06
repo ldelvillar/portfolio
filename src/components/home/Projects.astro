@@ -20,7 +20,7 @@ const lang = (Astro.params?.lang ?? 'es') as Lang;
   </h2>
   <div class="mt-5 flex flex-col gap-16">
     {
-      PROJECTS.map(project => (
+      PROJECTS.slice(0, 3).map(project => (
         <ProjectCard
           image={project.image}
           title={t.projects[project.id].title}
