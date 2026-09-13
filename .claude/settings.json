@@ -1,0 +1,21 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$data = $input | ConvertFrom-Json; $f = $data.tool_input.file_path; if ($f) { pnpm exec prettier --write --ignore-unknown $f 2>$null }",
+            "shell": "powershell",
+            "statusMessage": "Formatting..."
+          }
+        ]
+      }
+    ]
+  }
+}
