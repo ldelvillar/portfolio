@@ -3,7 +3,7 @@ import ProjectCard from '@/components/ProjectCard.astro';
 import Code from '@/assets/Code.astro';
 import RightArrow from '@/assets/RightArrow.astro';
 import { PROJECTS, TECH_META, FALLBACK_BG } from '@/data/projects';
-import type { Lang } from '@/i18n/config';
+import { DEFAULT_LANG, type Lang } from '@/i18n/config';
 import type { Translations } from '@/utils/getTranslations';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { t } = Astro.props;
-const lang = (Astro.params?.lang ?? 'es') as Lang;
+const lang = (Astro.params?.lang ?? DEFAULT_LANG) as Lang;
 ---
 
 <section id="projects" class="mx-auto max-w-5xl scroll-m-20 py-16 sm:px-4">

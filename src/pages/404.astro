@@ -1,9 +1,9 @@
 ---
 import { getTranslations } from '@/utils/getTranslations';
-import type { Lang } from '@/i18n/config';
+import { DEFAULT_LANG, type Lang } from '@/i18n/config';
 import Layout from '@/layouts/Layout.astro';
 
-const lang = (Astro.url.pathname.startsWith('/en') ? 'en' : 'es') as Lang;
+const lang: Lang = Astro.url.pathname.startsWith('/en') ? 'en' : DEFAULT_LANG;
 const t = getTranslations(lang);
 
 const title = `${t.not_found.title} - Lucas del Villar`;

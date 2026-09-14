@@ -1,14 +1,16 @@
 ---
 import Language from '@/assets/Language.astro';
+import { SUPPORTED_LANGUAGES, type Lang } from '@/i18n/config';
 
 interface Props {
-  currentLang: string;
+  currentLang: Lang;
 }
 
-const LANGUAGES = [
-  { name: 'Español', code: 'es' },
-  { name: 'English', code: 'en' },
-];
+const LANGUAGE_NAMES: Record<Lang, string> = {
+  es: 'Español',
+  en: 'English',
+};
+const LANG_PREFIX = new RegExp(`^/(${SUPPORTED_LANGUAGES.join('|')})`);
 
 const { currentLang } = Astro.props;
 const currentPath = Astro.url.pathname;
@@ -28,13 +30,13 @@ const currentPath = Astro.url.pathname;
   >
     <ul>
       {
-        LANGUAGES.map(language => (
+        Object.entries(LANGUAGE_NAMES).map(([code, name]) => (
           <li class="cursor-default rounded-sm px-2 py-1.5 hover:bg-neutral-400/40 dark:hover:bg-gray-500/50">
             <a
-              href={currentPath.replace(/^\/(es|en)/, `/${language.code}`)}
-              class={`flex w-full ${currentLang === language.code ? 'text-yellow-500' : ''}`}
+              href={currentPath.replace(LANG_PREFIX, `/${code}`)}
+              class={`flex w-full ${currentLang === code ? 'text-yellow-500' : ''}`}
             >
-              {language.name}
+              {name}
             </a>
           </li>
         ))

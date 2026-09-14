@@ -7,13 +7,13 @@ import TechStack from '@/components/home/TechStack.astro';
 import About from '@/components/home/About.astro';
 import Certifications from '@/components/home/Certifications.astro';
 import { getTranslations } from '@/utils/getTranslations';
-import type { Lang } from '@/i18n/config';
+import { DEFAULT_LANG, langStaticPaths, type Lang } from '@/i18n/config';
 
 export async function getStaticPaths() {
-  return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }];
+  return langStaticPaths();
 }
 
-const lang = (Astro.params?.lang ?? 'es') as Lang;
+const lang = (Astro.params?.lang ?? DEFAULT_LANG) as Lang;
 const t = getTranslations(lang);
 ---
 

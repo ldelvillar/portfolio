@@ -4,7 +4,7 @@ import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import Layout from '@/layouts/Layout.astro';
 import { getTranslations } from '@/utils/getTranslations';
 import { PROJECTS, TECH_META, FALLBACK_BG } from '@/data/projects';
-import type { Lang } from '@/i18n/config';
+import { DEFAULT_LANG, langStaticPaths, type Lang } from '@/i18n/config';
 
 const container = await AstroContainer.create();
 const iconHtmlCache = new Map<string, string>();
@@ -39,10 +39,10 @@ for (const p of PROJECTS) {
 }
 
 export async function getStaticPaths() {
-  return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }];
+  return langStaticPaths();
 }
 
-const lang = (Astro.params?.lang ?? 'es') as Lang;
+const lang = (Astro.params?.lang ?? DEFAULT_LANG) as Lang;
 const t = getTranslations(lang);
 
 const tp = t.projects_page;
