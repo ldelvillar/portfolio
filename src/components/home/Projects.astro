@@ -28,8 +28,8 @@ const lang = (Astro.params?.lang ?? DEFAULT_LANG) as Lang;
       PROJECTS.slice(0, 3).map(project => (
         <ProjectCard
           image={project.image}
-          title={t.projects[project.id].title}
-          description={t.projects[project.id].description}
+          title={t.projects_page.items[project.id].title}
+          description={t.projects_page.items[project.id].desc}
           github={project.github ?? ''}
           preview={project.preview}
           technologies={project.stack.map(name => ({

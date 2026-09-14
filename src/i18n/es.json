@@ -44,22 +44,6 @@
   },
   "projects": {
     "title": "Proyectos",
-    "veritrust": {
-      "title": "VeriTrust - Detector de desinformación médica con IA",
-      "description": "Herramienta basada en IA que analiza afirmaciones médicas mediante un pipeline multiagente y devuelve veredictos con puntuaciones de confianza y fuentes biomédicas. Desarrollada con Next.js, FastAPI y LangGraph."
-    },
-    "kmpe": {
-      "title": "Kilómetros por Explorar- Una landing page de viajes",
-      "description": "Landing page de mi proyecto con mi pareja, un negocio de planificación de viajes. Desarrollada Astro, Preact y Tailwind CSS, integrando islas en el cliente."
-    },
-    "notes_app": {
-      "title": "SnapNotes - Una aplicación web de notas",
-      "description": "Una aplicación web de productividad con funcionalidades avanzadas como categorización, búsqueda en tiempo real y sincronización entre dispositivos."
-    },
-    "movies-api": {
-      "title": "Movies API - Una API REST de películas",
-      "description": "API REST completa para la gestión de datos de películas con funcionalidad CRUD, que utiliza la arquitectura MVC conectada a una base de datos MySQL."
-    },
     "view_all": "Ver todos los proyectos"
   },
   "projects_page": {
@@ -116,7 +100,7 @@
         "short": "KMPE",
         "role": "Full-stack",
         "duration": "3 meses",
-        "desc": "Landing page de un negocio de planificación de viajes co-fundado con mi pareja. Desarrollada con Astro, Preact y Tailwind CSS, integrando islas interactivas en el cliente y un backend con Express.",
+        "desc": "Landing page de un negocio de planificación de viajes cofundado con mi pareja. Desarrollada con Astro, Preact y Tailwind CSS, integrando islas interactivas en el cliente y un backend con Express.",
         "highlights": [
           "Arquitectura de islas con Preact para mantener el bundle mínimo",
           "Backend Express con endpoints para reservas y consultas",
@@ -131,7 +115,7 @@
         "desc": "Aplicación web de productividad con categorización, búsqueda en tiempo real y sincronización entre dispositivos. Stack moderno con Next.js y Prisma sobre Postgres.",
         "highlights": [
           "Búsqueda en tiempo real sobre el contenido de las notas",
-          "Sincronización multi-dispositivo con Prisma + Postgres",
+          "Sincronización multidispositivo con Prisma + Postgres",
           "Autenticación y persistencia de sesión"
         ]
       },
