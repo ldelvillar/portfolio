@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
-import 'animate.css/animate.min.css';
 import Github from '@/assets/icons/logos/Github.astro';
 import Linkedin from '@/assets/icons/logos/Linkedin.astro';
 import Envelope from '@/assets/icons/Envelope.astro';
@@ -44,7 +43,7 @@ const socials: SocialData[] = [
   <div class="flex flex-col-reverse items-center gap-6 md:flex-row">
     <div class="md:basis-2/3">
       <div
-        class="animate__animated animate__bounceInDown animate__slow flex flex-row-reverse gap-6 md:flex-col"
+        class="hero-anim bounce-in-down flex flex-row-reverse gap-6 md:flex-col"
       >
         <div>
           <h1
@@ -61,7 +60,7 @@ const socials: SocialData[] = [
           </span>
         </div>
         <div
-          class="animate__animated animate__backInDown animate__slow flex items-center md:mt-8 md:hidden md:basis-1/3"
+          class="hero-anim back-in-down flex items-center md:mt-8 md:hidden md:basis-1/3"
         >
           <Image
             src={profile}
@@ -75,7 +74,7 @@ const socials: SocialData[] = [
           />
         </div>
       </div>
-      <div class="animate__animated animate__backInLeft animate__slow">
+      <div class="hero-anim back-in-left">
         <p class="mt-4 text-xl font-semibold text-gray-600 dark:text-gray-300">
           {t.hero.description1}
           <span class="text-yellow-500 dark:text-yellow-400"
@@ -83,9 +82,7 @@ const socials: SocialData[] = [
           </span>{t.hero.description3}
         </p>
       </div>
-      <nav
-        class="animate__animated animate__backInUp animate__slow mt-8 flex flex-wrap gap-5 text-lg"
-      >
+      <nav class="hero-anim back-in-up mt-8 flex flex-wrap gap-5 text-lg">
         {
           socials.map(social => (
             <a
@@ -102,7 +99,7 @@ const socials: SocialData[] = [
     </div>
 
     <div
-      class="animate__animated animate__backInDown animate__slow hidden items-center md:mt-8 md:flex md:basis-1/3"
+      class="hero-anim back-in-down hidden items-center md:mt-8 md:flex md:basis-1/3"
     >
       <Image
         src={profile}
@@ -117,3 +114,116 @@ const socials: SocialData[] = [
     </div>
   </div>
 </section>
+
+<style>
+  /* Entrance animations adapted from animate.css 4.1.1 (MIT, © 2020 Daniel Eden) */
+  .hero-anim {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+  }
+
+  .bounce-in-down {
+    animation-name: bounceInDown;
+  }
+
+  .back-in-down {
+    animation-name: backInDown;
+  }
+
+  .back-in-left {
+    animation-name: backInLeft;
+  }
+
+  .back-in-up {
+    animation-name: backInUp;
+  }
+
+  @media print, (prefers-reduced-motion: reduce) {
+    .hero-anim {
+      animation: none;
+    }
+  }
+
+  @keyframes bounceInDown {
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -3000px, 0) scaleY(3);
+    }
+
+    60% {
+      opacity: 1;
+      transform: translate3d(0, 25px, 0) scaleY(0.9);
+    }
+
+    75% {
+      transform: translate3d(0, -10px, 0) scaleY(0.95);
+    }
+
+    90% {
+      transform: translate3d(0, 5px, 0) scaleY(0.985);
+    }
+
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes backInDown {
+    0% {
+      transform: translateY(-1200px) scale(0.7);
+      opacity: 0.7;
+    }
+
+    80% {
+      transform: translateY(0px) scale(0.7);
+      opacity: 0.7;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes backInLeft {
+    0% {
+      transform: translateX(-2000px) scale(0.7);
+      opacity: 0.7;
+    }
+
+    80% {
+      transform: translateX(0px) scale(0.7);
+      opacity: 0.7;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes backInUp {
+    0% {
+      transform: translateY(1200px) scale(0.7);
+      opacity: 0.7;
+    }
+
+    80% {
+      transform: translateY(0px) scale(0.7);
+      opacity: 0.7;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+</style>

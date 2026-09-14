@@ -57,7 +57,7 @@ Red flags: no `hreflang` alternate links even though every page exists in both `
 
 ## 5. ASSETS & PERFORMANCE
 
-Scope: the `src/assets/images/` versus `public/` boundary and what `<Image>` from `astro:assets` actually receives, self-hosted fonts in `public/fonts/` and their `@font-face` declarations in `global.css`, the cost of the third-party client libraries (`animate.css` in `Hero.astro`, `atropos` in `TechStack.astro`), and overall CSS/JS weight.
+Scope: the `src/assets/images/` versus `public/` boundary and what `<Image>` from `astro:assets` actually receives, self-hosted fonts in `public/fonts/` and their `@font-face` declarations in `global.css`, the cost of the third-party client libraries (`atropos` in `TechStack.astro`), and overall CSS/JS weight.
 Red flags: `<Image>` given a `public/` string path, which skips Astro's optimization pipeline entirely even though `sharp` is enabled — check whether these should be imported assets instead, a whole animation library imported for a handful of effects, no `preload` for the fonts that render above the fold, layout shift from images without intrinsic dimensions, render-blocking or unused CSS.
 Classify each finding as: current problem, future risk, or premature optimization.
 
