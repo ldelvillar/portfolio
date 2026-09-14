@@ -17,10 +17,10 @@ interface NavLink {
 const { t, lang } = Astro.props;
 
 const navLinks: NavLink[] = [
-  { label: t.header.nav.experience, href: '/#experience' },
+  { label: t.header.nav.experience, href: `/${lang}#experience` },
   { label: t.header.nav.projects, href: `/${lang}/projects` },
   { label: t.header.nav.certifications, href: `/${lang}/certifications` },
-  { label: t.header.nav.about, href: '/#about' },
+  { label: t.header.nav.about, href: `/${lang}#about` },
   { label: t.header.nav.contact, href: 'mailto:ldelvillarvazquez@gmail.com' },
 ];
 ---
@@ -133,7 +133,7 @@ const navLinks: NavLink[] = [
           ? 'nav a[href$="/certifications"]'
           : currentSection === 'projects'
             ? 'nav a[href$="/projects"]'
-            : `a[href="/#${currentSection}"]`;
+            : `nav a[href$="#${currentSection}"]`;
       document.querySelectorAll(selector).forEach(link => {
         link.classList.add('text-primary', 'dark:text-primary', 'font-bold');
       });
