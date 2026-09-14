@@ -83,7 +83,7 @@ export const PROJECTS: Project[] = [
       { k: 'Stack', v: 'Next.js' },
     ],
     github: 'https://github.com/ldelvillar/veritrust',
-    preview: 'https://tfg-hazel.vercel.app',
+    preview: 'https://www.veritrust.es',
   },
   {
     id: 'notes_app',
