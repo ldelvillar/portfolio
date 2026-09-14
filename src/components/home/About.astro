@@ -18,23 +18,46 @@ const { t } = Astro.props;
     </span>
     {t.about.title}
   </h2>
-  <div class="mt-2 flex flex-col items-center gap-5 md:flex-row">
-    <div>
-      <p class="font-medium text-gray-800 dark:text-gray-300">
+  <div
+    class="mt-2 overflow-hidden rounded-xl border border-gray-200 bg-[radial-gradient(120%_80%_at_50%_-10%,rgba(250,204,21,0.09)_0%,transparent_60%),linear-gradient(180deg,#ffffff_0%,#f9fafb_100%)] dark:border-gray-800 dark:bg-[radial-gradient(120%_80%_at_50%_-10%,rgba(250,204,21,0.09)_0%,transparent_60%),linear-gradient(180deg,#0c0c10_0%,#08080b_100%)]"
+  >
+    <div
+      class="flex items-center gap-3 border-b border-gray-200 px-5 py-3 dark:border-gray-800"
+    >
+      <span class="h-2 w-2 rounded-sm bg-yellow-500 dark:bg-yellow-400"></span>
+      <span class="font-mono text-xs text-gray-500 dark:text-gray-400"
+        >{t.about.terminalPath}</span
+      >
+    </div>
+    <div class="flex flex-col gap-5 px-6 py-8 md:px-8">
+      <p class="font-medium text-gray-700 dark:text-gray-300">
+        <span class="mr-2 font-mono text-yellow-500 dark:text-yellow-400"
+          >$</span
+        >
         {t.about.introduction.part1}
-        <span class="text-yellow-500"
+        <span class="text-yellow-500 dark:text-yellow-400"
           >{` ${t.about.introduction.highlight} `}</span
         >
         {t.about.introduction.part2}
       </p>
-      <p class="mt-5 font-medium text-gray-800 dark:text-gray-300">
+      <p class="font-medium text-gray-700 dark:text-gray-300">
+        <span class="mr-2 font-mono text-yellow-500 dark:text-yellow-400"
+          >$</span
+        >
         {` ${t.about.skills.part1} `}
-        <span class="text-yellow-500">{` ${t.about.skills.highlight1} `}</span>
+        <span class="text-yellow-500 dark:text-yellow-400"
+          >{` ${t.about.skills.highlight1} `}</span
+        >
         {` ${t.about.skills.part2} `}
-        <span class="text-yellow-500">{` ${t.about.skills.highlight2} `}</span>
+        <span class="text-yellow-500 dark:text-yellow-400"
+          >{` ${t.about.skills.highlight2} `}</span
+        >
         {t.about.skills.part3}
       </p>
-      <p class="mt-5 font-medium text-gray-800 dark:text-gray-300">
+      <p class="font-medium text-gray-700 dark:text-gray-300">
+        <span class="mr-2 font-mono text-yellow-500 dark:text-yellow-400"
+          >$</span
+        >
         {t.about.goal}
       </p>
     </div>

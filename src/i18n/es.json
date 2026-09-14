@@ -139,6 +139,7 @@
   },
   "about": {
     "title": "Sobre mí",
+    "terminalPath": "~/lucas/sobre-mi",
     "introduction": {
       "part1": "Empecé en la programación a los 15 años, y desde entonces he estado aprendiendo numerosos lenguajes de programación y tecnologías de forma autodidacta a través de cursos y certificaciones, y posteriormente en la universidad. Actualmente estoy estudiando el último curso de mi",
       "highlight": "grado en Ingeniería Informática",

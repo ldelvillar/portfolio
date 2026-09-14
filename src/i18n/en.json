@@ -139,6 +139,7 @@
   },
   "about": {
     "title": "About me",
+    "terminalPath": "~/lucas/about-me",
     "introduction": {
       "part1": "I started coding at 15, and since then, I've been learning several programming languages and technologies through courses and certifications, and later at university. Currently, I am studying the last year of my",
       "highlight": "Bachelor Degree in Computer Science and Engineering",
