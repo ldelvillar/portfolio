@@ -6,6 +6,7 @@ import Github from '@/assets/logos/Github.astro';
 import Linkedin from '@/assets/logos/Linkedin.astro';
 import Envelope from '@/assets/Envelope.astro';
 import type { Translations } from '@/utils/getTranslations';
+import { SITE } from '@/data/site';
 
 interface Props {
   t: Translations;
@@ -22,17 +23,17 @@ const { t } = Astro.props;
 const socials: SocialData[] = [
   {
     name: 'GitHub',
-    url: 'https://github.com/ldelvillar',
+    url: SITE.github,
     icon: Github,
   },
   {
     name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/ldelvillar',
+    url: SITE.linkedin,
     icon: Linkedin,
   },
   {
-    name: 'ldelvillarvazquez@gmail.com',
-    url: 'mailto:ldelvillarvazquez@gmail.com',
+    name: SITE.email,
+    url: `mailto:${SITE.email}`,
     icon: Envelope,
   },
 ];
@@ -53,7 +54,7 @@ const socials: SocialData[] = [
             >
           </h1>
           <span
-            class="animate-background-shine mt-1 inline-flex bg-[linear-gradient(110deg,#8a8833,45%,#0f172a,55%,#8a8833)] bg-[length:250%_100%] bg-clip-text text-xl font-semibold text-transparent dark:bg-[linear-gradient(110deg,#f4ffb6,45%,#607406,55%,#f4ffb6)]"
+            class="animate-background-shine mt-1 inline-flex bg-[linear-gradient(110deg,#8a8833,45%,#0f172a,55%,#8a8833)] bg-size-[250%_100%] bg-clip-text text-xl font-semibold text-transparent dark:bg-[linear-gradient(110deg,#f4ffb6,45%,#607406,55%,#f4ffb6)]"
           >
             {t.hero.subtitle}
           </span>
@@ -63,7 +64,7 @@ const socials: SocialData[] = [
         >
           <Image
             src="/images/profile.webp"
-            alt="Lucas del Villar"
+            alt={SITE.name}
             width={240}
             height={240}
             loading="eager"
@@ -87,7 +88,7 @@ const socials: SocialData[] = [
             <a
               href={social.url}
               target="_blank"
-              class="flex flex-row items-center justify-center gap-2 rounded-full border border-gray-600 bg-gradient-to-r from-gray-400 to-gray-600 px-3 py-1 font-medium text-white transition-transform hover:scale-105 dark:from-slate-800 dark:to-slate-950"
+              class="flex flex-row items-center justify-center gap-2 rounded-full border border-gray-600 bg-linear-to-r from-gray-400 to-gray-600 px-3 py-1 font-medium text-white transition-transform hover:scale-105 dark:from-slate-800 dark:to-slate-950"
             >
               <social.icon class="size-6" />
               <span>{social.name}</span>
@@ -102,11 +103,11 @@ const socials: SocialData[] = [
     >
       <Image
         src="/images/profile.webp"
-        alt="Lucas del Villar"
+        alt={SITE.name}
         width={240}
         height={240}
         loading="eager"
-        class="w-60 rotate-3 rounded-full outline outline-1 outline-offset-2 outline-gray-500"
+        class="w-60 rotate-3 rounded-full outline-1 outline-offset-2 outline-gray-500"
       />
     </div>
   </div>

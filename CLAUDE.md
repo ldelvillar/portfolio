@@ -6,7 +6,7 @@ No test suite. After changes, run `pnpm check` (astro check) and `pnpm format`.
 
 ## Architecture
 
-Astro portfolio site deployed at `https://ldelvillar.vercel.app`.
+Astro portfolio site deployed at `https://ldelvillar.vercel.app`. That URL lives only in `site` in `astro.config.mjs` — read it through `Astro.site`. Personal details (name, email, GitHub, LinkedIn) live in `src/data/site.ts`.
 
 ### i18n
 

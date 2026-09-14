@@ -4,6 +4,7 @@ import LanguageToggle from '@/components/LanguageToggle.astro';
 import MenuIcon from '@/assets/Menu.astro';
 import type { Translations } from '@/utils/getTranslations';
 import type { Lang } from '@/i18n/config';
+import { SITE } from '@/data/site';
 
 interface Props {
   t: Translations;
@@ -22,7 +23,7 @@ const navLinks: NavLink[] = [
   { label: t.header.nav.projects, href: `/${lang}/projects` },
   { label: t.header.nav.certifications, href: `/${lang}/certifications` },
   { label: t.header.nav.about, href: `/${lang}#about` },
-  { label: t.header.nav.contact, href: 'mailto:ldelvillarvazquez@gmail.com' },
+  { label: t.header.nav.contact, href: `mailto:${SITE.email}` },
 ];
 ---
 

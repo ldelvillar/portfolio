@@ -2,6 +2,7 @@
 import Calendar from '@/assets/Calendar.astro';
 import RightArrow from '@/assets/RightArrow.astro';
 import type { Translations } from '@/utils/getTranslations';
+import { SITE } from '@/data/site';
 
 interface Props {
   t: Translations;
@@ -21,7 +22,7 @@ const timelineItems: TimelineItemsData[] = [
     date: t.timeline.june_2025.date,
     title: t.timeline.june_2025.title,
     description: t.timeline.june_2025.description,
-    link: 'https://linkedin.com/in/ldelvillar',
+    link: SITE.linkedin,
   },
   {
     date: t.timeline.september_2022.date,
