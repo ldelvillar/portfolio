@@ -6,8 +6,8 @@ Built with **Astro 7**, **Tailwind CSS 4**, and **TypeScript**. Bilingual (ES/EN
 
 ## Requirements
 
-- Node.js 22.12 or newer (Astro 7's minimum)
-- pnpm — `pnpm-workspace.yaml` allows the install scripts of `sharp` (image optimization) and `esbuild`
+- Node.js 22.12 or newer (Astro 7's minimum; `engines` in `package.json`)
+- pnpm 11.22.0 (`packageManager` in `package.json`) — `pnpm-workspace.yaml` allows the install scripts of `sharp` (image optimization) and `esbuild`
 
 ## Commands
 
