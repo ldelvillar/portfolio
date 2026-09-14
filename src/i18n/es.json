@@ -192,15 +192,6 @@
     },
     "send": "Enviar Mensaje"
   },
-  "contact": {
-    "title": "¡Ponte en contacto!",
-    "details": {
-      "title": "Detalles de contacto",
-      "email": "ldelvillarvazquez@gmail.com",
-      "phone": "+34 604 11 26 28",
-      "location": "Madrid, España"
-    }
-  },
   "theme": {
     "label": "Elige el tema",
     "light": "Claro",
