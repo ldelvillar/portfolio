@@ -178,7 +178,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
           <article
             class="cert-card flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 transition-all hover:border-gray-300 sm:flex-row sm:gap-5 sm:p-5 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
             data-category={cert.category}
-            data-title={t.certifications.items[cert.id].title.toLowerCase()}
+            data-title={cert.title.toLowerCase()}
             data-issuer={cert.issuer.toLowerCase()}
             data-skills={cert.skills.join(',').toLowerCase()}
             style={cert.status === 'expired' ? 'opacity: 0.72' : ''}
@@ -272,7 +272,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
                 <span>{fmtDate(cert.date, lang)}</span>
               </div>
               <h3 class="text-lg leading-snug font-semibold text-gray-900 dark:text-white">
-                {t.certifications.items[cert.id].title}
+                {cert.title}
               </h3>
               <div class="flex flex-wrap gap-1.5">
                 {cert.skills.map(skill => (
@@ -294,7 +294,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
                   disabled={cert.status === 'in-progress'}
                   data-cert={JSON.stringify({
                     id: cert.id.toUpperCase(),
-                    title: t.certifications.items[cert.id].title,
+                    title: cert.title,
                     issuer: cert.issuer,
                     mono: cert.mono,
                     tint: cert.tint,

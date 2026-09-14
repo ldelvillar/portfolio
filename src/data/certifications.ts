@@ -4,6 +4,7 @@ type CertTexts = Translations['certifications'];
 
 export interface Cert {
   id: keyof CertTexts['items'];
+  title: string;
   issuer: string;
   issuerShort: string;
   category: Exclude<keyof CertTexts['categories'], 'all'>;
@@ -20,6 +21,7 @@ export interface Cert {
 export const CERTS: Cert[] = [
   /* {
     id: 'aws-saa-c03',
+    title: 'AWS Certified Solutions Architect – Associate',
     issuer: 'Amazon Web Services',
     issuerShort: 'AWS',
     category: 'cloud',
@@ -33,6 +35,7 @@ export const CERTS: Cert[] = [
   }, */
   {
     id: 'ai-900',
+    title: 'AI-900: Azure AI Fundamentals',
     issuer: 'Microsoft',
     issuerShort: 'Microsoft',
     category: 'ai',
@@ -55,6 +58,7 @@ export const CERTS: Cert[] = [
   },
   {
     id: 'meta-fe-2024',
+    title: 'Meta Front-End Developer Professional',
     issuer: 'Meta · Coursera',
     issuerShort: 'Meta',
     category: 'dev',
@@ -68,6 +72,7 @@ export const CERTS: Cert[] = [
   },
   {
     id: 'claude-code-2026',
+    title: 'Claude Code in Action',
     issuer: 'Anthropic',
     issuerShort: 'Anthropic',
     category: 'ai',
@@ -88,6 +93,7 @@ export const CERTS: Cert[] = [
   },
   {
     id: 'gcp-gce-2025',
+    title: 'Google Cloud Professional Cloud Architect',
     issuer: 'Google',
     issuerShort: 'GCP',
     category: 'cloud',
@@ -108,6 +114,7 @@ export const CERTS: Cert[] = [
   },
   /* {
     id: 'dca-2025',
+    title: 'Docker Certified Associate',
     issuer: 'Docker, Inc.',
     issuerShort: 'Docker',
     category: 'devops',

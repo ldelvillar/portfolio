@@ -14,7 +14,7 @@ Every page and component that renders text receives a `t` prop from `getTranslat
 
 `src/i18n/config.ts` holds the language list (`SUPPORTED_LANGUAGES`, `Lang`) and `DEFAULT_LANG`. `[lang]` routes build their paths with `getStaticPaths() { return langStaticPaths(); }`; type `lang` props as `Lang`, never `string`.
 
-`src/data/certifications.ts` is the single source of truth for certification data (the `CERTS` array); the matching titles and descriptions live in the i18n JSON under `certifications.items[cert.id]`. `Cert.id` and `Project.id` are typed as keys of their i18n `items`, so an id without a translation fails `pnpm check`.
+`src/data/certifications.ts` is the single source of truth for certification data (the `CERTS` array), including the `title`, which is the official English name and isn't translated; the translated descriptions live in the i18n JSON under `certifications.items[cert.id].desc`. `Cert.id` and `Project.id` are typed as keys of their i18n `items`, so an id without a translation fails `pnpm check`.
 
 ### Theming
 
