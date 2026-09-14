@@ -11,6 +11,7 @@ import GCP from '@/assets/logos/GCP.astro';
 import Python from '@/assets/logos/Python.astro';
 import Fastapi from '@/assets/logos/Fastapi.astro';
 import Langgraph from '@/assets/logos/Langgraph.astro';
+import type { Translations } from '@/utils/getTranslations';
 
 export type ProjectStatus = 'live' | 'dev' | 'archived';
 export type ProjectCategory = 'saas' | 'oss' | 'personal';
@@ -42,7 +43,7 @@ export interface ProjectStat {
 }
 
 export interface Project {
-  id: string;
+  id: keyof Translations['projects_page']['items'];
   featured?: boolean;
   category: ProjectCategory[];
   year: string;
@@ -70,7 +71,14 @@ export const PROJECTS: Project[] = [
     tint: '#60a5fa',
     url: 'tfg-hazel.vercel.app',
     image: '/images/veritrust.webp',
-    stack: ['Next.js', 'TypeScript', 'Python', 'FastAPI', 'LangGraph', 'Tailwind CSS'],
+    stack: [
+      'Next.js',
+      'TypeScript',
+      'Python',
+      'FastAPI',
+      'LangGraph',
+      'Tailwind CSS',
+    ],
     stats: [
       { k: 'AI', v: 'LangGraph', accent: true },
       { k: 'ML', v: 'BioBERT' },

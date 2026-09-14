@@ -4,6 +4,11 @@ import Code from '@/assets/Code.astro';
 import RightArrow from '@/assets/RightArrow.astro';
 import { PROJECTS, TECH_META, FALLBACK_BG } from '@/data/projects';
 import type { Lang } from '@/i18n/config';
+import type { Translations } from '@/utils/getTranslations';
+
+interface Props {
+  t: Translations;
+}
 
 const { t } = Astro.props;
 const lang = (Astro.params?.lang ?? 'es') as Lang;

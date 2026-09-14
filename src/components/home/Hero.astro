@@ -5,6 +5,11 @@ import 'animate.css/animate.min.css';
 import Github from '@/assets/logos/Github.astro';
 import Linkedin from '@/assets/logos/Linkedin.astro';
 import Envelope from '@/assets/Envelope.astro';
+import type { Translations } from '@/utils/getTranslations';
+
+interface Props {
+  t: Translations;
+}
 
 interface SocialData {
   name: string;

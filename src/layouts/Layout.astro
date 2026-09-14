@@ -16,7 +16,7 @@ const fullUrl = `${baseUrl}${pathname}`;
 
 const { title, lang: propLang } = Astro.props;
 const lang = propLang ?? (Astro.params?.lang as Lang) ?? 'es';
-const t = await getTranslations(lang);
+const t = getTranslations(lang);
 ---
 
 <!doctype html>

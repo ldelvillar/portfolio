@@ -1,8 +1,12 @@
+import type { Translations } from '@/utils/getTranslations';
+
+type CertTexts = Translations['certifications'];
+
 export interface Cert {
-  id: string;
+  id: keyof CertTexts['items'];
   issuer: string;
   issuerShort: string;
-  category: string;
+  category: Exclude<keyof CertTexts['categories'], 'all'>;
   date: string;
   hours: number;
   status: 'active' | 'expired' | 'in-progress';

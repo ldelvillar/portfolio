@@ -2,9 +2,10 @@
 import ThemeToggle from '@/components/ThemeToggle.astro';
 import LanguageToggle from '@/components/LanguageToggle.astro';
 import MenuIcon from '@/assets/Menu.astro';
+import type { Translations } from '@/utils/getTranslations';
 
 interface Props {
-  t: any;
+  t: Translations;
   lang: string;
 }
 

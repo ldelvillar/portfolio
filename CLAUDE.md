@@ -10,9 +10,9 @@ Astro portfolio site deployed at `https://ldelvillar.vercel.app`.
 
 ### i18n
 
-Every page and component that renders text receives a `t` prop from `getTranslations(lang)`, which dynamically imports `src/i18n/{lang}.json`. Both JSON files must stay in sync — add/remove keys in both.
+Every page and component that renders text receives a `t` prop from `getTranslations(lang)`, typed as `Translations` (the shape of `en.json`); declare it as `interface Props { t: Translations }`. Both JSON files must stay in sync — add/remove keys in both; `pnpm check` fails if `es.json` is missing a key from `en.json`.
 
-`src/data/certifications.ts` is the single source of truth for certification data (the `CERTS` array); the matching titles and descriptions live in the i18n JSON under `certifications.items[cert.id]`.
+`src/data/certifications.ts` is the single source of truth for certification data (the `CERTS` array); the matching titles and descriptions live in the i18n JSON under `certifications.items[cert.id]`. `Cert.id` and `Project.id` are typed as keys of their i18n `items`, so an id without a translation fails `pnpm check`.
 
 ### Theming
 

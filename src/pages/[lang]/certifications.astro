@@ -9,7 +9,7 @@ export async function getStaticPaths() {
 }
 
 const lang = (Astro.params?.lang ?? 'es') as Lang;
-const t = await getTranslations(lang);
+const t = getTranslations(lang);
 
 const MONTHS = {
   es: [
@@ -51,7 +51,7 @@ const activeCount = CERTS.filter(c => c.status === 'active').length;
 const totalHours = CERTS.reduce((s, c) => s + c.hours, 0);
 const latest = [...CERTS].sort((a, b) => b.date.localeCompare(a.date))[0];
 
-const CATEGORY_IDS = ['all', 'dev', 'cloud', 'ai'];
+const CATEGORY_IDS = ['all', 'dev', 'cloud', 'ai'] as const;
 
 const catCounts: Record<string, number> = { all: CERTS.length };
 for (const id of CATEGORY_IDS.slice(1)) {

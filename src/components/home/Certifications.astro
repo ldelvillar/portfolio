@@ -3,6 +3,11 @@ import CertificationCard from '@/assets/CertificationCard.astro';
 import RightArrow from '@/assets/RightArrow.astro';
 import { CERTS } from '@/data/certifications';
 import type { Lang } from '@/i18n/config';
+import type { Translations } from '@/utils/getTranslations';
+
+interface Props {
+  t: Translations;
+}
 
 const { t } = Astro.props;
 const lang = (Astro.params?.lang ?? 'es') as Lang;

@@ -23,9 +23,14 @@ import MCP from '@/assets/logos/MCP.astro';
 import LlamaIndex from '@/assets/logos/Llamaindex.astro';
 import N8n from '@/assets/logos/N8n.astro';
 import Make from '@/assets/logos/Make.astro';
+import type { Translations } from '@/utils/getTranslations';
 
 // @ts-ignore
 import 'atropos/css';
+
+interface Props {
+  t: Translations;
+}
 
 interface TechField {
   name: string;

@@ -2,9 +2,10 @@
 import SunIcon from '@/assets/Sun.astro';
 import MoonIcon from '@/assets/Moon.astro';
 import SystemIcon from '@/assets/System.astro';
+import type { Translations } from '@/utils/getTranslations';
 
 interface Props {
-  t: any;
+  t: Translations;
 }
 
 const { t } = Astro.props;

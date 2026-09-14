@@ -1,6 +1,12 @@
 ---
 import Calendar from '@/assets/Calendar.astro';
 import RightArrow from '@/assets/RightArrow.astro';
+import type { Translations } from '@/utils/getTranslations';
+
+interface Props {
+  t: Translations;
+}
+
 const { t } = Astro.props;
 
 interface TimelineItemsData {

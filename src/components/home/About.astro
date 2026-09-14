@@ -1,5 +1,11 @@
 ---
 import UserIcon from '@/assets/User.astro';
+import type { Translations } from '@/utils/getTranslations';
+
+interface Props {
+  t: Translations;
+}
+
 const { t } = Astro.props;
 ---
 

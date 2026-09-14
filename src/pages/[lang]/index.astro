@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 }
 
 const lang = (Astro.params?.lang ?? 'es') as Lang;
-const t = await getTranslations(lang);
+const t = getTranslations(lang);
 ---
 
 <Layout title={t.site.title}>

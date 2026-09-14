@@ -1,5 +1,11 @@
+import en from '@/i18n/en.json';
+import es from '@/i18n/es.json';
 import type { Lang } from '@/i18n/config';
 
-export async function getTranslations(locale: Lang) {
-  return await import(`../i18n/${locale}.json`);
+export type Translations = typeof en;
+
+const translations: Record<Lang, Translations> = { en, es };
+
+export function getTranslations(lang: Lang): Translations {
+  return translations[lang];
 }
