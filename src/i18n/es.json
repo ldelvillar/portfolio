@@ -88,7 +88,7 @@
         "short": "VeriTrust",
         "role": "Full-stack",
         "duration": "Trabajo de Fin de Grado",
-        "desc": "Detector de desinformación médica basado en IA que analiza afirmaciones mediante un pipeline multiagente y devuelve veredictos con puntuaciones de confianza y fuentes biomédicas. Frontend en Next.js con un backend en FastAPI + LangGraph y un clasificador BioBERT afinado.",
+        "desc": "Detector de desinformación médica basado en IA que analiza afirmaciones mediante un pipeline multiagente y devuelve veredictos con puntuaciones de confianza y fuentes biomédicas.",
         "highlights": [
           "Pipeline de verificación multiagente orquestado con LangGraph",
           "Clasificador BioBERT afinado entrenado con el dataset PUBHEALTH",

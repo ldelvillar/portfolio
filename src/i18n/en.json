@@ -88,7 +88,7 @@
         "short": "VeriTrust",
         "role": "Full-stack",
         "duration": "Final degree project",
-        "desc": "AI-powered medical misinformation detector that analyzes claims through a multi-agent pipeline and returns verdicts with confidence scores and biomedical sources. Next.js frontend with a FastAPI + LangGraph backend and a fine-tuned BioBERT classifier.",
+        "desc": "AI-powered medical misinformation detector that analyzes claims through a multi-agent pipeline and returns verdicts with confidence scores and biomedical sources.",
         "highlights": [
           "Multi-agent verification pipeline orchestrated with LangGraph",
           "Fine-tuned BioBERT classifier trained on the PUBHEALTH dataset",

@@ -76,14 +76,7 @@ export const PROJECTS: Project[] = [
     tint: '#60a5fa',
     url: 'tfg-hazel.vercel.app',
     image: veritrustImg,
-    stack: [
-      'Next.js',
-      'TypeScript',
-      'Python',
-      'FastAPI',
-      'LangGraph',
-      'Tailwind CSS',
-    ],
+    stack: ['Python', 'FastAPI', 'LangGraph', 'Next.js', 'TypeScript'],
     stats: [
       { k: 'AI', v: 'LangGraph', accent: true },
       { k: 'ML', v: 'BioBERT' },
