@@ -25,4 +25,5 @@ Theme preference is stored in `localStorage` under the key `theme` and applied b
 ### Key patterns
 
 - **Client interactivity**: `<script>` tags inside `.astro` files — no framework components
+- **Images**: raster images live in `src/assets/images/` and are imported (`import img from '@/assets/images/x.webp'`) so `<Image>` optimizes them; a string path to `public/` skips optimization. `public/` is only for files that need a fixed URL (OG image, fonts, PDFs). SVG icons are `.astro` components in `src/assets/icons/`.
 - **No view transitions**: there is no `<ClientRouter />`, so navigation is a full page load. Theme survives it because the inline script in `ThemeToggle.astro` re-reads `localStorage` on every load.

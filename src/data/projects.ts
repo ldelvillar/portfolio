@@ -12,6 +12,11 @@ import Python from '@/assets/icons/logos/Python.astro';
 import Fastapi from '@/assets/icons/logos/Fastapi.astro';
 import Langgraph from '@/assets/icons/logos/Langgraph.astro';
 import type { Translations } from '@/utils/getTranslations';
+import type { ImageMetadata } from 'astro';
+import veritrustImg from '@/assets/images/veritrust.webp';
+import snapNotesImg from '@/assets/images/snap-notes.webp';
+import kmpeImg from '@/assets/images/kmpe.webp';
+import moviesApiImg from '@/assets/images/movies-api.webp';
 
 export type ProjectStatus = 'live' | 'dev' | 'archived';
 export type ProjectCategory = 'saas' | 'oss' | 'personal';
@@ -52,7 +57,7 @@ export interface Project {
   mono: string;
   tint: string;
   url: string;
-  image: string;
+  image: ImageMetadata;
   stack: string[];
   stats: ProjectStat[];
   github?: string;
@@ -70,7 +75,7 @@ export const PROJECTS: Project[] = [
     mono: 'VERI',
     tint: '#60a5fa',
     url: 'tfg-hazel.vercel.app',
-    image: '/images/veritrust.webp',
+    image: veritrustImg,
     stack: [
       'Next.js',
       'TypeScript',
@@ -97,7 +102,7 @@ export const PROJECTS: Project[] = [
     mono: 'SNAP',
     tint: '#22d3ee',
     url: 'snap-notes.vercel.app',
-    image: '/images/snap-notes.webp',
+    image: snapNotesImg,
     stack: ['Next.js', 'Prisma', 'Express.js', 'Tailwind CSS'],
     stats: [
       { k: 'Stack', v: 'Next.js' },
@@ -117,7 +122,7 @@ export const PROJECTS: Project[] = [
     mono: 'KMPE',
     tint: '#fbbf24',
     url: 'kilometrosporexplorar.es',
-    image: '/images/kmpe.webp',
+    image: kmpeImg,
     stack: ['Astro', 'Preact', 'TypeScript', 'Express.js', 'Tailwind CSS'],
     stats: [
       { k: 'Users', v: '300+', accent: true },
@@ -137,7 +142,7 @@ export const PROJECTS: Project[] = [
     mono: 'MAPI',
     tint: '#34d399',
     url: 'movies-api-production-ead1.up.railway.app',
-    image: '/images/movies-api.webp',
+    image: moviesApiImg,
     stack: ['TypeScript', 'Express.js', 'MySQL', 'GCP'],
     stats: [
       { k: 'Architecture', v: 'MVC' },

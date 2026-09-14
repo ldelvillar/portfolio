@@ -19,6 +19,7 @@
     "animate.css": "^4.1.1",
     "astro": "^7.3.2",
     "atropos": "^2.0.2",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4.1.13",
     "typescript": "^6.0.3"
   },

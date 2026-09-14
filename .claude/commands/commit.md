@@ -54,11 +54,11 @@ title-only commit.
 
 - `i18n` — `src/i18n/{en,es}.json`, `src/i18n/config.ts`, `src/utils/getTranslations.ts`, the `[lang]` routing and `LanguageToggle.astro`
 - `seo` — the `<head>` block in `src/layouts/Layout.astro` (meta, canonical, Open Graph/Twitter), the sitemap, `public/robots.txt`, redirects. Older commits used `og` for Open Graph fixes; use `seo` going forward
-- `ui` — shared components (`src/components/*.astro`, `src/components/layout/`), `ThemeToggle.astro`, `src/styles/global.css`, icons in `src/assets/`, and home sections without their own scope (Hero, About, Contact)
-- `projects` — `src/data/projects.ts`, `ProjectCard.astro`, the Projects section, the `/[lang]/projects` page, project screenshots in `public/images/`
+- `ui` — shared components (`src/components/*.astro`, `src/components/layout/`), `ThemeToggle.astro`, `src/styles/global.css`, icons in `src/assets/icons/`, and home sections without their own scope (Hero, About, Contact)
+- `projects` — `src/data/projects.ts`, `ProjectCard.astro`, the Projects section, the `/[lang]/projects` page, project screenshots in `src/assets/images/`
 - `certifications` — `src/data/certifications.ts`, the Certifications section, the `/[lang]/certifications` page, PDFs in `public/certifications/`
 - `experience` — the Experience section
-- `techstack` — the TechStack section and tech logos in `src/assets/logos/` (always lowercase — history has both spellings)
+- `techstack` — the TechStack section and tech logos in `src/assets/icons/logos/` (always lowercase — history has both spellings)
 - `config` — `astro.config.mjs`, `tsconfig.json`, `.prettierrc`, `vercel.json`, `pnpm-workspace.yaml` (older `tsconfig` commits belong here)
 - `deps` — dependency bumps
 

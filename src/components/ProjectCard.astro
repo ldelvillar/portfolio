@@ -1,11 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+import type { ImageMetadata } from 'astro';
 import Github from '@/assets/icons/logos/Github.astro';
 import Link from '@/assets/icons/Link.astro';
 
 interface Props {
-  image: string;
+  image: ImageMetadata;
   title: string;
   technologies: {
     icon: AstroComponentFactory;
@@ -33,6 +34,7 @@ const { image, title, technologies, description, github, preview } =
         alt="project card"
         width={600}
         height={400}
+        densities={[1, 2]}
         class="h-56 w-full object-cover object-top transition duration-500 md:h-64 md:scale-110 md:group-hover:scale-105"
         loading="lazy"
       />

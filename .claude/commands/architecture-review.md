@@ -27,10 +27,10 @@ PROJECT SHAPE:
 
 - `src/pages/[lang]/{index,certifications,projects}.astro` → every route is static, duplicated per language by `getStaticPaths()`; `src/pages/404.astro` sits outside `[lang]`
 - `src/i18n/{config.ts,en.json,es.json}` + `src/utils/getTranslations.ts` → `t` is passed down as a prop to every component that renders text
-- `src/data/{certifications.ts,projects.ts}` → typed data modules (`Cert`/`CERTS`); certification titles and descriptions live in the i18n JSON under `certifications.items[cert.id]`
+- `src/data/{certifications.ts,projects.ts}` → typed data modules (`Cert`/`CERTS`); certification titles are hardcoded in `CERTS`, descriptions live in the i18n JSON under `certifications.items[cert.id]`
 - `src/components/` → UI, with home-page sections in `src/components/home/` and `layout/{Header,Footer}.astro`; no `<ClientRouter />`, so every navigation is a full page load
 - `src/layouts/Layout.astro` → the single shell; drives `<head>`, canonical, OG/Twitter tags
-- `src/assets/` → inline SVG Astro components (icons, and tech logos in `logos/`); real image files live in `public/images/`, fonts in `public/fonts/`, certification PDFs in `public/certifications/`
+- `src/assets/icons/` → inline SVG Astro components (tech logos in `icons/logos/`); `src/assets/images/` → raster images, imported so `<Image>` optimizes them; `public/` keeps only files that need a fixed URL: the OG image in `public/images/`, fonts in `public/fonts/`, certification PDFs in `public/certifications/`
 - Deployed static to Vercel (`vercel.json`); `site` and the `/` → `/es` redirect are in `astro.config.mjs`
 
 ---
@@ -57,7 +57,7 @@ Red flags: no `hreflang` alternate links even though every page exists in both `
 
 ## 5. ASSETS & PERFORMANCE
 
-Scope: the `public/images/` versus `src/assets/` boundary and what `<Image>` from `astro:assets` actually receives, self-hosted fonts in `public/fonts/` and their `@font-face` declarations in `global.css`, the cost of the third-party client libraries (`animate.css` in `Hero.astro`, `atropos` in `TechStack.astro`), and overall CSS/JS weight.
+Scope: the `src/assets/images/` versus `public/` boundary and what `<Image>` from `astro:assets` actually receives, self-hosted fonts in `public/fonts/` and their `@font-face` declarations in `global.css`, the cost of the third-party client libraries (`animate.css` in `Hero.astro`, `atropos` in `TechStack.astro`), and overall CSS/JS weight.
 Red flags: `<Image>` given a `public/` string path, which skips Astro's optimization pipeline entirely even though `sharp` is enabled — check whether these should be imported assets instead, a whole animation library imported for a handful of effects, no `preload` for the fonts that render above the fold, layout shift from images without intrinsic dimensions, render-blocking or unused CSS.
 Classify each finding as: current problem, future risk, or premature optimization.
 

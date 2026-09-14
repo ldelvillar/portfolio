@@ -7,6 +7,7 @@ import Linkedin from '@/assets/icons/logos/Linkedin.astro';
 import Envelope from '@/assets/icons/Envelope.astro';
 import type { Translations } from '@/utils/getTranslations';
 import { SITE } from '@/data/site';
+import profile from '@/assets/images/profile.webp';
 
 interface Props {
   t: Translations;
@@ -63,10 +64,12 @@ const socials: SocialData[] = [
           class="animate__animated animate__backInDown animate__slow flex items-center md:mt-8 md:hidden md:basis-1/3"
         >
           <Image
-            src="/images/profile.webp"
+            src={profile}
             alt={SITE.name}
             width={240}
             height={240}
+            widths={[240, 480]}
+            sizes="(min-width: 768px) 240px, 160px"
             loading="eager"
             class="w-40 rotate-3 rounded-full outline outline-offset-2 outline-gray-500"
           />
@@ -102,10 +105,12 @@ const socials: SocialData[] = [
       class="animate__animated animate__backInDown animate__slow hidden items-center md:mt-8 md:flex md:basis-1/3"
     >
       <Image
-        src="/images/profile.webp"
+        src={profile}
         alt={SITE.name}
         width={240}
         height={240}
+        widths={[240, 480]}
+        sizes="(min-width: 768px) 240px, 160px"
         loading="eager"
         class="w-60 rotate-3 rounded-full outline-1 outline-offset-2 outline-gray-500"
       />
