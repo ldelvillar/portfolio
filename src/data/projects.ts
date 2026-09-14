@@ -1,16 +1,16 @@
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
-import AstroIcon from '@/assets/logos/AstroIcon.astro';
-import Preact from '@/assets/logos/Preact.astro';
-import NextJS from '@/assets/logos/NextJS.astro';
-import Prisma from '@/assets/logos/Prisma.astro';
-import Tailwind from '@/assets/logos/Tailwind.astro';
-import TypeScript from '@/assets/logos/Typescript.astro';
-import Express from '@/assets/logos/Express.astro';
-import MySQL from '@/assets/logos/MySQL.astro';
-import GCP from '@/assets/logos/GCP.astro';
-import Python from '@/assets/logos/Python.astro';
-import Fastapi from '@/assets/logos/Fastapi.astro';
-import Langgraph from '@/assets/logos/Langgraph.astro';
+import AstroIcon from '@/assets/icons/logos/AstroIcon.astro';
+import Preact from '@/assets/icons/logos/Preact.astro';
+import NextJS from '@/assets/icons/logos/NextJS.astro';
+import Prisma from '@/assets/icons/logos/Prisma.astro';
+import Tailwind from '@/assets/icons/logos/Tailwind.astro';
+import TypeScript from '@/assets/icons/logos/Typescript.astro';
+import Express from '@/assets/icons/logos/Express.astro';
+import MySQL from '@/assets/icons/logos/MySQL.astro';
+import GCP from '@/assets/icons/logos/GCP.astro';
+import Python from '@/assets/icons/logos/Python.astro';
+import Fastapi from '@/assets/icons/logos/Fastapi.astro';
+import Langgraph from '@/assets/icons/logos/Langgraph.astro';
 import type { Translations } from '@/utils/getTranslations';
 
 export type ProjectStatus = 'live' | 'dev' | 'archived';
