@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import { getTranslations } from '@/utils/getTranslations';
 import { CERTS } from '@/data/certifications';
+import { SITE } from '@/data/site';
 import { DEFAULT_LANG, langStaticPaths, type Lang } from '@/i18n/config';
 
 export async function getStaticPaths() {
@@ -290,19 +291,9 @@ for (const id of CATEGORY_IDS.slice(1)) {
               </p>
               <div class="mt-auto flex flex-wrap gap-2 pt-1">
                 <button
-                  class="open-modal inline-flex items-center gap-2 rounded-full bg-yellow-400 px-3 py-1.5 text-xs font-medium text-gray-900 transition-colors hover:bg-yellow-300 disabled:cursor-not-allowed disabled:opacity-40"
+                  class="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-3 py-1.5 text-xs font-medium text-gray-900 transition-colors hover:bg-yellow-300 disabled:cursor-not-allowed disabled:opacity-40"
                   disabled={cert.status === 'in-progress'}
-                  data-cert={JSON.stringify({
-                    id: cert.id.toUpperCase(),
-                    title: cert.title,
-                    issuer: cert.issuer,
-                    mono: cert.mono,
-                    tint: cert.tint,
-                    date: fmtDate(cert.date, lang),
-                    hours: cert.hours,
-                    credentialUrl: cert.credentialUrl,
-                    pdfUrl: cert.pdfUrl ?? '',
-                  })}
+                  data-dialog={`cert-${cert.id}`}
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -364,112 +355,28 @@ for (const id of CATEGORY_IDS.slice(1)) {
     </div>
   </main>
 
-  <!-- Modal -->
-  <div
-    id="modal-backdrop"
-    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-6 backdrop-blur-sm"
-  >
-    <div
-      class="w-full max-w-lg overflow-hidden rounded-2xl border border-gray-700 bg-gray-900 shadow-2xl"
-    >
-      <!-- Browser chrome -->
-      <div
-        class="flex items-center justify-between border-b border-gray-800 px-4 py-3"
+  <!-- Certification modals -->
+  {
+    CERTS.map(cert => (
+      <dialog
+        id={`cert-${cert.id}`}
+        aria-labelledby={`cert-${cert.id}-title`}
+        class="m-auto w-[calc(100%-3rem)] max-w-lg overflow-hidden rounded-2xl border border-gray-700 bg-gray-900 shadow-2xl backdrop:bg-black/70 backdrop:backdrop-blur-sm"
       >
-        <div class="flex gap-1.5">
-          <span class="h-2.5 w-2.5 rounded-full bg-red-500/80"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-green-500/80"></span>
-        </div>
-        <div
-          id="modal-url"
-          class="rounded-full border border-gray-700 bg-gray-800 px-3 py-1 font-mono text-xs text-gray-400"
-        >
-        </div>
-        <button
-          id="modal-close"
-          class="grid h-7 w-7 place-items-center rounded-md text-gray-400 transition-colors hover:bg-gray-800 hover:text-white"
-          aria-label="Close"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="h-3.5 w-3.5"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line><line
-              x1="6"
-              y1="6"
-              x2="18"
-              y2="18"></line>
-          </svg>
-        </button>
-      </div>
-      <!-- Modal body -->
-      <div class="p-5 sm:p-8">
-        <div
-          id="modal-cert"
-          class="relative flex flex-col gap-4 overflow-hidden rounded-xl border border-gray-700 p-7 text-center"
-        >
-          <div
-            class="pointer-events-none absolute inset-0 opacity-30"
-            style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0); background-size: 14px 14px; mask-image: linear-gradient(180deg, #000, transparent 70%);"
-          >
+        {/* Browser chrome */}
+        <div class="flex items-center justify-between border-b border-gray-800 px-4 py-3">
+          <div class="flex gap-1.5">
+            <span class="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+            <span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
+            <span class="h-2.5 w-2.5 rounded-full bg-green-500/80" />
           </div>
-          <p
-            id="modal-eyebrow"
-            class="relative font-mono text-xs tracking-widest text-gray-400 uppercase"
-          >
-          </p>
-          <div
-            id="modal-mono"
-            class="relative font-mono text-5xl leading-none font-medium"
-          >
+          <div class="rounded-full border border-gray-700 bg-gray-800 px-3 py-1 font-mono text-xs text-gray-400">
+            verify.ldelvillar.app/{cert.id}
           </div>
-          <h3
-            id="modal-title"
-            class="relative text-xl font-semibold text-white"
-          >
-          </h3>
-          <p id="modal-awarded" class="relative text-sm text-gray-400"></p>
-          <div class="relative mt-2 grid grid-cols-3 gap-2">
-            <div
-              class="flex flex-col gap-0.5 rounded-lg border border-gray-700 p-2.5 text-left"
-            >
-              <span class="text-[9px] tracking-widest text-gray-500 uppercase"
-                >{t.certifications.date}</span
-              >
-              <span id="modal-date" class="font-mono text-sm text-white"></span>
-            </div>
-            <div
-              class="flex flex-col gap-0.5 rounded-lg border border-gray-700 p-2.5 text-left"
-            >
-              <span class="text-[9px] tracking-widest text-gray-500 uppercase"
-                >ID</span
-              >
-              <span id="modal-id" class="truncate font-mono text-sm text-white"
-              ></span>
-            </div>
-            <div
-              class="flex flex-col gap-0.5 rounded-lg border border-gray-700 p-2.5 text-left"
-            >
-              <span class="text-[9px] tracking-widest text-gray-500 uppercase"
-                >{t.certifications.hours_label}</span
-              >
-              <span id="modal-hours" class="font-mono text-sm text-white"
-              ></span>
-            </div>
-          </div>
-          <div class="relative flex justify-center gap-2">
-            <a
-              id="modal-verify-link"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-yellow-300"
+          <form method="dialog">
+            <button
+              class="grid h-7 w-7 place-items-center rounded-md text-gray-400 transition-colors hover:bg-gray-800 hover:text-white"
+              aria-label="Close"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -480,40 +387,114 @@ for (const id of CATEGORY_IDS.slice(1)) {
                 stroke-linejoin="round"
                 class="h-3.5 w-3.5"
               >
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
-                ></path><path d="m9 12 2 2 4-4"></path>
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
-              {t.certifications.verify}
-            </a>
-            <a
-              id="modal-download-link"
-              href="#"
-              download
-              class="hidden items-center gap-2 rounded-full border border-gray-700 px-4 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800"
+            </button>
+          </form>
+        </div>
+        {/* Modal body */}
+        <div class="p-5 sm:p-8">
+          <div
+            class="relative flex flex-col gap-4 overflow-hidden rounded-xl border border-gray-700 p-7 text-center"
+            style={`background: radial-gradient(120% 80% at 50% 0%, ${cert.tint}22 0%, transparent 60%), #0f0f13`}
+          >
+            <div
+              class="pointer-events-none absolute inset-0 opacity-30"
+              style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0); background-size: 14px 14px; mask-image: linear-gradient(180deg, #000, transparent 70%);"
+            />
+            <p class="relative font-mono text-xs tracking-widest text-gray-400 uppercase">
+              {t.certifications.issued_by} · {cert.issuer}
+            </p>
+            <div
+              class="relative font-mono text-5xl leading-none font-medium"
+              style={`color: ${cert.tint}; text-shadow: 0 0 60px ${cert.tint}66;`}
             >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="h-3.5 w-3.5"
+              {cert.mono}
+            </div>
+            <h3
+              id={`cert-${cert.id}-title`}
+              class="relative text-xl font-semibold text-white"
+            >
+              {cert.title}
+            </h3>
+            <p class="relative text-sm text-gray-400">
+              {t.certifications.awarded_to}{' '}
+              <strong class="text-white">{SITE.name}</strong>
+            </p>
+            <div class="relative mt-2 grid grid-cols-3 gap-2">
+              <div class="flex flex-col gap-0.5 rounded-lg border border-gray-700 p-2.5 text-left">
+                <span class="text-[9px] tracking-widest text-gray-500 uppercase">
+                  {t.certifications.date}
+                </span>
+                <span class="font-mono text-sm text-white">
+                  {fmtDate(cert.date, lang)}
+                </span>
+              </div>
+              <div class="flex flex-col gap-0.5 rounded-lg border border-gray-700 p-2.5 text-left">
+                <span class="text-[9px] tracking-widest text-gray-500 uppercase">
+                  ID
+                </span>
+                <span class="truncate font-mono text-sm text-white">
+                  {cert.id.toUpperCase()}
+                </span>
+              </div>
+              <div class="flex flex-col gap-0.5 rounded-lg border border-gray-700 p-2.5 text-left">
+                <span class="text-[9px] tracking-widest text-gray-500 uppercase">
+                  {t.certifications.hours_label}
+                </span>
+                <span class="font-mono text-sm text-white">{cert.hours}h</span>
+              </div>
+            </div>
+            <div class="relative flex justify-center gap-2">
+              <a
+                href={cert.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-yellow-300"
               >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                ></path><polyline points="7 10 12 15 17 10"></polyline><line
-                  x1="12"
-                  y1="15"
-                  x2="12"
-                  y2="3"></line>
-              </svg>
-              {t.certifications.download_pdf}
-            </a>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-3.5 w-3.5"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+                {t.certifications.verify}
+              </a>
+              {cert.pdfUrl && (
+                <a
+                  href={cert.pdfUrl}
+                  download={`${cert.id}.pdf`}
+                  class="inline-flex items-center gap-2 rounded-full border border-gray-700 px-4 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3.5 w-3.5"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  {t.certifications.download_pdf}
+                </a>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+      </dialog>
+    ))
+  }
 </Layout>
 
 <style>
@@ -576,101 +557,18 @@ for (const id of CATEGORY_IDS.slice(1)) {
     filterCards();
   });
 
-  // --- Modal ---
-  const backdrop = document.getElementById('modal-backdrop');
-  const modalClose = document.getElementById('modal-close');
+  // --- Modals ---
+  document.querySelectorAll<HTMLElement>('[data-dialog]').forEach(btn => {
+    const dialog = document.getElementById(
+      btn.dataset.dialog ?? ''
+    ) as HTMLDialogElement | null;
+    btn.addEventListener('click', () => dialog?.showModal());
+  });
 
-  interface CertData {
-    id: string;
-    title: string;
-    issuer: string;
-    mono: string;
-    tint: string;
-    date: string;
-    hours: number;
-    credentialUrl: string;
-    pdfUrl: string;
-  }
-
-  function openModal(cert: CertData) {
-    const certEl = document.getElementById('modal-cert');
-    const monoEl = document.getElementById('modal-mono');
-
-    if (certEl)
-      certEl.style.background = `radial-gradient(120% 80% at 50% 0%, ${cert.tint}22 0%, transparent 60%), #0f0f13`;
-    if (monoEl) {
-      monoEl.style.color = cert.tint;
-      monoEl.style.textShadow = `0 0 60px ${cert.tint}66`;
-      monoEl.textContent = cert.mono;
-    }
-
-    const lang = document.documentElement.lang;
-    const issuedBy = lang === 'es' ? 'Emitido por' : 'Issued by';
-    const awardedTo = lang === 'es' ? 'Otorgado a' : 'Awarded to';
-
-    const set = (id: string, text: string) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = text;
-    };
-    const setHtml = (id: string, html: string) => {
-      const el = document.getElementById(id);
-      if (el) el.innerHTML = html;
-    };
-
-    set('modal-url', `verify.ldelvillar.app/${cert.id.toLowerCase()}`);
-    set('modal-eyebrow', `${issuedBy} · ${cert.issuer}`);
-    set('modal-title', cert.title);
-    setHtml(
-      'modal-awarded',
-      `${awardedTo} <strong style="color:#fff">Lucas del Villar</strong>`
-    );
-    set('modal-date', cert.date);
-    set('modal-id', cert.id);
-    set('modal-hours', `${cert.hours}h`);
-
-    const verifyLink = document.getElementById(
-      'modal-verify-link'
-    ) as HTMLAnchorElement | null;
-    if (verifyLink) verifyLink.href = cert.credentialUrl;
-
-    const downloadLink = document.getElementById(
-      'modal-download-link'
-    ) as HTMLAnchorElement | null;
-    if (downloadLink) {
-      if (cert.pdfUrl) {
-        downloadLink.href = cert.pdfUrl;
-        downloadLink.setAttribute('download', `${cert.id.toLowerCase()}.pdf`);
-        downloadLink.classList.remove('hidden');
-        downloadLink.classList.add('inline-flex');
-      } else {
-        downloadLink.classList.add('hidden');
-        downloadLink.classList.remove('inline-flex');
-      }
-    }
-
-    backdrop?.classList.remove('hidden');
-    backdrop?.classList.add('flex');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    backdrop?.classList.add('hidden');
-    backdrop?.classList.remove('flex');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll<HTMLButtonElement>('.open-modal').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const cert = JSON.parse(btn.dataset.cert ?? '{}') as CertData;
-      openModal(cert);
+  // Clicks on ::backdrop are dispatched to the <dialog> itself
+  document.querySelectorAll('dialog').forEach(dialog => {
+    dialog.addEventListener('click', e => {
+      if (e.target === dialog) dialog.close();
     });
-  });
-
-  modalClose?.addEventListener('click', closeModal);
-  backdrop?.addEventListener('click', e => {
-    if (e.target === backdrop) closeModal();
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
   });
 </script>

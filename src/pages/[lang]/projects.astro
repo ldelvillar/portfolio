@@ -1,42 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import Layout from '@/layouts/Layout.astro';
 import { getTranslations } from '@/utils/getTranslations';
 import { PROJECTS, TECH_META, FALLBACK_BG } from '@/data/projects';
 import { DEFAULT_LANG, langStaticPaths, type Lang } from '@/i18n/config';
-
-const container = await AstroContainer.create();
-const iconHtmlCache = new Map<string, string>();
-async function renderIconHtml(name: string): Promise<string> {
-  if (iconHtmlCache.has(name)) return iconHtmlCache.get(name)!;
-  const Icon = TECH_META[name]?.icon;
-  if (!Icon) {
-    iconHtmlCache.set(name, '');
-    return '';
-  }
-  const html = await container.renderToString(Icon, {
-    props: { class: 'size-4' },
-  });
-  iconHtmlCache.set(name, html);
-  return html;
-}
-
-async function renderStackHtml(stack: string[]): Promise<string> {
-  const parts = await Promise.all(
-    stack.map(async name => {
-      const bgcolor = TECH_META[name]?.bgcolor ?? FALLBACK_BG;
-      const iconHtml = await renderIconHtml(name);
-      return `<span class="flex items-center gap-x-2 rounded-full ${bgcolor} px-2 py-1 text-sm whitespace-nowrap text-gray-200">${iconHtml}${name}</span>`;
-    })
-  );
-  return parts.join('');
-}
-
-const stackHtmlById: Record<string, string> = {};
-for (const p of PROJECTS) {
-  stackHtmlById[p.id] = await renderStackHtml(p.stack);
-}
 
 export async function getStaticPaths() {
   return langStaticPaths();
@@ -278,8 +245,8 @@ function statusBadgeClasses(s: string): string {
 
             <div class="mt-1 flex flex-wrap gap-2">
               <button
-                class="open-modal inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-yellow-300"
-                data-project={featured.id}
+                class="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-yellow-300"
+                data-dialog={`project-${featured.id}`}
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -476,9 +443,9 @@ function statusBadgeClasses(s: string): string {
                 )}
                 <button
                   type="button"
-                  class="open-modal grid h-7 w-7 place-items-center rounded-md border border-gray-200 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                  class="grid h-7 w-7 place-items-center rounded-md border border-gray-200 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
                   aria-label="Case study"
-                  data-project={project.id}
+                  data-dialog={`project-${project.id}`}
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -512,175 +479,181 @@ function statusBadgeClasses(s: string): string {
       </div>
     </div>
 
-    <!-- Modal -->
-    <div
-      id="modal-backdrop"
-      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-6 backdrop-blur-sm"
-    >
-      <div
-        class="flex max-h-[calc(100vh-3rem)] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-gray-700 bg-gray-900 shadow-2xl"
-      >
-        <div
-          class="flex items-center justify-between border-b border-gray-800 px-4 py-3"
+    <!-- Project modals -->
+    {
+      PROJECTS.map(p => (
+        <dialog
+          id={`project-${p.id}`}
+          aria-labelledby={`project-${p.id}-title`}
+          class="m-auto max-h-[calc(100vh-3rem)] w-[calc(100%-3rem)] max-w-2xl flex-col overflow-hidden rounded-2xl border border-gray-700 bg-gray-900 shadow-2xl backdrop:bg-black/70 backdrop:backdrop-blur-sm open:flex"
         >
-          <div class="flex gap-1.5">
-            <span class="h-2.5 w-2.5 rounded-full bg-red-500/80"></span>
-            <span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80"></span>
-            <span class="h-2.5 w-2.5 rounded-full bg-green-500/80"></span>
-          </div>
-          <div
-            id="modal-url"
-            class="truncate rounded-full border border-gray-700 bg-gray-800 px-3 py-1 font-mono text-xs text-gray-400"
-          >
-          </div>
-          <button
-            id="modal-close"
-            class="grid h-7 w-7 place-items-center rounded-md text-gray-400 transition-colors hover:bg-gray-800 hover:text-white"
-            aria-label="Close"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="h-3.5 w-3.5"
-            >
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-        <div class="overflow-y-auto">
-          <div
-            id="modal-hero"
-            class="relative grid aspect-16/8 place-items-center overflow-hidden border-b border-gray-800"
-          >
-            <div
-              class="pointer-events-none absolute inset-0 opacity-40"
-              style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0); background-size: 14px 14px; mask-image: radial-gradient(80% 100% at 50% 0%, #000 30%, transparent 80%);"
-            >
+          <div class="flex items-center justify-between border-b border-gray-800 px-4 py-3">
+            <div class="flex gap-1.5">
+              <span class="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+              <span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
+              <span class="h-2.5 w-2.5 rounded-full bg-green-500/80" />
             </div>
-            <span
-              id="modal-mono"
-              class="relative font-mono text-5xl leading-none font-medium sm:text-6xl"
-            ></span>
+            <div class="truncate rounded-full border border-gray-700 bg-gray-800 px-3 py-1 font-mono text-xs text-gray-400">
+              <>
+                <span>https://</span>
+                <b class="font-medium text-gray-200">{p.url}</b>
+              </>
+            </div>
+            <form method="dialog">
+              <button
+                class="grid h-7 w-7 place-items-center rounded-md text-gray-400 transition-colors hover:bg-gray-800 hover:text-white"
+                aria-label="Close"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-3.5 w-3.5"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </form>
           </div>
-          <div class="flex flex-col gap-4 p-6 sm:p-8">
+          <div class="overflow-y-auto">
             <div
-              class="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-gray-400 uppercase"
+              class="relative grid aspect-16/8 place-items-center overflow-hidden border-b border-gray-800"
+              style={`background: radial-gradient(120% 80% at 50% 0%, ${p.tint}2e 0%, transparent 65%), linear-gradient(180deg, #0c0c10 0%, #08080b 100%)`}
             >
-              <span id="modal-role"></span>
-              <span class="h-[3px] w-[3px] rounded-full bg-gray-500"></span>
-              <span id="modal-year"></span>
-              <span class="h-[3px] w-[3px] rounded-full bg-gray-500"></span>
-              <span id="modal-duration"></span>
-              <span class="h-[3px] w-[3px] rounded-full bg-gray-500"></span>
+              <div
+                class="pointer-events-none absolute inset-0 opacity-40"
+                style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0); background-size: 14px 14px; mask-image: radial-gradient(80% 100% at 50% 0%, #000 30%, transparent 80%);"
+              />
               <span
-                id="modal-status"
-                class="inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[9px] tracking-widest"
-              ></span>
-            </div>
-            <h3
-              id="modal-title"
-              class="text-xl leading-snug font-semibold text-white sm:text-2xl"
-            >
-            </h3>
-            <p id="modal-desc" class="text-sm leading-relaxed text-gray-300">
-            </p>
-
-            <div
-              id="modal-stats"
-              class="grid grid-cols-3 divide-x divide-gray-800 overflow-hidden rounded-lg border border-gray-800"
-            >
-            </div>
-
-            <div id="modal-stack" class="flex flex-wrap gap-1.5"></div>
-
-            <div
-              id="modal-highlights"
-              class="flex flex-col gap-2 rounded-lg border border-gray-800 bg-gray-950 p-4"
-            >
-            </div>
-
-            <div class="flex flex-wrap gap-2">
-              <a
-                id="modal-live"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-yellow-300"
+                class={`relative font-mono leading-none font-medium ${p.mono.length > 6 ? 'text-3xl sm:text-4xl' : p.mono.length > 4 ? 'text-4xl sm:text-5xl' : 'text-5xl sm:text-6xl'}`}
+                style={`color: ${p.tint}; text-shadow: 0 0 60px ${p.tint}66;`}
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="h-3.5 w-3.5"
+                {p.mono}
+              </span>
+            </div>
+            <div class="flex flex-col gap-4 p-6 sm:p-8">
+              <div class="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-gray-400 uppercase">
+                <span>{tp.items[p.id].role}</span>
+                <span class="h-[3px] w-[3px] rounded-full bg-gray-500" />
+                <span>{p.year}</span>
+                <span class="h-[3px] w-[3px] rounded-full bg-gray-500" />
+                <span>{tp.items[p.id].duration}</span>
+                <span class="h-[3px] w-[3px] rounded-full bg-gray-500" />
+                <span
+                  class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[9px] tracking-widest ${statusBadgeClasses(p.status)}`}
                 >
-                  <path d="M15 3h6v6"></path>
-                  <path d="M10 14 21 3"></path>
-                  <path
-                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                  ></path>
-                </svg>
-                <span>{tp.actions.live}</span>
-              </a>
-              <a
-                id="modal-repo"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-full border border-gray-700 px-4 py-2 text-sm font-medium text-gray-200 transition-colors hover:bg-gray-800"
+                  {statusLabel(p.status)}
+                </span>
+              </div>
+              <h3
+                id={`project-${p.id}-title`}
+                class="text-xl leading-snug font-semibold text-white sm:text-2xl"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="h-3.5 w-3.5"
-                >
-                  <path
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                  ></path>
-                </svg>
-                <span>{tp.actions.repo}</span>
-              </a>
+                {tp.items[p.id].title}
+              </h3>
+              <p class="text-sm leading-relaxed text-gray-300">
+                {tp.items[p.id].desc}
+              </p>
+
+              <div class="grid grid-cols-3 divide-x divide-gray-800 overflow-hidden rounded-lg border border-gray-800">
+                {p.stats.map(s => (
+                  <div class="flex flex-col gap-0.5 bg-gray-900 p-3">
+                    <span class="text-[10px] tracking-widest text-gray-500 uppercase">
+                      {s.k}
+                    </span>
+                    <span
+                      class={`font-mono text-sm ${s.accent ? 'text-yellow-400' : 'text-white'}`}
+                    >
+                      {s.v}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div class="flex flex-wrap gap-1.5">
+                {p.stack.map(s => {
+                  const meta = TECH_META[s];
+                  const Icon = meta?.icon;
+                  return (
+                    <span
+                      class={`flex items-center gap-x-2 rounded-full ${meta?.bgcolor ?? FALLBACK_BG} px-2 py-1 text-sm whitespace-nowrap text-gray-200`}
+                    >
+                      {Icon && <Icon class="size-4" />}
+                      {s}
+                    </span>
+                  );
+                })}
+              </div>
+
+              <div class="flex flex-col gap-2 rounded-lg border border-gray-800 bg-gray-950 p-4">
+                {tp.items[p.id].highlights.map(h => (
+                  <div class="flex gap-2 text-sm leading-relaxed text-gray-300">
+                    <span
+                      class="font-mono font-semibold"
+                      style={`color: ${p.tint}`}
+                    >
+                      ›
+                    </span>
+                    <span>{h}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div class="flex flex-wrap gap-2">
+                {p.preview && (
+                  <a
+                    href={p.preview}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-yellow-300"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="h-3.5 w-3.5"
+                    >
+                      <path d="M15 3h6v6" />
+                      <path d="M10 14 21 3" />
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    </svg>
+                    <span>{tp.actions.live}</span>
+                  </a>
+                )}
+                {p.github && (
+                  <a
+                    href={p.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 rounded-full border border-gray-700 px-4 py-2 text-sm font-medium text-gray-200 transition-colors hover:bg-gray-800"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="h-3.5 w-3.5"
+                    >
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                    <span>{tp.actions.repo}</span>
+                  </a>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <script
-      type="application/json"
-      id="projects-data"
-      set:html={JSON.stringify(
-        PROJECTS.map(p => ({
-          id: p.id,
-          title: tp.items[p.id].title,
-          role: tp.items[p.id].role,
-          duration: tp.items[p.id].duration,
-          desc: tp.items[p.id].desc,
-          highlights: tp.items[p.id].highlights,
-          year: p.year,
-          status: p.status,
-          statusLabel: statusLabel(p.status),
-          mono: p.mono,
-          tint: p.tint,
-          url: p.url,
-          stackHtml: stackHtmlById[p.id],
-          stats: p.stats,
-          github: p.github ?? '',
-          preview: p.preview ?? '',
-        }))
-      )}
-    />
+        </dialog>
+      ))
+    }
   </main>
 
   <style>
@@ -696,36 +669,6 @@ function statusBadgeClasses(s: string): string {
   </style>
 
   <script>
-    interface ProjectStat {
-      k: string;
-      v: string;
-      accent?: boolean;
-    }
-    interface ProjectData {
-      id: string;
-      title: string;
-      role: string;
-      duration: string;
-      desc: string;
-      highlights: string[];
-      year: string;
-      status: string;
-      statusLabel: string;
-      mono: string;
-      tint: string;
-      url: string;
-      stackHtml: string;
-      stats: ProjectStat[];
-      github: string;
-      preview: string;
-    }
-
-    const dataEl = document.getElementById('projects-data');
-    const PROJECTS_CLIENT: ProjectData[] = JSON.parse(
-      dataEl?.textContent ?? '[]'
-    );
-    const PROJECTS_BY_ID = new Map(PROJECTS_CLIENT.map(p => [p.id, p]));
-
     // --- Filter pills + search ---
     const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
     const cards = document.querySelectorAll<HTMLElement>('.proj-card');
@@ -785,142 +728,19 @@ function statusBadgeClasses(s: string): string {
       filterCards();
     });
 
-    // --- Modal ---
-    const backdrop = document.getElementById('modal-backdrop');
-    const modalClose = document.getElementById('modal-close');
+    // --- Modals ---
+    document.querySelectorAll<HTMLElement>('[data-dialog]').forEach(btn => {
+      const dialog = document.getElementById(
+        btn.dataset.dialog ?? ''
+      ) as HTMLDialogElement | null;
+      btn.addEventListener('click', () => dialog?.showModal());
+    });
 
-    function setText(id: string, text: string) {
-      const el = document.getElementById(id);
-      if (el) el.textContent = text;
-    }
-
-    function statusClasses(status: string): string {
-      if (status === 'live')
-        return 'border-green-500/25 bg-green-500/10 text-green-300';
-      if (status === 'dev')
-        return 'border-amber-500/25 bg-amber-500/10 text-amber-300';
-      return 'border-gray-500/25 bg-gray-500/10 text-gray-300';
-    }
-
-    function openModal(project: ProjectData) {
-      const hero = document.getElementById('modal-hero');
-      const mono = document.getElementById('modal-mono');
-      const monoSizeCls =
-        project.mono.length > 6
-          ? 'text-3xl sm:text-4xl'
-          : project.mono.length > 4
-            ? 'text-4xl sm:text-5xl'
-            : 'text-5xl sm:text-6xl';
-
-      if (hero) {
-        hero.style.background = `radial-gradient(120% 80% at 50% 0%, ${project.tint}2e 0%, transparent 65%), linear-gradient(180deg, #0c0c10 0%, #08080b 100%)`;
-      }
-      if (mono) {
-        mono.className = `relative font-mono leading-none font-medium ${monoSizeCls}`;
-        mono.style.color = project.tint;
-        mono.style.textShadow = `0 0 60px ${project.tint}66`;
-        mono.textContent = project.mono;
-      }
-
-      const urlEl = document.getElementById('modal-url');
-      if (urlEl)
-        urlEl.innerHTML = `<span>https://</span><b class="font-medium text-gray-200">${project.url}</b>`;
-
-      setText('modal-role', project.role);
-      setText('modal-year', project.year);
-      setText('modal-duration', project.duration);
-
-      const statusEl = document.getElementById('modal-status');
-      if (statusEl) {
-        statusEl.className = `inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[9px] tracking-widest ${statusClasses(project.status)}`;
-        statusEl.textContent = project.statusLabel;
-      }
-
-      setText('modal-title', project.title);
-      setText('modal-desc', project.desc);
-
-      const statsEl = document.getElementById('modal-stats');
-      if (statsEl) {
-        statsEl.innerHTML = project.stats
-          .map(
-            s => `
-            <div class="flex flex-col gap-0.5 bg-gray-900 p-3">
-              <span class="text-[10px] tracking-widest text-gray-500 uppercase">${s.k}</span>
-              <span class="font-mono text-sm ${s.accent ? 'text-yellow-400' : 'text-white'}">${s.v}</span>
-            </div>
-          `
-          )
-          .join('');
-      }
-
-      const stackEl = document.getElementById('modal-stack');
-      if (stackEl) {
-        stackEl.innerHTML = project.stackHtml;
-      }
-
-      const highlightsEl = document.getElementById('modal-highlights');
-      if (highlightsEl) {
-        highlightsEl.innerHTML = project.highlights
-          .map(
-            h => `
-            <div class="flex gap-2 text-sm leading-relaxed text-gray-300">
-              <span class="font-mono font-semibold" style="color:${project.tint}">›</span>
-              <span>${h}</span>
-            </div>
-          `
-          )
-          .join('');
-      }
-
-      const liveLink = document.getElementById(
-        'modal-live'
-      ) as HTMLAnchorElement | null;
-      if (liveLink) {
-        if (project.preview) {
-          liveLink.href = project.preview;
-          liveLink.classList.remove('hidden');
-        } else {
-          liveLink.classList.add('hidden');
-        }
-      }
-
-      const repoLink = document.getElementById(
-        'modal-repo'
-      ) as HTMLAnchorElement | null;
-      if (repoLink) {
-        if (project.github) {
-          repoLink.href = project.github;
-          repoLink.classList.remove('hidden');
-        } else {
-          repoLink.classList.add('hidden');
-        }
-      }
-
-      backdrop?.classList.remove('hidden');
-      backdrop?.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      backdrop?.classList.add('hidden');
-      backdrop?.classList.remove('flex');
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll<HTMLElement>('.open-modal').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.project ?? '';
-        const project = PROJECTS_BY_ID.get(id);
-        if (project) openModal(project);
+    // Clicks on ::backdrop are dispatched to the <dialog> itself
+    document.querySelectorAll('dialog').forEach(dialog => {
+      dialog.addEventListener('click', e => {
+        if (e.target === dialog) dialog.close();
       });
-    });
-
-    modalClose?.addEventListener('click', closeModal);
-    backdrop?.addEventListener('click', e => {
-      if (e.target === backdrop) closeModal();
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeModal();
     });
   </script>
 </Layout>

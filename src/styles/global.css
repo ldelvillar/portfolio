@@ -38,6 +38,11 @@ html {
   scroll-padding-top: 5rem;
 }
 
+/* Lock page scroll while a modal <dialog> is open */
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
 @keyframes background-shine {
   from {
     background-position: 0 0;
