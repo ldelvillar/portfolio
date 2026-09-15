@@ -10,8 +10,7 @@
       "projects": "Proyectos",
       "certifications": "Certificaciones",
       "about": "Sobre mí",
-      "contact": "Contacto",
-      "skills": "Habilidades"
+      "contact": "Contacto"
     }
   },
   "hero": {
@@ -61,10 +60,6 @@
     "status_dev": "En desarrollo",
     "status_archived": "Archivado",
     "fields": {
-      "role": "Rol",
-      "year": "Año",
-      "team": "Equipo",
-      "duration": "Duración",
       "people": "personas",
       "person": "persona"
     },
@@ -154,29 +149,6 @@
     },
     "goal": "Mi objetivo es seguir formándome constantemente, aprendiendo nuevas tecnologías y manteniéndome al día con las tecnologías emergentes, especialmente aquellas relacionadas con IA y automatización."
   },
-  "form": {
-    "name": {
-      "question": "¿Cuál es tu nombre?",
-      "placeholder": "Juan Doe *"
-    },
-    "email": {
-      "question": "¿Cuál es tu correo electrónico?",
-      "placeholder": "juan@doe.com *"
-    },
-    "organization": {
-      "question": "¿Cuál es el nombre de tu organización?",
-      "placeholder": "Juan & Doe Ltd."
-    },
-    "services": {
-      "question": "¿Qué servicios estás buscando?",
-      "placeholder": "Desarrollo web, diseño web... *"
-    },
-    "message": {
-      "question": "Tu mensaje",
-      "placeholder": "Escribe tu mensaje aquí... *"
-    },
-    "send": "Enviar Mensaje"
-  },
   "theme": {
     "label": "Elige el tema",
     "light": "Claro",
@@ -223,9 +195,6 @@
       "ai": "IA"
     },
     "items": {
-      "aws-saa-c03": {
-        "desc": "Diseño de soluciones distribuidas, seguras y escalables sobre AWS. Cubre cómputo, almacenamiento, redes y bases de datos con foco en costes y alta disponibilidad."
-      },
       "ai-900": {
         "desc": "Diseño e implementación de soluciones de IA de Azure utilizando diversos servicios y herramientas de IA."
       },
@@ -234,9 +203,6 @@
       },
       "claude-code-2026": {
         "desc": "Aprende a utilizar Claude para escribir y mejorar código, así como para resolver problemas complejos de programación."
-      },
-      "dca-2025": {
-        "desc": "Construcción, despliegue y orquestación de contenedores en producción. Optimización de imágenes, redes overlay y pipelines de entrega continua."
       },
       "gcp-gce-2025": {
         "desc": "Diseño e implementación de soluciones en Google Cloud Platform con foco en arquitectura, seguridad y gestión de costos."

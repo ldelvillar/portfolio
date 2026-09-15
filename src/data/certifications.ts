@@ -19,20 +19,6 @@ export interface Cert {
 }
 
 export const CERTS: Cert[] = [
-  /* {
-    id: 'aws-saa-c03',
-    title: 'AWS Certified Solutions Architect – Associate',
-    issuer: 'Amazon Web Services',
-    issuerShort: 'AWS',
-    category: 'cloud',
-    date: '2025-02',
-    hours: 80,
-    status: 'active',
-    mono: 'AWS',
-    tint: '#ff9900',
-    skills: ['EC2', 'S3', 'IAM', 'VPC', 'Cloud Architecture'],
-    credentialUrl: '#',
-  }, */
   {
     id: 'ai-900',
     title: 'AI-900: Azure AI Fundamentals',
@@ -112,18 +98,4 @@ export const CERTS: Cert[] = [
     ],
     credentialUrl: '#',
   },
-  /* {
-    id: 'dca-2025',
-    title: 'Docker Certified Associate',
-    issuer: 'Docker, Inc.',
-    issuerShort: 'Docker',
-    category: 'devops',
-    date: '2025-03',
-    hours: 60,
-    status: 'active',
-    mono: 'DCA',
-    tint: '#60a5fa',
-    skills: ['Docker', 'Compose', 'Swarm', 'Image Optimization', 'CI/CD'],
-    credentialUrl: '#',
-  }, */
 ];
