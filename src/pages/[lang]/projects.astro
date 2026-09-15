@@ -3,13 +3,13 @@ import { Image } from 'astro:assets';
 import Layout from '@/layouts/Layout.astro';
 import { getTranslations } from '@/utils/getTranslations';
 import { PROJECTS, TECH_META, FALLBACK_BG } from '@/data/projects';
-import { DEFAULT_LANG, langStaticPaths, type Lang } from '@/i18n/config';
+import { langStaticPaths, type Lang } from '@/i18n/config';
 
 export async function getStaticPaths() {
   return langStaticPaths();
 }
 
-const lang = (Astro.params?.lang ?? DEFAULT_LANG) as Lang;
+const lang = Astro.params.lang as Lang;
 const t = getTranslations(lang);
 
 const tp = t.projects_page;
@@ -44,7 +44,7 @@ function statusBadgeClasses(s: string): string {
 }
 ---
 
-<Layout title={`${tp.title} - ldelvillar`}>
+<Layout title={`${tp.title} - ldelvillar`} lang={lang}>
   <main class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
     <!-- Section header -->
     <header class="mb-8 flex flex-wrap items-center gap-4">

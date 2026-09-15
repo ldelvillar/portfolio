@@ -2,15 +2,15 @@
 import CertificationCard from '@/assets/icons/CertificationCard.astro';
 import RightArrow from '@/assets/icons/RightArrow.astro';
 import { CERTS } from '@/data/certifications';
-import { DEFAULT_LANG, type Lang } from '@/i18n/config';
+import type { Lang } from '@/i18n/config';
 import type { Translations } from '@/utils/getTranslations';
 
 interface Props {
   t: Translations;
+  lang: Lang;
 }
 
-const { t } = Astro.props;
-const lang = (Astro.params?.lang ?? DEFAULT_LANG) as Lang;
+const { t, lang } = Astro.props;
 
 const MONTHS = {
   es: [

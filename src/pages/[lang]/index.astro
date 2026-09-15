@@ -7,22 +7,22 @@ import TechStack from '@/components/home/TechStack.astro';
 import About from '@/components/home/About.astro';
 import Certifications from '@/components/home/Certifications.astro';
 import { getTranslations } from '@/utils/getTranslations';
-import { DEFAULT_LANG, langStaticPaths, type Lang } from '@/i18n/config';
+import { langStaticPaths, type Lang } from '@/i18n/config';
 
 export async function getStaticPaths() {
   return langStaticPaths();
 }
 
-const lang = (Astro.params?.lang ?? DEFAULT_LANG) as Lang;
+const lang = Astro.params.lang as Lang;
 const t = getTranslations(lang);
 ---
 
-<Layout title={t.site.title}>
+<Layout title={t.site.title} lang={lang}>
   <main class="px-4">
     <Hero t={t} />
     <Experience t={t} />
-    <Projects t={t} />
-    <Certifications t={t} />
+    <Projects t={t} lang={lang} />
+    <Certifications t={t} lang={lang} />
     <TechStack t={t} />
     <About t={t} />
   </main>

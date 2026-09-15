@@ -3,13 +3,13 @@ import Layout from '@/layouts/Layout.astro';
 import { getTranslations } from '@/utils/getTranslations';
 import { CERTS } from '@/data/certifications';
 import { SITE } from '@/data/site';
-import { DEFAULT_LANG, langStaticPaths, type Lang } from '@/i18n/config';
+import { langStaticPaths, type Lang } from '@/i18n/config';
 
 export async function getStaticPaths() {
   return langStaticPaths();
 }
 
-const lang = (Astro.params?.lang ?? DEFAULT_LANG) as Lang;
+const lang = Astro.params.lang as Lang;
 const t = getTranslations(lang);
 
 const MONTHS = {
@@ -60,7 +60,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
 }
 ---
 
-<Layout title={`${t.certifications.title} - ldelvillar`}>
+<Layout title={`${t.certifications.title} - ldelvillar`} lang={lang}>
   <main class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
     <!-- Section header -->
     <header class="mb-8 flex flex-wrap items-center gap-4">

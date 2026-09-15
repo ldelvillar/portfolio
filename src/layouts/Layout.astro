@@ -1,20 +1,19 @@
 ---
 import '@/styles/global.css';
 import { getTranslations } from '@/utils/getTranslations';
-import { DEFAULT_LANG, type Lang } from '@/i18n/config';
+import type { Lang } from '@/i18n/config';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 
 interface Props {
   title: string;
-  lang?: Lang;
+  lang: Lang;
 }
 
 const fullUrl = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/images/favicon.png', Astro.site).href;
 
-const { title, lang: propLang } = Astro.props;
-const lang = propLang ?? (Astro.params?.lang as Lang) ?? DEFAULT_LANG;
+const { title, lang } = Astro.props;
 const t = getTranslations(lang);
 ---
 
