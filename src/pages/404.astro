@@ -1,40 +1,63 @@
 ---
 import { getTranslations } from '@/utils/getTranslations';
-import { DEFAULT_LANG, type Lang } from '@/i18n/config';
+import { DEFAULT_LANG, SUPPORTED_LANGUAGES, type Lang } from '@/i18n/config';
 import Layout from '@/layouts/Layout.astro';
 import { SITE } from '@/data/site';
 
-const lang: Lang = Astro.url.pathname.startsWith('/en') ? 'en' : DEFAULT_LANG;
-const t = getTranslations(lang);
-
-const title = `${t.not_found.title} - ${SITE.name}`;
+const title = (lang: Lang) =>
+  `${getTranslations(lang).not_found.title} - ${SITE.name}`;
 ---
 
-<Layout title={title} lang={lang}>
+<Layout title={title(DEFAULT_LANG)} lang={DEFAULT_LANG}>
   <section>
     <div
       class="mx-auto flex min-h-[80vh] max-w-7xl items-center justify-center px-4 lg:px-6"
     >
-      <div class="mx-auto max-w-screen-sm text-center">
+      <div id="not-found" class="mx-auto max-w-screen-sm text-center">
         <h1
           class="mb-4 text-7xl font-extrabold tracking-tight text-yellow-500 lg:text-9xl dark:text-yellow-400"
         >
           404
         </h1>
-        <p
-          class="mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl dark:text-white"
-        >
-          {t.not_found.title}
-        </p>
-        <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-          {t.not_found.description}
-        </p>
-        <a
-          href={`/${lang}`}
-          class="my-4 inline-flex rounded-lg bg-yellow-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 focus:outline-none dark:focus:ring-yellow-900"
-          >{t.not_found.back_to_home}</a
-        >
+        {
+          SUPPORTED_LANGUAGES.map(lang => {
+            const t = getTranslations(lang);
+            return (
+              <div
+                data-lang={lang}
+                data-title={title(lang)}
+                hidden={lang !== DEFAULT_LANG}
+              >
+                <p class="mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl dark:text-white">
+                  {t.not_found.title}
+                </p>
+                <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
+                  {t.not_found.description}
+                </p>
+                <a
+                  href={`/${lang}`}
+                  class="my-4 inline-flex rounded-lg bg-yellow-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 focus:outline-none dark:focus:ring-yellow-900"
+                >
+                  {t.not_found.back_to_home}
+                </a>
+              </div>
+            );
+          })
+        }
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    // Show the block for the URL's language prefix (e.g. /en/missing-page)
+    (() => {
+      const lang = location.pathname.split('/')[1];
+      const blocks = document.querySelectorAll('#not-found [data-lang]');
+      const match = [...blocks].find(el => el.dataset.lang === lang);
+      if (!match) return;
+      blocks.forEach(el => (el.hidden = el !== match));
+      document.documentElement.lang = lang;
+      document.title = match.dataset.title;
+    })();
+  </script>
 </Layout>
