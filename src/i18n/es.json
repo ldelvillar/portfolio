@@ -129,7 +129,8 @@
     }
   },
   "techstack": {
-    "ai": "IA & Automatización",
+    "title": "Stack tecnológico",
+    "ai": "Inteligencia Artificial",
     "cloud": "Nube & Infraestructura"
   },
   "about": {

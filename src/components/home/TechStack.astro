@@ -5,24 +5,30 @@ import ReactIcon from '@/assets/icons/logos/ReactIcon.astro';
 import Vue from '@/assets/icons/logos/Vue.astro';
 import NextJS from '@/assets/icons/logos/NextJS.astro';
 import Tailwind from '@/assets/icons/logos/Tailwind.astro';
-import Figma from '@/assets/icons/logos/Figma.astro';
+import SWR from '@/assets/icons/logos/SWR.astro';
 import TypeScript from '@/assets/icons/logos/Typescript.astro';
 import Python from '@/assets/icons/logos/Python.astro';
 import Express from '@/assets/icons/logos/Express.astro';
 import FastAPI from '@/assets/icons/logos/Fastapi.astro';
-import MySQL from '@/assets/icons/logos/MySQL.astro';
+import C from '@/assets/icons/logos/C.astro';
+import PostgreSQL from '@/assets/icons/logos/PostgreSQL.astro';
+import SQLServer from '@/assets/icons/logos/SQLServer.astro';
 import MongoDB from '@/assets/icons/logos/MongoDB.astro';
 import GCP from '@/assets/icons/logos/GCP.astro';
 import Azure from '@/assets/icons/logos/Azure.astro';
 import Docker from '@/assets/icons/logos/Docker.astro';
 import Kubernetes from '@/assets/icons/logos/Kubernetes.astro';
+import GithubActions from '@/assets/icons/logos/GithubActions.astro';
 import Linux from '@/assets/icons/logos/Linux.astro';
-import C from '@/assets/icons/logos/C.astro';
+import Redis from '@/assets/icons/logos/Redis.astro';
 import Langgraph from '@/assets/icons/logos/Langgraph.astro';
-import MCP from '@/assets/icons/logos/MCP.astro';
+import LangChain from '@/assets/icons/logos/LangChain.astro';
+import CrewAi from '@/assets/icons/logos/CrewAi.astro';
+import Ollama from '@/assets/icons/logos/Ollama.astro';
+import Vllm from '@/assets/icons/logos/Vllm.astro';
 import LlamaIndex from '@/assets/icons/logos/Llamaindex.astro';
-import N8n from '@/assets/icons/logos/N8n.astro';
-import Make from '@/assets/icons/logos/Make.astro';
+import MCP from '@/assets/icons/logos/MCP.astro';
+import HuggingFace from '@/assets/icons/logos/HuggingFace.astro';
 import type { Translations } from '@/utils/getTranslations';
 
 // @ts-ignore
@@ -43,6 +49,114 @@ interface TechField {
 const { t } = Astro.props;
 
 const FIELDS: TechField[] = [
+  {
+    name: 'Backend',
+    technologies: [
+      {
+        icon: Python,
+        name: 'Python',
+      },
+      {
+        icon: TypeScript,
+        name: 'TypeScript',
+      },
+
+      {
+        icon: FastAPI,
+        name: 'FastAPI',
+      },
+      {
+        icon: Express,
+        name: 'Express',
+      },
+      {
+        icon: C,
+        name: 'C',
+      },
+      {
+        icon: PostgreSQL,
+        name: 'PostgreSQL',
+      },
+      {
+        icon: SQLServer,
+        name: 'SQL Server',
+      },
+      {
+        icon: MongoDB,
+        name: 'MongoDB',
+      },
+    ],
+  },
+  {
+    name: t.techstack.ai,
+    technologies: [
+      {
+        icon: Langgraph,
+        name: 'LangGraph',
+      },
+      {
+        icon: LangChain,
+        name: 'LangChain',
+      },
+      {
+        icon: CrewAi,
+        name: 'CrewAI',
+      },
+      {
+        icon: Ollama,
+        name: 'Ollama',
+      },
+      {
+        icon: Vllm,
+        name: 'vLLM',
+      },
+      {
+        icon: LlamaIndex,
+        name: 'LlamaIndex',
+      },
+      {
+        icon: MCP,
+        name: 'MCP',
+      },
+      {
+        icon: HuggingFace,
+        name: 'Hugging Face',
+      },
+    ],
+  },
+  {
+    name: t.techstack.cloud,
+    technologies: [
+      {
+        icon: GCP,
+        name: 'GCP',
+      },
+      {
+        icon: Azure,
+        name: 'Azure',
+      },
+      {
+        icon: Docker,
+        name: 'Docker',
+      },
+      {
+        icon: Kubernetes,
+        name: 'Kubernetes',
+      },
+      {
+        icon: Redis,
+        name: 'Redis',
+      },
+      {
+        icon: GithubActions,
+        name: 'GitHub Actions',
+      },
+      {
+        icon: Linux,
+        name: 'Linux',
+      },
+    ],
+  },
   {
     name: 'Frontend',
     technologies: [
@@ -67,91 +181,8 @@ const FIELDS: TechField[] = [
         name: 'Tailwind CSS',
       },
       {
-        icon: Figma,
-        name: 'Figma',
-      },
-    ],
-  },
-  {
-    name: 'Backend',
-    technologies: [
-      {
-        icon: TypeScript,
-        name: 'TypeScript',
-      },
-      {
-        icon: Python,
-        name: 'Python',
-      },
-      {
-        icon: Express,
-        name: 'Express',
-      },
-      {
-        icon: FastAPI,
-        name: 'FastAPI',
-      },
-      {
-        icon: MySQL,
-        name: 'MySQL',
-      },
-      {
-        icon: MongoDB,
-        name: 'MongoDB',
-      },
-    ],
-  },
-  {
-    name: t.techstack.cloud,
-    technologies: [
-      {
-        icon: GCP,
-        name: 'GCP',
-      },
-      {
-        icon: Azure,
-        name: 'Azure',
-      },
-      {
-        icon: Docker,
-        name: 'Docker',
-      },
-      {
-        icon: Kubernetes,
-        name: 'Kubernetes',
-      },
-      {
-        icon: Linux,
-        name: 'Linux',
-      },
-      {
-        icon: C,
-        name: 'C',
-      },
-    ],
-  },
-  {
-    name: t.techstack.ai,
-    technologies: [
-      {
-        icon: Langgraph,
-        name: 'LangGraph',
-      },
-      {
-        icon: MCP,
-        name: 'MCP',
-      },
-      {
-        icon: LlamaIndex,
-        name: 'LlamaIndex',
-      },
-      {
-        icon: N8n,
-        name: 'n8n',
-      },
-      {
-        icon: Make,
-        name: 'Make',
+        icon: SWR,
+        name: 'SWR',
       },
     ],
   },
@@ -165,7 +196,7 @@ const FIELDS: TechField[] = [
     <span class="mr-5">
       <List />
     </span>
-    Tech Stack
+    {t.techstack.title}
   </h2>
 
   <div class="flex flex-col gap-5 md:grid md:grid-cols-2">

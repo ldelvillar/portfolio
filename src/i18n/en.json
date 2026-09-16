@@ -129,7 +129,8 @@
     }
   },
   "techstack": {
-    "ai": "AI & Automation",
+    "title": "Tech stack",
+    "ai": "Artificial Intelligence",
     "cloud": "Cloud & Infrastructure"
   },
   "about": {
