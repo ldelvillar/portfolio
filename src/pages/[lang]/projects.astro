@@ -19,15 +19,6 @@ const liveCount = PROJECTS.filter(p => p.status === 'live').length;
 const latest = [...PROJECTS].sort((a, b) => b.year.localeCompare(a.year))[0];
 const mainStack = 'TypeScript';
 
-const CATEGORY_IDS = ['all', 'saas', 'oss', 'personal'] as const;
-
-const catCounts: Record<string, number> = { all: PROJECTS.length };
-for (const id of CATEGORY_IDS.slice(1)) {
-  catCounts[id] = PROJECTS.filter(p =>
-    (p.category as readonly string[]).includes(id)
-  ).length;
-}
-
 const featured = PROJECTS.find(p => p.featured);
 const rest = PROJECTS.filter(p => !p.featured);
 
@@ -112,44 +103,27 @@ function statusBadgeClasses(s: string): string {
       </div>
     </div>
 
-    <!-- Filters -->
-    <div class="mb-8 flex flex-wrap items-center gap-2">
-      {
-        CATEGORY_IDS.map(id => (
-          <button
-            class="filter-pill inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-all hover:border-gray-400 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-500"
-            data-cat={id}
-            aria-pressed={id === 'all' ? 'true' : 'false'}
-          >
-            {tp.categories[id]}
-            <span class="pill-count rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500 dark:bg-gray-800 dark:text-gray-400">
-              {catCounts[id]}
-            </span>
-          </button>
-        ))
-      }
-      <div
-        class="flex w-full items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-gray-400 transition-colors focus-within:border-gray-400 sm:ml-auto sm:w-auto sm:min-w-[320px] dark:border-gray-700 dark:focus-within:border-gray-500"
+    <!-- Search -->
+    <div
+      class="mb-8 flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-gray-400 transition-colors focus-within:border-gray-400 sm:w-auto sm:min-w-[320px] dark:border-gray-700 dark:focus-within:border-gray-500"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-3.5 w-3.5 shrink-0"
       >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="h-3.5 w-3.5 shrink-0"
-        >
-          <circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"
-          ></path>
-        </svg>
-        <input
-          id="proj-search"
-          type="search"
-          placeholder={tp.search_placeholder}
-          class="min-w-0 flex-1 border-0 bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-400 dark:text-white"
-        />
-      </div>
+        <circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path>
+      </svg>
+      <input
+        id="proj-search"
+        type="search"
+        placeholder={tp.search_placeholder}
+        class="min-w-0 flex-1 border-0 bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-400 dark:text-white"
+      />
     </div>
 
     {
@@ -157,7 +131,6 @@ function statusBadgeClasses(s: string): string {
         <section
           class="proj-featured mb-12 grid grid-cols-1 overflow-hidden rounded-xl border border-gray-200 bg-white lg:grid-cols-[1.15fr_1fr] dark:border-gray-800 dark:bg-gray-900"
           style={`--proj-tint: ${featured.tint}`}
-          data-category={featured.category.join(',')}
           data-title={tp.items[featured.id].title.toLowerCase()}
           data-stack={featured.stack.join(',').toLowerCase()}
           data-desc={tp.items[featured.id].desc.toLowerCase()}
@@ -197,12 +170,7 @@ function statusBadgeClasses(s: string): string {
             </h2>
 
             <div class="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-gray-500 uppercase dark:text-gray-400">
-              <span>{tp.items[featured.id].role}</span>
-              <span class="h-[3px] w-[3px] rounded-full bg-gray-400" />
-              <span>
-                {featured.team}{' '}
-                {featured.team === '1' ? tp.fields.person : tp.fields.people}
-              </span>
+              <span>{featured.year}</span>
               <span class="h-[3px] w-[3px] rounded-full bg-gray-400" />
               <span>{tp.items[featured.id].duration}</span>
             </div>
@@ -318,7 +286,6 @@ function statusBadgeClasses(s: string): string {
         rest.map(project => (
           <article
             class="proj-card relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-all hover:border-gray-300 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
-            data-category={project.category.join(',')}
             data-title={tp.items[project.id].title.toLowerCase()}
             data-stack={project.stack.join(',').toLowerCase()}
             data-desc={tp.items[project.id].desc.toLowerCase()}
@@ -348,8 +315,6 @@ function statusBadgeClasses(s: string): string {
 
             <div class="flex flex-1 flex-col gap-3 p-5">
               <div class="flex flex-wrap items-center gap-2 font-mono text-[11px] tracking-wider text-gray-500 uppercase dark:text-gray-400">
-                <span>{tp.items[project.id].role}</span>
-                <span class="h-[3px] w-[3px] rounded-full bg-gray-400" />
                 <span>{project.year}</span>
                 <span class="h-[3px] w-[3px] rounded-full bg-gray-400" />
                 <span>{tp.items[project.id].duration}</span>
@@ -537,8 +502,6 @@ function statusBadgeClasses(s: string): string {
             </div>
             <div class="flex flex-col gap-4 p-6 sm:p-8">
               <div class="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-gray-400 uppercase">
-                <span>{tp.items[p.id].role}</span>
-                <span class="h-[3px] w-[3px] rounded-full bg-gray-500" />
                 <span>{p.year}</span>
                 <span class="h-[3px] w-[3px] rounded-full bg-gray-500" />
                 <span>{tp.items[p.id].duration}</span>
@@ -656,21 +619,8 @@ function statusBadgeClasses(s: string): string {
     }
   </main>
 
-  <style>
-    .filter-pill[aria-pressed='true'] {
-      background-color: #facc15;
-      color: #111827;
-      border-color: transparent;
-    }
-    .filter-pill[aria-pressed='true'] .pill-count {
-      background-color: rgba(0, 0, 0, 0.18);
-      color: #111827;
-    }
-  </style>
-
   <script>
-    // --- Filter pills + search ---
-    const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
+    // --- Search ---
     const cards = document.querySelectorAll<HTMLElement>('.proj-card');
     const featuredEl = document.querySelector<HTMLElement>('.proj-featured');
     const searchInput = document.getElementById(
@@ -679,20 +629,16 @@ function statusBadgeClasses(s: string): string {
     const emptyState = document.getElementById('empty-state');
     const visibleCount = document.getElementById('visible-count');
 
-    let activeCategory = 'all';
     let searchQuery = '';
 
     function matches(el: HTMLElement) {
-      const cats = (el.dataset.category ?? '').split(',');
-      const catMatch =
-        activeCategory === 'all' || cats.includes(activeCategory);
       const q = searchQuery.trim().toLowerCase();
-      const searchMatch =
+      return (
         !q ||
         (el.dataset.title ?? '').includes(q) ||
         (el.dataset.stack ?? '').includes(q) ||
-        (el.dataset.desc ?? '').includes(q);
-      return catMatch && searchMatch;
+        (el.dataset.desc ?? '').includes(q)
+      );
     }
 
     function filterCards() {
@@ -713,15 +659,6 @@ function statusBadgeClasses(s: string): string {
       emptyState?.classList.toggle('hidden', visible > 0);
       if (visibleCount) visibleCount.textContent = String(visible);
     }
-
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        activeCategory = pill.dataset.cat ?? 'all';
-        pills.forEach(p => p.setAttribute('aria-pressed', 'false'));
-        pill.setAttribute('aria-pressed', 'true');
-        filterCards();
-      });
-    });
 
     searchInput?.addEventListener('input', () => {
       searchQuery = searchInput.value;

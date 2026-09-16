@@ -59,10 +59,6 @@
     "status_live": "En vivo",
     "status_dev": "En desarrollo",
     "status_archived": "Archivado",
-    "fields": {
-      "people": "personas",
-      "person": "persona"
-    },
     "actions": {
       "live": "Ver en vivo",
       "repo": "Código",
@@ -70,19 +66,12 @@
       "close": "Cerrar"
     },
     "no_results": "No hay resultados",
-    "no_results_hint": "Prueba con otra categoría o limpia el buscador",
-    "categories": {
-      "all": "Todos",
-      "saas": "Producto",
-      "oss": "Open source",
-      "personal": "Personal"
-    },
+    "no_results_hint": "Prueba con otro término de búsqueda",
     "items": {
       "veritrust": {
         "title": "VeriTrust — Detector de desinformación médica con IA",
         "short": "VeriTrust",
-        "role": "Full-stack",
-        "duration": "Trabajo de Fin de Grado",
+        "duration": "9 meses",
         "desc": "Detector de desinformación médica basado en IA que analiza afirmaciones mediante un pipeline multiagente y devuelve veredictos con puntuaciones de confianza y fuentes biomédicas.",
         "highlights": [
           "Pipeline de verificación multiagente orquestado con LangGraph",
@@ -93,7 +82,6 @@
       "kmpe": {
         "title": "Kilómetros por Explorar — Landing page de viajes",
         "short": "KMPE",
-        "role": "Full-stack",
         "duration": "3 meses",
         "desc": "Landing page de un negocio de planificación de viajes cofundado con mi pareja. Desarrollada con Astro, Preact y Tailwind CSS, integrando islas interactivas en el cliente y un backend con Express.",
         "highlights": [
@@ -105,7 +93,6 @@
       "notes_app": {
         "title": "SnapNotes — Aplicación web de notas",
         "short": "SnapNotes",
-        "role": "Autor",
         "duration": "2 años",
         "desc": "Aplicación web de productividad con categorización, búsqueda en tiempo real y sincronización entre dispositivos. Stack moderno con Next.js y Prisma sobre Postgres.",
         "highlights": [
@@ -117,7 +104,6 @@
       "movies-api": {
         "title": "Movies API — REST API de películas",
         "short": "Movies API",
-        "role": "Backend",
         "duration": "1 mes",
         "desc": "API REST completa para la gestión de datos de películas con funcionalidad CRUD, arquitectura MVC conectada a una base de datos MySQL y desplegada en GCP.",
         "highlights": [

@@ -19,7 +19,6 @@ import kmpeImg from '@/assets/images/kmpe.webp';
 import moviesApiImg from '@/assets/images/movies-api.webp';
 
 export type ProjectStatus = 'live' | 'dev' | 'archived';
-export type ProjectCategory = 'saas' | 'oss' | 'personal';
 
 export const TECH_META: Record<
   string,
@@ -50,9 +49,7 @@ export interface ProjectStat {
 export interface Project {
   id: keyof Translations['projects_page']['items'];
   featured?: boolean;
-  category: ProjectCategory[];
   year: string;
-  team: string;
   status: ProjectStatus;
   mono: string;
   tint: string;
@@ -68,13 +65,11 @@ export const PROJECTS: Project[] = [
   {
     id: 'veritrust',
     featured: true,
-    category: ['personal', 'oss'],
     year: '2026',
-    team: '1',
     status: 'live',
     mono: 'VERI',
     tint: '#60a5fa',
-    url: 'tfg-hazel.vercel.app',
+    url: 'veritrust.es',
     image: veritrustImg,
     stack: ['Python', 'FastAPI', 'LangGraph', 'Next.js', 'TypeScript'],
     stats: [
@@ -88,9 +83,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'notes_app',
     featured: false,
-    category: ['personal', 'oss'],
     year: '2024',
-    team: '1',
     status: 'live',
     mono: 'SNAP',
     tint: '#22d3ee',
@@ -108,9 +101,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'kmpe',
     featured: false,
-    category: ['saas'],
     year: '2026',
-    team: '2',
     status: 'live',
     mono: 'KMPE',
     tint: '#fbbf24',
@@ -128,9 +119,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'movies-api',
     featured: false,
-    category: ['personal'],
     year: '2025',
-    team: '1',
     status: 'live',
     mono: 'MAPI',
     tint: '#34d399',

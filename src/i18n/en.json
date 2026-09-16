@@ -59,10 +59,6 @@
     "status_live": "Live",
     "status_dev": "In dev",
     "status_archived": "Archived",
-    "fields": {
-      "people": "people",
-      "person": "person"
-    },
     "actions": {
       "live": "View live",
       "repo": "Source",
@@ -70,18 +66,11 @@
       "close": "Close"
     },
     "no_results": "No results",
-    "no_results_hint": "Try another category or clear the search",
-    "categories": {
-      "all": "All",
-      "saas": "Product",
-      "oss": "Open source",
-      "personal": "Personal"
-    },
+    "no_results_hint": "Try another search term",
     "items": {
       "veritrust": {
         "title": "VeriTrust — AI medical misinformation detector",
         "short": "VeriTrust",
-        "role": "Full-stack",
         "duration": "Final degree project",
         "desc": "AI-powered medical misinformation detector that analyzes claims through a multi-agent pipeline and returns verdicts with confidence scores and biomedical sources.",
         "highlights": [
@@ -93,7 +82,6 @@
       "kmpe": {
         "title": "Kilómetros por Explorar — Travel landing page",
         "short": "KMPE",
-        "role": "Full-stack",
         "duration": "3 months",
         "desc": "Landing page for a travel-planning business co-founded with my partner. Built with Astro, Preact and Tailwind CSS, with interactive client islands and an Express backend.",
         "highlights": [
@@ -105,7 +93,6 @@
       "notes_app": {
         "title": "SnapNotes — Web-based notes app",
         "short": "SnapNotes",
-        "role": "Author",
         "duration": "2 years",
         "desc": "Productivity web app with categorization, real-time search and cross-device sync. Modern stack with Next.js and Prisma on Postgres.",
         "highlights": [
@@ -117,7 +104,6 @@
       "movies-api": {
         "title": "Movies API — REST API for movies",
         "short": "Movies API",
-        "role": "Backend",
         "duration": "1 month",
         "desc": "Complete REST API for movie data management with full CRUD, MVC architecture on top of MySQL and deployed on GCP.",
         "highlights": [
