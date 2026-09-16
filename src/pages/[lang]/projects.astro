@@ -169,12 +169,6 @@ function statusBadgeClasses(s: string): string {
               {tp.items[featured.id].title}
             </h2>
 
-            <div class="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-gray-500 uppercase dark:text-gray-400">
-              <span>{featured.year}</span>
-              <span class="h-[3px] w-[3px] rounded-full bg-gray-400" />
-              <span>{tp.items[featured.id].duration}</span>
-            </div>
-
             <p class="max-w-prose text-sm leading-relaxed text-gray-600 dark:text-gray-300">
               {tp.items[featured.id].desc}
             </p>
@@ -314,11 +308,6 @@ function statusBadgeClasses(s: string): string {
             </div>
 
             <div class="flex flex-1 flex-col gap-3 p-5">
-              <div class="flex flex-wrap items-center gap-2 font-mono text-[11px] tracking-wider text-gray-500 uppercase dark:text-gray-400">
-                <span>{project.year}</span>
-                <span class="h-[3px] w-[3px] rounded-full bg-gray-400" />
-                <span>{tp.items[project.id].duration}</span>
-              </div>
               <h3 class="text-lg leading-snug font-semibold text-gray-900 dark:text-white">
                 {tp.items[project.id].title}
               </h3>
@@ -351,16 +340,25 @@ function statusBadgeClasses(s: string): string {
             </div>
 
             <div class="flex items-center justify-between border-t border-dashed border-gray-200 px-5 py-3 font-mono text-[11px] text-gray-500 dark:border-gray-800 dark:text-gray-400">
-              <div class="flex items-center gap-3">
-                {project.stats[0] && (
-                  <span>
-                    {project.stats[0].k} ·{' '}
-                    <b class="font-medium text-gray-700 dark:text-gray-200">
-                      {project.stats[0].v}
-                    </b>
-                  </span>
-                )}
-              </div>
+              <button
+                type="button"
+                class="group inline-flex items-center gap-1.5 font-mono text-[11px] tracking-wider text-gray-600 uppercase transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                data-dialog={`project-${project.id}`}
+              >
+                {tp.actions.more}
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-3 w-3 transition-transform group-hover:translate-x-0.5"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
               <div class="flex gap-1.5">
                 {project.preview && (
                   <a
@@ -406,25 +404,6 @@ function statusBadgeClasses(s: string): string {
                     </svg>
                   </a>
                 )}
-                <button
-                  type="button"
-                  class="grid h-7 w-7 place-items-center rounded-md border border-gray-200 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
-                  aria-label="Case study"
-                  data-dialog={`project-${project.id}`}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="h-3 w-3"
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </button>
               </div>
             </div>
           </article>
