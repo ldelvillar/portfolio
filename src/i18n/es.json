@@ -136,18 +136,18 @@
     "title": "Sobre mí",
     "terminalPath": "~/lucas/sobre-mi",
     "introduction": {
-      "part1": "Empecé en la programación a los 15 años, y desde entonces he estado aprendiendo numerosos lenguajes de programación y tecnologías de forma autodidacta a través de cursos y certificaciones, y posteriormente en la universidad. Actualmente estoy estudiando el último curso de mi",
-      "highlight": "grado en Ingeniería Informática",
-      "part2": "en la Universidad Carlos III de Madrid."
+      "part1": "Empecé a programar con 15 años, y desde entonces he estado aprendiendo numerosos lenguajes y tecnologías de forma autodidacta, a través de cursos, certificaciones y proyectos personales. Soy",
+      "highlight": "graduado en Ingeniería Informática",
+      "part2": "por la Universidad Carlos III de Madrid."
     },
     "skills": {
-      "part1": "Actualmente mi foco está en el desarrollo full stack, por lo que los lenguajes que más domino son",
-      "highlight1": "JavaScript y Python.",
-      "part2": "También he trabajado en varios proyectos con la nube, especialmente con",
-      "highlight2": "GCP y Docker,",
-      "part3": "utilizando bases de datos relacionales como MySQL o SQL Server y NoSQL como MongoDB."
+      "part1": "Actualmente trabajo como desarrollador de software en Grupo Sertyf, donde diseño y despliego automatizaciones end-to-end desarrolladas en",
+      "highlight1": "JavaScript y Python",
+      "part2": ". A nivel personal, he trabajado en varios proyectos en la nube, especialmente con",
+      "highlight2": "GCP y Azure",
+      "part3": ", desplegando modelos de machine learning y sistemas multiagente completos."
     },
-    "goal": "Mi objetivo es seguir formándome constantemente, aprendiendo nuevas tecnologías y manteniéndome al día con las tecnologías emergentes, especialmente aquellas relacionadas con IA y automatización."
+    "goal": "Mi objetivo es seguir profundizando en sistemas de IA aplicada, especialmente en arquitecturas multiagente y su despliegue en producción, además de seguir ampliando mi experiencia en automatización de procesos empresariales."
   },
   "theme": {
     "label": "Elige el tema",

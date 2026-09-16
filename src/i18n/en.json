@@ -136,18 +136,18 @@
     "title": "About me",
     "terminalPath": "~/lucas/about-me",
     "introduction": {
-      "part1": "I started coding at 15, and since then, I've been learning several programming languages and technologies through courses and certifications, and later at university. Currently, I am studying the last year of my",
-      "highlight": "Bachelor Degree in Computer Science and Engineering",
+      "part1": "I started coding at 15, and since then, I've been learning several programming languages and technologies by myself, through courses, certifications and personal projects. I am currently a",
+      "highlight": "graduate in Computer Science and Engineering",
       "part2": "at University Carlos III de Madrid."
     },
     "skills": {
-      "part1": "Currently my focus is on full stack development, so the languages I master the most are",
-      "highlight1": "JavaScript and Python.",
-      "part2": "I have also worked on several projects with the cloud, especially with",
-      "highlight2": "GCP and Docker,",
-      "part3": "using relational databases like MySQL or SQL Server and NoSQL like MongoDB."
+      "part1": "Currently I work as a software developer at Grupo Sertyf, where I design and deploy end-to-end automations developed in",
+      "highlight1": "JavaScript and Python",
+      "part2": ". On a personal level, I have worked on several projects involving the cloud, especially with",
+      "highlight2": "GCP and Azure",
+      "part3": ", deploying machine learning models and complete multi-agent systems."
     },
-    "goal": "My goal is to continue constantly learning, acquiring new technologies, and staying up to date with emerging technologies, especially those related to AI and automation."
+    "goal": "My goal is to keep deepening my expertise in applied AI systems, particularly multi-agent architectures and their deployment to production, while continuing to build my experience in business process automation."
   },
   "theme": {
     "label": "Choose theme",
