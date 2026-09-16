@@ -59,7 +59,6 @@ export interface Project {
   featured?: boolean;
   year: string;
   status: ProjectStatus;
-  mono: string;
   tint: string;
   url: string;
   image: ImageMetadata;
@@ -75,7 +74,6 @@ export const PROJECTS: Project[] = [
     featured: true,
     year: '2026',
     status: 'prod',
-    mono: 'VERI',
     tint: '#60a5fa',
     url: 'veritrust.es',
     image: veritrustImg,
@@ -104,7 +102,6 @@ export const PROJECTS: Project[] = [
     featured: false,
     year: '2024',
     status: 'prod',
-    mono: 'SNAP',
     tint: '#22d3ee',
     url: 'snap-notes.vercel.app',
     image: snapNotesImg,
@@ -122,7 +119,6 @@ export const PROJECTS: Project[] = [
     featured: false,
     year: '2026',
     status: 'prod',
-    mono: 'KMPE',
     tint: '#fbbf24',
     url: 'kilometrosporexplorar.es',
     image: kmpeImg,
@@ -140,7 +136,6 @@ export const PROJECTS: Project[] = [
     featured: false,
     year: '2025',
     status: 'archived',
-    mono: 'MAPI',
     tint: '#34d399',
     url: 'movies-api-production-ead1.up.railway.app',
     image: moviesApiImg,

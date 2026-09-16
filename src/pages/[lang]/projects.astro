@@ -507,20 +507,22 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
             </form>
           </div>
           <div class="overflow-y-auto">
-            <div
-              class="relative grid aspect-16/8 place-items-center overflow-hidden border-b border-gray-800"
-              style={`background: radial-gradient(120% 80% at 50% 0%, ${p.tint}2e 0%, transparent 65%), linear-gradient(180deg, #0c0c10 0%, #08080b 100%)`}
-            >
+            <div class="relative aspect-16/8 overflow-hidden border-b border-gray-800 bg-gray-950">
+              {p.image && (
+                <Image
+                  src={p.image}
+                  alt={tp.items[p.id].title}
+                  width={900}
+                  height={450}
+                  densities={[1, 2]}
+                  class="absolute inset-0 h-full w-full object-cover object-top"
+                  loading="lazy"
+                />
+              )}
               <div
-                class="pointer-events-none absolute inset-0 opacity-40"
-                style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0); background-size: 14px 14px; mask-image: radial-gradient(80% 100% at 50% 0%, #000 30%, transparent 80%);"
+                class="pointer-events-none absolute inset-0"
+                style="background: linear-gradient(180deg, rgba(17, 24, 39, 0) 30%, rgba(17, 24, 39, 0.55) 70%, #111827 100%)"
               />
-              <span
-                class={`relative font-mono leading-none font-medium ${p.mono.length > 6 ? 'text-3xl sm:text-4xl' : p.mono.length > 4 ? 'text-4xl sm:text-5xl' : 'text-5xl sm:text-6xl'}`}
-                style={`color: ${p.tint}; text-shadow: 0 0 60px ${p.tint}66;`}
-              >
-                {p.mono}
-              </span>
             </div>
             <div class="flex flex-col gap-4 p-6 sm:p-8">
               <div class="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-gray-400 uppercase">
