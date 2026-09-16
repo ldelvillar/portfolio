@@ -2,7 +2,12 @@
 import { Image } from 'astro:assets';
 import Layout from '@/layouts/Layout.astro';
 import { getTranslations } from '@/utils/getTranslations';
-import { PROJECTS, TECH_META, FALLBACK_BG } from '@/data/projects';
+import {
+  PROJECTS,
+  TECH_META,
+  FALLBACK_BG,
+  type ProjectStatus,
+} from '@/data/projects';
 import { langStaticPaths, type Lang } from '@/i18n/config';
 
 export async function getStaticPaths() {
@@ -15,7 +20,7 @@ const t = getTranslations(lang);
 const tp = t.projects_page;
 
 const total = PROJECTS.length;
-const liveCount = PROJECTS.filter(p => p.status === 'live').length;
+const liveCount = PROJECTS.filter(p => p.status === 'prod').length;
 const latest = [...PROJECTS].sort((a, b) => b.year.localeCompare(a.year))[0];
 const mainStack = 'TypeScript';
 
@@ -23,15 +28,19 @@ const featured = PROJECTS.find(p => p.featured);
 const rest = PROJECTS.filter(p => !p.featured);
 
 function statusLabel(s: string): string {
-  if (s === 'live') return tp.status_live;
+  if (s === 'prod') return tp.status_prod;
   if (s === 'dev') return tp.status_dev;
   return tp.status_archived;
 }
 
 function statusBadgeClasses(s: string): string {
-  if (s === 'live') return 'border-green-500/25 bg-green-500/10 text-green-300';
+  if (s === 'prod') return 'border-green-500/25 bg-green-500/10 text-green-300';
   if (s === 'dev') return 'border-amber-500/25 bg-amber-500/10 text-amber-300';
   return 'border-gray-500/25 bg-gray-500/10 text-gray-300';
+}
+
+function isPreviewDisabled(s: ProjectStatus): boolean {
+  return s === 'archived';
 }
 ---
 
@@ -159,7 +168,7 @@ function statusBadgeClasses(s: string): string {
                 class={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[9px] tracking-widest uppercase ${statusBadgeClasses(featured.status)}`}
               >
                 <span
-                  class={`h-1.5 w-1.5 rounded-full ${featured.status === 'live' ? 'animate-pulse bg-green-400' : featured.status === 'dev' ? 'bg-amber-400' : 'bg-gray-400'}`}
+                  class={`h-1.5 w-1.5 rounded-full ${featured.status === 'prod' ? 'animate-pulse bg-green-400' : featured.status === 'dev' ? 'bg-amber-400' : 'bg-gray-400'}`}
                 />
                 {statusLabel(featured.status)}
               </span>
@@ -210,6 +219,7 @@ function statusBadgeClasses(s: string): string {
                 class="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-yellow-300"
                 data-dialog={`project-${featured.id}`}
               >
+                {tp.actions.more}
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -222,14 +232,31 @@ function statusBadgeClasses(s: string): string {
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
-                {tp.actions.case}
               </button>
               {featured.preview && (
                 <a
-                  href={featured.preview}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                  href={
+                    isPreviewDisabled(featured.status)
+                      ? undefined
+                      : featured.preview
+                  }
+                  target={
+                    isPreviewDisabled(featured.status) ? undefined : '_blank'
+                  }
+                  rel={
+                    isPreviewDisabled(featured.status)
+                      ? undefined
+                      : 'noopener noreferrer'
+                  }
+                  aria-disabled={
+                    isPreviewDisabled(featured.status) ? 'true' : undefined
+                  }
+                  tabindex={isPreviewDisabled(featured.status) ? -1 : undefined}
+                  class={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                    isPreviewDisabled(featured.status)
+                      ? 'pointer-events-none cursor-not-allowed border-gray-200 text-gray-400 dark:border-gray-800 dark:text-gray-600'
+                      : 'border-gray-200 text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800'
+                  }`}
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -247,27 +274,25 @@ function statusBadgeClasses(s: string): string {
                   {tp.actions.live}
                 </a>
               )}
-              {featured.github && (
-                <a
-                  href={featured.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+              <a
+                href={featured.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-3.5 w-3.5"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="h-3.5 w-3.5"
-                  >
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                  </svg>
-                  {tp.actions.repo}
-                </a>
-              )}
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+                {tp.actions.repo}
+              </a>
             </div>
           </div>
         </section>
@@ -301,7 +326,7 @@ function statusBadgeClasses(s: string): string {
                 class={`absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[9px] tracking-widest uppercase backdrop-blur-sm ${statusBadgeClasses(project.status)}`}
               >
                 <span
-                  class={`h-1.5 w-1.5 rounded-full ${project.status === 'live' ? 'animate-pulse bg-green-400' : project.status === 'dev' ? 'bg-amber-400' : 'bg-gray-400'}`}
+                  class={`h-1.5 w-1.5 rounded-full ${project.status === 'prod' ? 'animate-pulse bg-green-400' : project.status === 'dev' ? 'bg-amber-400' : 'bg-gray-400'}`}
                 />
                 {statusLabel(project.status)}
               </span>
@@ -362,11 +387,31 @@ function statusBadgeClasses(s: string): string {
               <div class="flex gap-1.5">
                 {project.preview && (
                   <a
-                    href={project.preview}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={
+                      isPreviewDisabled(project.status)
+                        ? undefined
+                        : project.preview
+                    }
+                    target={
+                      isPreviewDisabled(project.status) ? undefined : '_blank'
+                    }
+                    rel={
+                      isPreviewDisabled(project.status)
+                        ? undefined
+                        : 'noopener noreferrer'
+                    }
+                    aria-disabled={
+                      isPreviewDisabled(project.status) ? 'true' : undefined
+                    }
+                    tabindex={
+                      isPreviewDisabled(project.status) ? -1 : undefined
+                    }
                     aria-label="Live"
-                    class="grid h-7 w-7 place-items-center rounded-md border border-gray-200 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                    class={`grid h-7 w-7 place-items-center rounded-md border transition-colors ${
+                      isPreviewDisabled(project.status)
+                        ? 'pointer-events-none cursor-not-allowed border-gray-200 text-gray-300 dark:border-gray-800 dark:text-gray-600'
+                        : 'border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white'
+                    }`}
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -383,27 +428,25 @@ function statusBadgeClasses(s: string): string {
                     </svg>
                   </a>
                 )}
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Repo"
-                    class="grid h-7 w-7 place-items-center rounded-md border border-gray-200 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Repo"
+                  class="grid h-7 w-7 place-items-center rounded-md border border-gray-200 text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3 w-3"
                   >
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="h-3 w-3"
-                    >
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                    </svg>
-                  </a>
-                )}
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
+                </a>
               </div>
             </div>
           </article>
@@ -548,10 +591,22 @@ function statusBadgeClasses(s: string): string {
               <div class="flex flex-wrap gap-2">
                 {p.preview && (
                   <a
-                    href={p.preview}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-yellow-300"
+                    href={isPreviewDisabled(p.status) ? undefined : p.preview}
+                    target={isPreviewDisabled(p.status) ? undefined : '_blank'}
+                    rel={
+                      isPreviewDisabled(p.status)
+                        ? undefined
+                        : 'noopener noreferrer'
+                    }
+                    aria-disabled={
+                      isPreviewDisabled(p.status) ? 'true' : undefined
+                    }
+                    tabindex={isPreviewDisabled(p.status) ? -1 : undefined}
+                    class={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                      isPreviewDisabled(p.status)
+                        ? 'pointer-events-none cursor-not-allowed bg-gray-800 text-gray-500'
+                        : 'bg-yellow-400 text-gray-900 hover:bg-yellow-300'
+                    }`}
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -569,27 +624,25 @@ function statusBadgeClasses(s: string): string {
                     <span>{tp.actions.live}</span>
                   </a>
                 )}
-                {p.github && (
-                  <a
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 rounded-full border border-gray-700 px-4 py-2 text-sm font-medium text-gray-200 transition-colors hover:bg-gray-800"
+                <a
+                  href={p.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 rounded-full border border-gray-700 px-4 py-2 text-sm font-medium text-gray-200 transition-colors hover:bg-gray-800"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3.5 w-3.5"
                   >
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="h-3.5 w-3.5"
-                    >
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                    </svg>
-                    <span>{tp.actions.repo}</span>
-                  </a>
-                )}
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
+                  <span>{tp.actions.repo}</span>
+                </a>
               </div>
             </div>
           </div>

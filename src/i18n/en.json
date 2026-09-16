@@ -56,13 +56,12 @@
     },
     "search_placeholder": "Search by name, stack or keyword…",
     "featured": "Featured",
-    "status_live": "Live",
+    "status_prod": "In prod",
     "status_dev": "In dev",
     "status_archived": "Archived",
     "actions": {
       "live": "View live",
       "repo": "Source",
-      "case": "Full case study",
       "more": "View more",
       "close": "Close"
     },

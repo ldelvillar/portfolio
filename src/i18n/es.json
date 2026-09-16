@@ -56,13 +56,12 @@
     },
     "search_placeholder": "Buscar por nombre, stack o keyword…",
     "featured": "Destacado",
-    "status_live": "En vivo",
+    "status_prod": "En producción",
     "status_dev": "En desarrollo",
     "status_archived": "Archivado",
     "actions": {
       "live": "Ver en vivo",
       "repo": "Código",
-      "case": "Caso completo",
       "more": "Ver más",
       "close": "Cerrar"
     },
@@ -76,8 +75,8 @@
         "desc": "Detector de desinformación médica basado en IA que analiza afirmaciones mediante un pipeline multiagente y devuelve veredictos con puntuaciones de confianza y fuentes biomédicas.",
         "highlights": [
           "Pipeline de verificación multiagente orquestado con LangGraph",
-          "Clasificador BioBERT afinado entrenado con el dataset PUBHEALTH",
-          "Recuperación de evidencia desde la API biomédica Europe PMC"
+          "Recuperación de evidencia desde APIs de instituciones biomédicas reconocidas",
+          "Aplicación completa con autenticación, historial de verificaciones y panel de administración"
         ]
       },
       "kmpe": {

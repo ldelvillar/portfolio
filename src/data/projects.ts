@@ -17,8 +17,12 @@ import veritrustImg from '@/assets/images/veritrust.webp';
 import snapNotesImg from '@/assets/images/snap-notes.webp';
 import kmpeImg from '@/assets/images/kmpe.webp';
 import moviesApiImg from '@/assets/images/movies-api.webp';
+import Redis from '@/assets/icons/logos/Redis.astro';
+import Ollama from '@/assets/icons/logos/Ollama.astro';
+import Docker from '@/assets/icons/logos/Docker.astro';
+import PostgreSQL from '@/assets/icons/logos/PostgreSQL.astro';
 
-export type ProjectStatus = 'live' | 'dev' | 'archived';
+export type ProjectStatus = 'prod' | 'dev' | 'archived';
 
 export const TECH_META: Record<
   string,
@@ -36,6 +40,10 @@ export const TECH_META: Record<
   Python: { icon: Python, bgcolor: 'bg-[#3776ab]' },
   FastAPI: { icon: Fastapi, bgcolor: 'bg-slate-800' },
   LangGraph: { icon: Langgraph, bgcolor: 'bg-[#1e293b]' },
+  Redis: { icon: Redis, bgcolor: 'bg-[#dc382d]' },
+  Ollama: { icon: Ollama, bgcolor: 'bg-black' },
+  Docker: { icon: Docker, bgcolor: 'bg-[#2496ed]' },
+  PostgreSQL: { icon: PostgreSQL, bgcolor: 'bg-[#336791]' },
 };
 
 export const FALLBACK_BG = 'bg-gray-700';
@@ -57,7 +65,7 @@ export interface Project {
   image: ImageMetadata;
   stack: string[];
   stats: ProjectStat[];
-  github?: string;
+  github: string;
   preview?: string;
 }
 
@@ -66,12 +74,23 @@ export const PROJECTS: Project[] = [
     id: 'veritrust',
     featured: true,
     year: '2026',
-    status: 'live',
+    status: 'prod',
     mono: 'VERI',
     tint: '#60a5fa',
     url: 'veritrust.es',
     image: veritrustImg,
-    stack: ['Python', 'FastAPI', 'LangGraph', 'Next.js', 'TypeScript'],
+    stack: [
+      'Python',
+      'FastAPI',
+      'LangGraph',
+      'Ollama',
+      'Docker',
+      'Redis',
+      'PostgreSQL',
+      'GCP',
+      'Next.js',
+      'TypeScript',
+    ],
     stats: [
       { k: 'AI', v: 'LangGraph', accent: true },
       { k: 'ML', v: 'BioBERT' },
@@ -84,7 +103,7 @@ export const PROJECTS: Project[] = [
     id: 'notes_app',
     featured: false,
     year: '2024',
-    status: 'live',
+    status: 'prod',
     mono: 'SNAP',
     tint: '#22d3ee',
     url: 'snap-notes.vercel.app',
@@ -102,7 +121,7 @@ export const PROJECTS: Project[] = [
     id: 'kmpe',
     featured: false,
     year: '2026',
-    status: 'live',
+    status: 'prod',
     mono: 'KMPE',
     tint: '#fbbf24',
     url: 'kilometrosporexplorar.es',
@@ -120,7 +139,7 @@ export const PROJECTS: Project[] = [
     id: 'movies-api',
     featured: false,
     year: '2025',
-    status: 'live',
+    status: 'archived',
     mono: 'MAPI',
     tint: '#34d399',
     url: 'movies-api-production-ead1.up.railway.app',

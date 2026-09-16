@@ -30,7 +30,7 @@ const { t, lang } = Astro.props;
           image={project.image}
           title={t.projects_page.items[project.id].title}
           description={t.projects_page.items[project.id].desc}
-          github={project.github ?? ''}
+          github={project.github}
           preview={project.preview}
           technologies={project.stack.map(name => ({
             icon: TECH_META[name]?.icon,
