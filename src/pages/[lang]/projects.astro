@@ -687,7 +687,9 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
       });
 
       if (featuredEl) {
-        featuredEl.classList.toggle('hidden', !matches(featuredEl));
+        const featuredMatches = matches(featuredEl);
+        featuredEl.classList.toggle('hidden', !featuredMatches);
+        if (featuredMatches) visible++;
       }
 
       emptyState?.classList.toggle('hidden', visible > 0);
