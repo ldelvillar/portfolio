@@ -69,10 +69,8 @@
     "no_results_hint": "Prueba con otro término de búsqueda",
     "items": {
       "veritrust": {
-        "title": "VeriTrust — Detector de desinformación médica con IA",
-        "short": "VeriTrust",
         "duration": "9 meses",
-        "desc": "Detector de desinformación médica basado en IA que analiza afirmaciones mediante un pipeline multiagente y devuelve veredictos con puntuaciones de confianza y fuentes biomédicas.",
+        "desc": "Detector de desinformación médica impulsado por un sistema multiagente. Proporciona una puntuación de veracidad del contenido junto con una explicación respaldada por fuentes biomédicas.",
         "highlights": [
           "Pipeline de verificación multiagente orquestado con LangGraph",
           "Recuperación de evidencia desde APIs de instituciones biomédicas reconocidas",
@@ -80,10 +78,8 @@
         ]
       },
       "kmpe": {
-        "title": "Kilómetros por Explorar — Landing page de viajes",
-        "short": "KMPE",
         "duration": "3 meses",
-        "desc": "Landing page de un negocio de planificación de viajes cofundado con mi pareja. Desarrollada con Astro, Preact y Tailwind CSS, integrando islas interactivas en el cliente y un backend con Express.",
+        "desc": "Landing page para un negocio de planificación de viajes cofundado con mi pareja. Frontend en Astro con islas interactivas en el cliente. Incluye un backend que da soporte a un chatbot y gestiona el envío de e-mails.",
         "highlights": [
           "Arquitectura de islas con Preact para mantener el bundle mínimo",
           "Backend Express con endpoints para reservas y consultas",
@@ -91,10 +87,8 @@
         ]
       },
       "notes_app": {
-        "title": "SnapNotes — Aplicación web de notas",
-        "short": "SnapNotes",
         "duration": "2 años",
-        "desc": "Aplicación web de productividad con categorización, búsqueda en tiempo real y sincronización entre dispositivos. Stack moderno con Next.js y Prisma sobre Postgres.",
+        "desc": "Aplicación web de productividad con funcionalidades de categorización, búsqueda en tiempo real y sincronización entre dispositivos. Incluye un sistema de autenticación propia basado en JWT.",
         "highlights": [
           "Búsqueda en tiempo real sobre el contenido de las notas",
           "Sincronización multidispositivo con Prisma + Postgres",
@@ -102,8 +96,6 @@
         ]
       },
       "movies-api": {
-        "title": "Movies API — REST API de películas",
-        "short": "Movies API",
         "duration": "1 mes",
         "desc": "API REST completa para la gestión de datos de películas con funcionalidad CRUD, arquitectura MVC conectada a una base de datos MySQL y desplegada en GCP.",
         "highlights": [

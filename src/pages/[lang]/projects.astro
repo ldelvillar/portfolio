@@ -104,7 +104,7 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
           >{tp.summary.latest}</span
         >
         <span class="text-lg font-semibold text-gray-900 dark:text-white">
-          {tp.items[latest.id].short}<span
+          {latest.title}<span
             class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400"
             >{latest.year}</span
           >
@@ -140,7 +140,7 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
         <section
           class="proj-featured mb-12 grid grid-cols-1 overflow-hidden rounded-xl border border-gray-200 bg-white lg:grid-cols-[1.15fr_1fr] dark:border-gray-800 dark:bg-gray-900"
           style={`--proj-tint: ${featured.tint}`}
-          data-title={tp.items[featured.id].title.toLowerCase()}
+          data-title={featured.title.toLowerCase()}
           data-stack={featured.stack.join(',').toLowerCase()}
           data-desc={tp.items[featured.id].desc.toLowerCase()}
         >
@@ -148,7 +148,7 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
             {featured.image && (
               <Image
                 src={featured.image}
-                alt={tp.items[featured.id].title}
+                alt={featured.title}
                 width={900}
                 height={600}
                 densities={[1, 2]}
@@ -175,7 +175,7 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
             </div>
 
             <h2 class="text-2xl leading-tight font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
-              {tp.items[featured.id].title}
+              {featured.title}
             </h2>
 
             <p class="max-w-prose text-sm leading-relaxed text-gray-600 dark:text-gray-300">
@@ -305,7 +305,7 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
         rest.map(project => (
           <article
             class="proj-card relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-all hover:border-gray-300 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
-            data-title={tp.items[project.id].title.toLowerCase()}
+            data-title={project.title.toLowerCase()}
             data-stack={project.stack.join(',').toLowerCase()}
             data-desc={tp.items[project.id].desc.toLowerCase()}
             style={project.status === 'archived' ? 'opacity: 0.78' : ''}
@@ -314,7 +314,7 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
               {project.image && (
                 <Image
                   src={project.image}
-                  alt={tp.items[project.id].title}
+                  alt={project.title}
                   width={800}
                   height={450}
                   densities={[1, 2]}
@@ -334,7 +334,7 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
 
             <div class="flex flex-1 flex-col gap-3 p-5">
               <h3 class="text-lg leading-snug font-semibold text-gray-900 dark:text-white">
-                {tp.items[project.id].title}
+                {project.title}
               </h3>
               <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                 {tp.items[project.id].desc}
@@ -511,7 +511,7 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
               {p.image && (
                 <Image
                   src={p.image}
-                  alt={tp.items[p.id].title}
+                  alt={p.title}
                   width={900}
                   height={450}
                   densities={[1, 2]}
@@ -540,7 +540,7 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
                 id={`project-${p.id}-title`}
                 class="text-xl leading-snug font-semibold text-white sm:text-2xl"
               >
-                {tp.items[p.id].title}
+                {p.title}
               </h3>
               <p class="text-sm leading-relaxed text-gray-300">
                 {tp.items[p.id].desc}

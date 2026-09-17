@@ -56,6 +56,7 @@ export interface ProjectStat {
 
 export interface Project {
   id: keyof Translations['projects_page']['items'];
+  title: string;
   featured?: boolean;
   year: string;
   status: ProjectStatus;
@@ -71,6 +72,7 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     id: 'veritrust',
+    title: 'VeriTrust',
     featured: true,
     year: '2026',
     status: 'prod',
@@ -99,6 +101,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'notes_app',
+    title: 'SnapNotes',
     featured: false,
     year: '2024',
     status: 'prod',
@@ -116,6 +119,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'kmpe',
+    title: 'Kilómetros por Explorar',
     featured: false,
     year: '2026',
     status: 'prod',
@@ -133,6 +137,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'movies-api',
+    title: 'Movies API',
     featured: false,
     year: '2025',
     status: 'archived',

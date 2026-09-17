@@ -28,7 +28,7 @@ const { t, lang } = Astro.props;
       PROJECTS.slice(0, 3).map(project => (
         <ProjectCard
           image={project.image}
-          title={t.projects_page.items[project.id].title}
+          title={project.title}
           description={t.projects_page.items[project.id].desc}
           github={project.github}
           preview={project.preview}

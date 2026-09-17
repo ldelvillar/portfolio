@@ -69,10 +69,8 @@
     "no_results_hint": "Try another search term",
     "items": {
       "veritrust": {
-        "title": "VeriTrust — AI medical misinformation detector",
-        "short": "VeriTrust",
         "duration": "Final degree project",
-        "desc": "AI-powered medical misinformation detector that analyzes claims through a multi-agent pipeline and returns verdicts with confidence scores and biomedical sources.",
+        "desc": "Medical misinformation detector powered by a multi-agent system. It provides a truthfulness score for the content along with an explanation backed by biomedical sources.",
         "highlights": [
           "Multi-agent verification pipeline orchestrated with LangGraph",
           "Fine-tuned BioBERT classifier trained on the PUBHEALTH dataset",
@@ -80,10 +78,8 @@
         ]
       },
       "kmpe": {
-        "title": "Kilómetros por Explorar — Travel landing page",
-        "short": "KMPE",
         "duration": "3 months",
-        "desc": "Landing page for a travel-planning business co-founded with my partner. Built with Astro, Preact and Tailwind CSS, with interactive client islands and an Express backend.",
+        "desc": "Landing page for a travel planning business co-founded with my partner. Frontend built in Astro with interactive client-side islands. Includes a backend that supports a chatbot and handles email sending.",
         "highlights": [
           "Islands architecture with Preact to keep the bundle minimal",
           "Express backend with endpoints for bookings and inquiries",
@@ -91,10 +87,8 @@
         ]
       },
       "notes_app": {
-        "title": "SnapNotes — Web-based notes app",
-        "short": "SnapNotes",
         "duration": "2 years",
-        "desc": "Productivity web app with categorization, real-time search and cross-device sync. Modern stack with Next.js and Prisma on Postgres.",
+        "desc": "Productivity web application with categorization features, real time search, and cross device synchronization. Includes a custom authentication system based on JWT.",
         "highlights": [
           "Real-time search over note content",
           "Cross-device sync with Prisma + Postgres",
@@ -102,8 +96,6 @@
         ]
       },
       "movies-api": {
-        "title": "Movies API — REST API for movies",
-        "short": "Movies API",
         "duration": "1 month",
         "desc": "Complete REST API for movie data management with full CRUD, MVC architecture on top of MySQL and deployed on GCP.",
         "highlights": [
