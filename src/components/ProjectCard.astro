@@ -16,42 +16,67 @@ interface Props {
   description: string;
   github: string;
   preview?: string;
+  reverse?: boolean;
 }
 
-const { image, title, technologies, description, github, preview } =
-  Astro.props;
+const {
+  image,
+  title,
+  technologies,
+  description,
+  github,
+  preview,
+  reverse = false,
+} = Astro.props;
+
+const visibleTech = technologies.slice(0, 4);
+const extraTech = technologies.length - visibleTech.length;
 ---
 
 <article
-  class="group flex flex-col space-y-8 space-x-0 md:flex-row md:space-y-0 md:space-x-8"
+  class="group flex flex-col gap-5 md:grid md:grid-cols-12 md:items-center md:gap-0"
 >
-  <div class="w-full md:w-1/2">
-    <div
-      class="relative col-span-6 row-span-5 flex transform flex-col items-center gap-8 overflow-clip rounded-xl shadow-xl transition duration-500 ease-in-out sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl"
-    >
-      <Image
-        src={image}
-        alt="project card"
-        width={600}
-        height={400}
-        densities={[1, 2]}
-        class="h-56 w-full object-cover object-top transition duration-500 md:h-64 md:scale-110 md:group-hover:scale-105"
-        loading="lazy"
-      />
-    </div>
+  <div
+    class:list={[
+      'overflow-hidden rounded-2xl shadow-xl md:col-span-8 md:row-start-1 md:shadow-none',
+      reverse ? 'md:col-start-5' : 'md:col-start-1',
+    ]}
+  >
+    <Image
+      src={image}
+      alt="project card"
+      width={600}
+      height={400}
+      densities={[1, 2]}
+      class="h-56 w-full object-cover object-top transition duration-700 md:h-64 md:group-hover:scale-[1.04]"
+      loading="lazy"
+    />
   </div>
-
-  <div class="w-full md:w-1/2 md:max-w-md">
-    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-50">
-      {title}
-    </h3>
-    <div class="mt-2">
-      <ul class="mb-2 flex max-w-full flex-row flex-wrap gap-2 overflow-x-auto">
+  <div
+    class:list={[
+      'relative z-10 md:col-span-6 md:row-start-1',
+      reverse ? 'md:col-start-1' : 'md:col-start-7',
+    ]}
+  >
+    <div
+      class="rounded-2xl bg-gray-50/92 p-6 shadow-[0_18px_50px_-24px_rgba(17,24,39,.35)] backdrop-blur-md dark:bg-gray-900/90 dark:shadow-[0_18px_50px_-24px_rgba(0,0,0,.8)]"
+    >
+      <h3
+        class="text-2xl leading-tight font-bold text-gray-900 dark:text-gray-50"
+      >
+        {title}
+      </h3>
+      <p
+        class="mt-2 text-[15px] leading-relaxed text-gray-600 md:min-h-24.5 dark:text-gray-400"
+      >
+        {description}
+      </p>
+      <ul class="mt-4 flex flex-wrap items-center gap-2">
         {
-          technologies.map(technology => (
-            <li class="shrink-0">
+          visibleTech.map(technology => (
+            <li>
               <span
-                class={`flex items-center gap-x-2 rounded-full ${technology.bgcolor} px-2 py-1 text-sm whitespace-nowrap text-gray-200`}
+                class={`inline-flex items-center gap-2 rounded-full ${technology.bgcolor} px-2.5 py-0.5 text-[13px] leading-5 whitespace-nowrap text-gray-200`}
               >
                 <technology.icon class="size-4" />
                 {technology.name}
@@ -59,32 +84,36 @@ const { image, title, technologies, description, github, preview } =
             </li>
           ))
         }
+        {
+          extraTech > 0 && (
+            <li class="font-mono text-xs text-gray-500 dark:text-gray-400">
+              +{extraTech}
+            </li>
+          )
+        }
       </ul>
+      <footer class="mt-5 flex gap-5 text-sm font-bold">
+        {
+          preview && (
+            <a
+              href={preview}
+              target="_blank"
+              class="inline-flex items-center gap-1.5 border-b-2 border-yellow-400 pb-0.5 text-gray-900 transition hover:border-gray-900 focus-visible:ring focus-visible:ring-yellow-500/80 focus-visible:outline-none dark:text-gray-50 dark:hover:border-gray-50"
+            >
+              <Link class="size-4" />
+              Preview
+            </a>
+          )
+        }
+        <a
+          href={github}
+          target="_blank"
+          class="inline-flex items-center gap-1.5 border-b-2 border-transparent pb-0.5 text-gray-600 transition hover:border-gray-300 hover:text-gray-900 focus-visible:ring focus-visible:ring-yellow-500/80 focus-visible:outline-none dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-50"
+        >
+          <Github class="size-4" />
+          Code
+        </a>
+      </footer>
     </div>
-    <p class="mt-2 text-gray-900 dark:text-gray-400">
-      {description}
-    </p>
-    <footer class="mt-4 flex items-end justify-start gap-x-4 font-bold">
-      <a
-        href={github}
-        target="_blank"
-        class="text-md group inline-flex max-w-fit items-center justify-center gap-2 space-x-2 rounded-xl border border-gray-300 bg-gray-100 px-3 py-2 text-base text-gray-800 transition hover:border-gray-900 hover:bg-gray-800 hover:text-white focus:outline-none focus-visible:ring focus-visible:ring-yellow-500/80 focus-visible:ring-offset-2 focus-visible:outline-none active:bg-black dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-      >
-        <Github class="size-6" />
-        Code
-      </a>
-      {
-        preview && (
-          <a
-            href={preview}
-            target="_blank"
-            class="text-md group inline-flex max-w-fit items-center justify-center gap-2 space-x-2 rounded-xl border border-gray-300 bg-gray-100 px-3 py-2 text-base text-gray-800 transition hover:border-gray-900 hover:bg-gray-800 hover:text-white focus:outline-none focus-visible:ring focus-visible:ring-yellow-500/80 focus-visible:ring-offset-2 focus-visible:outline-none active:bg-black dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-          >
-            <Link class="size-6" />
-            Preview
-          </a>
-        )
-      }
-    </footer>
   </div>
 </article>
