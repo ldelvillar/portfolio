@@ -1,0 +1,191 @@
+{
+  "site": {
+    "title": "Lucas del Villar - Programmierer und Full-Stack-Entwickler",
+    "description": "Das ist meine persönliche Website. Hier findest du ausführliche Informationen über meine Erfahrung, meine Projekte und meine Fähigkeiten."
+  },
+  "header": {
+    "name": "ldelvillar",
+    "nav": {
+      "experience": "Erfahrung",
+      "projects": "Projekte",
+      "certifications": "Zertifizierungen",
+      "about": "Über mich",
+      "contact": "Kontakt"
+    }
+  },
+  "hero": {
+    "title": "ich bin Lucas",
+    "subtitle": "Full-Stack-Entwickler",
+    "description1": "+2 Jahre Erfahrung.",
+    "description2": "Informatikingenieur und Softwareentwickler",
+    "description3": "aus Madrid, Spanien. Spezialisiert auf die Entwicklung und den Betrieb von End-to-End-Agentensystemen."
+  },
+  "experience": {
+    "title": "Erfahrung"
+  },
+  "timeline": {
+    "learn_more": "Mehr erfahren",
+    "june_2025": {
+      "date": "Juni 2025",
+      "title": "Meine erste Stelle",
+      "description": "Ich habe in einem Beratungsunternehmen als Softwareentwickler angefangen, spezialisiert auf Robotic Process Automation (RPA). Meine Aufgabe besteht darin, Geschäftsprozesse zu optimieren und dafür eine vollständige Full-Stack-Lösung zu liefern."
+    },
+    "september_2022": {
+      "date": "September 2022",
+      "title": "Beginn meines Studiums",
+      "description": "Ich habe ein Bachelorstudium in Informatik an der Universidad Carlos III de Madrid begonnen. Daneben bilde ich mich laufend selbst weiter, indem ich an Full-Stack-Projekten arbeite und Zertifizierungen in unterschiedlichen Bereichen erwerbe."
+    },
+    "2019": {
+      "date": "2019",
+      "title": "Erste Schritte im Programmieren",
+      "description": "Mit 15 Jahren habe ich angefangen zu programmieren, als ich die Grundlagen von Cybersicherheit und Ethical Hacking gelernt habe. Von dort aus habe ich weitere Bereiche erkundet und mich 2022 entschieden, mich auf Full-Stack-Entwicklung zu konzentrieren."
+    }
+  },
+  "projects": {
+    "title": "Projekte",
+    "view_all": "Alle Projekte ansehen"
+  },
+  "projects_page": {
+    "title": "Projekte",
+    "subtitle": "// Code, der es in die Produktion geschafft hat",
+    "summary": {
+      "total": "Gesamt",
+      "live": "Live",
+      "stack": "Haupt-Stack",
+      "latest": "Letzter Launch"
+    },
+    "search_placeholder": "Nach Name, Stack oder Stichwort suchen…",
+    "featured": "Highlight",
+    "status_prod": "In Produktion",
+    "status_dev": "In Entwicklung",
+    "status_archived": "Archiviert",
+    "actions": {
+      "live": "Live ansehen",
+      "repo": "Quellcode",
+      "more": "Mehr ansehen",
+      "close": "Schließen"
+    },
+    "no_results": "Keine Ergebnisse",
+    "no_results_hint": "Versuche es mit einem anderen Suchbegriff",
+    "items": {
+      "veritrust": {
+        "duration": "Abschlussarbeit",
+        "desc": "Detektor für medizinische Falschinformationen auf Basis eines Multiagentensystems. Er liefert einen Wahrheitswert für den Inhalt sowie eine Erklärung, die durch biomedizinische Quellen belegt ist.",
+        "highlights": [
+          "Multiagenten-Pipeline zur Verifikation, orchestriert mit LangGraph",
+          "Mit dem PUBHEALTH-Datensatz feinabgestimmter BioBERT-Klassifikator",
+          "Evidenzrecherche über die biomedizinische API von Europe PMC"
+        ]
+      },
+      "kmpe": {
+        "duration": "3 Monate",
+        "desc": "Landingpage für ein Reiseplanungsunternehmen, das ich zusammen mit meiner Partnerin gegründet habe. Frontend in Astro mit interaktiven Islands im Client. Dazu ein Backend, das einen Chatbot unterstützt und den E-Mail-Versand übernimmt.",
+        "highlights": [
+          "Islands-Architektur mit Preact, um das Bundle minimal zu halten",
+          "Express-Backend mit Endpunkten für Buchungen und Anfragen",
+          "Responsives, SEO-optimiertes Design von Anfang an"
+        ]
+      },
+      "notes_app": {
+        "duration": "2 Jahre",
+        "desc": "Web-Anwendung für Produktivität mit Kategorisierung, Suche in Echtzeit und geräteübergreifender Synchronisierung. Enthält ein eigenes Authentifizierungssystem auf Basis von JWT.",
+        "highlights": [
+          "Echtzeitsuche über den Inhalt der Notizen",
+          "Geräteübergreifende Synchronisierung mit Prisma + Postgres",
+          "Authentifizierung und persistente Sitzungen"
+        ]
+      },
+      "movies-api": {
+        "duration": "1 Monat",
+        "desc": "Vollständige REST-API zur Verwaltung von Filmdaten mit komplettem CRUD, MVC-Architektur auf Basis von MySQL und Deployment auf GCP.",
+        "highlights": [
+          "Saubere MVC-Architektur mit TypeScript und Express",
+          "Persistenz in MySQL mit versionierten Migrationen",
+          "Auf GCP deployt mit reproduzierbarer Pipeline"
+        ]
+      }
+    }
+  },
+  "techstack": {
+    "title": "Tech-Stack",
+    "ai": "Künstliche Intelligenz",
+    "cloud": "Cloud & Infrastruktur"
+  },
+  "about": {
+    "title": "Über mich",
+    "terminalPath": "~/lucas/ueber-mich",
+    "introduction": {
+      "part1": "Mit 15 Jahren habe ich angefangen zu programmieren, und seitdem bringe ich mir zahlreiche Programmiersprachen und Technologien selbst bei, über Kurse, Zertifizierungen und eigene Projekte. Ich bin",
+      "highlight": "Absolvent der Informatik",
+      "part2": "an der Universidad Carlos III de Madrid."
+    },
+    "skills": {
+      "part1": "Aktuell arbeite ich als Softwareentwickler bei Grupo Sertyf, wo ich End-to-End-Automatisierungen entwerfe und ausrolle, entwickelt in",
+      "highlight1": "JavaScript und Python",
+      "part2": ". Privat habe ich an mehreren Cloud-Projekten gearbeitet, insbesondere mit",
+      "highlight2": "GCP und Azure",
+      "part3": ", und dabei Machine-Learning-Modelle und komplette Multiagentensysteme in Betrieb genommen."
+    },
+    "goal": "Mein Ziel ist es, meine Expertise in angewandten KI-Systemen weiter zu vertiefen, insbesondere in Multiagenten-Architekturen und deren Einsatz in der Produktion, und gleichzeitig meine Erfahrung in der Automatisierung von Geschäftsprozessen auszubauen."
+  },
+  "theme": {
+    "label": "Design wählen",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
+  },
+  "footer": {
+    "inspired": "Inspiriert von",
+    "of": "von"
+  },
+  "not_found": {
+    "title": "Seite nicht gefunden",
+    "description": "Die Seite, die du suchst, existiert nicht.",
+    "back_to_home": "Zurück zur Startseite"
+  },
+  "certifications": {
+    "title": "Zertifizierungen",
+    "subtitle": "Von anerkannten Organisationen ausgestellte Nachweise",
+    "summary": {
+      "total": "Gesamt",
+      "active": "Gültig",
+      "hours": "Lernstunden",
+      "latest": "Zuletzt erworben"
+    },
+    "search_placeholder": "Nach Name, Aussteller oder Skill suchen…",
+    "status_active": "Gültig",
+    "status_expired": "Abgelaufen",
+    "status_in_progress": "In Arbeit",
+    "view_credential": "Nachweis ansehen",
+    "download_pdf": "PDF herunterladen",
+    "issued_by": "Ausgestellt von",
+    "awarded_to": "Verliehen an",
+    "date": "Datum",
+    "hours_label": "Stunden",
+    "verify": "Verifizieren",
+    "no_results": "Keine Ergebnisse",
+    "no_results_hint": "Versuche eine andere Kategorie oder leere die Suche",
+    "view_all": "Alle Zertifizierungen ansehen",
+    "categories": {
+      "all": "Alle",
+      "dev": "Entwicklung",
+      "cloud": "Cloud",
+      "devops": "DevOps",
+      "ai": "KI"
+    },
+    "items": {
+      "ai-900": {
+        "desc": "Entwurf und Umsetzung von Azure-KI-Lösungen mit verschiedenen KI-Diensten und -Werkzeugen."
+      },
+      "meta-fe-2024": {
+        "desc": "Front-End-Programm aus neun Kursen mit React, UX-Prinzipien und einem Abschlussprojekt mit vollständiger App gegen ein simuliertes Backend."
+      },
+      "claude-code-2026": {
+        "desc": "Lerne, Claude zum Schreiben und Verbessern von Code sowie zum Lösen komplexer Programmierprobleme einzusetzen."
+      },
+      "gcp-gce-2025": {
+        "desc": "Entwurf und Umsetzung von Lösungen auf der Google Cloud Platform mit Fokus auf Architektur, Sicherheit und Kostenmanagement."
+      }
+    }
+  }
+}
