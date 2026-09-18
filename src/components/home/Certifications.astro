@@ -3,6 +3,7 @@ import CertificationCard from '@/assets/icons/CertificationCard.astro';
 import RightArrow from '@/assets/icons/RightArrow.astro';
 import { CERTS } from '@/data/certifications';
 import type { Lang } from '@/i18n/config';
+import { fmtDate } from '@/utils/fmtDate';
 import type { Translations } from '@/utils/getTranslations';
 
 interface Props {
@@ -11,56 +12,6 @@ interface Props {
 }
 
 const { t, lang } = Astro.props;
-
-const MONTHS = {
-  es: [
-    'Ene',
-    'Feb',
-    'Mar',
-    'Abr',
-    'May',
-    'Jun',
-    'Jul',
-    'Ago',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dic',
-  ],
-  en: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ],
-  de: [
-    'Jan',
-    'Feb',
-    'Mär',
-    'Apr',
-    'Mai',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Okt',
-    'Nov',
-    'Dez',
-  ],
-};
-
-function fmtDate(yymm: string): string {
-  const [y, m] = yymm.split('-').map(Number);
-  return `${MONTHS[lang][m - 1]} ${y}`;
-}
 
 const PREVIEW_IDS = ['gcp-gce-2025', 'ai-900', 'claude-code-2026'];
 const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
@@ -102,7 +53,7 @@ const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
               {cert.mono}
             </span>
             <span class="font-mono text-[9px] text-gray-500">
-              {fmtDate(cert.date)}
+              {fmtDate(cert.date, t)}
             </span>
           </div>
 

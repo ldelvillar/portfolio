@@ -187,5 +187,19 @@
         "desc": "Entwurf und Umsetzung von Lösungen auf der Google Cloud Platform mit Fokus auf Architektur, Sicherheit und Kostenmanagement."
       }
     }
-  }
+  },
+  "months": [
+    "Jan",
+    "Feb",
+    "Mär",
+    "Apr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Dez"
+  ]
 }

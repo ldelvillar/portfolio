@@ -4,6 +4,7 @@ import { getTranslations } from '@/utils/getTranslations';
 import { CERTS } from '@/data/certifications';
 import { SITE } from '@/data/site';
 import { langStaticPaths, type Lang } from '@/i18n/config';
+import { fmtDate } from '@/utils/fmtDate';
 
 export async function getStaticPaths() {
   return langStaticPaths();
@@ -11,56 +12,6 @@ export async function getStaticPaths() {
 
 const lang = Astro.params.lang as Lang;
 const t = getTranslations(lang);
-
-const MONTHS = {
-  es: [
-    'Ene',
-    'Feb',
-    'Mar',
-    'Abr',
-    'May',
-    'Jun',
-    'Jul',
-    'Ago',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dic',
-  ],
-  en: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ],
-  de: [
-    'Jan',
-    'Feb',
-    'Mär',
-    'Apr',
-    'Mai',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Okt',
-    'Nov',
-    'Dez',
-  ],
-};
-
-function fmtDate(yymm: string, l: Lang): string {
-  const [y, m] = yymm.split('-').map(Number);
-  return `${MONTHS[l][m - 1]} ${y}`;
-}
 
 const activeCount = CERTS.filter(c => c.status === 'active').length;
 const totalHours = CERTS.reduce((s, c) => s + c.hours, 0);
@@ -140,7 +91,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
         <span class="text-lg font-semibold text-gray-900 dark:text-white">
           {latest.issuerShort}<span
             class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400"
-            >{fmtDate(latest.date, lang)}</span
+            >{fmtDate(latest.date, t)}</span
           >
         </span>
       </div>
@@ -260,7 +211,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
                   {cert.mono}
                 </div>
                 <div class="mt-1 text-[9px] tracking-widest text-gray-500 uppercase">
-                  Certified · {fmtDate(cert.date, lang)}
+                  Certified · {fmtDate(cert.date, t)}
                 </div>
               </div>
               <div class="flex justify-between font-mono text-[9px] text-gray-500">
@@ -284,7 +235,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
               <div class="flex items-center gap-2 font-mono text-xs text-gray-500 dark:text-gray-400">
                 <span>{cert.issuer}</span>
                 <span class="h-1 w-1 rounded-full bg-gray-400" />
-                <span>{fmtDate(cert.date, lang)}</span>
+                <span>{fmtDate(cert.date, t)}</span>
               </div>
               <h3 class="text-lg leading-snug font-semibold text-gray-900 dark:text-white">
                 {cert.title}
@@ -442,7 +393,7 @@ for (const id of CATEGORY_IDS.slice(1)) {
                   {t.certifications.date}
                 </span>
                 <span class="font-mono text-sm text-white">
-                  {fmtDate(cert.date, lang)}
+                  {fmtDate(cert.date, t)}
                 </span>
               </div>
               <div class="flex flex-col gap-0.5 rounded-lg border border-gray-700 p-2.5 text-left">

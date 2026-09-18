@@ -187,5 +187,19 @@
         "desc": "Designing and implementing solutions on Google Cloud Platform with a focus on architecture, security, and cost management."
       }
     }
-  }
+  },
+  "months": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ]
 }
