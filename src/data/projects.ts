@@ -21,6 +21,7 @@ import Redis from '@/assets/icons/logos/Redis.astro';
 import Ollama from '@/assets/icons/logos/Ollama.astro';
 import Docker from '@/assets/icons/logos/Docker.astro';
 import PostgreSQL from '@/assets/icons/logos/PostgreSQL.astro';
+import MCP from '@/assets/icons/logos/MCP.astro';
 
 export type ProjectStatus = 'prod' | 'dev' | 'archived';
 
@@ -44,6 +45,7 @@ export const TECH_META: Record<
   Ollama: { icon: Ollama, bgcolor: 'bg-black' },
   Docker: { icon: Docker, bgcolor: 'bg-[#2496ed]' },
   PostgreSQL: { icon: PostgreSQL, bgcolor: 'bg-[#336791]' },
+  MCP: { icon: MCP, bgcolor: 'bg-[#1e293b]' },
 };
 
 export const FALLBACK_BG = 'bg-gray-700';
@@ -84,9 +86,10 @@ export const PROJECTS: Project[] = [
       'FastAPI',
       'LangGraph',
       'Ollama',
-      'Docker',
+      'MCP',
       'Redis',
       'PostgreSQL',
+      'Docker',
       'GCP',
       'Next.js',
       'TypeScript',
