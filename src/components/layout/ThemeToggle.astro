@@ -75,6 +75,8 @@ const THEMES = [
   let remove = null;
   const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
   const themesMenu = document.getElementById('themes-menu');
+  const themeColorLight = document.getElementById('theme-color-light');
+  const themeColorDark = document.getElementById('theme-color-dark');
 
   const getThemePreference = () => {
     if (typeof localStorage !== 'undefined') {
@@ -116,6 +118,10 @@ const THEMES = [
     updateIcon(themePreference);
     updateMenuHighlight(themePreference);
     document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+
+    const themeColor = isDark ? '#030712' : '#f9fafb';
+    themeColorLight.setAttribute('content', themeColor);
+    themeColorDark.setAttribute('content', themeColor);
   };
 
   updateTheme();

@@ -38,6 +38,18 @@ const t = getTranslations(lang);
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={t.site.description} />
+    <meta
+      id="theme-color-light"
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f9fafb"
+    />
+    <meta
+      id="theme-color-dark"
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#030712"
+    />
     <link rel="canonical" href={fullUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
