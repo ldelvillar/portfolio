@@ -17,7 +17,7 @@ const lang = Astro.params.lang as Lang;
 const t = getTranslations(lang);
 ---
 
-<Layout title={t.site.title} lang={lang}>
+<Layout lang={lang} page="home">
   <main class="px-4">
     <Hero t={t} />
     <Experience t={t} />

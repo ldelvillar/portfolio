@@ -2,13 +2,18 @@
 import { getTranslations } from '@/utils/getTranslations';
 import { DEFAULT_LANG, SUPPORTED_LANGUAGES, type Lang } from '@/i18n/config';
 import Layout from '@/layouts/Layout.astro';
-import { SITE } from '@/data/site';
+import { pageTitle } from '@/utils/pageTitle';
 
-const title = (lang: Lang) =>
-  `${getTranslations(lang).not_found.title} - ${SITE.name}`;
+const title = (lang: Lang) => {
+  const t = getTranslations(lang);
+  return pageTitle(t, t.not_found.title);
+};
 ---
 
-<Layout title={title(DEFAULT_LANG)} lang={DEFAULT_LANG}>
+<Layout
+  title={getTranslations(DEFAULT_LANG).not_found.title}
+  lang={DEFAULT_LANG}
+>
   <section>
     <div
       class="mx-auto flex min-h-[80vh] max-w-7xl items-center justify-center px-4 lg:px-6"

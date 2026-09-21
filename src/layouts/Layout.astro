@@ -5,10 +5,15 @@ import type { Lang } from '@/i18n/config';
 import { SITE } from '@/data/site';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
+import { getImage } from 'astro:assets';
+import profileImg from '@/assets/images/profile.webp';
+import { buildJsonLd, type SchemaPage } from '@/utils/jsonLd';
+import { pageTitle } from '@/utils/pageTitle';
 
 interface Props {
-  title: string;
+  title?: string;
   lang: Lang;
+  page?: SchemaPage;
 }
 
 const fullUrl = new URL(Astro.url.pathname, Astro.site).href;
@@ -19,8 +24,21 @@ const ogLocale = { en: 'en_US', es: 'es_ES', de: 'de_DE' } satisfies Record<
   string
 >;
 
-const { title, lang } = Astro.props;
+const { title: pageName, lang, page } = Astro.props;
 const t = getTranslations(lang);
+const title = pageTitle(t, pageName);
+const profile = await getImage({ src: profileImg, width: 800, format: 'webp' });
+const jsonLd = JSON.stringify(
+  buildJsonLd({
+    site: Astro.site!,
+    url: fullUrl,
+    lang,
+    t,
+    title,
+    image: new URL(profile.src, Astro.site).href,
+    page,
+  })
+).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
@@ -76,6 +94,9 @@ const t = getTranslations(lang);
     <meta name="twitter:image:alt" content={ogImageAlt} />
     <meta name="twitter:site" content="@ldelvillar" />
     <meta name="twitter:creator" content="@ldelvillar" />
+
+    <!-- Structured data -->
+    <script is:inline type="application/ld+json" set:html={jsonLd} />
   </head>
   <body
     class="font-display relative flex min-h-screen flex-col bg-gray-50 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))] dark:bg-gray-950 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
