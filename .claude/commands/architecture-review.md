@@ -11,8 +11,8 @@ If `$ARGUMENTS` names a section (structure, i18n, rendering, seo, assets, mainta
 
 BEFORE YOU START:
 
-- Read `CLAUDE.md` (repo root), then explore the actual files in each area before judging it — read the key modules, don't assume. `README.md` exists but is a short public-facing overview; `CLAUDE.md` is the authoritative one.
-- Treat the conventions documented in `CLAUDE.md` as ground truth. For each relevant one, assess whether the code adheres or has drifted, and call out drift explicitly.
+- Read `AGENTS.md` (repo root), then explore the actual files in each area before judging it — read the key modules, don't assume. `README.md` exists but is a short public-facing overview; `AGENTS.md` is the authoritative one.
+- Treat the conventions documented in `AGENTS.md` as ground truth. For each relevant one, assess whether the code adheres or has drifted, and call out drift explicitly.
 - Do NOT recommend changes that contradict an intentional, documented convention (static output with no SSR, no framework components — client interactivity via `<script>` tags in `.astro` files, no `tailwind.config.*` — Tailwind 4 theme tokens in `@theme` inside `src/styles/global.css`, `src/assets/` holding inline SVG _components_ rather than managed image files, `@/` → `src/` path alias, translations as `src/i18n/{en,es}.json` consumed through `getTranslations(lang)`) unless you can show the convention itself causes a concrete problem.
 
 RULES:
@@ -38,12 +38,12 @@ PROJECT SHAPE:
 ## 1. STRUCTURE
 
 Scope: folder boundaries, where shared constants live, config duplication across `astro.config.mjs` / `vercel.json` / `src/layouts/Layout.astro`, the `@/` alias in `tsconfig.json`, what `src/data/*.ts` is allowed to import.
-Red flags: the same constant defined in two places and free to drift (site URL, redirects, supported languages), data modules importing `.astro` components and so coupling data to presentation, shared values that have no home because there is no `src/config/`, `README.md` and `CLAUDE.md` disagreeing.
+Red flags: the same constant defined in two places and free to drift (site URL, redirects, supported languages), data modules importing `.astro` components and so coupling data to presentation, shared values that have no home because there is no `src/config/`, `README.md` and `AGENTS.md` disagreeing.
 
 ## 2. I18N & DATA MODEL — `src/i18n/` + `src/data/`
 
 Scope: how `t` reaches components, the `Lang` type and the default-language fallback in `Layout.astro`, key parity between `en.json` and `es.json`, the `CERTS[].id` → `certifications.items[cert.id]` linkage, what is typed versus what is trusted.
-Red flags: translation keys present in one JSON file and missing in the other (nothing enforces the parity `CLAUDE.md` requires), `getTranslations` handing back an untyped dynamic import so every `t.*` access is unchecked, ids in `src/data/` with no matching i18n entry (or the reverse) failing silently at render time, user-facing strings hardcoded in components instead of the JSON, dead or commented-out entries in the data modules.
+Red flags: translation keys present in one JSON file and missing in the other (nothing enforces the parity `AGENTS.md` requires), `getTranslations` handing back an untyped dynamic import so every `t.*` access is unchecked, ids in `src/data/` with no matching i18n entry (or the reverse) failing silently at render time, user-facing strings hardcoded in components instead of the JSON, dead or commented-out entries in the data modules.
 
 ## 3. RENDERING & COMPONENTS
 
@@ -63,8 +63,8 @@ Classify each finding as: current problem, future risk, or premature optimizatio
 
 ## 6. MAINTAINABILITY
 
-Scope: consistency and readability, how much work it is to add one certification or project, whether `CLAUDE.md` still matches reality, type safety at the i18n and data boundaries, deployment reproducibility.
-Red flags: adding a single piece of content requiring coordinated edits in several unrelated files, `CLAUDE.md` describing behavior the code no longer has, copy-paste between the three `[lang]` routes, loose typing around translations and data ids, formatting or convention drift that Prettier does not catch.
+Scope: consistency and readability, how much work it is to add one certification or project, whether `AGENTS.md` still matches reality, type safety at the i18n and data boundaries, deployment reproducibility.
+Red flags: adding a single piece of content requiring coordinated edits in several unrelated files, `AGENTS.md` describing behavior the code no longer has, copy-paste between the three `[lang]` routes, loose typing around translations and data ids, formatting or convention drift that Prettier does not catch.
 
 ---
 

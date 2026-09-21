@@ -45,9 +45,9 @@ title-only commit.
 - `perf` — performance improvement with no behaviour change
 - `refactor` — restructuring with no behaviour change
 - `build` — build system or external dependencies (`package.json`, `pnpm-lock.yaml`, `astro.config.mjs`)
-- `chore` — tooling or maintenance that doesn't fit another type, including `.claude/`
+- `chore` — tooling or maintenance that doesn't fit another type, including `.claude/` and `.agents/`
 - `style` — formatting only (Prettier)
-- `docs` — documentation only (`README.md`, `CLAUDE.md`)
+- `docs` — documentation only (`README.md`, `AGENTS.md`, `CLAUDE.md`)
 - `revert` — reverts a previous commit
 
 **Scopes for this project** (taken from the existing history — prefer them over inventing new ones):
