@@ -11,6 +11,8 @@ export default defineConfig({
     '/': '/es',
   },
 
+  trailingSlash: 'never',
+
   vite: {
     plugins: [tailwindcss()],
   },
