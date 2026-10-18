@@ -174,11 +174,11 @@
       "ai": "KI"
     },
     "items": {
+      "ibm-agents-2026": {
+        "desc": "Entwurf und Umsetzung von Multiagentensystemen unter Verwendung von LangGraph, LangChain, CrewAI und AutoGen."
+      },
       "ai-900": {
         "desc": "Entwurf und Umsetzung von Azure-KI-Lösungen mit verschiedenen KI-Diensten und -Werkzeugen."
-      },
-      "meta-fe-2024": {
-        "desc": "Front-End-Programm aus neun Kursen mit React, UX-Prinzipien und einem Abschlussprojekt mit vollständiger App gegen ein simuliertes Backend."
       },
       "claude-code-2026": {
         "desc": "Lerne, Claude zum Schreiben und Verbessern von Code sowie zum Lösen komplexer Programmierprobleme einzusetzen."

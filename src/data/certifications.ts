@@ -20,6 +20,34 @@ export interface Cert {
 
 export const CERTS: Cert[] = [
   {
+    id: 'ibm-agents-2026',
+    title: 'Building AI Agents and Agentic Workflows Specialization',
+    issuer: 'IBM',
+    issuerShort: 'IBM',
+    category: 'ai',
+    date: '2026-10',
+    hours: 35,
+    status: 'active',
+    mono: 'IBMA',
+    tint: '#22d3ee',
+    skills: [
+      'Multi-Agent Systems',
+      'Agent Design',
+      'LangGraph',
+      'LangChain',
+      'CrewAI',
+      'AutoGen',
+      'MCP',
+      'A2A',
+      'Tool Integration',
+      'Memory Management',
+      'Context Handling',
+    ],
+    credentialUrl:
+      'https://www.credly.com/badges/0022ad88-23ac-4ed8-a030-6b3f457cf705/public_url',
+    pdfUrl: '/certifications/ibm-agents-2026.pdf',
+  },
+  {
     id: 'ai-900',
     title: 'AI-900: Azure AI Fundamentals',
     issuer: 'Microsoft',
@@ -41,20 +69,6 @@ export const CERTS: Cert[] = [
     credentialUrl:
       'https://www.credly.com/badges/6e265efb-5577-4d90-9d37-890bf065e632/public_url',
     pdfUrl: '/certifications/ai-900.pdf',
-  },
-  {
-    id: 'meta-fe-2024',
-    title: 'Meta Front-End Developer Professional',
-    issuer: 'Meta · Coursera',
-    issuerShort: 'Meta',
-    category: 'dev',
-    date: '2024-04',
-    hours: 156,
-    status: 'active',
-    mono: 'META',
-    tint: '#a78bfa',
-    skills: ['React', 'JavaScript', 'HTML/CSS', 'UX', 'Bootstrap'],
-    credentialUrl: '#',
   },
   {
     id: 'claude-code-2026',
