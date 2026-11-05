@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import CertificationCard from '@/assets/icons/CertificationCard.astro';
 import RightArrow from '@/assets/icons/RightArrow.astro';
 import { CERTS } from '@/data/certifications';
@@ -13,7 +14,7 @@ interface Props {
 
 const { t, lang } = Astro.props;
 
-const PREVIEW_IDS = ['gcp-gce-2025', 'ai-900', 'ibm-agents-2026'];
+const PREVIEW_IDS = ['claude-code-2026', 'ai-900', 'ibm-agents-2026'];
 const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
 ---
 
@@ -31,55 +32,113 @@ const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
   <div class="flex flex-col gap-4 lg:flex-row lg:items-stretch">
     {
       PREVIEW_CERTS.map(cert => (
-        <div class="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 lg:min-w-0 lg:flex-1 lg:basis-0 dark:border-gray-800 dark:bg-gray-900">
-          {/* Mini badge */}
-          <div
-            class="relative flex items-center justify-between overflow-hidden rounded-lg border border-gray-200 px-3 py-2.5 dark:border-gray-800"
-            style={`background: radial-gradient(120% 80% at 50% -10%, ${cert.tint}18 0%, transparent 60%), linear-gradient(180deg, #0c0c10 0%, #08080b 100%);`}
-          >
-            <div class="flex items-center gap-1.5">
-              <span
-                class="h-2 w-2 rounded-sm"
-                style={`background: ${cert.tint}`}
+        <article class="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-3.5 transition-colors hover:border-gray-300 sm:flex-row sm:items-center sm:gap-[18px] lg:min-w-0 lg:flex-1 lg:basis-0 lg:flex-col lg:items-stretch lg:gap-4 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700">
+          <div class="relative aspect-[1000/773] w-full shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-white sm:w-[200px] lg:w-full dark:border-transparent">
+            {cert.image ? (
+              <Image
+                src={cert.image}
+                alt={cert.title}
+                widths={[200, 400, 800]}
+                sizes="(min-width: 1024px) 320px, (min-width: 640px) 200px, 100vw"
+                class="absolute inset-0 h-full w-full object-cover object-top"
               />
-              <span class="font-mono text-xs font-semibold text-gray-300">
-                {cert.issuerShort}
-              </span>
-            </div>
-            <span
-              class="font-mono font-medium whitespace-nowrap"
-              style={`color: ${cert.tint}; text-shadow: 0 0 16px ${cert.tint}4d; font-size: 1.5rem; line-height: 1;`}
-            >
-              {cert.mono}
-            </span>
-            <span class="font-mono text-[9px] whitespace-nowrap text-gray-500">
-              {fmtDate(cert.date, t)}
-            </span>
+            ) : (
+              <div
+                class="absolute inset-0 grid place-items-center bg-[#0c0c10] font-mono text-3xl"
+                style={`color: ${cert.tint}; background-image: radial-gradient(120% 80% at 50% 0%, ${cert.tint}38 0%, transparent 60%); text-shadow: 0 0 30px ${cert.tint}73;`}
+              >
+                {cert.mono}
+              </div>
+            )}
           </div>
-
-          {/* Title & issuer */}
-          <div class="flex flex-col gap-1">
-            <h3 class="text-sm leading-snug font-semibold text-gray-900 dark:text-white">
+          <div class="flex min-w-0 flex-1 flex-col gap-2 px-0.5">
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-gray-500 dark:text-gray-400">
+              <span>{cert.issuer}</span>
+              <span class="h-1 w-1 rounded-full bg-gray-400 dark:bg-gray-500" />
+              <span>{fmtDate(cert.date, t)}</span>
+              {cert.status === 'in-progress' && (
+                <span class="rounded-full border border-amber-500/40 px-2 py-px text-[10px] tracking-widest text-amber-700 uppercase dark:text-amber-300">
+                  {t.certifications.status_in_progress}
+                </span>
+              )}
+            </div>
+            <h3 class="text-base leading-snug font-semibold text-gray-900 dark:text-white">
               {cert.title}
             </h3>
-            <span class="font-mono text-xs text-gray-500 dark:text-gray-400">
-              {cert.issuer}
-            </span>
-          </div>
-
-          {/* Skills */}
-          <div class="flex flex-wrap gap-1.5">
-            {cert.skills.map(skill => (
-              <span class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-xs text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
+            <p class="text-[13px] leading-relaxed text-gray-600 dark:text-gray-400">
+              {t.certifications.items[cert.id].desc}
+            </p>
+            <div class="flex flex-wrap gap-5 lg:mt-auto">
+              {cert.status === 'in-progress' ? (
                 <span
-                  class="h-1.5 w-1.5 rounded-full"
-                  style={`background: ${cert.tint}`}
-                />
-                {skill}
-              </span>
-            ))}
+                  aria-disabled="true"
+                  title={t.certifications.credential_pending}
+                  class="inline-flex min-h-8 cursor-not-allowed items-center gap-1.5 text-[13px] font-semibold text-gray-400 dark:text-gray-600"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3.5 w-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+                  {t.certifications.view_credential}
+                </span>
+              ) : (
+                <a
+                  href={cert.credentialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex min-h-8 items-center gap-1.5 text-[13px] font-semibold text-gray-900 transition-colors hover:text-yellow-700 dark:text-white dark:hover:text-yellow-400"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3.5 w-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+                  {t.certifications.view_credential}
+                </a>
+              )}
+              {cert.pdfUrl && (
+                <a
+                  href={cert.pdfUrl}
+                  download={`${cert.id}.pdf`}
+                  class="inline-flex min-h-8 items-center gap-1.5 text-[13px] font-medium text-gray-600 transition-colors hover:text-yellow-700 dark:text-gray-300 dark:hover:text-yellow-400"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-3.5 w-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  {t.certifications.download_pdf}
+                </a>
+              )}
+            </div>
           </div>
-        </div>
+        </article>
       ))
     }
   </div>

@@ -148,34 +148,17 @@
   },
   "certifications": {
     "title": "Zertifizierungen",
-    "subtitle": "Von anerkannten Organisationen ausgestellte Nachweise",
-    "summary": {
-      "total": "Gesamt",
-      "active": "Gültig",
-      "hours": "Lernstunden",
-      "latest": "Zuletzt erworben"
-    },
-    "search_placeholder": "Nach Name, Aussteller oder Skill suchen…",
-    "status_active": "Gültig",
-    "status_expired": "Abgelaufen",
+    "total_hours": "{hours} Lernstunden",
+    "latest_earned": "Zuletzt erworben",
     "status_in_progress": "In Arbeit",
     "view_credential": "Nachweis ansehen",
     "download_pdf": "PDF herunterladen",
-    "issued_by": "Ausgestellt von",
-    "awarded_to": "Verliehen an",
+    "issuer": "Aussteller",
     "date": "Datum",
     "hours_label": "Stunden",
-    "verify": "Verifizieren",
-    "no_results": "Keine Ergebnisse",
-    "no_results_hint": "Versuche eine andere Kategorie oder leere die Suche",
+    "more": "Weitere Nachweise",
+    "credential_pending": "Nachweis nach Abschluss der Zertifizierung verfügbar",
     "view_all": "Alle Zertifizierungen ansehen",
-    "categories": {
-      "all": "Alle",
-      "dev": "Entwicklung",
-      "cloud": "Cloud",
-      "devops": "DevOps",
-      "ai": "KI"
-    },
     "items": {
       "ibm-agents-2026": {
         "desc": "Entwurf und Umsetzung von Multiagentensystemen unter Verwendung von LangGraph, LangChain, CrewAI und AutoGen."

@@ -148,34 +148,17 @@
   },
   "certifications": {
     "title": "Certifications",
-    "subtitle": "Credentials issued by recognized organizations",
-    "summary": {
-      "total": "Total",
-      "active": "Active",
-      "hours": "Training hours",
-      "latest": "Latest earned"
-    },
-    "search_placeholder": "Search by name, issuer or skill…",
-    "status_active": "Active",
-    "status_expired": "Expired",
+    "total_hours": "{hours} hours of training",
+    "latest_earned": "Latest earned",
     "status_in_progress": "In Progress",
     "view_credential": "View credential",
     "download_pdf": "Download PDF",
-    "issued_by": "Issued by",
-    "awarded_to": "Awarded to",
+    "issuer": "Issuer",
     "date": "Date",
     "hours_label": "Hours",
-    "verify": "Verify",
-    "no_results": "No results",
-    "no_results_hint": "Try another category or clear the search",
+    "more": "More credentials",
+    "credential_pending": "Credential available once the certification is completed",
     "view_all": "View all certifications",
-    "categories": {
-      "all": "All",
-      "dev": "Development",
-      "cloud": "Cloud",
-      "devops": "DevOps",
-      "ai": "AI"
-    },
     "items": {
       "ibm-agents-2026": {
         "desc": "Designing and implementing multi-agent systems using LangGraph, LangChain, CrewAI and AutoGen."
