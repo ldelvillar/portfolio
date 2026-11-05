@@ -183,6 +183,9 @@
       "ai-900": {
         "desc": "Diseño e implementación de soluciones de IA de Azure utilizando diversos servicios y herramientas de IA."
       },
+      "dp-900": {
+        "desc": "Conceptos fundamentales de datos y servicios de datos de Azure, incluyendo datos relacionales, no relacionales y cargas de trabajo de análisis."
+      },
       "claude-code-2026": {
         "desc": "Aprende a utilizar Claude para escribir y mejorar código, así como para resolver problemas complejos de programación."
       },

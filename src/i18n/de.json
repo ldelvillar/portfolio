@@ -183,6 +183,9 @@
       "ai-900": {
         "desc": "Entwurf und Umsetzung von Azure-KI-Lösungen mit verschiedenen KI-Diensten und -Werkzeugen."
       },
+      "dp-900": {
+        "desc": "Grundlegende Datenkonzepte und Azure-Datendienste, einschließlich relationaler und nicht-relationaler Daten sowie Analyse-Workloads."
+      },
       "claude-code-2026": {
         "desc": "Lerne, Claude zum Schreiben und Verbessern von Code sowie zum Lösen komplexer Programmierprobleme einzusetzen."
       },
