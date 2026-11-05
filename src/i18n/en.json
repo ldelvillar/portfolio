@@ -1,6 +1,7 @@
 {
   "site": {
     "tagline": "Programmer and Full Stack Developer",
+    "role": "Software Engineer",
     "description": "This is my personal website. Here you can see in detail my experience, projects and skills."
   },
   "header": {
@@ -14,11 +15,11 @@
     }
   },
   "hero": {
-    "title": "I'm Lucas",
-    "subtitle": "Full Stack Developer",
+    "cta": "View projects",
+    "contact_label": "Contact links",
     "description1": "+2 years of experience.",
-    "description2": "Computer Engineer and Software Developer",
-    "description3": "from Madrid, Spain. Specialised in development and deployment of end-to-end agent-based systems."
+    "description2": "Software Engineer",
+    "description3": "from Madrid, Spain, with a degree in Computer Engineering. Specialised in development and deployment of end-to-end agent-based systems."
   },
   "experience": {
     "title": "Experience"

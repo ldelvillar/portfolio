@@ -1,6 +1,7 @@
 {
   "site": {
     "tagline": "Programmierer und Full-Stack-Entwickler",
+    "role": "Softwareingenieur",
     "description": "Das ist meine persönliche Website. Hier findest du ausführliche Informationen über meine Erfahrung, meine Projekte und meine Fähigkeiten."
   },
   "header": {
@@ -14,11 +15,11 @@
     }
   },
   "hero": {
-    "title": "ich bin Lucas",
-    "subtitle": "Full-Stack-Entwickler",
+    "cta": "Projekte ansehen",
+    "contact_label": "Kontaktlinks",
     "description1": "+2 Jahre Erfahrung.",
-    "description2": "Informatikingenieur und Softwareentwickler",
-    "description3": "aus Madrid, Spanien. Spezialisiert auf die Entwicklung und den Betrieb von End-to-End-Agentensystemen."
+    "description2": "Softwareingenieur",
+    "description3": "aus Madrid, Spanien, mit Abschluss in Informatik. Spezialisiert auf die Entwicklung und den Betrieb von End-to-End-Agentensystemen."
   },
   "experience": {
     "title": "Erfahrung"

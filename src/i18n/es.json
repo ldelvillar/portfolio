@@ -1,6 +1,7 @@
 {
   "site": {
     "tagline": "Programador y Desarrollador Full Stack",
+    "role": "Ingeniero de Software",
     "description": "Esta es mi página web personal. Aquí podrás ver en detalle mi experiencia, proyectos y habilidades."
   },
   "header": {
@@ -14,11 +15,11 @@
     }
   },
   "hero": {
-    "title": "soy Lucas",
-    "subtitle": "Desarrollador Full Stack",
+    "cta": "Ver proyectos",
+    "contact_label": "Enlaces de contacto",
     "description1": "+2 años de experiencia.",
-    "description2": "Ingeniero Informático y Desarrollador de Software",
-    "description3": "de Madrid, España. Especializado en el desarrollo y despliegue de sistemas agénticos end-to-end."
+    "description2": "Ingeniero de Software",
+    "description3": "de Madrid, España, graduado en Ingeniería Informática. Especializado en el desarrollo y despliegue de sistemas agénticos end-to-end."
   },
   "experience": {
     "title": "Experiencia"

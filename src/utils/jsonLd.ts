@@ -50,7 +50,7 @@ export function buildJsonLd({
     url: langUrl,
     email: SITE.email,
     image,
-    jobTitle: t.hero.subtitle,
+    jobTitle: t.site.role,
     address: {
       '@type': 'PostalAddress',
       addressLocality: SITE.location.city,

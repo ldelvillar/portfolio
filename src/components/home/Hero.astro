@@ -4,12 +4,15 @@ import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import Github from '@/assets/icons/logos/Github.astro';
 import Linkedin from '@/assets/icons/logos/Linkedin.astro';
 import Envelope from '@/assets/icons/Envelope.astro';
+import RightArrow from '@/assets/icons/RightArrow.astro';
+import type { Lang } from '@/i18n/config';
 import type { Translations } from '@/utils/getTranslations';
 import { SITE } from '@/data/site';
 import profile from '@/assets/images/profile.webp';
 
 interface Props {
   t: Translations;
+  lang: Lang;
 }
 
 interface SocialData {
@@ -18,7 +21,9 @@ interface SocialData {
   icon: AstroComponentFactory;
 }
 
-const { t } = Astro.props;
+const { t, lang } = Astro.props;
+
+const [firstName, ...restName] = SITE.name.split(' ');
 
 const socials: SocialData[] = [
   {
@@ -32,198 +37,65 @@ const socials: SocialData[] = [
     icon: Linkedin,
   },
   {
-    name: SITE.email,
+    name: 'Email',
     url: `mailto:${SITE.email}`,
     icon: Envelope,
   },
 ];
 ---
 
-<section id="hero" class="mx-auto max-w-5xl py-4 sm:px-4 md:py-16">
-  <div class="flex flex-col-reverse items-center gap-6 md:flex-row">
-    <div class="md:basis-2/3">
-      <div
-        class="hero-anim bounce-in-down flex flex-row-reverse gap-6 md:flex-col"
+<section id="hero" class="mx-auto max-w-5xl pt-8 pb-4 sm:px-4 md:py-20">
+  <div
+    class="flex flex-col-reverse gap-8 md:flex-row md:items-center md:justify-between md:gap-12"
+  >
+    <div class="flex min-w-0 flex-col gap-7">
+      <h1
+        class="font-instrument text-[72px] leading-[0.88] font-normal tracking-[-0.02em] text-gray-900 sm:text-[96px] md:text-[112px] lg:text-[136px] dark:text-white"
       >
-        <div>
-          <h1
-            class="text-4xl font-bold text-gray-800 md:text-5xl dark:text-white"
-          >
-            Hey, <span class="text-yellow-500 dark:text-yellow-400"
-              >{t.hero.title}</span
-            >
-          </h1>
-          <span
-            class="animate-background-shine mt-1 inline-flex bg-[linear-gradient(110deg,#8a8833,45%,#0f172a,55%,#8a8833)] bg-size-[250%_100%] bg-clip-text text-xl font-semibold text-transparent dark:bg-[linear-gradient(110deg,#f4ffb6,45%,#607406,55%,#f4ffb6)]"
-          >
-            {t.hero.subtitle}
-          </span>
-        </div>
-        <div
-          class="hero-anim back-in-down flex items-center md:mt-8 md:hidden md:basis-1/3"
+        {firstName}<br /><span class="italic">{restName.join(' ')}</span>
+      </h1>
+      <p
+        class="max-w-xl text-lg leading-relaxed font-medium text-gray-600 md:text-xl dark:text-gray-300"
+      >
+        {t.hero.description1}
+        <span class="font-semibold text-yellow-700 dark:text-yellow-400">
+          {` ${t.hero.description2} `}
+        </span>{t.hero.description3}
+      </p>
+      <nav
+        class="grid grid-cols-3 gap-3 sm:flex sm:flex-wrap sm:items-center"
+        aria-label={t.hero.contact_label}
+      >
+        <a
+          href={`/${lang}/projects`}
+          class="col-span-3 inline-flex min-h-12 items-center justify-center rounded-full bg-gray-900 px-6 font-semibold text-white transition hover:bg-gray-700 sm:col-auto dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
         >
-          <Image
-            src={profile}
-            alt={SITE.name}
-            width={240}
-            height={240}
-            widths={[240, 480]}
-            sizes="160px"
-            loading="eager"
-            class="w-40 rotate-3 rounded-full outline outline-offset-2 outline-gray-500"
-          />
-        </div>
-      </div>
-      <div class="hero-anim back-in-left">
-        <p class="mt-4 text-xl font-semibold text-gray-600 dark:text-gray-300">
-          {t.hero.description1}
-          <span class="text-yellow-500 dark:text-yellow-400">
-            {` ${t.hero.description2} `}
-          </span>{t.hero.description3}
-        </p>
-      </div>
-      <nav class="hero-anim back-in-up mt-8 flex flex-wrap gap-5 text-lg">
+          {t.hero.cta}
+          <RightArrow class="h-3 w-3" />
+        </a>
         {
           socials.map(social => (
             <a
               href={social.url}
               target="_blank"
-              class="flex flex-row items-center justify-center gap-2 rounded-full border border-gray-600 bg-linear-to-r from-gray-400 to-gray-600 px-3 py-1 font-medium text-white transition-transform hover:scale-105 dark:from-slate-800 dark:to-slate-950"
+              aria-label={social.name}
+              class="inline-flex h-12 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-900 transition hover:border-yellow-500 hover:text-yellow-700 sm:w-12 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:hover:border-yellow-400 dark:hover:text-yellow-400"
             >
-              <social.icon class="size-6" />
-              <span>{social.name}</span>
+              <social.icon />
             </a>
           ))
         }
       </nav>
     </div>
-
-    <div
-      class="hero-anim back-in-down hidden items-center md:mt-8 md:flex md:basis-1/3"
-    >
-      <Image
-        src={profile}
-        alt={SITE.name}
-        width={240}
-        height={240}
-        widths={[240, 720, 960]}
-        sizes="(min-width: 1440px) 960px, (min-width: 1024px) 720px, 240px"
-        loading="eager"
-        class="w-60 rotate-3 rounded-full outline-1 outline-offset-2 outline-gray-500"
-      />
-    </div>
+    <Image
+      src={profile}
+      alt={SITE.name}
+      width={280}
+      height={280}
+      widths={[280, 560]}
+      sizes="(min-width: 1024px) 280px, (min-width: 768px) 224px, (min-width: 640px) 160px, 128px"
+      loading="eager"
+      class="w-32 shrink-0 rounded-full object-cover outline-1 outline-offset-[6px] outline-gray-400 sm:w-40 md:w-56 lg:w-[280px] dark:outline-gray-600"
+    />
   </div>
 </section>
-
-<style>
-  /* Entrance animations adapted from animate.css 4.1.1 (MIT, © 2020 Daniel Eden) */
-  .hero-anim {
-    animation-duration: 2s;
-    animation-fill-mode: both;
-  }
-
-  .bounce-in-down {
-    animation-name: bounceInDown;
-  }
-
-  .back-in-down {
-    animation-name: backInDown;
-  }
-
-  .back-in-left {
-    animation-name: backInLeft;
-  }
-
-  .back-in-up {
-    animation-name: backInUp;
-  }
-
-  @media print, (prefers-reduced-motion: reduce) {
-    .hero-anim {
-      animation: none;
-    }
-  }
-
-  @keyframes bounceInDown {
-    from,
-    60%,
-    75%,
-    90%,
-    to {
-      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-
-    0% {
-      opacity: 0;
-      transform: translate3d(0, -3000px, 0) scaleY(3);
-    }
-
-    60% {
-      opacity: 1;
-      transform: translate3d(0, 25px, 0) scaleY(0.9);
-    }
-
-    75% {
-      transform: translate3d(0, -10px, 0) scaleY(0.95);
-    }
-
-    90% {
-      transform: translate3d(0, 5px, 0) scaleY(0.985);
-    }
-
-    to {
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  @keyframes backInDown {
-    0% {
-      transform: translateY(-1200px) scale(0.7);
-      opacity: 0.7;
-    }
-
-    80% {
-      transform: translateY(0px) scale(0.7);
-      opacity: 0.7;
-    }
-
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  @keyframes backInLeft {
-    0% {
-      transform: translateX(-2000px) scale(0.7);
-      opacity: 0.7;
-    }
-
-    80% {
-      transform: translateX(0px) scale(0.7);
-      opacity: 0.7;
-    }
-
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  @keyframes backInUp {
-    0% {
-      transform: translateY(1200px) scale(0.7);
-      opacity: 0.7;
-    }
-
-    80% {
-      transform: translateY(0px) scale(0.7);
-      opacity: 0.7;
-    }
-
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-</style>
