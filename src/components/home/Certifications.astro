@@ -28,10 +28,10 @@ const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
     <h2 class="text-3xl font-bold">{t.certifications.title}</h2>
   </div>
 
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-stretch">
     {
       PREVIEW_CERTS.map(cert => (
-        <div class="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+        <div class="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 lg:min-w-0 lg:flex-1 lg:basis-0 dark:border-gray-800 dark:bg-gray-900">
           {/* Mini badge */}
           <div
             class="relative flex items-center justify-between overflow-hidden rounded-lg border border-gray-200 px-3 py-2.5 dark:border-gray-800"
@@ -47,12 +47,12 @@ const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
               </span>
             </div>
             <span
-              class="font-mono font-medium"
+              class="font-mono font-medium whitespace-nowrap"
               style={`color: ${cert.tint}; text-shadow: 0 0 16px ${cert.tint}4d; font-size: 1.5rem; line-height: 1;`}
             >
               {cert.mono}
             </span>
-            <span class="font-mono text-[9px] text-gray-500">
+            <span class="font-mono text-[9px] whitespace-nowrap text-gray-500">
               {fmtDate(cert.date, t)}
             </span>
           </div>
