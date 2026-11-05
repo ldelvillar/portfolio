@@ -44,7 +44,9 @@
   },
   "projects": {
     "title": "Projekte",
-    "view_all": "Alle Projekte ansehen"
+    "view_all": "Alle Projekte ansehen",
+    "preview": "Vorschau",
+    "code": "Code"
   },
   "projects_page": {
     "title": "Projekte",

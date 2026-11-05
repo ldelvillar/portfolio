@@ -16,6 +16,8 @@ interface Props {
   description: string;
   github: string;
   preview?: string;
+  previewLabel: string;
+  codeLabel: string;
   reverse?: boolean;
 }
 
@@ -26,6 +28,8 @@ const {
   description,
   github,
   preview,
+  previewLabel,
+  codeLabel,
   reverse = false,
 } = Astro.props;
 
@@ -101,7 +105,7 @@ const extraTech = technologies.length - visibleTech.length;
               class="inline-flex items-center gap-1.5 border-b-2 border-yellow-400 pb-0.5 text-gray-900 transition hover:border-gray-900 focus-visible:ring focus-visible:ring-yellow-500/80 focus-visible:outline-none dark:text-gray-50 dark:hover:border-gray-50"
             >
               <Link class="size-4" />
-              Preview
+              {previewLabel}
             </a>
           )
         }
@@ -111,7 +115,7 @@ const extraTech = technologies.length - visibleTech.length;
           class="inline-flex items-center gap-1.5 border-b-2 border-transparent pb-0.5 text-gray-600 transition hover:border-gray-300 hover:text-gray-900 focus-visible:ring focus-visible:ring-yellow-500/80 focus-visible:outline-none dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-50"
         >
           <Github class="size-4" />
-          Code
+          {codeLabel}
         </a>
       </footer>
     </div>

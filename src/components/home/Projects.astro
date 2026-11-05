@@ -32,6 +32,8 @@ const { t, lang } = Astro.props;
           description={t.projects_page.items[project.id].desc}
           github={project.github}
           preview={project.preview}
+          previewLabel={t.projects.preview}
+          codeLabel={t.projects.code}
           reverse={index % 2 === 1}
           technologies={project.stack.map(name => ({
             icon: TECH_META[name]?.icon,

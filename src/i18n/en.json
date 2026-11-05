@@ -44,7 +44,9 @@
   },
   "projects": {
     "title": "Projects",
-    "view_all": "View all projects"
+    "view_all": "View all projects",
+    "preview": "Preview",
+    "code": "Code"
   },
   "projects_page": {
     "title": "Projects",
