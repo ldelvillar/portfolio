@@ -42,38 +42,234 @@ const timelineItems: TimelineItemsData[] = [
     <Calendar />
     <h2 class="text-3xl font-bold">{t.experience.title}</h2>
   </div>
-  <ol class="relative mt-10 ml-3 border-s border-gray-200 dark:border-gray-700">
+  <ol class="tl mt-10" data-timeline>
+    <span class="tl-rail" data-rail aria-hidden="true"></span>
+    <span class="tl-fill" data-fill aria-hidden="true"></span>
     {
-      timelineItems.map((item, index) => (
-        <li
-          class={`${index === timelineItems.length - 1 ? '' : 'mb-20 md:mb-24'} ms-6`}
-        >
-          <div class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-yellow-400 dark:border-gray-900" />
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-[40%]">
-              <h3 class="text-xl font-bold text-yellow-400">{item.title}</h3>
-              <time class="text-sm leading-none font-normal text-gray-700 dark:text-gray-300">
-                {item.date}
-              </time>
-            </div>
-            <div class="md:ml-8 md:w-[60%]">
-              <p class="mt-8 text-gray-700 md:mt-0 dark:text-gray-300">
+      timelineItems.map((item, index) => {
+        const onRight = index % 2 === 0;
+        return (
+          <li
+            class:list={[
+              'tl-item',
+              { 'tl-item--last': index === timelineItems.length - 1 },
+            ]}
+          >
+            <span class="tl-node" data-node aria-hidden="true" />
+            <time
+              class:list={[
+                'tl-date',
+                onRight ? 'tl-date--pillLeft' : 'tl-date--pillRight',
+              ]}
+              data-date
+            >
+              {item.date}
+            </time>
+            <div
+              class:list={[
+                'tl-card',
+                onRight ? 'tl-card--right' : 'tl-card--left',
+              ]}
+            >
+              <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {item.title}
+              </h3>
+              <p class="leading-relaxed text-gray-600 dark:text-gray-300">
                 {item.description}
               </p>
               {item.link && (
                 <a
                   href={item.link}
                   target="_blank"
-                  class="mt-6 inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-yellow-500 hover:bg-slate-100 hover:text-yellow-400 focus:z-10 focus:text-yellow-400 focus:ring-4 focus:ring-gray-100 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-yellow-400 dark:hover:bg-gray-700 dark:focus:ring-gray-100"
+                  class="text-primary mt-4 inline-flex items-center gap-1 text-sm font-medium hover:underline focus:underline"
                 >
                   {t.timeline.learn_more}
                   <RightArrow />
                 </a>
               )}
             </div>
-          </div>
-        </li>
-      ))
+          </li>
+        );
+      })
     }
   </ol>
 </section>
+
+<style>
+  .tl {
+    position: relative;
+    margin-bottom: 0;
+    padding: 0;
+    list-style: none;
+    --tl-line: #e5e7eb;
+    --tl-surface: #fff;
+    --tl-pill: #f3f4f6;
+    --tl-pill-text: #374151;
+  }
+  :global(.dark) .tl {
+    --tl-line: #374151;
+    --tl-surface: #111827;
+    --tl-pill: #1f2937;
+    --tl-pill-text: #d1d5db;
+  }
+
+  /* Base rail spans first to last node (sized in JS) */
+  .tl-rail,
+  .tl-fill {
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+  }
+  .tl-rail {
+    background: var(--tl-line);
+  }
+  .tl-fill {
+    background: var(--color-primary);
+    transition: height 0.12s linear;
+  }
+
+  .tl-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 72px 1fr;
+    align-items: start;
+    padding-bottom: 72px;
+  }
+  .tl-item--last {
+    padding-bottom: 0;
+  }
+
+  .tl-node {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    z-index: 1;
+    width: 16px;
+    height: 16px;
+    transform: translateX(-50%) scale(1);
+    border-radius: 9999px;
+    border: 3px solid var(--tl-surface);
+    background: #d1d5db;
+    box-shadow: 0 0 0 1px var(--tl-line);
+    transition:
+      background 0.3s,
+      box-shadow 0.3s,
+      transform 0.3s;
+  }
+  .tl-node.is-active {
+    background: var(--color-primary);
+    box-shadow: 0 0 0 5px
+      color-mix(in oklab, var(--color-primary) 15%, transparent);
+    transform: translateX(-50%) scale(1.2);
+  }
+
+  .tl-date {
+    position: absolute;
+    top: 12px;
+    z-index: 1;
+    transform: translateY(-50%);
+    padding: 7px 16px;
+    border-radius: 9999px;
+    background: var(--tl-pill);
+    color: var(--tl-pill-text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+      background 0.3s,
+      color 0.3s;
+  }
+  .tl-date.is-active {
+    background: var(--color-primary);
+    color: #111827;
+  }
+  .tl-date--pillLeft {
+    right: calc(50% + 22px);
+  }
+  .tl-date--pillRight {
+    left: calc(50% + 22px);
+  }
+
+  .tl-card {
+    border: 1px solid var(--tl-line);
+    border-radius: 0.75rem;
+    background: var(--tl-surface);
+    padding: 28px 32px;
+    transition:
+      box-shadow 0.3s,
+      border-color 0.3s;
+  }
+  .tl-card--left {
+    grid-column: 1;
+    margin-right: 40px;
+  }
+  .tl-card--right {
+    grid-column: 3;
+    margin-left: 40px;
+  }
+  .tl-item:hover .tl-card {
+    border-color: var(--color-primary);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Narrow screens: rail pinned left, cards fill the width */
+  @media (max-width: 1024px) {
+    .tl-item {
+      display: block;
+      padding-left: 40px;
+      padding-top: 44px;
+    }
+    .tl-rail,
+    .tl-fill,
+    .tl-node {
+      left: 7px;
+    }
+    .tl-date {
+      left: 30px;
+      right: auto;
+      top: 0;
+      transform: none;
+    }
+    .tl-card--left,
+    .tl-card--right {
+      margin: 0;
+      padding: 20px 24px;
+    }
+  }
+</style>
+
+<script>
+  const ol = document.querySelector<HTMLElement>('[data-timeline]');
+  const rail = ol?.querySelector<HTMLElement>('[data-rail]');
+  const fill = ol?.querySelector<HTMLElement>('[data-fill]');
+
+  if (ol && rail && fill) {
+    const nodes = Array.from(ol.querySelectorAll<HTMLElement>('[data-node]'));
+    const dates = Array.from(ol.querySelectorAll<HTMLElement>('[data-date]'));
+
+    const update = () => {
+      const top = ol.getBoundingClientRect().top;
+      const nodeY = (n: HTMLElement) => n.getBoundingClientRect().top - top + 8;
+      const railStart = nodeY(nodes[0]);
+      const railEnd = nodeY(nodes[nodes.length - 1]);
+      rail.style.top = fill.style.top = `${railStart}px`;
+      rail.style.height = `${railEnd - railStart}px`;
+
+      // Fill progress is measured ~55% down the viewport
+      const reached = Math.min(window.innerHeight * 0.55 - top, railEnd);
+      fill.style.height = `${Math.max(0, reached - railStart)}px`;
+      nodes.forEach((n, i) => {
+        const active = nodeY(n) <= reached;
+        n.classList.toggle('is-active', active);
+        dates[i].classList.toggle('is-active', active);
+      });
+    };
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+  }
+</script>
