@@ -10,10 +10,10 @@ import TypeScript from '@/assets/icons/logos/Typescript.astro';
 import Python from '@/assets/icons/logos/Python.astro';
 import Express from '@/assets/icons/logos/Express.astro';
 import FastAPI from '@/assets/icons/logos/Fastapi.astro';
-import C from '@/assets/icons/logos/C.astro';
+import Pydantic from '@/assets/icons/logos/Pydantic.astro';
+import Puppeteer from '@/assets/icons/logos/Puppeteer.astro';
 import PostgreSQL from '@/assets/icons/logos/PostgreSQL.astro';
 import SQLServer from '@/assets/icons/logos/SQLServer.astro';
-import MongoDB from '@/assets/icons/logos/MongoDB.astro';
 import GCP from '@/assets/icons/logos/GCP.astro';
 import Azure from '@/assets/icons/logos/Azure.astro';
 import Docker from '@/assets/icons/logos/Docker.astro';
@@ -26,9 +26,10 @@ import LangChain from '@/assets/icons/logos/LangChain.astro';
 import CrewAi from '@/assets/icons/logos/CrewAi.astro';
 import Ollama from '@/assets/icons/logos/Ollama.astro';
 import Vllm from '@/assets/icons/logos/Vllm.astro';
-import LlamaIndex from '@/assets/icons/logos/Llamaindex.astro';
+import PyTorch from '@/assets/icons/logos/PyTorch.astro';
 import MCP from '@/assets/icons/logos/MCP.astro';
 import HuggingFace from '@/assets/icons/logos/HuggingFace.astro';
+import Langfuse from '@/assets/icons/logos/Langfuse.astro';
 import type { Translations } from '@/utils/getTranslations';
 
 // @ts-ignore
@@ -50,7 +51,7 @@ const { t } = Astro.props;
 
 const FIELDS: TechField[] = [
   {
-    name: 'Backend',
+    name: 'Backend & Full-Stack',
     technologies: [
       {
         icon: Python,
@@ -70,20 +71,20 @@ const FIELDS: TechField[] = [
         name: 'Express',
       },
       {
-        icon: C,
-        name: 'C',
+        icon: Pydantic,
+        name: 'Pydantic',
       },
       {
-        icon: PostgreSQL,
-        name: 'PostgreSQL',
+        icon: Puppeteer,
+        name: 'Puppeteer',
       },
       {
-        icon: SQLServer,
-        name: 'SQL Server',
+        icon: ReactIcon,
+        name: 'React',
       },
       {
-        icon: MongoDB,
-        name: 'MongoDB',
+        icon: NextJS,
+        name: 'Next.js',
       },
     ],
   },
@@ -111,8 +112,8 @@ const FIELDS: TechField[] = [
         name: 'vLLM',
       },
       {
-        icon: LlamaIndex,
-        name: 'LlamaIndex',
+        icon: PyTorch,
+        name: 'PyTorch',
       },
       {
         icon: MCP,
@@ -121,6 +122,10 @@ const FIELDS: TechField[] = [
       {
         icon: HuggingFace,
         name: 'Hugging Face',
+      },
+      {
+        icon: Langfuse,
+        name: 'Langfuse',
       },
     ],
   },
@@ -148,6 +153,14 @@ const FIELDS: TechField[] = [
         name: 'Redis',
       },
       {
+        icon: PostgreSQL,
+        name: 'PostgreSQL',
+      },
+      {
+        icon: SQLServer,
+        name: 'SQL Server',
+      },
+      {
         icon: GithubActions,
         name: 'GitHub Actions',
       },
@@ -163,14 +176,6 @@ const FIELDS: TechField[] = [
       {
         icon: AstroIcon,
         name: 'Astro',
-      },
-      {
-        icon: ReactIcon,
-        name: 'React',
-      },
-      {
-        icon: NextJS,
-        name: 'Next.js',
       },
       {
         icon: Vue,
