@@ -137,7 +137,14 @@ const THEMES = [
   document.querySelectorAll('.themes-menu-option').forEach(element => {
     element.addEventListener('click', () => {
       localStorage.setItem('theme', element.dataset.theme);
-      updateTheme();
+      if (
+        !document.startViewTransition ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        updateTheme();
+        return;
+      }
+      document.startViewTransition(updateTheme);
     });
   });
 </script>
