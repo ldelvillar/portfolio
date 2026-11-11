@@ -18,7 +18,6 @@ interface Props {
 
 const fullUrl = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og.png', Astro.site).href;
-const ogImageAlt = `${SITE.name}, full-stack developer`;
 const ogLocale = { en: 'en_US', es: 'es_ES', de: 'de_DE' } satisfies Record<
   Lang,
   string
@@ -26,6 +25,7 @@ const ogLocale = { en: 'en_US', es: 'es_ES', de: 'de_DE' } satisfies Record<
 
 const { title: pageName, lang, page } = Astro.props;
 const t = getTranslations(lang);
+const ogImageAlt = `${SITE.name}, ${t.site.tagline}`;
 const title = pageTitle(t, pageName);
 const profile = await getImage({ src: profileImg, width: 800, format: 'webp' });
 const jsonLd = JSON.stringify(
