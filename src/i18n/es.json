@@ -29,6 +29,11 @@
     "title": "Experiencia"
   },
   "timeline": {
+    "2019": {
+      "date": "2019",
+      "title": "Empecé a programar",
+      "description": "Empecé a programar a los 15 años, cuando comencé a aprender los fundamentos de la ciberseguridad y del hacking ético. A partir de ahí, comencé a investigar y aprender sobre otros campos, y en 2022 decidí centrarme en el desarrollo full stack."
+    },
     "learn_more": "Saber más",
     "june_2025": {
       "date": "Junio 2025",
@@ -39,11 +44,6 @@
       "date": "Septiembre 2022",
       "title": "Comencé mi carrera",
       "description": "Empecé a estudiar un Grado en Ingeniería Informática en la Universidad Carlos III de Madrid. Además, estoy constantemente formándome por mi cuenta realizando proyectos full stack y obteniendo certificaciones en diferentes áreas."
-    },
-    "2019": {
-      "date": "2019",
-      "title": "Empecé a programar",
-      "description": "Empecé a programar a los 15 años, cuando comencé a aprender los fundamentos de la ciberseguridad y del hacking ético. A partir de ahí, comencé a investigar y aprender sobre otros campos, y en 2022 decidí centrarme en el desarrollo full stack."
     }
   },
   "projects": {
@@ -54,16 +54,7 @@
   },
   "projects_page": {
     "title": "Proyectos",
-    "subtitle": "// código que terminó en producción",
-    "summary": {
-      "total": "Total",
-      "live": "En producción",
-      "stack": "Stack principal",
-      "latest": "Último lanzamiento"
-    },
-    "search_placeholder": "Buscar por nombre, stack o keyword…",
-    "search_label": "Buscar proyectos",
-    "results_count": "{count} proyectos mostrados",
+    "subtitle": "{total} proyectos · {live} en producción",
     "featured": "Destacado",
     "status_prod": "En producción",
     "status_dev": "En desarrollo",
@@ -72,10 +63,10 @@
       "live": "Ver en vivo",
       "repo": "Código",
       "more": "Ver más",
-      "close": "Cerrar"
+      "close": "Cerrar",
+      "prev": "Anterior",
+      "next": "Siguiente"
     },
-    "no_results": "No hay resultados",
-    "no_results_hint": "Prueba con otro término de búsqueda",
     "items": {
       "veritrust": {
         "duration": "9 meses",

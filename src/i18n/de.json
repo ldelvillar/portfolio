@@ -29,6 +29,11 @@
     "title": "Erfahrung"
   },
   "timeline": {
+    "2019": {
+      "date": "2019",
+      "title": "Erste Schritte im Programmieren",
+      "description": "Mit 15 Jahren habe ich angefangen zu programmieren, als ich die Grundlagen von Cybersicherheit und Ethical Hacking gelernt habe. Von dort aus habe ich weitere Bereiche erkundet und mich 2022 entschieden, mich auf Full-Stack-Entwicklung zu konzentrieren."
+    },
     "learn_more": "Mehr erfahren",
     "june_2025": {
       "date": "Juni 2025",
@@ -39,11 +44,6 @@
       "date": "September 2022",
       "title": "Beginn meines Studiums",
       "description": "Ich habe ein Bachelorstudium in Informatik an der Universidad Carlos III de Madrid begonnen. Daneben bilde ich mich laufend selbst weiter, indem ich an Full-Stack-Projekten arbeite und Zertifizierungen in unterschiedlichen Bereichen erwerbe."
-    },
-    "2019": {
-      "date": "2019",
-      "title": "Erste Schritte im Programmieren",
-      "description": "Mit 15 Jahren habe ich angefangen zu programmieren, als ich die Grundlagen von Cybersicherheit und Ethical Hacking gelernt habe. Von dort aus habe ich weitere Bereiche erkundet und mich 2022 entschieden, mich auf Full-Stack-Entwicklung zu konzentrieren."
     }
   },
   "projects": {
@@ -54,16 +54,7 @@
   },
   "projects_page": {
     "title": "Projekte",
-    "subtitle": "// Code, der es in die Produktion geschafft hat",
-    "summary": {
-      "total": "Gesamt",
-      "live": "Live",
-      "stack": "Haupt-Stack",
-      "latest": "Letzter Launch"
-    },
-    "search_placeholder": "Nach Name, Stack oder Stichwort suchen…",
-    "search_label": "Projekte durchsuchen",
-    "results_count": "{count} Projekte angezeigt",
+    "subtitle": "{total} Projekte · {live} in Produktion",
     "featured": "Highlight",
     "status_prod": "In Produktion",
     "status_dev": "In Entwicklung",
@@ -72,10 +63,10 @@
       "live": "Live ansehen",
       "repo": "Quellcode",
       "more": "Mehr ansehen",
-      "close": "Schließen"
+      "close": "Schließen",
+      "prev": "Zurück",
+      "next": "Weiter"
     },
-    "no_results": "Keine Ergebnisse",
-    "no_results_hint": "Versuche es mit einem anderen Suchbegriff",
     "items": {
       "veritrust": {
         "duration": "Abschlussarbeit",

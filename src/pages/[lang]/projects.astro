@@ -21,8 +21,9 @@ const tp = t.projects_page;
 
 const total = PROJECTS.length;
 const liveCount = PROJECTS.filter(p => p.status === 'prod').length;
-const latest = [...PROJECTS].sort((a, b) => b.year.localeCompare(a.year))[0];
-const mainStack = 'TypeScript';
+const subtitle = tp.subtitle
+  .replace('{total}', String(total))
+  .replace('{live}', String(liveCount));
 
 const featured = PROJECTS.find(p => p.featured);
 const rest = PROJECTS.filter(p => !p.featured);
@@ -63,105 +64,16 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
       >
         {tp.title}
       </h1>
-      <span
-        class="ml-auto hidden font-mono text-sm text-gray-500 sm:block dark:text-gray-400"
-        >{tp.subtitle}</span
+      <span class="ml-auto font-mono text-sm text-gray-500 dark:text-gray-400"
+        >{subtitle}</span
       >
     </header>
-
-    <!-- Summary strip -->
-    <div
-      class="mb-8 grid grid-cols-2 divide-x divide-y overflow-hidden rounded-xl border border-gray-200 sm:grid-cols-4 sm:divide-y-0 dark:divide-gray-800 dark:border-gray-800"
-    >
-      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
-        <span
-          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
-          >{tp.summary.total}</span
-        >
-        <span
-          class="font-blimone text-2xl font-semibold text-gray-900 dark:text-white"
-          >{String(total).padStart(2, '0')}</span
-        >
-      </div>
-      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
-        <span
-          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
-          >{tp.summary.live}</span
-        >
-        <span
-          class="font-blimone flex items-center gap-2 text-2xl font-semibold text-gray-900 dark:text-white"
-        >
-          <span class="inline-block h-2 w-2 rounded-full bg-yellow-400"></span>
-          {liveCount}<span
-            class="text-sm font-normal text-gray-500 dark:text-gray-400"
-            >/ {total}</span
-          >
-        </span>
-      </div>
-      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
-        <span
-          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
-          >{tp.summary.stack}</span
-        >
-        <span
-          class="font-blimone text-2xl font-semibold text-gray-900 dark:text-white"
-          >{mainStack}</span
-        >
-      </div>
-      <div class="flex flex-col gap-1 bg-white px-5 py-4 dark:bg-gray-900">
-        <span
-          class="text-xs tracking-widest text-gray-500 uppercase dark:text-gray-400"
-          >{tp.summary.latest}</span
-        >
-        <span class="text-lg font-semibold text-gray-900 dark:text-white">
-          {latest.title}<span
-            class="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400"
-            >{latest.year}</span
-          >
-        </span>
-      </div>
-    </div>
-
-    <!-- Search -->
-    <div
-      class="mb-8 flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-gray-400 transition-colors focus-within:border-gray-400 focus-within:ring-2 focus-within:ring-yellow-700 sm:w-auto sm:min-w-[320px] dark:border-gray-700 dark:focus-within:border-gray-500 dark:focus-within:ring-yellow-400"
-    >
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.8"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="h-3.5 w-3.5 shrink-0"
-      >
-        <circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path>
-      </svg>
-      <label for="proj-search" class="sr-only">{tp.search_label}</label>
-      <input
-        id="proj-search"
-        type="search"
-        placeholder={tp.search_placeholder}
-        class="min-w-0 flex-1 border-0 bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-500 dark:text-white dark:placeholder:text-gray-400"
-      />
-    </div>
-    <p
-      id="visible-count"
-      class="sr-only"
-      role="status"
-      data-template={tp.results_count}
-    >
-    </p>
 
     {
       featured && (
         <section
           class="proj-featured mb-12 grid grid-cols-1 overflow-hidden rounded-xl border border-gray-200 bg-white lg:grid-cols-[1.15fr_1fr] dark:border-gray-800 dark:bg-gray-900"
           style={`--proj-tint: ${featured.tint}`}
-          data-title={featured.title.toLowerCase()}
-          data-stack={featured.stack.join(',').toLowerCase()}
-          data-desc={tp.items[featured.id].desc.toLowerCase()}
         >
           <div class="relative min-h-[260px] overflow-hidden border-b border-gray-200 lg:border-r lg:border-b-0 dark:border-gray-800">
             {featured.image && (
@@ -330,9 +242,6 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
         rest.map(project => (
           <article
             class="proj-card relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-all hover:border-gray-300 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
-            data-title={project.title.toLowerCase()}
-            data-stack={project.stack.join(',').toLowerCase()}
-            data-desc={tp.items[project.id].desc.toLowerCase()}
             style={project.status === 'archived' ? 'opacity: 0.85' : ''}
           >
             <div class="relative aspect-video overflow-hidden border-b border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-gray-950">
@@ -482,187 +391,39 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
           </article>
         ))
       }
-
-      <div
-        id="empty-state"
-        class="col-span-full hidden rounded-xl border border-dashed border-gray-200 py-16 text-center dark:border-gray-800"
-      >
-        <p class="text-base text-gray-500 dark:text-gray-400">
-          {tp.no_results}
-        </p>
-        <p class="mt-2 font-mono text-xs text-gray-500 dark:text-gray-400">
-          {tp.no_results_hint}
-        </p>
-      </div>
     </div>
 
     <!-- Project modals -->
     {
-      PROJECTS.map(p => (
-        <dialog
-          id={`project-${p.id}`}
-          aria-labelledby={`project-${p.id}-title`}
-          class="m-auto max-h-[calc(100vh-3rem)] w-[calc(100%-3rem)] max-w-2xl flex-col overflow-hidden rounded-2xl border border-gray-300 bg-white text-gray-900 shadow-2xl backdrop:bg-gray-900/45 backdrop:backdrop-blur-sm open:flex dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:backdrop:bg-black/70"
-        >
-          <div class="flex items-center justify-between border-b border-gray-200 px-4 py-3 dark:border-gray-800">
-            <div class="flex gap-1.5">
-              <span class="h-2.5 w-2.5 rounded-full bg-red-500/80" />
-              <span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
-              <span class="h-2.5 w-2.5 rounded-full bg-green-500/80" />
-            </div>
-            <div class="truncate rounded-full border border-gray-300 bg-gray-100 px-3 py-1 font-mono text-xs text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400">
-              <>
-                <span>https://</span>
-                <b class="font-medium text-gray-800 dark:text-gray-200">
-                  {p.url}
-                </b>
-              </>
-            </div>
-            <form method="dialog">
-              <button
-                class="grid h-7 w-7 place-items-center rounded-md text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
-                aria-label={tp.actions.close}
-              >
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="h-3.5 w-3.5"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            </form>
-          </div>
-          <div class="overflow-y-auto">
-            <div class="relative aspect-16/8 overflow-hidden border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
-              {p.image && (
-                <Image
-                  src={p.image}
-                  alt={p.title}
-                  width={900}
-                  height={450}
-                  densities={[1, 2]}
-                  class="absolute inset-0 h-full w-full object-cover object-top"
-                  loading="lazy"
-                />
-              )}
-              <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-white/0 from-30% via-white/55 via-70% to-white dark:from-gray-900/0 dark:via-gray-900/55 dark:to-gray-900" />
-            </div>
-            <div class="flex flex-col gap-4 p-6 sm:p-8">
-              <div class="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-gray-500 uppercase dark:text-gray-400">
-                <span>{p.year}</span>
-                <span class="h-[3px] w-[3px] rounded-full bg-gray-400 dark:bg-gray-500" />
-                <span>{tp.items[p.id].duration}</span>
-                <span class="h-[3px] w-[3px] rounded-full bg-gray-400 dark:bg-gray-500" />
-                <span
-                  class={`inline-flex items-center gap-1.5 rounded-full border bg-gray-500/10 px-2 py-0.5 text-[9px] tracking-widest ${statusBadgeClasses(p.status, true)}`}
-                >
-                  {statusLabel(p.status)}
-                </span>
+      PROJECTS.map((p, i) => {
+        const prev = PROJECTS[(i - 1 + PROJECTS.length) % PROJECTS.length];
+        const next = PROJECTS[(i + 1) % PROJECTS.length];
+        const navBtn =
+          'inline-flex min-h-11 items-center gap-2 rounded-md px-3 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white';
+        return (
+          <dialog
+            id={`project-${p.id}`}
+            aria-labelledby={`project-${p.id}-title`}
+            class="m-auto max-h-[calc(100vh-3rem)] w-[calc(100%-3rem)] max-w-2xl flex-col overflow-hidden rounded-2xl border border-gray-300 bg-white text-gray-900 shadow-2xl backdrop:bg-gray-900/45 backdrop:backdrop-blur-sm open:flex dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:backdrop:bg-black/70"
+          >
+            <div class="flex items-center justify-between border-b border-gray-200 px-4 py-3 dark:border-gray-800">
+              <div class="flex gap-1.5">
+                <span class="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+                <span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
+                <span class="h-2.5 w-2.5 rounded-full bg-green-500/80" />
               </div>
-              <h2
-                id={`project-${p.id}-title`}
-                class="text-xl leading-snug font-semibold text-gray-900 sm:text-2xl dark:text-white"
-              >
-                {p.title}
-              </h2>
-              <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                {tp.items[p.id].desc}
-              </p>
-
-              <div class="grid grid-cols-3 divide-x divide-gray-200 overflow-hidden rounded-lg border border-gray-200 dark:divide-gray-800 dark:border-gray-800">
-                {p.stats.map(s => (
-                  <div class="flex flex-col gap-0.5 bg-white p-3 dark:bg-gray-900">
-                    <span class="text-[10px] tracking-widest text-gray-500 uppercase dark:text-gray-400">
-                      {s.k}
-                    </span>
-                    <span
-                      class={`font-mono text-sm ${s.accent ? 'text-yellow-700 dark:text-yellow-400' : 'text-gray-900 dark:text-white'}`}
-                    >
-                      {s.v}
-                    </span>
-                  </div>
-                ))}
+              <div class="truncate rounded-full border border-gray-300 bg-gray-100 px-3 py-1 font-mono text-xs text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400">
+                <>
+                  <span>https://</span>
+                  <b class="font-medium text-gray-800 dark:text-gray-200">
+                    {p.url}
+                  </b>
+                </>
               </div>
-
-              <ul class="flex flex-wrap gap-1.5">
-                {p.stack.map(s => {
-                  const meta = TECH_META[s];
-                  const Icon = meta?.icon;
-                  return (
-                    <li
-                      class={`flex items-center gap-x-2 rounded-full ${meta?.bgcolor ?? FALLBACK_BG} px-2 py-1 text-sm whitespace-nowrap text-white`}
-                    >
-                      {Icon && <Icon class="size-4" />}
-                      {s}
-                    </li>
-                  );
-                })}
-              </ul>
-
-              <ul class="flex flex-col gap-2 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-950">
-                {tp.items[p.id].highlights.map(h => (
-                  <li class="flex gap-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                    <span
-                      class="font-mono font-semibold"
-                      style={`color: ${p.tint}`}
-                      aria-hidden="true"
-                    >
-                      ›
-                    </span>
-                    <span>{h}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div class="flex flex-wrap gap-2">
-                {p.preview && (
-                  <a
-                    href={isPreviewDisabled(p.status) ? undefined : p.preview}
-                    target={isPreviewDisabled(p.status) ? undefined : '_blank'}
-                    rel={
-                      isPreviewDisabled(p.status)
-                        ? undefined
-                        : 'noopener noreferrer'
-                    }
-                    aria-disabled={
-                      isPreviewDisabled(p.status) ? 'true' : undefined
-                    }
-                    tabindex={isPreviewDisabled(p.status) ? -1 : undefined}
-                    class={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                      isPreviewDisabled(p.status)
-                        ? 'pointer-events-none cursor-not-allowed bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-500'
-                        : 'bg-yellow-400 text-gray-900 hover:bg-yellow-300'
-                    }`}
-                  >
-                    <svg
-                      aria-hidden="true"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="h-3.5 w-3.5"
-                    >
-                      <path d="M15 3h6v6" />
-                      <path d="M10 14 21 3" />
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    </svg>
-                    <span>{tp.actions.live}</span>
-                  </a>
-                )}
-                <a
-                  href={p.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+              <form method="dialog">
+                <button
+                  class="grid h-7 w-7 place-items-center rounded-md text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+                  aria-label={tp.actions.close}
                 >
                   <svg
                     aria-hidden="true"
@@ -674,87 +435,281 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
                     stroke-linejoin="round"
                     class="h-3.5 w-3.5"
                   >
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
                   </svg>
-                  <span>{tp.actions.repo}</span>
-                </a>
+                </button>
+              </form>
+            </div>
+            <div class="overflow-y-auto">
+              <div class="relative aspect-16/8 overflow-hidden border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
+                {p.image && (
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    width={900}
+                    height={450}
+                    densities={[1, 2]}
+                    class="absolute inset-0 h-full w-full object-cover object-top"
+                    loading="lazy"
+                  />
+                )}
+                <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-white/0 from-30% via-white/55 via-70% to-white dark:from-gray-900/0 dark:via-gray-900/55 dark:to-gray-900" />
+              </div>
+              <div class="flex flex-col gap-4 p-6 sm:p-8">
+                <div class="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-gray-500 uppercase dark:text-gray-400">
+                  <span>{p.year}</span>
+                  <span class="h-[3px] w-[3px] rounded-full bg-gray-400 dark:bg-gray-500" />
+                  <span>{tp.items[p.id].duration}</span>
+                  <span class="h-[3px] w-[3px] rounded-full bg-gray-400 dark:bg-gray-500" />
+                  <span
+                    class={`inline-flex items-center gap-1.5 rounded-full border bg-gray-500/10 px-2 py-0.5 text-[9px] tracking-widest ${statusBadgeClasses(p.status, true)}`}
+                  >
+                    {statusLabel(p.status)}
+                  </span>
+                </div>
+                <h2
+                  id={`project-${p.id}-title`}
+                  class="text-xl leading-snug font-semibold text-gray-900 sm:text-2xl dark:text-white"
+                >
+                  {p.title}
+                </h2>
+                <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                  {tp.items[p.id].desc}
+                </p>
+
+                <div class="grid grid-cols-3 divide-x divide-gray-200 overflow-hidden rounded-lg border border-gray-200 dark:divide-gray-800 dark:border-gray-800">
+                  {p.stats.map(s => (
+                    <div class="flex flex-col gap-0.5 bg-white p-3 dark:bg-gray-900">
+                      <span class="text-[10px] tracking-widest text-gray-500 uppercase dark:text-gray-400">
+                        {s.k}
+                      </span>
+                      <span
+                        class={`font-mono text-sm ${s.accent ? 'text-yellow-700 dark:text-yellow-400' : 'text-gray-900 dark:text-white'}`}
+                      >
+                        {s.v}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <ul class="flex flex-wrap gap-1.5">
+                  {p.stack.map(s => {
+                    const meta = TECH_META[s];
+                    const Icon = meta?.icon;
+                    return (
+                      <li
+                        class={`flex items-center gap-x-2 rounded-full ${meta?.bgcolor ?? FALLBACK_BG} px-2 py-1 text-sm whitespace-nowrap text-white`}
+                      >
+                        {Icon && <Icon class="size-4" />}
+                        {s}
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                <ul class="flex flex-col gap-2 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-950">
+                  {tp.items[p.id].highlights.map(h => (
+                    <li class="flex gap-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      <span
+                        class="font-mono font-semibold"
+                        style={`color: ${p.tint}`}
+                        aria-hidden="true"
+                      >
+                        ›
+                      </span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div class="flex flex-wrap gap-2">
+                  {p.preview && (
+                    <a
+                      href={isPreviewDisabled(p.status) ? undefined : p.preview}
+                      target={
+                        isPreviewDisabled(p.status) ? undefined : '_blank'
+                      }
+                      rel={
+                        isPreviewDisabled(p.status)
+                          ? undefined
+                          : 'noopener noreferrer'
+                      }
+                      aria-disabled={
+                        isPreviewDisabled(p.status) ? 'true' : undefined
+                      }
+                      tabindex={isPreviewDisabled(p.status) ? -1 : undefined}
+                      class={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                        isPreviewDisabled(p.status)
+                          ? 'pointer-events-none cursor-not-allowed bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-500'
+                          : 'bg-yellow-400 text-gray-900 hover:bg-yellow-300'
+                      }`}
+                    >
+                      <svg
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="h-3.5 w-3.5"
+                      >
+                        <path d="M15 3h6v6" />
+                        <path d="M10 14 21 3" />
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      </svg>
+                      <span>{tp.actions.live}</span>
+                    </a>
+                  )}
+                  <a
+                    href={p.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="h-3.5 w-3.5"
+                    >
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                    <span>{tp.actions.repo}</span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        </dialog>
-      ))
+            <div class="flex items-center justify-between gap-2 border-t border-gray-200 px-2 py-1.5 dark:border-gray-800">
+              <button
+                type="button"
+                data-nav="prev"
+                class={navBtn}
+                aria-label={`${tp.actions.prev}: ${prev.title}`}
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-4 w-4"
+                >
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+                <span>{tp.actions.prev}</span>
+              </button>
+              <span
+                class="font-mono text-xs text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+              >
+                {i + 1} / {PROJECTS.length}
+              </span>
+              <button
+                type="button"
+                data-nav="next"
+                class={navBtn}
+                aria-label={`${tp.actions.next}: ${next.title}`}
+              >
+                <span>{tp.actions.next}</span>
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-4 w-4"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+          </dialog>
+        );
+      })
     }
   </main>
 
   <script>
-    // --- Search ---
-    const cards = document.querySelectorAll<HTMLElement>('.proj-card');
-    const featuredEl = document.querySelector<HTMLElement>('.proj-featured');
-    const searchInput = document.getElementById(
-      'proj-search'
-    ) as HTMLInputElement | null;
-    const emptyState = document.getElementById('empty-state');
-    const visibleCount = document.getElementById('visible-count');
+    // --- Modals: prev/next navigation and shareable URL hash (#veritrust) ---
+    const dialogs = [
+      ...document.querySelectorAll<HTMLDialogElement>('dialog[id^="project-"]'),
+    ];
+    const slugOf = (d: HTMLDialogElement) => d.id.replace(/^project-/, '');
 
-    let searchQuery = '';
-
-    function matches(el: HTMLElement) {
-      const q = searchQuery.trim().toLowerCase();
-      return (
-        !q ||
-        (el.dataset.title ?? '').includes(q) ||
-        (el.dataset.stack ?? '').includes(q) ||
-        (el.dataset.desc ?? '').includes(q)
+    function setHash(slug: string) {
+      history.replaceState(
+        null,
+        '',
+        slug ? `#${slug}` : location.pathname + location.search
       );
     }
 
-    function filterCards() {
-      let visible = 0;
-      cards.forEach(card => {
-        if (matches(card)) {
-          card.classList.remove('hidden');
-          visible++;
-        } else {
-          card.classList.add('hidden');
-        }
+    function showProject(d: HTMLDialogElement | undefined) {
+      if (!d) return;
+      dialogs.forEach(x => {
+        if (x !== d && x.open) x.close();
       });
-
-      if (featuredEl) {
-        const featuredMatches = matches(featuredEl);
-        featuredEl.classList.toggle('hidden', !featuredMatches);
-        if (featuredMatches) visible++;
-      }
-
-      emptyState?.classList.toggle('hidden', visible > 0);
-      // Announce the result count to screen readers once a search is active
-      if (visibleCount) {
-        visibleCount.textContent = searchQuery.trim()
-          ? (visibleCount.dataset.template ?? '').replace(
-              '{count}',
-              String(visible)
-            )
-          : '';
-      }
+      if (!d.open) d.showModal();
+      d.querySelector('.overflow-y-auto')?.scrollTo(0, 0);
+      setHash(slugOf(d));
     }
 
-    searchInput?.addEventListener('input', () => {
-      searchQuery = searchInput.value;
-      filterCards();
-    });
+    function step(d: HTMLDialogElement, dir: number) {
+      const i = dialogs.indexOf(d);
+      showProject(dialogs[(i + dir + dialogs.length) % dialogs.length]);
+    }
 
-    // --- Modals ---
-    document.querySelectorAll<HTMLElement>('[data-dialog]').forEach(btn => {
-      const dialog = document.getElementById(
-        btn.dataset.dialog ?? ''
-      ) as HTMLDialogElement | null;
-      btn.addEventListener('click', () => dialog?.showModal());
-    });
-
-    // Clicks on ::backdrop are dispatched to the <dialog> itself
-    document.querySelectorAll('dialog').forEach(dialog => {
+    dialogs.forEach(dialog => {
+      dialog
+        .querySelector('[data-nav="prev"]')
+        ?.addEventListener('click', () => step(dialog, -1));
+      dialog
+        .querySelector('[data-nav="next"]')
+        ?.addEventListener('click', () => step(dialog, 1));
+      dialog.addEventListener('close', () => {
+        if (!dialogs.some(x => x.open)) setHash('');
+      });
+      // Clicks on ::backdrop are dispatched to the <dialog> itself
       dialog.addEventListener('click', e => {
         if (e.target === dialog) dialog.close();
       });
     });
+
+    document.querySelectorAll<HTMLElement>('[data-dialog]').forEach(btn => {
+      btn.addEventListener('click', () =>
+        showProject(dialogs.find(d => d.id === btn.dataset.dialog))
+      );
+    });
+
+    document.addEventListener('keydown', e => {
+      const open = dialogs.find(d => d.open);
+      if (!open || e.altKey || e.ctrlKey || e.metaKey) return;
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        step(open, -1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        step(open, 1);
+      }
+    });
+
+    function syncFromHash() {
+      const slug = decodeURIComponent(location.hash.slice(1));
+      const d = dialogs.find(x => slugOf(x) === slug);
+      if (d) showProject(d);
+      else dialogs.forEach(x => x.open && x.close());
+    }
+    window.addEventListener('hashchange', syncFromHash);
+    if (location.hash) syncFromHash();
   </script>
 </Layout>

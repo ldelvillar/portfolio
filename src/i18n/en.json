@@ -29,6 +29,11 @@
     "title": "Experience"
   },
   "timeline": {
+    "2019": {
+      "date": "2019",
+      "title": "Started coding",
+      "description": "I started programming at the age of 15, when I began learning the fundamentals of cybersecurity and ethical hacking. From there, I started exploring and learning about other fields, and in 2022 I decided to focus on full stack development."
+    },
     "learn_more": "Learn more",
     "june_2025": {
       "date": "June 2025",
@@ -39,11 +44,6 @@
       "date": "September 2022",
       "title": "Started my degree",
       "description": "I started to study a Bachelor Degree in Computer Science and Engineering at University Carlos III de Madrid. Additionally, I am constantly self-studying by working on full stack projects and obtaining certifications in different areas."
-    },
-    "2019": {
-      "date": "2019",
-      "title": "Started coding",
-      "description": "I started programming at the age of 15, when I began learning the fundamentals of cybersecurity and ethical hacking. From there, I started exploring and learning about other fields, and in 2022 I decided to focus on full stack development."
     }
   },
   "projects": {
@@ -54,16 +54,7 @@
   },
   "projects_page": {
     "title": "Projects",
-    "subtitle": "// code that made it to production",
-    "summary": {
-      "total": "Total",
-      "live": "Live",
-      "stack": "Main stack",
-      "latest": "Latest launch"
-    },
-    "search_placeholder": "Search by name, stack or keyword…",
-    "search_label": "Search projects",
-    "results_count": "{count} projects shown",
+    "subtitle": "{total} projects · {live} in production",
     "featured": "Featured",
     "status_prod": "In prod",
     "status_dev": "In dev",
@@ -72,10 +63,10 @@
       "live": "View live",
       "repo": "Source",
       "more": "View more",
-      "close": "Close"
+      "close": "Close",
+      "prev": "Previous",
+      "next": "Next"
     },
-    "no_results": "No results",
-    "no_results_hint": "Try another search term",
     "items": {
       "veritrust": {
         "duration": "Final degree project",
