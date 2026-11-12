@@ -1,8 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import Calendar from '@/assets/icons/Calendar.astro';
-import RightArrow from '@/assets/icons/RightArrow.astro';
+import logoSertyf from '@/assets/images/logo-sertyf.png';
+import logoUc3m from '@/assets/images/logo-uc3m.png';
 import type { Translations } from '@/utils/getTranslations';
-import { SITE } from '@/data/site';
 
 interface Props {
   t: Translations;
@@ -10,33 +11,24 @@ interface Props {
 
 const { t } = Astro.props;
 
-interface TimelineItemsData {
-  date: string;
-  datetime: string;
-  title: string;
-  description: string;
-  link?: string;
-}
-
-const timelineItems: TimelineItemsData[] = [
+const timelineItems = [
   {
-    date: t.timeline.june_2025.date,
-    datetime: '2025-06',
-    title: t.timeline.june_2025.title,
-    description: t.timeline.june_2025.description,
-    link: SITE.linkedin,
+    ...t.timeline.june_2025,
+    logo: logoSertyf,
+    node: 'tl-node--sertyf',
+    current: true,
   },
   {
-    date: t.timeline.september_2022.date,
-    datetime: '2022-09',
-    title: t.timeline.september_2022.title,
-    description: t.timeline.september_2022.description,
+    ...t.timeline.september_2022,
+    logo: logoUc3m,
+    node: 'tl-node--uc3m',
+    current: false,
   },
   {
-    date: t.timeline['2019'].date,
-    datetime: '2019',
-    title: t.timeline['2019'].title,
-    description: t.timeline['2019'].description,
+    ...t.timeline['2019'],
+    logo: undefined,
+    node: 'tl-node--icon',
+    current: false,
   },
 ];
 ---
@@ -50,69 +42,73 @@ const timelineItems: TimelineItemsData[] = [
       {t.experience.title}
     </h2>
   </div>
-  <div class="tl mt-10" data-timeline>
+  <ol class="tl mt-16" data-timeline>
     <span class="tl-rail" data-rail aria-hidden="true"></span>
     <span class="tl-fill" data-fill aria-hidden="true"></span>
-    <ol>
-      {
-        timelineItems.map((item, index) => {
-          const onRight = index % 2 === 0;
-          return (
-            <li
-              class:list={[
-                'tl-item',
-                { 'tl-item--last': index === timelineItems.length - 1 },
-              ]}
+    {
+      timelineItems.map((item, index) => (
+        <li
+          class:list={[
+            'tl-item',
+            { 'tl-item--last': index === timelineItems.length - 1 },
+          ]}
+        >
+          {item.logo ? (
+            <div class:list={['tl-node', item.node]} data-node>
+              <Image src={item.logo} alt={item.logo_alt} width={112} />
+            </div>
+          ) : (
+            <div
+              class:list={['tl-node', item.node]}
+              data-node
+              aria-hidden="true"
             >
-              <span class="tl-node" data-node aria-hidden="true" />
-              <time
-                class:list={[
-                  'tl-date',
-                  onRight ? 'tl-date--pillLeft' : 'tl-date--pillRight',
-                ]}
-                data-date
-                datetime={item.datetime}
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               >
-                {item.date}
-              </time>
-              <div
-                class:list={[
-                  'tl-card',
-                  onRight ? 'tl-card--right' : 'tl-card--left',
-                ]}
-              >
-                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <path d="m4 17 6-6-6-6M12 19h8" />
+              </svg>
+            </div>
+          )}
+          <article
+            class:list={['tl-card', { 'tl-card--current': item.current }]}
+          >
+            <div class="tl-head">
+              <div>
+                <h3 class="text-[22px] font-bold tracking-tight text-gray-900 dark:text-white">
                   {item.title}
                 </h3>
-                <p class="leading-relaxed text-gray-600 dark:text-gray-300">
-                  {item.description}
-                </p>
-                {item.link && (
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="dark:text-primary mt-4 inline-flex items-center gap-1 text-sm font-medium text-yellow-700 hover:underline focus:underline"
-                  >
-                    {t.timeline.learn_more}
-                    <span class="sr-only">: {item.title}</span>
-                    <RightArrow />
-                  </a>
-                )}
+                <p class="mt-1 text-gray-600 dark:text-gray-300">{item.org}</p>
               </div>
-            </li>
-          );
-        })
-      }
-    </ol>
-  </div>
+              <time class="tl-date" data-date>
+                {item.date}
+              </time>
+            </div>
+            <ul class="mt-4 list-disc space-y-1 pl-5 leading-relaxed text-gray-700 marker:text-yellow-500 dark:text-gray-300">
+              {item.bullets.map(b => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          </article>
+        </li>
+      ))
+    }
+  </ol>
 </section>
 
 <style>
   .tl {
     position: relative;
-    margin-bottom: 0;
     padding: 0;
+    list-style: none;
+    --tl-tile: 56px;
     --tl-line: #e5e7eb;
     --tl-surface: #fff;
     --tl-pill: #f3f4f6;
@@ -124,14 +120,11 @@ const timelineItems: TimelineItemsData[] = [
     --tl-pill: #1f2937;
     --tl-pill-text: #d1d5db;
   }
-
-  /* Base rail spans first to last node (sized in JS) */
   .tl-rail,
   .tl-fill {
     position: absolute;
-    left: 50%;
+    left: calc(var(--tl-tile) / 2 - 1px);
     width: 2px;
-    transform: translateX(-50%);
   }
   .tl-rail {
     background: var(--tl-line);
@@ -140,53 +133,90 @@ const timelineItems: TimelineItemsData[] = [
     background: var(--color-primary);
     transition: height 0.12s linear;
   }
-
   .tl-item {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 72px 1fr;
+    grid-template-columns: var(--tl-tile) minmax(0, 1fr);
+    column-gap: 32px;
     align-items: start;
-    padding-bottom: 72px;
+    padding-bottom: 40px;
   }
   .tl-item--last {
     padding-bottom: 0;
   }
-
   .tl-node {
-    position: absolute;
-    left: 50%;
-    top: 4px;
+    position: relative;
     z-index: 1;
-    width: 16px;
-    height: 16px;
-    transform: translateX(-50%) scale(1);
-    border-radius: 9999px;
-    border: 3px solid var(--tl-surface);
-    background: #d1d5db;
-    box-shadow: 0 0 0 1px var(--tl-line);
+    display: flex;
+    width: var(--tl-tile);
+    height: var(--tl-tile);
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid #d1d5db;
+    background: #fff;
     transition:
-      background 0.3s,
-      box-shadow 0.3s,
-      transform 0.3s;
+      border-color 0.3s,
+      box-shadow 0.3s;
+  }
+  .tl-node :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .tl-node--sertyf {
+    padding: 5px;
+  }
+  .tl-node--uc3m :global(img) {
+    transform: scale(1.12);
+  }
+  .tl-node--icon {
+    background: var(--tl-pill);
+    color: var(--tl-pill-text);
+    border-color: var(--tl-line);
   }
   .tl-node.is-active {
-    background: var(--color-primary);
-    box-shadow: 0 0 0 5px
-      color-mix(in oklab, var(--color-primary) 15%, transparent);
-    transform: translateX(-50%) scale(1.2);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 6px
+      color-mix(in oklab, var(--color-primary) 18%, transparent);
   }
-
+  .tl-card {
+    border: 1px solid var(--tl-line);
+    border-radius: 0.75rem;
+    background: var(--tl-surface);
+    padding: 24px 28px;
+    transition:
+      box-shadow 0.3s,
+      border-color 0.3s;
+  }
+  .tl-card--current {
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  }
+  .tl-item:hover .tl-card {
+    border-color: var(--color-primary);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+  .tl-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px 24px;
+  }
   .tl-date {
-    position: absolute;
-    top: 12px;
-    z-index: 1;
-    transform: translateY(-50%);
-    padding: 7px 16px;
+    flex: none;
+    padding: 6px 14px;
     border-radius: 9999px;
     background: var(--tl-pill);
     color: var(--tl-pill-text);
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-size: 0.8125rem;
+    font-weight: 700;
     white-space: nowrap;
     transition:
       background 0.3s,
@@ -196,59 +226,15 @@ const timelineItems: TimelineItemsData[] = [
     background: var(--color-primary);
     color: #111827;
   }
-  .tl-date--pillLeft {
-    right: calc(50% + 22px);
-  }
-  .tl-date--pillRight {
-    left: calc(50% + 22px);
-  }
-
-  .tl-card {
-    border: 1px solid var(--tl-line);
-    border-radius: 0.75rem;
-    background: var(--tl-surface);
-    padding: 28px 32px;
-    transition:
-      box-shadow 0.3s,
-      border-color 0.3s;
-  }
-  .tl-card--left {
-    grid-column: 1;
-    margin-right: 40px;
-  }
-  .tl-card--right {
-    grid-column: 3;
-    margin-left: 40px;
-  }
-  .tl-item:hover .tl-card {
-    border-color: var(--color-primary);
-    box-shadow:
-      0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Narrow screens: rail pinned left, cards fill the width */
-  @media (max-width: 1024px) {
+  @media (max-width: 640px) {
+    .tl {
+      --tl-tile: 44px;
+    }
     .tl-item {
-      display: block;
-      padding-left: 40px;
-      padding-top: 44px;
+      column-gap: 16px;
     }
-    .tl-rail,
-    .tl-fill,
-    .tl-node {
-      left: 7px;
-    }
-    .tl-date {
-      left: 30px;
-      right: auto;
-      top: 0;
-      transform: none;
-    }
-    .tl-card--left,
-    .tl-card--right {
-      margin: 0;
-      padding: 20px 24px;
+    .tl-card {
+      padding: 18px 20px;
     }
   }
 </style>
@@ -264,7 +250,11 @@ const timelineItems: TimelineItemsData[] = [
 
     const update = () => {
       const top = tl.getBoundingClientRect().top;
-      const nodeY = (n: HTMLElement) => n.getBoundingClientRect().top - top + 8;
+      const nodeY = (n: HTMLElement) =>
+        (() => {
+          const r = n.getBoundingClientRect();
+          return r.top - top + r.height / 2;
+        })();
       const railStart = nodeY(nodes[0]);
       const railEnd = nodeY(nodes[nodes.length - 1]);
       rail.style.top = fill.style.top = `${railStart}px`;

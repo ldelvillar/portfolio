@@ -32,18 +32,33 @@
     "2019": {
       "date": "2019",
       "title": "Erste Schritte im Programmieren",
-      "description": "Mit 15 Jahren habe ich angefangen zu programmieren, als ich die Grundlagen von Cybersicherheit und Ethical Hacking gelernt habe. Von dort aus habe ich weitere Bereiche erkundet und mich 2022 entschieden, mich auf Full-Stack-Entwicklung zu konzentrieren."
+      "org": "Autodidakt · Cybersicherheit",
+      "bullets": [
+        "Zertifizierungen in Azure, IBM und Claude Code.",
+        "Autodidaktische Erkundung weiterer Bereiche der Informatik."
+      ]
     },
-    "learn_more": "Mehr erfahren",
     "june_2025": {
-      "date": "Juni 2025",
-      "title": "Meine erste Stelle",
-      "description": "Ich habe in einem Beratungsunternehmen als Softwareentwickler angefangen, spezialisiert auf Robotic Process Automation (RPA). Meine Aufgabe besteht darin, Geschäftsprozesse zu optimieren und dafür eine vollständige Full-Stack-Lösung zu liefern."
+      "date": "Juni 2025 · Heute",
+      "title": "Software Engineer",
+      "org": "Grupo Sertyf · Madrid",
+      "logo_alt": "Logo von Grupo Sertyf",
+      "bullets": [
+        "Ich entwerfe und deploye End-to-End-Automatisierungen, die die Prozesse der Kanzlei optimieren.",
+        "Ich baue Automatisierungs- und LLM-Systeme für Geschäftsprozesse.",
+        "Ich erarbeite Anforderungen mit nicht-technischen Teams und führe jede Lösung vom Prototyp bis zum Deployment."
+      ]
     },
     "september_2022": {
       "date": "September 2022",
-      "title": "Beginn meines Studiums",
-      "description": "Ich habe ein Bachelorstudium in Informatik an der Universidad Carlos III de Madrid begonnen. Daneben bilde ich mich laufend selbst weiter, indem ich an Full-Stack-Projekten arbeite und Zertifizierungen in unterschiedlichen Bereichen erwerbe."
+      "title": "Bachelor in Informatik",
+      "org": "Universidad Carlos III de Madrid",
+      "logo_alt": "Logo der Universidad Carlos III de Madrid",
+      "bullets": [
+        "Erasmus-Austausch an der Technischen Universität Lublin, Polen.",
+        "Eigene Full-Stack-Projekte, wie VeriTrust, meine Abschlussarbeit, die mit 9,7 bewertet wurde.",
+        "Teilnahme an Cloud-Vorträgen und -Veranstaltungen von Microsoft, Google und AWS."
+      ]
     }
   },
   "projects": {

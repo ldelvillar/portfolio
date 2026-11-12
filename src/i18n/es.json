@@ -32,18 +32,33 @@
     "2019": {
       "date": "2019",
       "title": "Empecé a programar",
-      "description": "Empecé a programar a los 15 años, cuando comencé a aprender los fundamentos de la ciberseguridad y del hacking ético. A partir de ahí, comencé a investigar y aprender sobre otros campos, y en 2022 decidí centrarme en el desarrollo full stack."
+      "org": "Autodidacta · Ciberseguridad",
+      "bullets": [
+        "Certificaciones en Azure, IBM y Claude Code.",
+        "Exploración autodidacta de otros campos de la informática."
+      ]
     },
-    "learn_more": "Saber más",
     "june_2025": {
-      "date": "Junio 2025",
-      "title": "Conseguí mi primer trabajo",
-      "description": "Comencé a trabajar en una gestoría como desarrollador de software, especializado en la automatización robótica de procesos (RPA). Mi trabajo consiste en optimizar procesos empresariales entregando una solución full stack."
+      "date": "Junio 2025 · Presente",
+      "title": "Ingeniero de Software",
+      "org": "Grupo Sertyf · Madrid",
+      "logo_alt": "Logo de Grupo Sertyf",
+      "bullets": [
+        "Diseño y despliego automatizaciones end to end que optimizan los procesos de la gestoría.",
+        "Construyo sistemas de automatización y LLM para procesos de negocio.",
+        "Defino requisitos con equipos no técnicos y llevo cada solución del prototipo al despliegue."
+      ]
     },
     "september_2022": {
       "date": "Septiembre 2022",
-      "title": "Comencé mi carrera",
-      "description": "Empecé a estudiar un Grado en Ingeniería Informática en la Universidad Carlos III de Madrid. Además, estoy constantemente formándome por mi cuenta realizando proyectos full stack y obteniendo certificaciones en diferentes áreas."
+      "title": "Grado en Ingeniería Informática",
+      "org": "Universidad Carlos III de Madrid",
+      "logo_alt": "Logo de la Universidad Carlos III de Madrid",
+      "bullets": [
+        "Intercambio Erasmus en la Universidad Tecnológica de Lublin, Polonia.",
+        "Proyectos full stack propios, como VeriTrust, mi TFG, que obtuvo una calificación de 9.7.",
+        "Asistencia a charlas y eventos sobre cloud organizados por Microsoft, Google y AWS."
+      ]
     }
   },
   "projects": {

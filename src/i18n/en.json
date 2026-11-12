@@ -32,18 +32,33 @@
     "2019": {
       "date": "2019",
       "title": "Started coding",
-      "description": "I started programming at the age of 15, when I began learning the fundamentals of cybersecurity and ethical hacking. From there, I started exploring and learning about other fields, and in 2022 I decided to focus on full stack development."
+      "org": "Self-taught · Cybersecurity",
+      "bullets": [
+        "Certifications in Azure, IBM and Claude Code.",
+        "Self-taught exploration of other areas of computing."
+      ]
     },
-    "learn_more": "Learn more",
     "june_2025": {
-      "date": "June 2025",
-      "title": "Got my first job",
-      "description": "I started working in a firm as a software developer, specialised in Robotic Process Automation (RPA). My job consists of optimising business processes delivering a full stack solution."
+      "date": "June 2025 · Present",
+      "title": "Software Engineer",
+      "org": "Grupo Sertyf · Madrid",
+      "logo_alt": "Grupo Sertyf logo",
+      "bullets": [
+        "I design and deploy end-to-end automations that streamline the firm's processes.",
+        "I build automation and LLM systems for business processes.",
+        "I define requirements with non-technical teams and take each solution from prototype to deployment."
+      ]
     },
     "september_2022": {
       "date": "September 2022",
-      "title": "Started my degree",
-      "description": "I started to study a Bachelor Degree in Computer Science and Engineering at University Carlos III de Madrid. Additionally, I am constantly self-studying by working on full stack projects and obtaining certifications in different areas."
+      "title": "BSc in Computer Science and Engineering",
+      "org": "Universidad Carlos III de Madrid",
+      "logo_alt": "Universidad Carlos III de Madrid logo",
+      "bullets": [
+        "Erasmus exchange at Lublin University of Technology, Poland.",
+        "Own full stack projects, such as VeriTrust, my final degree project, graded 9.7.",
+        "Attended cloud talks and events hosted by Microsoft, Google and AWS."
+      ]
     }
   },
   "projects": {
