@@ -30,16 +30,6 @@
 }
 
 @font-face {
-  font-family: 'Blimone';
-  src:
-    url('/fonts/Blimone-Regular.woff2') format('woff2'),
-    url('/fonts/Blimone-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Instrument Serif';
   src: url('/fonts/InstrumentSerif-Regular.woff2') format('woff2');
   font-weight: 400;
@@ -59,7 +49,6 @@
   --color-primary: oklch(68.1% 0.162 75.834);
   --font-display: 'Onest', sans-serif;
   --font-instrument: 'Instrument Serif', Georgia, serif;
-  --font-blimone: 'Blimone', 'Onest', sans-serif;
 }
 
 .dark {
@@ -100,19 +89,6 @@ html {
 /* Lock page scroll while a modal <dialog> is open */
 body:has(dialog[open]) {
   overflow: hidden;
-}
-
-@keyframes background-shine {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: -200% 0;
-  }
-}
-
-.animate-background-shine {
-  animation: background-shine 2s linear infinite;
 }
 
 ::-webkit-scrollbar {
