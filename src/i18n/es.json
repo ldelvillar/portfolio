@@ -5,16 +5,12 @@
     "description": "Esta es mi página web personal. Aquí podrás ver en detalle mi experiencia, proyectos y habilidades."
   },
   "header": {
-    "name": "ldelvillar",
     "nav": {
-      "experience": "Experiencia",
+      "home": "Inicio",
       "projects": "Proyectos",
-      "certifications": "Certificaciones",
-      "about": "Sobre mí",
-      "contact": "Contacto"
+      "certifications": "Certificaciones"
     },
     "nav_label": "Navegación principal",
-    "menu_label": "Menú",
     "language_label": "Seleccionar idioma",
     "skip_to_content": "Saltar al contenido"
   },

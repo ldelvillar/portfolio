@@ -1,7 +1,6 @@
 ---
 import ThemeToggle from '@/components/layout/ThemeToggle.astro';
 import LanguageToggle from '@/components/layout/LanguageToggle.astro';
-import MenuIcon from '@/assets/icons/Menu.astro';
 import type { Translations } from '@/utils/getTranslations';
 import type { Lang } from '@/i18n/config';
 import { SITE } from '@/data/site';
@@ -20,31 +19,49 @@ const { t, lang } = Astro.props;
 const currentPath = Astro.url.pathname.replace(/\/$/, '');
 
 const navLinks: NavLink[] = [
-  { label: t.header.nav.experience, href: `/${lang}#experience` },
+  { label: t.header.nav.home, href: `/${lang}` },
   { label: t.header.nav.projects, href: `/${lang}/projects` },
   { label: t.header.nav.certifications, href: `/${lang}/certifications` },
-  { label: t.header.nav.about, href: `/${lang}#about` },
-  { label: t.header.nav.contact, href: `mailto:${SITE.email}` },
 ];
+
+const wordmarkSpan =
+  'block w-max whitespace-nowrap transition-transform duration-350 ease-[cubic-bezier(.2,.7,.2,1)] group-data-past/header:-translate-y-[30px] motion-reduce:transition-none';
 ---
 
 <header
-  class="sticky top-0 z-40 w-full text-gray-700 backdrop-blur-xl dark:text-white"
+  id="site-header"
+  class="group/header pointer-events-none sticky top-0 z-40 flex w-full justify-center px-2 pt-3 transition-[padding] duration-250 data-scrolled:pt-2 motion-reduce:transition-none sm:px-4 sm:pt-5 sm:data-scrolled:pt-2.5"
 >
   <div
-    class="container mx-auto flex items-center justify-between p-4 lg:justify-evenly"
+    class="pointer-events-auto relative flex max-w-full items-center gap-0.5 rounded-full border border-gray-200 bg-gray-50/75 p-1 text-gray-900 backdrop-blur-lg transition-[background-color,box-shadow] duration-250 group-data-scrolled/header:bg-white/90 group-data-scrolled/header:shadow-[0_14px_34px_-14px_rgb(17_24_39/0.35)] sm:p-1.5 dark:border-gray-800 dark:bg-gray-950/65 dark:text-white dark:group-data-scrolled/header:bg-gray-900/90 dark:group-data-scrolled/header:shadow-[0_14px_34px_-14px_rgb(0_0_0/0.8)]"
   >
-    <a href={`/${lang}`} class="text-lg font-bold text-black dark:text-white">
-      {t.header.name}
-    </a>
+    <div
+      id="wordmark"
+      role="img"
+      aria-label={SITE.name}
+      class="font-instrument relative mr-0.5 block h-[30px] shrink-0 overflow-hidden rounded-full pr-2 pl-2.5 text-xl leading-[30px] transition-[width] duration-350 ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none sm:pr-2.5 sm:pl-3 sm:text-[22px]"
+    >
+      <span aria-hidden="true" class={wordmarkSpan}>LdV.</span>
+      <span aria-hidden="true" class={wordmarkSpan}>
+        Lucas <em>del Villar</em>
+      </span>
+    </div>
 
-    <nav class="hidden space-x-8 lg:flex" aria-label={t.header.nav_label}>
+    <span
+      aria-hidden="true"
+      class="mx-[3px] h-5 w-px shrink-0 bg-gray-200 sm:mx-1.5 dark:bg-gray-800"
+    ></span>
+
+    <nav
+      class="flex min-w-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      aria-label={t.header.nav_label}
+    >
       {
         navLinks.map(link => (
           <a
             href={link.href}
             aria-current={link.href === currentPath ? 'page' : undefined}
-            class="hover:text-yellow-700 dark:hover:text-yellow-400"
+            class="rounded-full px-2 py-1.5 text-[13px] font-medium whitespace-nowrap text-gray-600 transition-colors hover:text-gray-900 aria-[current=page]:bg-gray-900 aria-[current=page]:text-white sm:px-3.5 sm:py-2 sm:text-sm dark:text-gray-300 dark:hover:text-white dark:aria-[current=page]:bg-white dark:aria-[current=page]:text-gray-900"
           >
             {link.label}
           </a>
@@ -52,131 +69,67 @@ const navLinks: NavLink[] = [
       }
     </nav>
 
-    <div class="flex items-center gap-1">
-      <button
-        id="menu-toggle"
-        type="button"
-        class="p-1.5 lg:hidden"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <span class="sr-only">{t.header.menu_label}</span>
-        <MenuIcon />
-      </button>
-      <ThemeToggle t={t} />
-      <LanguageToggle t={t} currentLang={lang} />
-    </div>
-  </div>
+    <span
+      aria-hidden="true"
+      class="mx-[3px] h-5 w-px shrink-0 bg-gray-200 sm:mx-1.5 dark:bg-gray-800"
+    ></span>
 
-  <!-- Mobile menu -->
-  <nav
-    id="mobile-menu"
-    class="hidden h-screen bg-gray-50/90 backdrop-blur-lg lg:hidden dark:bg-gray-950/90"
-    aria-label={t.header.nav_label}
-  >
-    <ul class="px-4 py-2">
-      {
-        navLinks.map(link => (
-          <li>
-            <a
-              href={link.href}
-              aria-current={link.href === currentPath ? 'page' : undefined}
-              class="block py-2 hover:text-yellow-700 dark:hover:text-yellow-400"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
+    <ThemeToggle t={t} />
+    <LanguageToggle t={t} currentLang={lang} />
+  </div>
 </header>
 
 <script>
-  // Toggle mobile menu
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const header = document.getElementById('site-header');
+  const wordmark = document.getElementById('wordmark');
+  const hero = document.querySelector('#hero h1');
+  const roomy = window.matchMedia('(min-width: 480px)');
 
-  const setMenuOpen = (open: boolean) => {
-    mobileMenu?.classList.toggle('hidden', !open);
-    menuToggle?.setAttribute('aria-expanded', String(open));
+  // The wordmark box animates its width between the short and full name
+  const sizeWordmark = () => {
+    if (!header || !wordmark) return;
+    const [short, full] = wordmark.querySelectorAll('span');
+    const style = getComputedStyle(wordmark);
+    const padding =
+      parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+    const target = 'past' in header.dataset ? full : short;
+    wordmark.style.width = `${Math.ceil(target.getBoundingClientRect().width + padding)}px`;
   };
 
-  menuToggle?.addEventListener('click', () => {
-    setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
-  });
+  const update = () => {
+    if (!header) return;
+    header.toggleAttribute('data-scrolled', window.scrollY > 12);
 
-  // Close after picking a link (same-page anchors keep the page loaded)
-  mobileMenu?.addEventListener('click', e => {
-    if ((e.target as HTMLElement).closest('a')) setMenuOpen(false);
-  });
-
-  document.addEventListener('keydown', e => {
-    if (
-      e.key === 'Escape' &&
-      menuToggle?.getAttribute('aria-expanded') === 'true'
-    ) {
-      setMenuOpen(false);
-      menuToggle.focus({ preventScroll: true });
+    // Full name rolls in once the hero's name has scrolled under the header
+    // (or after a short scroll on pages without one). Narrow phones keep "LdV."
+    const past =
+      roomy.matches &&
+      (hero ? hero.getBoundingClientRect().bottom < 72 : window.scrollY > 120);
+    if (past !== 'past' in header.dataset) {
+      header.toggleAttribute('data-past', past);
+      sizeWordmark();
     }
-  });
+  };
 
-  // Highlight current section
-  const ACTIVE = ['text-yellow-700', 'dark:text-primary', 'font-bold'];
-
-  const setActiveLinks = (selector: string | null) => {
-    document.querySelectorAll('nav a').forEach(link => {
-      link.classList.remove(...ACTIVE);
-    });
-    if (selector) {
-      document.querySelectorAll(selector).forEach(link => {
-        link.classList.add(...ACTIVE);
+  let ticking = false;
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        update();
       });
-    }
-  };
+    },
+    { passive: true }
+  );
+  window.addEventListener('resize', () => {
+    update();
+    sizeWordmark();
+  });
 
-  if (window.location.pathname.endsWith('/certifications')) {
-    setActiveLinks('nav a[href$="/certifications"]');
-  } else if (window.location.pathname.endsWith('/projects')) {
-    setActiveLinks('nav a[href$="/projects"]');
-  } else {
-    const sections = ['experience', 'projects', 'certifications', 'about']
-      .map(id => document.getElementById(id))
-      .filter(el => el !== null);
-    let currentSection: string | null = null;
-    let ticking = false;
-
-    const highlightCurrentSection = () => {
-      ticking = false;
-
-      // Find which section is currently in view
-      let section: string | null = null;
-      for (const element of sections) {
-        if (element.getBoundingClientRect().top <= 250) section = element.id;
-      }
-
-      // Only touch the DOM when the section changes
-      if (section === currentSection) return;
-      currentSection = section;
-      setActiveLinks(
-        section === null
-          ? null
-          : section === 'certifications' || section === 'projects'
-            ? `nav a[href$="/${section}"]`
-            : `nav a[href$="#${section}"]`
-      );
-    };
-
-    // Call on load and (at most once per frame) on scroll
-    window.addEventListener('load', highlightCurrentSection);
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(highlightCurrentSection);
-      },
-      { passive: true }
-    );
-  }
+  sizeWordmark();
+  document.fonts?.ready.then(sizeWordmark);
+  update();
 </script>

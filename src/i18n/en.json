@@ -5,16 +5,12 @@
     "description": "This is my personal website. Here you can see in detail my experience, projects and skills."
   },
   "header": {
-    "name": "ldelvillar",
     "nav": {
-      "experience": "Experience",
+      "home": "Home",
       "projects": "Projects",
-      "certifications": "Certifications",
-      "about": "About",
-      "contact": "Contact"
+      "certifications": "Certifications"
     },
     "nav_label": "Main navigation",
-    "menu_label": "Menu",
     "language_label": "Select language",
     "skip_to_content": "Skip to content"
   },
