@@ -54,11 +54,11 @@ title-only commit.
 
 - `i18n` — `src/i18n/{en,es}.json`, `src/i18n/config.ts`, `src/utils/getTranslations.ts`, the `[lang]` routing and `LanguageToggle.astro`
 - `seo` — the `<head>` block in `src/layouts/Layout.astro` (meta, canonical, Open Graph/Twitter), the sitemap, `public/robots.txt`, redirects. Older commits used `og` for Open Graph fixes; use `seo` going forward
-- `ui` — shared components (`src/components/*.astro`, `src/components/layout/`), `ThemeToggle.astro`, `src/styles/global.css`, icons in `src/assets/icons/`, and home sections without their own scope (Hero, About, Contact)
-- `projects` — `src/data/projects.ts`, `ProjectCard.astro`, the Projects section, the `/[lang]/projects` page, project screenshots in `src/assets/images/`
+- `ui` — any visual/markup/styling change, including to the Projects, Experience and TechStack sections and the `/[lang]/projects` page (layout, theming, modals): shared components (`src/components/*.astro`, `src/components/layout/`), `ThemeToggle.astro`, `src/styles/global.css`, icons in `src/assets/icons/`, and home sections (Hero, About, Contact)
+- `projects` — data changes only: `src/data/projects.ts` and project screenshots in `src/assets/images/`. UI changes to the Projects section, `ProjectCard.astro` or the projects page use `ui`
 - `certifications` — `src/data/certifications.ts`, the Certifications section, the `/[lang]/certifications` page, PDFs in `public/certifications/`
-- `experience` — the Experience section
-- `techstack` — the TechStack section and tech logos in `src/assets/icons/logos/` (always lowercase — history has both spellings)
+- `experience` — data changes only (experience content). UI changes to the Experience section use `ui`
+- `techstack` — data changes only: tech entries and logos in `src/assets/icons/logos/` (always lowercase — history has both spellings). UI changes to the TechStack section use `ui`
 - `config` — `astro.config.mjs`, `tsconfig.json`, `.prettierrc`, `vercel.json`, `pnpm-workspace.yaml` (older `tsconfig` commits belong here)
 - `deps` — dependency bumps
 
