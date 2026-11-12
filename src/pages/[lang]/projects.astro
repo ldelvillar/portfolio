@@ -82,9 +82,11 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
                 alt={featured.title}
                 width={900}
                 height={600}
-                densities={[1, 2]}
+                widths={[480, 800, 1200, 1600]}
+                sizes="(min-width: 1024px) 780px, 100vw"
                 class="absolute inset-0 h-full w-full object-cover object-top"
                 loading="eager"
+                fetchpriority="high"
               />
             )}
           </div>
@@ -251,7 +253,8 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
                   alt={project.title}
                   width={800}
                   height={450}
-                  densities={[1, 2]}
+                  widths={[480, 640, 800, 1280, 1600]}
+                  sizes="(min-width: 1280px) 604px, (min-width: 1024px) calc(50vw - 36px), calc(100vw - 32px)"
                   class="absolute inset-0 h-full w-full object-cover object-top"
                   loading="lazy"
                 />
@@ -449,7 +452,8 @@ function isPreviewDisabled(s: ProjectStatus): boolean {
                     alt={p.title}
                     width={900}
                     height={450}
-                    densities={[1, 2]}
+                    widths={[480, 720, 1080, 1344]}
+                    sizes="(min-width: 720px) 672px, calc(100vw - 3rem)"
                     class="absolute inset-0 h-full w-full object-cover object-top"
                     loading="lazy"
                   />

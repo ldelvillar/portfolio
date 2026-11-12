@@ -248,30 +248,41 @@ const timelineItems = [
     const nodes = Array.from(tl.querySelectorAll<HTMLElement>('[data-node]'));
     const dates = Array.from(tl.querySelectorAll<HTMLElement>('[data-date]'));
 
-    const update = () => {
-      const top = tl.getBoundingClientRect().top;
-      const nodeY = (n: HTMLElement) =>
-        (() => {
-          const r = n.getBoundingClientRect();
-          return r.top - top + r.height / 2;
-        })();
-      const railStart = nodeY(nodes[0]);
-      const railEnd = nodeY(nodes[nodes.length - 1]);
-      rail.style.top = fill.style.top = `${railStart}px`;
-      rail.style.height = `${railEnd - railStart}px`;
+    let ticking = false;
 
+    const update = () => {
+      ticking = false;
+
+      // Read all geometry first, then write, so no update forces a second layout
+      const top = tl.getBoundingClientRect().top;
+      const nodeYs = nodes.map(n => {
+        const r = n.getBoundingClientRect();
+        return r.top - top + r.height / 2;
+      });
+      const railStart = nodeYs[0];
+      const railEnd = nodeYs[nodeYs.length - 1];
       // Fill progress is measured ~55% down the viewport
       const reached = Math.min(window.innerHeight * 0.55 - top, railEnd);
+
+      rail.style.top = fill.style.top = `${railStart}px`;
+      rail.style.height = `${railEnd - railStart}px`;
       fill.style.height = `${Math.max(0, reached - railStart)}px`;
       nodes.forEach((n, i) => {
-        const active = nodeY(n) <= reached;
+        const active = nodeYs[i] <= reached;
         n.classList.toggle('is-active', active);
         dates[i].classList.toggle('is-active', active);
       });
     };
 
+    // At most one update per frame
+    const scheduleUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
     update();
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
   }
 </script>

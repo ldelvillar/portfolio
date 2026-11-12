@@ -51,11 +51,34 @@ const jsonLd = JSON.stringify(
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link
       rel="preload"
-      href="/fonts/Onest-VariableFont_wght.woff2"
+      href="/fonts/Onest-VariableFont_wght-latin.woff2"
       as="font"
       type="font/woff2"
       crossorigin
     />
+    {
+      /* Heading fonts: italic titles on every content page, regular only in the home hero */
+      page && (
+        <link
+          rel="preload"
+          href="/fonts/InstrumentSerif-Italic.woff2"
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+      )
+    }
+    {
+      page === 'home' && (
+        <link
+          rel="preload"
+          href="/fonts/InstrumentSerif-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+      )
+    }
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={t.site.description} />

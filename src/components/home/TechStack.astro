@@ -236,12 +236,24 @@ const FIELDS: TechField[] = [
 </section>
 
 <script>
-  import Atropos from 'atropos';
-
-  // Initialize (skip the tilt effect for users who prefer reduced motion)
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.my-atropos').forEach(el => {
-      Atropos({ el: el as HTMLElement, rotateTouch: false });
-    });
+  // Load the tilt effect only when the section gets close to the viewport
+  // (and skip it entirely for users who prefer reduced motion)
+  const section = document.getElementById('techstack');
+  if (
+    section &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ) {
+    const observer = new IntersectionObserver(
+      async ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        const { default: Atropos } = await import('atropos');
+        document.querySelectorAll('.my-atropos').forEach(el => {
+          Atropos({ el: el as HTMLElement, rotateTouch: false });
+        });
+      },
+      { rootMargin: '600px' }
+    );
+    observer.observe(section);
   }
 </script>

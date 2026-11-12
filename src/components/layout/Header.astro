@@ -122,70 +122,61 @@ const navLinks: NavLink[] = [
   });
 
   // Highlight current section
-  function highlightCurrentSection() {
-    const sections = ['experience', 'projects', 'certifications', 'about'];
+  const ACTIVE = ['text-yellow-700', 'dark:text-primary', 'font-bold'];
 
-    // Remove highlight from all nav links
+  const setActiveLinks = (selector: string | null) => {
     document.querySelectorAll('nav a').forEach(link => {
-      link.classList.remove(
-        'text-yellow-700',
-        'dark:text-primary',
-        'font-bold'
-      );
+      link.classList.remove(...ACTIVE);
     });
-
-    // Highlight certifications link when on the certifications page
-    const onCertifications =
-      window.location.pathname.endsWith('/certifications');
-    if (onCertifications) {
-      document
-        .querySelectorAll('nav a[href$="/certifications"]')
-        .forEach(link => {
-          link.classList.add(
-            'text-yellow-700',
-            'dark:text-primary',
-            'font-bold'
-          );
-        });
-      return;
-    }
-
-    // Highlight projects link when on the projects page
-    const onProjects = window.location.pathname.endsWith('/projects');
-    if (onProjects) {
-      document.querySelectorAll('nav a[href$="/projects"]').forEach(link => {
-        link.classList.add('text-yellow-700', 'dark:text-primary', 'font-bold');
-      });
-      return;
-    }
-
-    // Find which section is currently in view
-    let currentSection = null;
-    for (const section of sections) {
-      const element = document.getElementById(section);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        if (rect.top <= 250) {
-          currentSection = section;
-        }
-      }
-    }
-
-    // Highlight the corresponding nav link
-    if (currentSection) {
-      const selector =
-        currentSection === 'certifications'
-          ? 'nav a[href$="/certifications"]'
-          : currentSection === 'projects'
-            ? 'nav a[href$="/projects"]'
-            : `nav a[href$="#${currentSection}"]`;
+    if (selector) {
       document.querySelectorAll(selector).forEach(link => {
-        link.classList.add('text-yellow-700', 'dark:text-primary', 'font-bold');
+        link.classList.add(...ACTIVE);
       });
     }
-  }
+  };
 
-  // Call on load and scroll
-  window.addEventListener('load', highlightCurrentSection);
-  window.addEventListener('scroll', highlightCurrentSection);
+  if (window.location.pathname.endsWith('/certifications')) {
+    setActiveLinks('nav a[href$="/certifications"]');
+  } else if (window.location.pathname.endsWith('/projects')) {
+    setActiveLinks('nav a[href$="/projects"]');
+  } else {
+    const sections = ['experience', 'projects', 'certifications', 'about']
+      .map(id => document.getElementById(id))
+      .filter(el => el !== null);
+    let currentSection: string | null = null;
+    let ticking = false;
+
+    const highlightCurrentSection = () => {
+      ticking = false;
+
+      // Find which section is currently in view
+      let section: string | null = null;
+      for (const element of sections) {
+        if (element.getBoundingClientRect().top <= 250) section = element.id;
+      }
+
+      // Only touch the DOM when the section changes
+      if (section === currentSection) return;
+      currentSection = section;
+      setActiveLinks(
+        section === null
+          ? null
+          : section === 'certifications' || section === 'projects'
+            ? `nav a[href$="/${section}"]`
+            : `nav a[href$="#${section}"]`
+      );
+    };
+
+    // Call on load and (at most once per frame) on scroll
+    window.addEventListener('load', highlightCurrentSection);
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(highlightCurrentSection);
+      },
+      { passive: true }
+    );
+  }
 </script>
