@@ -115,18 +115,20 @@
     "title": "Über mich",
     "terminalPath": "~/lucas/ueber-mich",
     "introduction": {
-      "part1": "Mit 15 Jahren habe ich angefangen zu programmieren, und seitdem bringe ich mir zahlreiche Programmiersprachen und Technologien selbst bei, über Kurse, Zertifizierungen und eigene Projekte. Ich bin",
-      "highlight": "Absolvent der Informatik",
-      "part2": "an der Universidad Carlos III de Madrid."
+      "part1": "Ich bin KI-Ingenieur mit Sitz in Madrid und habe einen",
+      "highlight": "Abschluss in Informatik",
+      "part2": "von der Universidad Carlos III de Madrid, einschließlich eines Erasmus-Austauschs an der Technischen Universität Lublin."
     },
     "skills": {
-      "part1": "Aktuell arbeite ich als Softwareentwickler bei Grupo Sertyf, wo ich End-to-End-Automatisierungen entwerfe und ausrolle, entwickelt in",
-      "highlight1": "JavaScript und Python",
-      "part2": ". Privat habe ich an mehreren Cloud-Projekten gearbeitet, insbesondere mit",
-      "highlight2": "GCP und Azure",
-      "part3": ", und dabei Machine-Learning-Modelle und komplette Multiagentensysteme in Betrieb genommen."
+      "part1": "Aktuell arbeite ich als Softwareingenieur bei Grupo Sertyf, wo ich",
+      "highlight1": "Automatisierungs- und LLM-Systeme",
+      "part2": " für Geschäftsprozesse entwickle. Ich arbeite direkt mit nicht-technischen Teams zusammen, um Anforderungen zu definieren und Lösungen vom Prototyp bis zum Einsatz zu bringen."
     },
-    "goal": "Mein Ziel ist es, meine Expertise in angewandten KI-Systemen weiter zu vertiefen, insbesondere in Multiagenten-Architekturen und deren Einsatz in der Produktion, und gleichzeitig meine Erfahrung in der Automatisierung von Geschäftsprozessen auszubauen."
+    "goal": {
+      "part1": "Privat habe ich an mehreren Cloud-Projekten gearbeitet, insbesondere mit",
+      "highlight": "GCP und Azure",
+      "part2": ", und dabei Machine-Learning-Modelle und komplette Multiagentensysteme in Betrieb genommen. Mein Ziel ist es, meine Expertise in angewandten KI-Systemen weiter zu vertiefen: Multiagenten-Architekturen, Evaluation und Einsatz in der Produktion."
+    }
   },
   "theme": {
     "label": "Design wählen",

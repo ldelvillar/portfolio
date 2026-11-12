@@ -115,18 +115,20 @@
     "title": "About me",
     "terminalPath": "~/lucas/about-me",
     "introduction": {
-      "part1": "I started coding at 15, and since then, I've been learning several programming languages and technologies by myself, through courses, certifications and personal projects. I am currently a",
-      "highlight": "graduate in Computer Science and Engineering",
-      "part2": "at University Carlos III de Madrid."
+      "part1": "I’m an AI engineer based in Madrid with a",
+      "highlight": "degree in Computer Engineering",
+      "part2": "from Universidad Carlos III de Madrid, including an Erasmus exchange at Lublin University of Technology."
     },
     "skills": {
-      "part1": "Currently I work as a software developer at Grupo Sertyf, where I design and deploy end-to-end automations developed in",
-      "highlight1": "JavaScript and Python",
-      "part2": ". On a personal level, I have worked on several projects involving the cloud, especially with",
-      "highlight2": "GCP and Azure",
-      "part3": ", deploying machine learning models and complete multi-agent systems."
+      "part1": "Currently I work as a software engineer at Grupo Sertyf, where I build",
+      "highlight1": "automation and LLM systems",
+      "part2": " for business processes. I work directly with non-technical teams to define requirements and take solutions from prototype to deployment."
     },
-    "goal": "My goal is to keep deepening my expertise in applied AI systems, particularly multi-agent architectures and their deployment to production, while continuing to build my experience in business process automation."
+    "goal": {
+      "part1": "On a personal level, I have worked on several projects involving the cloud, especially with",
+      "highlight": "GCP and Azure",
+      "part2": ", deploying machine learning models and complete multi-agent systems. My goal is to keep deepening my expertise in applied AI systems: multi-agent architectures, evaluation and deployment to production."
+    }
   },
   "theme": {
     "label": "Choose theme",

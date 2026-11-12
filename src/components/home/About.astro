@@ -50,18 +50,18 @@ const { t } = Astro.props;
         <span class="text-yellow-700 dark:text-yellow-400"
           >{` ${t.about.skills.highlight1}`}</span
         >
-        {`${t.about.skills.part2} `}
-        <span class="text-yellow-700 dark:text-yellow-400"
-          >{` ${t.about.skills.highlight2}`}</span
-        >
-        {t.about.skills.part3}
+        {t.about.skills.part2}
       </p>
       <p class="font-medium text-gray-700 dark:text-gray-300">
         <span
           aria-hidden="true"
           class="mr-2 font-mono text-yellow-700 dark:text-yellow-400">$</span
         >
-        {t.about.goal}
+        {`${t.about.goal.part1} `}
+        <span class="text-yellow-700 dark:text-yellow-400"
+          >{t.about.goal.highlight}</span
+        >
+        {t.about.goal.part2}
       </p>
     </div>
   </div>
