@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://ldelvillar.vercel.app',
+  site: 'https://lucasdelvillar.com',
 
   // Also in vercel.json (the real 307 on Vercel); keep both in sync.
   redirects: {

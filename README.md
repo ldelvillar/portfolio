@@ -1,6 +1,6 @@
 # portfolio
 
-Personal portfolio site — [ldelvillar.vercel.app](https://ldelvillar.vercel.app).
+Personal portfolio site — [lucasdelvillar.com](https://lucasdelvillar.com).
 
 Built with **Astro 7**, **Tailwind CSS 4**, and **TypeScript**. Multilingual (ES, EN, DE) via JSON-based i18n: every page exists under `/es`, `/en` and `/de`, and `/` redirects to `/es`. Fully static, deployed on Vercel.
 
