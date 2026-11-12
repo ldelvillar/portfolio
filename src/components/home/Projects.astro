@@ -34,6 +34,8 @@ const { t, lang } = Astro.props;
           preview={project.preview}
           previewLabel={t.projects.preview}
           codeLabel={t.projects.code}
+          moreHref={`/${lang}/projects#${project.id}`}
+          moreLabel={t.projects_page.actions.more}
           reverse={index % 2 === 1}
           technologies={project.stack.map(name => ({
             icon: TECH_META[name]?.icon,
