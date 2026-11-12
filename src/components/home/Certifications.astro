@@ -25,7 +25,7 @@ const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
   <div
     class="mb-8 flex flex-wrap items-center gap-4 text-gray-900 dark:text-white"
   >
-    <CertificationAward />
+    <CertificationAward class="size-8" />
     <h2
       class="font-instrument text-[40px] leading-[1.1] font-normal tracking-[-0.01em] italic"
     >
@@ -37,7 +37,7 @@ const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
     {
       PREVIEW_CERTS.map(cert => (
         <article class="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-3.5 transition-colors hover:border-gray-300 sm:flex-row sm:items-center sm:gap-[18px] lg:min-w-0 lg:flex-1 lg:basis-0 lg:flex-col lg:items-stretch lg:gap-4 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700">
-          <div class="relative aspect-[1000/773] w-full shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-white sm:w-[200px] lg:w-full dark:border-transparent">
+          <div class="relative aspect-1000/773 w-full shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-white sm:w-[200px] lg:w-full dark:border-transparent">
             {cert.image ? (
               <Image
                 src={cert.image}
