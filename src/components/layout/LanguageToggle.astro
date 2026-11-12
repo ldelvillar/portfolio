@@ -77,7 +77,7 @@ const currentPath = Astro.url.pathname;
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && !languagesMenu?.classList.contains('hidden')) {
       setLanguagesOpen(false);
-      languageToggleButton?.focus();
+      languageToggleButton?.focus({ preventScroll: true });
     }
   });
 </script>

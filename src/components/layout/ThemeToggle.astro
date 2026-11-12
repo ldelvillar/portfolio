@@ -150,14 +150,14 @@ const THEMES = [
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && themesMenu.classList.contains('open')) {
       setThemesOpen(false);
-      themeToggleButton.focus();
+      themeToggleButton.focus({ preventScroll: true });
     }
   });
 
   document.querySelectorAll('.themes-menu-option').forEach(element => {
     element.addEventListener('click', () => {
       // The menu closes on this click, so hand focus back to the toggle
-      themeToggleButton.focus();
+      themeToggleButton.focus({ preventScroll: true });
       localStorage.setItem('theme', element.dataset.theme);
       if (
         !document.startViewTransition ||
