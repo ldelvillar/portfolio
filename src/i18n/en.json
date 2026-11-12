@@ -21,9 +21,9 @@
   "hero": {
     "cta": "View projects",
     "contact_label": "Contact links",
-    "description1": "+2 years of experience.",
+    "description1": "+1.5 years of professional experience,",
     "description2": "Software Engineer",
-    "description3": "from Madrid, Spain, graduated in Computer Engineering. Specialised in building and deploying end-to-end agentic systems."
+    "description3": "from Madrid, Spain, graduated in Computer Engineering. Specialised in building and deploying LLM systems that work in production."
   },
   "experience": {
     "title": "Experience"
