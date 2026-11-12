@@ -17,6 +17,7 @@ interface NavLink {
 }
 
 const { t, lang } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, '');
 
 const navLinks: NavLink[] = [
   { label: t.header.nav.experience, href: `/${lang}#experience` },
@@ -37,12 +38,13 @@ const navLinks: NavLink[] = [
       {t.header.name}
     </a>
 
-    <nav class="hidden space-x-8 lg:flex">
+    <nav class="hidden space-x-8 lg:flex" aria-label={t.header.nav_label}>
       {
         navLinks.map(link => (
           <a
             href={link.href}
-            class="hover:text-yellow-600 dark:hover:text-yellow-400"
+            aria-current={link.href === currentPath ? 'page' : undefined}
+            class="hover:text-yellow-700 dark:hover:text-yellow-400"
           >
             {link.label}
           </a>
@@ -50,22 +52,37 @@ const navLinks: NavLink[] = [
       }
     </nav>
 
-    <div class="flex items-center gap-2">
-      <button id="menu-toggle" class="focus:outline-none lg:hidden">
+    <div class="flex items-center gap-1">
+      <button
+        id="menu-toggle"
+        type="button"
+        class="p-1.5 lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="sr-only">{t.header.menu_label}</span>
         <MenuIcon />
       </button>
       <ThemeToggle t={t} />
-      <LanguageToggle currentLang={lang} />
+      <LanguageToggle t={t} currentLang={lang} />
     </div>
   </div>
 
   <!-- Mobile menu -->
-  <nav id="mobile-menu" class="hidden h-screen backdrop-blur-lg lg:hidden">
-    <ul class="space-y-4 p-4">
+  <nav
+    id="mobile-menu"
+    class="hidden h-screen bg-gray-50/90 backdrop-blur-lg lg:hidden dark:bg-gray-950/90"
+    aria-label={t.header.nav_label}
+  >
+    <ul class="px-4 py-2">
       {
         navLinks.map(link => (
           <li>
-            <a href={link.href} class="block hover:text-gray-900">
+            <a
+              href={link.href}
+              aria-current={link.href === currentPath ? 'page' : undefined}
+              class="block py-2 hover:text-yellow-700 dark:hover:text-yellow-400"
+            >
               {link.label}
             </a>
           </li>
@@ -77,10 +94,31 @@ const navLinks: NavLink[] = [
 
 <script>
   // Toggle mobile menu
-  document.getElementById('menu-toggle')?.addEventListener('click', () => {
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenu?.classList.toggle('hidden');
-    mobileMenu?.classList.toggle('block');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  const setMenuOpen = (open: boolean) => {
+    mobileMenu?.classList.toggle('hidden', !open);
+    menuToggle?.setAttribute('aria-expanded', String(open));
+  };
+
+  menuToggle?.addEventListener('click', () => {
+    setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Close after picking a link (same-page anchors keep the page loaded)
+  mobileMenu?.addEventListener('click', e => {
+    if ((e.target as HTMLElement).closest('a')) setMenuOpen(false);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (
+      e.key === 'Escape' &&
+      menuToggle?.getAttribute('aria-expanded') === 'true'
+    ) {
+      setMenuOpen(false);
+      menuToggle.focus();
+    }
   });
 
   // Highlight current section
@@ -89,7 +127,11 @@ const navLinks: NavLink[] = [
 
     // Remove highlight from all nav links
     document.querySelectorAll('nav a').forEach(link => {
-      link.classList.remove('text-primary', 'dark:text-primary', 'font-bold');
+      link.classList.remove(
+        'text-yellow-700',
+        'dark:text-primary',
+        'font-bold'
+      );
     });
 
     // Highlight certifications link when on the certifications page
@@ -99,7 +141,11 @@ const navLinks: NavLink[] = [
       document
         .querySelectorAll('nav a[href$="/certifications"]')
         .forEach(link => {
-          link.classList.add('text-primary', 'dark:text-primary', 'font-bold');
+          link.classList.add(
+            'text-yellow-700',
+            'dark:text-primary',
+            'font-bold'
+          );
         });
       return;
     }
@@ -108,7 +154,7 @@ const navLinks: NavLink[] = [
     const onProjects = window.location.pathname.endsWith('/projects');
     if (onProjects) {
       document.querySelectorAll('nav a[href$="/projects"]').forEach(link => {
-        link.classList.add('text-primary', 'dark:text-primary', 'font-bold');
+        link.classList.add('text-yellow-700', 'dark:text-primary', 'font-bold');
       });
       return;
     }
@@ -134,7 +180,7 @@ const navLinks: NavLink[] = [
             ? 'nav a[href$="/projects"]'
             : `nav a[href$="#${currentSection}"]`;
       document.querySelectorAll(selector).forEach(link => {
-        link.classList.add('text-primary', 'dark:text-primary', 'font-bold');
+        link.classList.add('text-yellow-700', 'dark:text-primary', 'font-bold');
       });
     }
   }

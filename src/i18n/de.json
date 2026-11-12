@@ -12,7 +12,11 @@
       "certifications": "Zertifizierungen",
       "about": "Über mich",
       "contact": "Kontakt"
-    }
+    },
+    "nav_label": "Hauptnavigation",
+    "menu_label": "Menü",
+    "language_label": "Sprache auswählen",
+    "skip_to_content": "Zum Inhalt springen"
   },
   "hero": {
     "cta": "Projekte ansehen",
@@ -58,6 +62,8 @@
       "latest": "Letzter Launch"
     },
     "search_placeholder": "Nach Name, Stack oder Stichwort suchen…",
+    "search_label": "Projekte durchsuchen",
+    "results_count": "{count} Projekte angezeigt",
     "featured": "Highlight",
     "status_prod": "In Produktion",
     "status_dev": "In Entwicklung",

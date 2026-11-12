@@ -75,9 +75,8 @@ const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
             <div class="flex flex-wrap gap-5 lg:mt-auto">
               {cert.status === 'in-progress' ? (
                 <span
-                  aria-disabled="true"
                   title={t.certifications.credential_pending}
-                  class="inline-flex min-h-8 cursor-not-allowed items-center gap-1.5 text-[13px] font-semibold text-gray-400 dark:text-gray-600"
+                  class="inline-flex min-h-8 cursor-not-allowed items-center gap-1.5 text-[13px] font-semibold text-gray-500 dark:text-gray-400"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -93,6 +92,9 @@ const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
                     <path d="m9 12 2 2 4-4" />
                   </svg>
                   {t.certifications.view_credential}
+                  <span class="sr-only">
+                    : {t.certifications.credential_pending}
+                  </span>
                 </span>
               ) : (
                 <a
@@ -150,7 +152,7 @@ const PREVIEW_CERTS = CERTS.filter(c => PREVIEW_IDS.includes(c.id));
   <div class="mt-8 flex justify-center">
     <a
       href={`/${lang}/certifications`}
-      class="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-yellow-500 hover:bg-gray-50 hover:text-yellow-400 dark:border-gray-700 dark:bg-gray-800 dark:text-yellow-400 dark:hover:bg-gray-700"
+      class="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-yellow-700 hover:bg-gray-50 hover:text-yellow-800 dark:border-gray-700 dark:bg-gray-800 dark:text-yellow-400 dark:hover:bg-gray-700 dark:hover:text-yellow-300"
     >
       {t.certifications.view_all}
       <RightArrow />

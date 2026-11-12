@@ -17,10 +17,13 @@ const THEMES = [
 ];
 ---
 
-<div class="relative mr-1 ml-1 text-gray-700 dark:text-white">
+<div class="relative text-gray-700 dark:text-white">
   <button
     id="theme-toggle-btn"
-    class="flex appearance-none border-none transition hover:scale-125"
+    type="button"
+    class="flex appearance-none border-none p-1.5 transition hover:scale-125"
+    aria-expanded="false"
+    aria-controls="themes-menu"
   >
     <span class="sr-only">{t.theme.label}</span>
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
@@ -35,16 +38,20 @@ const THEMES = [
   </button>
   <div
     id="themes-menu"
-    class="absolute top-5 right-0 hidden min-w-32 scale-80 rounded-md border border-gray-100 bg-white/90 p-1 text-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md dark:border-gray-500/20 dark:bg-gray-900/90"
+    class="absolute top-full right-0 hidden min-w-32 scale-80 rounded-md border border-gray-100 bg-white/90 p-1 text-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md dark:border-gray-500/20 dark:bg-gray-900/90"
   >
     <ul>
       {
         THEMES.map(theme => (
-          <li
-            class="themes-menu-option cursor-default rounded-sm px-2 py-1.5 hover:bg-neutral-400/40 dark:hover:bg-gray-500/50"
-            data-theme={theme.key}
-          >
-            {theme.label}
+          <li>
+            <button
+              type="button"
+              class="themes-menu-option w-full rounded-sm px-2 py-1.5 text-left hover:bg-neutral-400/40 aria-pressed:font-semibold aria-pressed:text-yellow-700 dark:hover:bg-gray-500/50 dark:aria-pressed:text-yellow-400"
+              data-theme={theme.key}
+              aria-pressed="false"
+            >
+              {theme.label}
+            </button>
           </li>
         ))
       }
@@ -75,6 +82,7 @@ const THEMES = [
   let remove = null;
   const matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
   const themesMenu = document.getElementById('themes-menu');
+  const themeToggleButton = document.getElementById('theme-toggle-btn');
   const themeColorLight = document.getElementById('theme-color-light');
   const themeColorDark = document.getElementById('theme-color-dark');
 
@@ -97,7 +105,7 @@ const THEMES = [
   const updateMenuHighlight = themePreference => {
     document.querySelectorAll('.themes-menu-option').forEach(element => {
       const isActive = element.dataset.theme === themePreference;
-      element.classList.toggle('text-yellow-500', isActive);
+      element.setAttribute('aria-pressed', String(isActive));
     });
   };
 
@@ -126,16 +134,30 @@ const THEMES = [
 
   updateTheme();
 
-  document.addEventListener('click', () => themesMenu.classList.remove('open'));
+  const setThemesOpen = open => {
+    themesMenu.classList.toggle('open', open);
+    themeToggleButton.setAttribute('aria-expanded', String(open));
+  };
 
-  document.getElementById('theme-toggle-btn').addEventListener('click', e => {
-    e.stopPropagation();
-    const isClosed = !themesMenu.classList.contains('open');
-    themesMenu.classList[isClosed ? 'add' : 'remove']('open');
+  // Clicking the button toggles; clicking anywhere else closes
+  document.addEventListener('click', e => {
+    setThemesOpen(
+      themeToggleButton.contains(e.target) &&
+        !themesMenu.classList.contains('open')
+    );
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && themesMenu.classList.contains('open')) {
+      setThemesOpen(false);
+      themeToggleButton.focus();
+    }
   });
 
   document.querySelectorAll('.themes-menu-option').forEach(element => {
     element.addEventListener('click', () => {
+      // The menu closes on this click, so hand focus back to the toggle
+      themeToggleButton.focus();
       localStorage.setItem('theme', element.dataset.theme);
       if (
         !document.startViewTransition ||

@@ -14,13 +14,13 @@ const title = (lang: Lang) => {
   title={getTranslations(DEFAULT_LANG).not_found.title}
   lang={DEFAULT_LANG}
 >
-  <section>
+  <main id="main">
     <div
       class="mx-auto flex min-h-[80vh] max-w-7xl items-center justify-center px-4 lg:px-6"
     >
       <div id="not-found" class="mx-auto max-w-screen-sm text-center">
         <h1
-          class="mb-4 text-7xl font-extrabold tracking-tight text-yellow-500 lg:text-9xl dark:text-yellow-400"
+          class="mb-4 text-7xl font-extrabold tracking-tight text-yellow-700 lg:text-9xl dark:text-yellow-400"
         >
           404
         </h1>
@@ -41,7 +41,7 @@ const title = (lang: Lang) => {
                 </p>
                 <a
                   href={`/${lang}`}
-                  class="my-4 inline-flex rounded-lg bg-yellow-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 focus:outline-none dark:focus:ring-yellow-900"
+                  class="my-4 inline-flex rounded-lg bg-yellow-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 focus:outline-none dark:focus:ring-yellow-900"
                 >
                   {t.not_found.back_to_home}
                 </a>
@@ -51,7 +51,7 @@ const title = (lang: Lang) => {
         }
       </div>
     </div>
-  </section>
+  </main>
 
   <script is:inline>
     // Show the block for the URL's language prefix (e.g. /en/missing-page)

@@ -55,6 +55,32 @@ html {
   scroll-padding-top: 5rem;
 }
 
+/* Visible keyboard focus everywhere; utilities can still override it */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-yellow-700);
+    outline-offset: 2px;
+  }
+
+  .dark :focus-visible {
+    outline-color: var(--color-yellow-400);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Lock page scroll while a modal <dialog> is open */
 body:has(dialog[open]) {
   overflow: hidden;

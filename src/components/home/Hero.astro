@@ -68,7 +68,7 @@ const socials: SocialData[] = [
       >
         <a
           href={`/${lang}/projects`}
-          class="col-span-3 inline-flex min-h-12 items-center justify-center rounded-full bg-gray-900 px-6 font-semibold text-white transition hover:bg-gray-700 sm:col-auto dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
+          class="col-span-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gray-900 px-6 font-semibold text-white transition hover:bg-gray-700 sm:col-auto dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
         >
           {t.hero.cta}
           <RightArrow class="h-3 w-3" />
@@ -77,7 +77,8 @@ const socials: SocialData[] = [
           socials.map(social => (
             <a
               href={social.url}
-              target="_blank"
+              target={social.url.startsWith('mailto:') ? undefined : '_blank'}
+              rel="noopener noreferrer"
               aria-label={social.name}
               class="inline-flex h-12 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-900 transition hover:border-yellow-500 hover:text-yellow-700 sm:w-12 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:hover:border-yellow-400 dark:hover:text-yellow-400"
             >

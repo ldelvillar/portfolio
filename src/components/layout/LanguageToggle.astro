@@ -1,8 +1,10 @@
 ---
 import Language from '@/assets/icons/Language.astro';
 import { SUPPORTED_LANGUAGES, type Lang } from '@/i18n/config';
+import type { Translations } from '@/utils/getTranslations';
 
 interface Props {
+  t: Translations;
   currentLang: Lang;
 }
 
@@ -13,29 +15,35 @@ const LANGUAGE_NAMES: Record<Lang, string> = {
 };
 const LANG_PREFIX = new RegExp(`^/(${SUPPORTED_LANGUAGES.join('|')})`);
 
-const { currentLang } = Astro.props;
+const { t, currentLang } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
-<div class="relative mr-1 ml-1 text-gray-700 dark:text-white">
+<div class="relative text-gray-700 dark:text-white">
   <button
     id="language-toggle-btn"
-    class="flex appearance-none border-none transition hover:scale-125"
+    type="button"
+    class="flex appearance-none border-none p-1.5 transition hover:scale-125"
+    aria-expanded="false"
+    aria-controls="languages-menu"
   >
-    <span class="sr-only">Select language</span>
+    <span class="sr-only">{t.header.language_label}</span>
     <Language class="size-5 transition-all" />
   </button>
   <div
     id="languages-menu"
-    class="absolute top-6 right-0 hidden min-w-32 scale-80 rounded-md border border-gray-100 bg-white/90 p-1 text-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md dark:border-gray-500/20 dark:bg-gray-900/90"
+    class="absolute top-full right-0 hidden min-w-32 scale-80 rounded-md border border-gray-100 bg-white/90 p-1 text-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md dark:border-gray-500/20 dark:bg-gray-900/90"
   >
     <ul>
       {
         Object.entries(LANGUAGE_NAMES).map(([code, name]) => (
-          <li class="cursor-default rounded-sm px-2 py-1.5 hover:bg-neutral-400/40 dark:hover:bg-gray-500/50">
+          <li>
             <a
               href={currentPath.replace(LANG_PREFIX, `/${code}`)}
-              class={`flex w-full ${currentLang === code ? 'text-yellow-500' : ''}`}
+              lang={code}
+              hreflang={code}
+              aria-current={currentLang === code ? 'true' : undefined}
+              class="flex w-full rounded-sm px-2 py-1.5 hover:bg-neutral-400/40 aria-[current]:font-semibold aria-[current]:text-yellow-700 dark:hover:bg-gray-500/50 dark:aria-[current]:text-yellow-400"
             >
               {name}
             </a>
@@ -47,29 +55,29 @@ const currentPath = Astro.url.pathname;
 </div>
 
 <script>
-  const langaugeToggleButton = document.getElementById('language-toggle-btn');
-  const langaugesMenu = document.getElementById('languages-menu');
+  const languageToggleButton = document.getElementById('language-toggle-btn');
+  const languagesMenu = document.getElementById('languages-menu');
 
-  langaugeToggleButton?.addEventListener('click', e => {
-    e.stopPropagation();
-    if (langaugesMenu?.classList.contains('hidden')) {
-      langaugesMenu?.classList.remove('hidden');
-    } else {
-      langaugesMenu?.classList.add('hidden');
+  const setLanguagesOpen = (open: boolean) => {
+    languagesMenu?.classList.toggle('hidden', !open);
+    languageToggleButton?.setAttribute('aria-expanded', String(open));
+  };
+
+  // Clicking the button toggles; clicking anywhere else closes
+  document.addEventListener('click', e => {
+    if (!languagesMenu || !languageToggleButton) return;
+    const target = e.target as Node;
+    if (languageToggleButton.contains(target)) {
+      setLanguagesOpen(languagesMenu.classList.contains('hidden'));
+    } else if (!languagesMenu.contains(target)) {
+      setLanguagesOpen(false);
     }
   });
 
-  // Close the menu if clicked outside
-  document.addEventListener('click', e => {
-    if (!langaugesMenu || !langaugeToggleButton) return;
-    if (!langaugesMenu.classList.contains('hidden')) {
-      const target = e.target as Node;
-      if (
-        !langaugesMenu.contains(target) &&
-        !langaugeToggleButton.contains(target)
-      ) {
-        langaugesMenu.classList.add('hidden');
-      }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !languagesMenu?.classList.contains('hidden')) {
+      setLanguagesOpen(false);
+      languageToggleButton?.focus();
     }
   });
 </script>

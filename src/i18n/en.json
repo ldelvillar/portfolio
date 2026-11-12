@@ -12,7 +12,11 @@
       "certifications": "Certifications",
       "about": "About",
       "contact": "Contact"
-    }
+    },
+    "nav_label": "Main navigation",
+    "menu_label": "Menu",
+    "language_label": "Select language",
+    "skip_to_content": "Skip to content"
   },
   "hero": {
     "cta": "View projects",
@@ -58,6 +62,8 @@
       "latest": "Latest launch"
     },
     "search_placeholder": "Search by name, stack or keyword…",
+    "search_label": "Search projects",
+    "results_count": "{count} projects shown",
     "featured": "Featured",
     "status_prod": "In prod",
     "status_dev": "In dev",

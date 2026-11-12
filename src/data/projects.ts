@@ -30,7 +30,7 @@ export const TECH_META: Record<
   { icon: AstroComponentFactory; bgcolor: string }
 > = {
   'Next.js': { icon: NextJS, bgcolor: 'bg-black' },
-  Prisma: { icon: Prisma, bgcolor: 'bg-[#14b8a6]' },
+  Prisma: { icon: Prisma, bgcolor: 'bg-[#0f766e]' },
   'Express.js': { icon: Express, bgcolor: 'bg-slate-800' },
   'Tailwind CSS': { icon: Tailwind, bgcolor: 'bg-[#003159]' },
   Astro: { icon: AstroIcon, bgcolor: 'bg-[#43008f]' },
@@ -43,7 +43,7 @@ export const TECH_META: Record<
   LangGraph: { icon: Langgraph, bgcolor: 'bg-[#1e293b]' },
   Redis: { icon: Redis, bgcolor: 'bg-[#dc382d]' },
   Ollama: { icon: Ollama, bgcolor: 'bg-black' },
-  Docker: { icon: Docker, bgcolor: 'bg-[#2496ed]' },
+  Docker: { icon: Docker, bgcolor: 'bg-[#1d63ed]' },
   PostgreSQL: { icon: PostgreSQL, bgcolor: 'bg-[#336791]' },
   MCP: { icon: MCP, bgcolor: 'bg-[#1e293b]' },
 };

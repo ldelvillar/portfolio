@@ -10,10 +10,14 @@ const { t } = Astro.props;
 
 <footer class="mt-0 pb-3 md:mt-5">
   <p class="text-center text-base text-gray-800 dark:text-gray-300">
-    {t.footer.inspired}
-    <a href="https://porfolio.dev" target="_blank" class="text-yellow-400">
-      {' '}porfolio.dev{' '}
-    </a>
+    {t.footer.inspired}{' '}
+    <a
+      href="https://porfolio.dev"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-yellow-700 underline underline-offset-2 dark:text-yellow-400"
+      >porfolio.dev</a
+    >{' '}
     {t.footer.of} Midudev
   </p>
 </footer>

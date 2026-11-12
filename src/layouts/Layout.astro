@@ -101,6 +101,12 @@ const jsonLd = JSON.stringify(
   <body
     class="font-display relative flex min-h-screen flex-col bg-gray-50 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))] dark:bg-gray-950 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
   >
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:font-medium focus:text-gray-900 focus:shadow-lg dark:focus:bg-gray-900 dark:focus:text-white"
+    >
+      {t.header.skip_to_content}
+    </a>
     <Header t={t} lang={lang} />
     <slot />
     <Footer t={t} />

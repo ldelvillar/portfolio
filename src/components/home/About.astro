@@ -31,32 +31,35 @@ const { t } = Astro.props;
     </div>
     <div class="flex flex-col gap-5 px-6 py-8 md:px-8">
       <p class="font-medium text-gray-700 dark:text-gray-300">
-        <span class="mr-2 font-mono text-yellow-500 dark:text-yellow-400"
-          >$</span
+        <span
+          aria-hidden="true"
+          class="mr-2 font-mono text-yellow-700 dark:text-yellow-400">$</span
         >
         {t.about.introduction.part1}
-        <span class="text-yellow-500 dark:text-yellow-400"
+        <span class="text-yellow-700 dark:text-yellow-400"
           >{` ${t.about.introduction.highlight} `}</span
         >
         {t.about.introduction.part2}
       </p>
       <p class="font-medium text-gray-700 dark:text-gray-300">
-        <span class="mr-2 font-mono text-yellow-500 dark:text-yellow-400"
-          >$</span
+        <span
+          aria-hidden="true"
+          class="mr-2 font-mono text-yellow-700 dark:text-yellow-400">$</span
         >
         {` ${t.about.skills.part1} `}
-        <span class="text-yellow-500 dark:text-yellow-400"
+        <span class="text-yellow-700 dark:text-yellow-400"
           >{` ${t.about.skills.highlight1}`}</span
         >
         {`${t.about.skills.part2} `}
-        <span class="text-yellow-500 dark:text-yellow-400"
+        <span class="text-yellow-700 dark:text-yellow-400"
           >{` ${t.about.skills.highlight2}`}</span
         >
         {t.about.skills.part3}
       </p>
       <p class="font-medium text-gray-700 dark:text-gray-300">
-        <span class="mr-2 font-mono text-yellow-500 dark:text-yellow-400"
-          >$</span
+        <span
+          aria-hidden="true"
+          class="mr-2 font-mono text-yellow-700 dark:text-yellow-400">$</span
         >
         {t.about.goal}
       </p>
