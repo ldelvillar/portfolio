@@ -49,6 +49,8 @@
   --color-primary: #5654c0;
   --color-on-primary: #fff;
   --color-accent: #4b49a8;
+  --color-primary-start: var(--color-primary);
+  --color-primary-end: color-mix(in oklab, var(--color-primary) 64%, black);
   --font-display: 'Onest', sans-serif;
   --font-instrument: 'Instrument Serif', Georgia, serif;
 }
@@ -57,6 +59,8 @@
   --color-primary: #a5a4f0;
   --color-on-primary: #111827;
   --color-accent: #b4b3f5;
+  --color-primary-start: color-mix(in oklab, var(--color-primary) 28%, white);
+  --color-primary-end: var(--color-primary);
 }
 
 html {
@@ -105,23 +109,18 @@ html.dark ::-webkit-scrollbar-track {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #a5a4f0;
+  background: var(--color-primary);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7877c6;
+  background: var(--color-accent);
 }
 
 /* Selected text */
 ::selection {
-  background-color: #5654c0;
-  color: #fff;
-}
-
-html.dark ::selection {
-  background-color: #a5a4f0;
-  color: #111827;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
 /* Theme toggle: polygon reveal (View Transitions) */
