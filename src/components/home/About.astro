@@ -24,43 +24,28 @@ const { t } = Astro.props;
     <div
       class="flex items-center gap-3 border-b border-gray-200 px-5 py-3 dark:border-gray-800"
     >
-      <span class="h-2 w-2 rounded-sm bg-yellow-500 dark:bg-yellow-400"></span>
+      <span class="bg-primary h-2 w-2 rounded-sm"></span>
       <span class="font-mono text-xs text-gray-500 dark:text-gray-400"
         >{t.about.terminalPath}</span
       >
     </div>
     <div class="flex flex-col gap-5 px-6 py-8 md:px-8">
       <p class="font-medium text-gray-700 dark:text-gray-300">
-        <span
-          aria-hidden="true"
-          class="mr-2 font-mono text-yellow-700 dark:text-yellow-400">$</span
-        >
+        <span aria-hidden="true" class="text-accent mr-2 font-mono">$</span>
         {t.about.introduction.part1}
-        <span class="text-yellow-700 dark:text-yellow-400"
-          >{` ${t.about.introduction.highlight} `}</span
-        >
+        <span class="text-accent">{` ${t.about.introduction.highlight} `}</span>
         {t.about.introduction.part2}
       </p>
       <p class="font-medium text-gray-700 dark:text-gray-300">
-        <span
-          aria-hidden="true"
-          class="mr-2 font-mono text-yellow-700 dark:text-yellow-400">$</span
-        >
+        <span aria-hidden="true" class="text-accent mr-2 font-mono">$</span>
         {` ${t.about.skills.part1} `}
-        <span class="text-yellow-700 dark:text-yellow-400"
-          >{` ${t.about.skills.highlight1}`}</span
-        >
+        <span class="text-accent">{` ${t.about.skills.highlight1}`}</span>
         {t.about.skills.part2}
       </p>
       <p class="font-medium text-gray-700 dark:text-gray-300">
-        <span
-          aria-hidden="true"
-          class="mr-2 font-mono text-yellow-700 dark:text-yellow-400">$</span
-        >
+        <span aria-hidden="true" class="text-accent mr-2 font-mono">$</span>
         {`${t.about.goal.part1} `}
-        <span class="text-yellow-700 dark:text-yellow-400"
-          >{t.about.goal.highlight}</span
-        >
+        <span class="text-accent">{t.about.goal.highlight}</span>
         {t.about.goal.part2}
       </p>
     </div>

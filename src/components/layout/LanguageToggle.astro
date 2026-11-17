@@ -43,7 +43,7 @@ const currentPath = Astro.url.pathname;
               lang={code}
               hreflang={code}
               aria-current={currentLang === code ? 'true' : undefined}
-              class="flex w-full rounded-sm px-2 py-1.5 hover:bg-neutral-400/40 aria-[current]:font-semibold aria-[current]:text-yellow-700 dark:hover:bg-gray-500/50 dark:aria-[current]:text-yellow-400"
+              class="aria-[current]:text-accent flex w-full rounded-sm px-2 py-1.5 hover:bg-neutral-400/40 aria-[current]:font-semibold dark:hover:bg-gray-500/50"
             >
               {name}
             </a>

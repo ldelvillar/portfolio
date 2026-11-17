@@ -46,13 +46,17 @@
 }
 
 @theme {
-  --color-primary: oklch(68.1% 0.162 75.834);
+  --color-primary: #5654c0;
+  --color-on-primary: #fff;
+  --color-accent: #4b49a8;
   --font-display: 'Onest', sans-serif;
   --font-instrument: 'Instrument Serif', Georgia, serif;
 }
 
 .dark {
-  --color-primary: oklch(85.2% 0.199 91.936);
+  --color-primary: #a5a4f0;
+  --color-on-primary: #111827;
+  --color-accent: #b4b3f5;
 }
 
 html {
@@ -63,12 +67,8 @@ html {
 /* Visible keyboard focus everywhere; utilities can still override it */
 @layer base {
   :focus-visible {
-    outline: 2px solid var(--color-yellow-700);
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
-  }
-
-  .dark :focus-visible {
-    outline-color: var(--color-yellow-400);
   }
 }
 
@@ -105,18 +105,23 @@ html.dark ::-webkit-scrollbar-track {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #facc15;
+  background: #a5a4f0;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffe479;
+  background: #7877c6;
 }
 
 /* Selected text */
 ::selection {
-  background-color: #b100d4;
+  background-color: #5654c0;
   color: #fff;
+}
+
+html.dark ::selection {
+  background-color: #a5a4f0;
+  color: #111827;
 }
 
 /* Theme toggle: polygon reveal (View Transitions) */

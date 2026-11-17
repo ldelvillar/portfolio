@@ -58,10 +58,9 @@ const [latest, ...others] = [...CERTS].sort((a, b) =>
       </div>
       <div class="flex flex-col gap-5">
         <span
-          class="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-yellow-700 uppercase dark:text-yellow-400"
+          class="text-accent inline-flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase"
         >
-          <span class="inline-block h-px w-4 bg-yellow-500 dark:bg-yellow-400"
-          ></span>
+          <span class="bg-primary inline-block h-px w-4"></span>
           {t.certifications.latest_earned}
         </span>
         <h2
@@ -115,7 +114,7 @@ const [latest, ...others] = [...CERTS].sort((a, b) =>
             href={latest.credentialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex min-h-11 items-center gap-2 rounded-full bg-yellow-400 px-[18px] text-sm font-semibold text-gray-900 transition-colors hover:bg-yellow-300"
+            class="bg-primary text-on-primary hover:bg-accent inline-flex min-h-11 items-center gap-2 rounded-full px-[18px] text-sm font-semibold transition-colors"
           >
             <svg
               viewBox="0 0 24 24"
@@ -242,7 +241,7 @@ const [latest, ...others] = [...CERTS].sort((a, b) =>
                     href={cert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex min-h-8 items-center gap-1.5 text-[13px] font-semibold text-gray-900 transition-colors hover:text-yellow-700 dark:text-white dark:hover:text-yellow-400"
+                    class="hover:text-accent inline-flex min-h-8 items-center gap-1.5 text-[13px] font-semibold text-gray-900 transition-colors dark:text-white"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -264,7 +263,7 @@ const [latest, ...others] = [...CERTS].sort((a, b) =>
                   <a
                     href={cert.pdfUrl}
                     download={`${cert.id}.pdf`}
-                    class="inline-flex min-h-8 items-center gap-1.5 text-[13px] font-medium text-gray-600 transition-colors hover:text-yellow-700 dark:text-gray-300 dark:hover:text-yellow-400"
+                    class="hover:text-accent inline-flex min-h-8 items-center gap-1.5 text-[13px] font-medium text-gray-600 transition-colors dark:text-gray-300"
                   >
                     <svg
                       viewBox="0 0 24 24"

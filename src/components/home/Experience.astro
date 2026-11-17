@@ -91,7 +91,7 @@ const timelineItems = [
                 {item.date}
               </time>
             </div>
-            <ul class="mt-4 list-disc space-y-1 pl-5 leading-relaxed text-gray-700 marker:text-yellow-500 dark:text-gray-300">
+            <ul class="marker:text-accent mt-4 list-disc space-y-1 pl-5 leading-relaxed text-gray-700 dark:text-gray-300">
               {item.bullets.map(b => (
                 <li>{b}</li>
               ))}
@@ -224,7 +224,7 @@ const timelineItems = [
   }
   .tl-date.is-active {
     background: var(--color-primary);
-    color: #111827;
+    color: var(--color-on-primary);
   }
   @media (max-width: 640px) {
     .tl {

@@ -58,7 +58,7 @@ const socials: SocialData[] = [
         class="max-w-2xl text-lg leading-relaxed font-medium text-balance text-gray-600 md:text-xl dark:text-gray-300"
       >
         {t.hero.description1}
-        <span class="font-semibold text-yellow-700 dark:text-yellow-400">
+        <span class="text-accent font-semibold">
           {` ${t.hero.description2} `}
         </span>{t.hero.description3}
       </p>
@@ -80,7 +80,7 @@ const socials: SocialData[] = [
               target={social.url.startsWith('mailto:') ? undefined : '_blank'}
               rel="noopener noreferrer"
               aria-label={social.name}
-              class="inline-flex h-12 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-900 transition hover:border-yellow-500 hover:text-yellow-700 sm:w-12 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:hover:border-yellow-400 dark:hover:text-yellow-400"
+              class="hover:border-primary hover:text-accent inline-flex h-12 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-900 transition sm:w-12 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
             >
               <social.icon />
             </a>

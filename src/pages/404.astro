@@ -20,7 +20,7 @@ const title = (lang: Lang) => {
     >
       <div id="not-found" class="mx-auto max-w-screen-sm text-center">
         <h1
-          class="mb-4 text-7xl font-extrabold tracking-tight text-yellow-700 lg:text-9xl dark:text-yellow-400"
+          class="text-accent mb-4 text-7xl font-extrabold tracking-tight lg:text-9xl"
         >
           404
         </h1>
@@ -41,7 +41,7 @@ const title = (lang: Lang) => {
                 </p>
                 <a
                   href={`/${lang}`}
-                  class="my-4 inline-flex rounded-lg bg-yellow-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 focus:outline-none dark:focus:ring-yellow-900"
+                  class="bg-primary text-on-primary hover:bg-accent focus:ring-primary/40 my-4 inline-flex rounded-lg px-5 py-2.5 text-center text-sm font-medium focus:ring-4 focus:outline-none"
                 >
                   {t.not_found.back_to_home}
                 </a>
