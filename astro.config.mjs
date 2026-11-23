@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 import sitemap from '@astrojs/sitemap';
+import { DEFAULT_LANG } from './src/i18n/config.ts';
 
 export default defineConfig({
   site: 'https://lucasdelvillar.com',
@@ -18,5 +19,13 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [sitemap({ filter: page => !page.endsWith('/itsme') })],
+  integrations: [
+    sitemap({
+      filter: page => !page.endsWith('/itsme'),
+      i18n: {
+        defaultLocale: DEFAULT_LANG,
+        locales: { es: 'es', en: 'en', de: 'de' },
+      },
+    }),
+  ],
 });

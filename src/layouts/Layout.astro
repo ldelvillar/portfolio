@@ -1,7 +1,7 @@
 ---
 import '@/styles/global.css';
 import { getTranslations } from '@/utils/getTranslations';
-import type { Lang } from '@/i18n/config';
+import { SUPPORTED_LANGUAGES, type Lang } from '@/i18n/config';
 import { SITE } from '@/data/site';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
@@ -22,6 +22,15 @@ const ogLocale = { en: 'en_US', es: 'es_ES', de: 'de_DE' } satisfies Record<
   Lang,
   string
 >;
+
+// Only pages under /[lang] have translations; 404 and the like get no alternates.
+const [, pathLang, ...pathRest] = Astro.url.pathname.split('/');
+const alternates = (SUPPORTED_LANGUAGES as readonly string[]).includes(pathLang)
+  ? SUPPORTED_LANGUAGES.map(code => ({
+      code,
+      href: new URL(['', code, ...pathRest].join('/'), Astro.site).href,
+    }))
+  : [];
 
 const { title: pageName, lang, page } = Astro.props;
 const t = getTranslations(lang);
@@ -95,6 +104,20 @@ const jsonLd = JSON.stringify(
       content="#030712"
     />
     <link rel="canonical" href={fullUrl} />
+    {
+      alternates.map(({ code, href }) => (
+        <link rel="alternate" hreflang={code} href={href} />
+      ))
+    }
+    {
+      alternates.length > 0 && (
+        <link
+          rel="alternate"
+          hreflang="x-default"
+          href={new URL('/', Astro.site).href}
+        />
+      )
+    }
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph tags -->
