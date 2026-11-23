@@ -1,0 +1,21 @@
+---
+// Opts this browser out of Umami analytics, then goes to the home page.
+// Doesn't use Layout so the Umami script never loads here.
+import { DEFAULT_LANG } from '@/i18n/config';
+
+const home = `/${DEFAULT_LANG}`;
+---
+
+<!doctype html>
+<html lang={DEFAULT_LANG}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
+    <title>itsme</title>
+    <script is:inline define:vars={{ home }}>
+      localStorage.setItem('umami.disabled', '1');
+      location.replace(home);
+    </script>
+  </head>
+</html>

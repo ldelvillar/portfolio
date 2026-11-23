@@ -17,5 +17,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: page => !page.endsWith('/itsme') })],
 });

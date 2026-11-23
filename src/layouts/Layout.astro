@@ -118,6 +118,14 @@ const jsonLd = JSON.stringify(
     <meta name="twitter:site" content="@ldelvillar" />
     <meta name="twitter:creator" content="@ldelvillar" />
 
+    <!-- Analytics -->
+    <script
+      is:inline
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="a8dabaff-c0a7-44d5-ae67-8f556864aa84"
+      data-domains={Astro.site!.hostname}></script>
+
     <!-- Structured data -->
     <script is:inline type="application/ld+json" set:html={jsonLd} />
   </head>
