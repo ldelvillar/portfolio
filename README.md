@@ -2,7 +2,7 @@
 
 Personal portfolio site — [lucasdelvillar.com](https://lucasdelvillar.com).
 
-Built with **Astro 7**, **Tailwind CSS 4**, and **TypeScript**. Multilingual (ES, EN, DE) via JSON-based i18n: every page exists under `/es`, `/en` and `/de`, and `/` redirects to `/es`. Fully static, deployed on Vercel.
+Built with **Astro 7**, **Tailwind CSS 4**, and **TypeScript**. Multilingual (ES, EN, DE) via JSON-based i18n: every page exists under `/es`, `/en` and `/de`, and `/` redirects to `/de` or `/en` based on the browser's `Accept-Language` header, falling back to `/es` (configured in `vercel.json`; `astro.config.mjs` only redirects to `/es` for dev and build). Fully static, deployed on Vercel.
 
 ## Requirements
 

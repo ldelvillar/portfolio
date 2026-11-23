@@ -6,7 +6,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://lucasdelvillar.com',
 
-  // Also in vercel.json (the real 307 on Vercel); keep both in sync.
+  // Dev/build fallback only. On Vercel, vercel.json handles `/` (307) and also
+  // picks de/en from Accept-Language; keep the default target in sync.
   redirects: {
     '/': '/es',
   },
